@@ -25,7 +25,7 @@ int main(void)
     Camera camera = { 0 };
     camera.position = (Vector3){ 0.2f, 0.4f, 0.2f };    // Camera position
     camera.target = (Vector3){ 0.185f, 0.4f, 0.0f };    // Camera looking at point
-    camera.up = (Vector3){ 0.0f, 1.0f, 0.0f };          // Camera up vector (rotation towards target)
+    camera.up = (Vector3){ 0.0f, 3.0f, 0.0f };          // Camera up vector (rotation towards target)
     camera.fovy = 45.0f;                                // Camera field-of-view Y
     camera.projection = CAMERA_PERSPECTIVE;             // Camera projection type
     Vector3 position = { 0.0f, 0.0f, 0.0f };            // Set model position
@@ -51,8 +51,7 @@ int main(void)
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
-    {
+    while (!WindowShouldClose()) {   // Detect window close button or ESC key
         // Update
         //----------------------------------------------------------------------------------
         Vector3 oldCamPos = camera.position;    // Store old camera position
@@ -67,29 +66,25 @@ int main(void)
         int playerCellY = (int)(playerPos.y - mapPosition.z + 0.5f);
 
         // Out-of-limits security check
-        if (playerCellX < 0) playerCellX = 0;
-        else if (playerCellX >= cubicmap.width) playerCellX = cubicmap.width - 1;
-
-        if (playerCellY < 0) playerCellY = 0;
-        else if (playerCellY >= cubicmap.height) playerCellY = cubicmap.height - 1;
-
+        if (playerCellX < 0)
+            playerCellX = 0;
+        else if (playerCellX >= cubicmap.width)
+            playerCellX = cubicmap.width - 1;
+        if (playerCellY < 0)
+            playerCellY = 0;
+        else if (playerCellY >= cubicmap.height)
+            playerCellY = cubicmap.height - 1;
         // Check map collisions using image data and player position
         // TODO: Improvement: Just check player surrounding cells for collision
-        for (int y = 0; y < cubicmap.height; y++)
-        {
-            for (int x = 0; x < cubicmap.width; x++)
-            {
-                if ((mapPixels[y*cubicmap.width + x].r == 255) &&       // Collision: white pixel, only check R channel
-                    (CheckCollisionCircleRec(playerPos, playerRadius,
-                    (Rectangle){ mapPosition.x - 0.5f + x*1.0f, mapPosition.z - 0.5f + y*1.0f, 1.0f, 1.0f })))
-                {
+        for (int y = 0; y < cubicmap.height; y++) {
+            for (int x = 0; x < cubicmap.width; x++) {
+                if ((mapPixels[y*cubicmap.width + x].r == 255) && (CheckCollisionCircleRec(playerPos, playerRadius, (Rectangle){ mapPosition.x - 0.5f + x*1.0f, mapPosition.z - 0.5f + y*1.0f, 1.0f, 1.0f }))) {      // Collision: white pixel, only check R channel
                     // Collision detected, reset camera position
                     camera.position = oldCamPos;
                 }
             }
         }
         //----------------------------------------------------------------------------------
-
         // Draw
         //----------------------------------------------------------------------------------
         BeginDrawing();
@@ -100,12 +95,10 @@ int main(void)
                 DrawModel(model, mapPosition, 1.0f, WHITE);                     // Draw maze map
             EndMode3D();
 
-            DrawTextureEx(cubicmap, (Vector2){ GetScreenWidth() - cubicmap.width*4.0f - 20, 20.0f }, 0.0f, 4.0f, WHITE);
-            DrawRectangleLines(GetScreenWidth() - cubicmap.width*4 - 20, 20, cubicmap.width*4, cubicmap.height*4, GREEN);
-
+            DrawTextureEx(cubicmap, (Vector2){ GetScreenWidth() - cubicmap.width * 4.0f - 20, 20.0f }, 0.0f, 4.0f, WHITE);
+            DrawRectangleLines(GetScreenWidth() - cubicmap.width * 4 - 20, 20, cubicmap.width*4, cubicmap.height * 4, GREEN);
             // Draw player position radar
-            DrawRectangle(GetScreenWidth() - cubicmap.width*4 - 20 + playerCellX*4, 20 + playerCellY*4, 4, 4, RED);
-
+            DrawRectangle(GetScreenWidth() - cubicmap.width * 4 - 20 + playerCellX * 4, 20 + playerCellY * 4, 4, 4, RED);
             DrawFPS(10, 10);
 
         EndDrawing();
