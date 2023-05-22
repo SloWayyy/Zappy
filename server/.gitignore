@@ -1,0 +1,9 @@
+# build
+zappy_server
+unit_tests
+
+# temp files
+*.gcda
+*.gcno
+*.o
+coding-style-reports.log
