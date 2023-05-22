@@ -2,76 +2,126 @@
 ** EPITECH PROJECT, 2023
 ** Zappy
 ** File description:
-** Main.cpp
+** Main
 */
 
-#include <OgreApplicationContext.h>
-#include <OgreInput.h>
-#include <OgreRoot.h>
-#include <OgreEntity.h>
-#include <OgreTexture.h>
-#include <OgreRenderWindow.h>
-#include <OgreColourValue.h>
-#include <OgreSceneManager.h>
-#include "../include/ogre.hpp"
+#include "raylib.h"
 
-void graphical::createWindow(OgreBites::ApplicationContext ctx)
+#include <stdlib.h>           // Required for: free()
+
+//------------------------------------------------------------------------------------
+// Program main entry point
+//------------------------------------------------------------------------------------
+int main(void)
 {
-    Ogre::Root *root = ctx.getRoot();
-    scnMgr = root->createSceneManager();
-    Ogre::RTShader::ShaderGenerator *shadergen = Ogre::RTShader::ShaderGenerator::getSingletonPtr();
-    shadergen->addSceneManager(scnMgr);
-}
+    // Initialization
+    //--------------------------------------------------------------------------------------
+    const int screenWidth = 800;
+    const int screenHeight = 450;
 
-void graphical::createCamera()
-{
-    cam = scnMgr->createCamera("myCam");
-    cam->setNearClipDistance(5); // specific to this sample
-    cam->setAutoAspectRatio(true);
-    camNode->attachObject(cam);
-}
+    InitWindow(screenWidth, screenHeight, "raylib [models] example - first person maze");
 
-void graphical::createLight()
-{
-    Ogre::Light *light = scnMgr->createLight("MainLight");
-    Ogre::SceneNode *lightNode = scnMgr->getRootSceneNode()->createChildSceneNode();
-    lightNode->setPosition(0, 10, 15);
-    lightNode->attachObject(light);
-}
+    // Define the camera to look into our 3d world
+    Camera camera = { 0 };
+    camera.position = (Vector3){ 0.2f, 0.4f, 0.2f };    // Camera position
+    camera.target = (Vector3){ 0.185f, 0.4f, 0.0f };    // Camera looking at point
+    camera.up = (Vector3){ 0.0f, 1.0f, 0.0f };          // Camera up vector (rotation towards target)
+    camera.fovy = 45.0f;                                // Camera field-of-view Y
+    camera.projection = CAMERA_PERSPECTIVE;             // Camera projection type
+    Vector3 position = { 0.0f, 0.0f, 0.0f };            // Set model position
 
-void graphical::setPositionLight(float x, float y, float z)
-{
-    camNode = scnMgr->getRootSceneNode()->createChildSceneNode();
-    camNode->setPosition(x, y, z);
-    camNode->lookAt(Ogre::Vector3(0, 0, -1), Ogre::Node::TS_PARENT);
-}
+    Image imMap = LoadImage("cubicmap.png");      // Load cubicmap image (RAM)
+    Texture2D cubicmap = LoadTextureFromImage(imMap);       // Convert image to texture to display (VRAM)
+    Mesh mesh = GenMeshCubicmap(imMap, (Vector3){ 1.0f, 1.0f, 1.0f });
+    Model model = LoadModelFromMesh(mesh);
 
-Ogre::Entity *graphical::createEntity(std::string mesh)
-{
-    Ogre::Entity *ent = scnMgr->createEntity(mesh);
-    Ogre::SceneNode *node = scnMgr->getRootSceneNode()->createChildSceneNode();
-    node->attachObject(ent);
-    return ent;
-}
+    // NOTE: By default each cube is mapped to one part of texture atlas
+    Texture2D texture = LoadTexture("cubicmap_atlas.png");    // Load map texture
+    model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = texture;    // Set map diffuse texture
 
-int main()
-{
-    OgreBites::ApplicationContext ctx("Zappy GUI");
-    graphical g;
-    ctx.initApp();
-    g.createWindow(ctx);
-    g.createLight();
-    g.setPositionLight(10, 0, 15);
-    g.createCamera();
-    ctx.getRenderWindow()->addViewport(g.getCam());
-    Ogre::SceneManager* scnMgr = g.getScnMgr();
+    // Get map image data to be used for collision detection
+    Color *mapPixels = LoadImageColors(imMap);
+    UnloadImage(imMap);             // Unload image from RAM
 
-    Ogre::Entity *ent_one = g.createEntity("Sinbad.mesh");
+    Vector3 mapPosition = { -16.0f, 0.0f, -8.0f };  // Set model position
 
-    KeyHandler keyHandler;
-    ctx.addInputListener(&keyHandler);
- 
-    scnMgr->setAmbientLight(Ogre::ColourValue(0.5, 0.5, 0.5));
-    ctx.getRoot()->startRendering();
-    ctx.closeApp();
+    DisableCursor();                // Limit cursor to relative movement inside the window
+
+    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+    //--------------------------------------------------------------------------------------
+
+    // Main game loop
+    while (!WindowShouldClose())    // Detect window close button or ESC key
+    {
+        // Update
+        //----------------------------------------------------------------------------------
+        Vector3 oldCamPos = camera.position;    // Store old camera position
+
+        UpdateCamera(&camera, CAMERA_FIRST_PERSON);
+
+        // Check player collision (we simplify to 2D collision detection)
+        Vector2 playerPos = { camera.position.x, camera.position.z };
+        float playerRadius = 0.1f;  // Collision radius (player is modelled as a cilinder for collision)
+
+        int playerCellX = (int)(playerPos.x - mapPosition.x + 0.5f);
+        int playerCellY = (int)(playerPos.y - mapPosition.z + 0.5f);
+
+        // Out-of-limits security check
+        if (playerCellX < 0) playerCellX = 0;
+        else if (playerCellX >= cubicmap.width) playerCellX = cubicmap.width - 1;
+
+        if (playerCellY < 0) playerCellY = 0;
+        else if (playerCellY >= cubicmap.height) playerCellY = cubicmap.height - 1;
+
+        // Check map collisions using image data and player position
+        // TODO: Improvement: Just check player surrounding cells for collision
+        for (int y = 0; y < cubicmap.height; y++)
+        {
+            for (int x = 0; x < cubicmap.width; x++)
+            {
+                if ((mapPixels[y*cubicmap.width + x].r == 255) &&       // Collision: white pixel, only check R channel
+                    (CheckCollisionCircleRec(playerPos, playerRadius,
+                    (Rectangle){ mapPosition.x - 0.5f + x*1.0f, mapPosition.z - 0.5f + y*1.0f, 1.0f, 1.0f })))
+                {
+                    // Collision detected, reset camera position
+                    camera.position = oldCamPos;
+                }
+            }
+        }
+        //----------------------------------------------------------------------------------
+
+        // Draw
+        //----------------------------------------------------------------------------------
+        BeginDrawing();
+
+            ClearBackground(RAYWHITE);
+
+            BeginMode3D(camera);
+                DrawModel(model, mapPosition, 1.0f, WHITE);                     // Draw maze map
+            EndMode3D();
+
+            DrawTextureEx(cubicmap, (Vector2){ GetScreenWidth() - cubicmap.width*4.0f - 20, 20.0f }, 0.0f, 4.0f, WHITE);
+            DrawRectangleLines(GetScreenWidth() - cubicmap.width*4 - 20, 20, cubicmap.width*4, cubicmap.height*4, GREEN);
+
+            // Draw player position radar
+            DrawRectangle(GetScreenWidth() - cubicmap.width*4 - 20 + playerCellX*4, 20 + playerCellY*4, 4, 4, RED);
+
+            DrawFPS(10, 10);
+
+        EndDrawing();
+        //----------------------------------------------------------------------------------
+    }
+
+    // De-Initialization
+    //--------------------------------------------------------------------------------------
+    UnloadImageColors(mapPixels);   // Unload color array
+
+    UnloadTexture(cubicmap);        // Unload cubicmap texture
+    UnloadTexture(texture);         // Unload map texture
+    UnloadModel(model);             // Unload map model
+
+    CloseWindow();                  // Close window and OpenGL context
+    //--------------------------------------------------------------------------------------
+
+    return 0;
 }
