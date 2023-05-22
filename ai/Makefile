@@ -5,7 +5,7 @@
 ## Makefile
 ##
 
-NAME    =   myAi
+NAME    =   zappy_ai
 
 RM    =   	rm -rf
 
