@@ -16,6 +16,6 @@ def pars_args():
     parser = handle_args()
     parser.add_argument('-p', '--port', type=int)
     parser.add_argument('-n', '--name', type=str)
-    parser.add_argument('-h', '--adress', type=str)
+    parser.add_argument('-h', '--address', type=str)
     args = parser.parse_args()
     return args
