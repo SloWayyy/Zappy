@@ -7,8 +7,6 @@
 
 NAME    =   zappy_ai
 
-RM    =   	rm -rf
-
 all: ${NAME}
 
 ${NAME}:
