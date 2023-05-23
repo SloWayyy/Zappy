@@ -16,7 +16,7 @@ ${NAME}:
 	chmod +x ../${NAME}
 
 clean:
-	${RM} __pycache__/
+	${RM} src/__pycache__/
 	${RM} ./sources/__pycache__/
 	${RM} ./tests/__pycache__/
 	${RM} ./build/

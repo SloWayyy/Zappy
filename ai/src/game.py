@@ -1,9 +1,9 @@
-def game_loop(args, connexion, adresse):
+def game_loop(sock):
 
     while True:
-        donnees = connexion.recv(1024)
+        donnees = sock.recv(1024)
         if not donnees:
             break
         print("Données reçues :", donnees.decode())
 
-    connexion.close()
+    sock.close()

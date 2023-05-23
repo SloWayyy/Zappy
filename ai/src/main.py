@@ -18,8 +18,8 @@ def main():
         sys.exit(0)
     try:
         args = pars_args()
-        connexion, adresse = get_socket(args.port, args.address if args.address is not None else "")
-        game_loop(args, connexion, adresse)
+        sock = get_socket(args.port, args.address if args.address is not None else "")
+        game_loop(sock)
         sys.exit(0)
     except BadArgumentException as e:
         print(e)
