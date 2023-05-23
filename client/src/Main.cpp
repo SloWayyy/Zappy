@@ -9,15 +9,12 @@
 
 #include <stdlib.h>           // Required for: free()
 
-//------------------------------------------------------------------------------------
-// Program main entry point
-//------------------------------------------------------------------------------------
 int main(void)
 {
     // Initialization
     //--------------------------------------------------------------------------------------
-    const int screenWidth = 800;
-    const int screenHeight = 450;
+    const int screenWidth = 1920;
+    const int screenHeight = 1080;
 
     InitWindow(screenWidth, screenHeight, "raylib [models] example - first person maze");
 
@@ -96,7 +93,7 @@ int main(void)
             EndMode3D();
 
             DrawTextureEx(cubicmap, (Vector2){ GetScreenWidth() - cubicmap.width * 4.0f - 20, 20.0f }, 0.0f, 4.0f, WHITE);
-            DrawRectangleLines(GetScreenWidth() - cubicmap.width * 4 - 20, 20, cubicmap.width*4, cubicmap.height * 4, GREEN);
+            DrawRectangleLines(GetScreenWidth() - cubicmap.width * 4 - 20, 20, cubicmap.width * 4, cubicmap.height * 4, GREEN);
             // Draw player position radar
             DrawRectangle(GetScreenWidth() - cubicmap.width * 4 - 20 + playerCellX * 4, 20 + playerCellY * 4, 4, 4, RED);
             DrawFPS(10, 10);
