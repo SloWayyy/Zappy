@@ -8,10 +8,13 @@ set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 find_package(raylib 3.5 REQUIRED COMPONENTS Bites CONFIG)
 
 include_directories(.)
+include_directories(include)
 include_directories(/home/Taha/Downloads/raylib/examples/shaders/rlights.h)
 
 add_executable(zappy_gui
         src/Main.cpp
+        src/graphical.cpp
+        src/character.cpp
         )
 
 target_link_libraries(zappy_gui raylib)
