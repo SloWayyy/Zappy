@@ -10,7 +10,10 @@
 
     #include <string>
     #include <iostream>
+    #include <vector>
     #include "raylib.h"
+    #include "character.hpp"
+    #include "Map.hpp"
 
 static constexpr int WIDTH = 1920;
 static constexpr int HEIGHT = 1080;
@@ -28,9 +31,12 @@ class graphical {
         void setCameraPosition(float x, float y, float z);
         Camera getCamera() const { return camera; };
         void handleInput();
+        void draw_all_players();
+        std::vector<character> players;
     protected:
         Camera camera;
         Vector3 cubePosition;
+        Map map;
         float pos_x;
         float pos_y;
     private:

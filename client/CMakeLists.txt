@@ -14,6 +14,7 @@ add_executable(zappy_gui
         src/Main.cpp
         src/graphical.cpp
         src/character.cpp
+        src/Map.cpp
         )
 
 target_link_libraries(zappy_gui raylib)

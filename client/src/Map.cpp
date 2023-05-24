@@ -11,7 +11,7 @@ Map::Map(int height, float width)
 {
     this->height = height;
     this->width = width;
-    this->x = 0.0f;
+    this->x = 10.0f;
     this->y = 0.0f;
     this->cubePosition = { x, 0.0f, y };
 }
@@ -22,18 +22,18 @@ Map::~Map()
 
 void Map::draw()
 {
-    x = 0.0f;
-    y = 0.0f;
+    this->x = 0.0f;
+    this->y = 0.0f;
     for (int y = 0; y < height; y++) {
         for (int x = 0; x < width; x++) {
-            Vector3 cubePosition = { x, 0.0f, y };
+            Vector3 cubePosition = { this->x, 0.0f, this->y };
             DrawCube(cubePosition, 2.0f, 2.0f, 2.0f, GREEN);
             DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, WHITE);
             DrawGrid(10, 1.0f);
-            x += 2.0f;
+            this->x += 2.0f;
         }
-        x = 0.0f;
-        y += 2.0f;
+        this->x = 0.0f;
+        this->y += 2.0f;
     }
     DrawRectangle( 10, 10, 320, 133, Fade(SKYBLUE, 0.5f));
     DrawRectangleLines( 10, 10, 320, 133, BLUE);

@@ -93,3 +93,8 @@ void character::setposition(Vector3 position)
 {
     this->position = position;
 }
+
+Vector3 character::getposition()
+{
+    return position;
+}

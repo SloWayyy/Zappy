@@ -11,14 +11,14 @@
     #include <string>
     #include <iostream>
     #include "raylib.h"
-    #include "graphical.hpp"
 
-class character : public graphical {
+class character {
     public:
         character();
         ~character();
         void init(float x, float y, float z);
         void setposition(Vector3 position);
+        Vector3 getposition();
         void run();
         void stop();
         void draw();
