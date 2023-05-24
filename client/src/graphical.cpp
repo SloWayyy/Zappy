@@ -41,7 +41,7 @@ void graphical::stop()
 
 void graphical::draw()
 {
-    pos_x = 10.0f;
+    pos_x = 0.0f;
     pos_y = 0.0f;
     for (int y = 0; y < 10; y++) {
         for (int x = 0; x < 10; x++) {
@@ -51,7 +51,7 @@ void graphical::draw()
             DrawGrid(10, 1.0f);
             pos_x += 2.0f;
         }
-        pos_x = 10.0f;
+        pos_x = 0.0f;
         pos_y += 2.0f;
     }
     DrawRectangle( 10, 10, 320, 133, Fade(SKYBLUE, 0.5f));

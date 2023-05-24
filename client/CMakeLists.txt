@@ -9,7 +9,6 @@ find_package(raylib 3.5 REQUIRED COMPONENTS Bites CONFIG)
 
 include_directories(.)
 include_directories(include)
-include_directories(/home/Taha/Downloads/raylib/examples/shaders/rlights.h)
 
 add_executable(zappy_gui
         src/Main.cpp
