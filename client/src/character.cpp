@@ -88,3 +88,8 @@ void character::stop()
     UnloadModelAnimations(anims, animsCount);
     UnloadModel(model);
 }
+
+void character::setposition(Vector3 position)
+{
+    this->position = position;
+}

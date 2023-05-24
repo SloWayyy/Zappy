@@ -18,6 +18,7 @@ class character : public graphical {
         character();
         ~character();
         void init(float x, float y, float z);
+        void setposition(Vector3 position);
         void run();
         void stop();
         void draw();
