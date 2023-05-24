@@ -8,7 +8,7 @@ all: build/$(NAME)
 build:
 	mkdir -p $(BUILD_DIR)
 
-build/Makefile: $(BUILD_DIR)
+build/Makefile: build
 	cd $(BUILD_DIR) && $(RM) CMakeCache.txt && cmake $(CMAKE_FLAGS) ..
 
 build/$(NAME): build/Makefile
