@@ -21,5 +21,7 @@ make
 sudo make install
 
 # Remove temp files
+cd ../../
+rm -rf raylib
 
 echo "RAYLIB successfully installed!"
