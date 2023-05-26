@@ -15,7 +15,7 @@
 class character {
     public:
         character();
-        ~character();
+        ~character() = default;
         void init(float x, float y, float z);
         void setposition(Vector3 position);
         Vector3 getposition();

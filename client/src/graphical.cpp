@@ -15,10 +15,6 @@ graphical::graphical() : map{ 10, 10 }
     cubePosition = { pos_x, 0.0f, pos_y };
 }
 
-graphical::~graphical()
-{
-}
-
 void graphical::init()
 {
     InitWindow(WIDTH, HEIGHT, "Zappy");

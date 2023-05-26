@@ -21,7 +21,7 @@ static constexpr int HEIGHT = 1080;
 class graphical {
     public:
         graphical();
-        ~graphical();
+        ~graphical() = default;
         void init();
         void run();
         void stop();
