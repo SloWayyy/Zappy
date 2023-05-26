@@ -21,28 +21,20 @@ typedef struct pos_s
 
 class character : public Raylibcpp::RayModel {
     public:
-        character();
+        character(Raylibcpp::RayModel::modelType type, unsigned int animsCount, int animFrameCounter, Vector3 pos);
+        character() = default;
         ~character() = default;
-        void init(float x, float y, float z);
-        void setposition(Vector3 position);
-        Vector3 getposition();
         void run();
         void stop();
         void draw();
         void handleInput();
-        void prepareCharacter(float x, float z, Raylibcpp::RayModel::modelType modl);
-        void displayCharacter();
     protected:
-        Model model;
-        std::vector<pos_t> skinPos;
-        ModelAnimation *anims;
-        Vector3 position;
-        unsigned int animsCount;
-        int animFrameCounter;
-        int animId;
-        bool drawMesh;
-        bool drawSkeleton;
-        bool animPlaying;
+        Model _model;
+        modelType _type;
+        unsigned int _animsCount;
+        int _animFrameCounter;
+        Texture2D _texture;
+        Vector3 _position;
     private:
 };
 

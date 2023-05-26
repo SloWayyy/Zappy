@@ -16,11 +16,12 @@
 #include "Map.hpp"
 #include "character.hpp"
 
-class Core {
+class Core : public Raylibcpp::Draw {
     public:
         Core();
         void run(void);
         void initPlayer(void);
+        void drawPlayers(void);
     protected:
         Map map;
         Window window;

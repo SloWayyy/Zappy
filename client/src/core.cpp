@@ -15,25 +15,29 @@ Core::Core()
 
 void Core::initPlayer(void)
 {
-    character player;
-    player.init(10.0f, 1.0f, 5.0f);
+    character player(this->PING, 0, 0, {0, 1.0, 0});
     characters.push_back(player);
 }
 
 void Core::run(void)
 {
     window.createWindow(1920, 1080, 60);
-    // initPlayer();
+    initPlayer();
     while (!WindowShouldClose()) {
         BeginDrawing();
         ClearBackground(RAYWHITE);
-        // DrawFPS(10, 10);
-        // BeginMode3D(window.getCamera());
-        // window.run();
-        // map.run();
-        // for (auto &character : characters)
-        //     character.run();
+        BeginMode3D(window.getCamera());
+        DrawFPS(10, 10);
+        window.run();
+        map.run();
+        drawPlayers();
         EndMode3D();
         EndDrawing();
     }
+}
+
+void Core::drawPlayers(void)
+{
+    for (auto &character : characters)
+        character.run();
 }

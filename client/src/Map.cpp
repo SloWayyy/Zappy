@@ -25,8 +25,8 @@ void Map::draw()
     for (int y = 0; y < height; y++) {
         for (int x = 0; x < width; x++) {
             cubePosition = { _x, 0.0f, _y };
-            // drawCube(cubePosition, 2.0f, 2.0f, 2.0f, GREEN);
-            // drawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, WHITE);
+            drawCube(cubePosition, 2.0f, 2.0f, 2.0f, GREEN);
+            drawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, WHITE);
             DrawGrid(10, 1.0f);
             _x += 2.0f;
         }
