@@ -11,8 +11,15 @@
     #include <string>
     #include <iostream>
     #include "raylib.h"
+    #include "encapsulation/Raylibcpp.hpp"
 
-class character {
+typedef struct pos_s
+{
+    float x;
+    float y;
+} pos_t;
+
+class character : public Raylibcpp::RayModel {
     public:
         character();
         ~character() = default;
@@ -23,8 +30,11 @@ class character {
         void stop();
         void draw();
         void handleInput();
+        void prepareCharacter(float x, float z, Raylibcpp::RayModel::modelType modl);
+        void displayCharacter();
     protected:
         Model model;
+        std::vector<pos_t> skinPos;
         ModelAnimation *anims;
         Vector3 position;
         unsigned int animsCount;

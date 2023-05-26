@@ -12,21 +12,23 @@
     #include <iostream>
     #include <vector>
     #include "raylib.h"
+    #include "encapsulation/Raylibcpp.hpp"
 
-class Map {
+class Map : public Raylibcpp::Draw {
     public:
+        Map() = default;
         Map(int height, float width);
         ~Map();
         void draw();
-        int getheight();
-        int getwidth();
-        Vector3 getcubePosition();
+        int getheight() const {return height;};
+        int getwidth() const {return width;};
+        Vector3 getcubePosition() const {return cubePosition;};
+        void setcubePosition(Vector3 position) {cubePosition = position;};
+        void run();
     private:
         int height;
         float width;
         Vector3 cubePosition;
-        float x;
-        float y;
 };
 
 #endif /* !MAP_HPP_ */

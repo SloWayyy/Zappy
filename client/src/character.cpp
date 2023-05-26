@@ -6,6 +6,7 @@
 */
 
 #include "character.hpp"
+#include "IGraphical.hpp"
 
 character::character()
 {
@@ -20,9 +21,9 @@ character::character()
 void character::init(float x, float y, float z)
 {
     position = { x, y, z };
-    char modelFileName[128] = "cesium_man.m3d";
-    model = LoadModel(modelFileName);
-    anims = LoadModelAnimations(modelFileName, &animsCount);
+    // char modelFileName[128] = "cesium_man.m3d";
+    // model = LoadModel(modelFileName);
+    // anims = LoadModelAnimations(modelFileName, &animsCount);
 }
 
 void character::draw()
@@ -73,12 +74,6 @@ void character::handleInput()
         drawMesh ^= 1;
 }
 
-void character::run()
-{
-    handleInput();
-    draw();
-}
-
 void character::stop()
 {
     UnloadModelAnimations(anims, animsCount);
@@ -93,4 +88,28 @@ void character::setposition(Vector3 position)
 Vector3 character::getposition()
 {
     return position;
+}
+
+void character::prepareCharacter(float x, float z, Raylibcpp::RayModel::modelType modl)
+{
+    Vector3 cubePosition = {x, 0.6, z};
+
+    switch(modl) {
+        case (Raylibcpp::RayModel::modelType::PING):
+            drawRayModel(modl, cubePosition, 0.02f);
+            break;
+    }
+}
+
+void character::displayCharacter()
+{
+    this->draw();
+    this->handleInput();
+}
+
+void character::run()
+{
+    // this->draw();
+    // this->handleInput();
+    this->prepareCharacter(position.x, position.z, Raylibcpp::RayModel::modelType::PING);
 }

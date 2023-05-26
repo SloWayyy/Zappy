@@ -10,9 +10,13 @@ include_directories(include)
 
 add_executable(zappy_gui
         src/Main.cpp
-        src/graphical.cpp
         src/character.cpp
         src/Map.cpp
+        src/window.cpp
+        src/core.cpp
+        encapsulation/draw.cpp
+        encapsulation/model.cpp
+        encapsulation/environment.cpp
         )
 
 target_link_libraries(zappy_gui raylib)
