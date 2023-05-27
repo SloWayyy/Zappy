@@ -8,6 +8,11 @@
 #ifndef WINDOW_HPP_
     #define WINDOW_HPP_
 
+typedef enum GameEvent {
+    MENU,
+    GAMEPLAY,
+} GameEvent;
+
 class Window {
     public:
         Window();
@@ -21,7 +26,10 @@ class Window {
         Camera getCamera() const { return _camera; };
         void handleInput();
         void run();
+        void setGameEvent(GameEvent event) { this->gameEvent = event; };
+        GameEvent getGameEvent(void) { return this->gameEvent; };
     protected:
+        GameEvent gameEvent;
         Camera _camera;
         int _screenHeight;
         int _screenWidth;

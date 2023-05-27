@@ -16,6 +16,7 @@ add_executable(zappy_gui
         src/core.cpp
         encapsulation/draw.cpp
         encapsulation/model.cpp
+        Menu/src/menu.cpp
         )
 
 target_link_libraries(zappy_gui raylib)

@@ -15,6 +15,8 @@
 #include "window.hpp"
 #include "Map.hpp"
 #include "character.hpp"
+#include "IGraphical.hpp"
+#include "Menu/include/menu.hpp"
 
 class Core : public Raylibcpp::Draw {
     public:
@@ -26,6 +28,7 @@ class Core : public Raylibcpp::Draw {
         Map map;
         Window window;
         std::vector<character> characters;
+        Menu menu;
 };
 
 #endif /* !CORE_HPP_ */

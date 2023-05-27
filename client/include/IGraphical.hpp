@@ -19,16 +19,20 @@ class IGraphical {
         virtual ~IGraphical() = default;
 };
 
-class graphic : public IGraphical
-{
-    typedef enum GameScreen {
-        GAMEPLAY,
-    } GameScreen;
+class Graphic : public IGraphical {
     public:
-        graphic();
-        std::unique_ptr<Raylibcpp::Draw> draw;
+        // typedef enum GameScreen {
+        //     GAMEPLAY,
+        //     MENU,
+        // } GameScreen;
+        Graphic() {}
+        ~Graphic() = default;
+        // int getScreen() const { return _screen; }
+        // GameScreen getScreen() const { return static_cast<GameScreen>(_screen); }
+        // std::unique_ptr<Raylibcpp::Draw> draw;
     protected:
-        std::unique_ptr<Raylibcpp::RayModel> _model;
+        // std::unique_ptr<Raylibcpp::RayModel> _model;
+        // int _screen;
 };
 
 

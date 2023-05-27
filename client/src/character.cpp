@@ -14,7 +14,7 @@ character::character(Raylibcpp::RayModel::modelType type, unsigned int animsCoun
     this->_type = type;
     this->_animsCount = animsCount;
     this->_animFrameCounter = animFrameCounter;
-    this->_model = LoadModel("assets/monster.obj");
+    this->_model = LoadModel("assets/monster/monster.obj");
     this->_texture = LoadTexture("assets/monster/monster2.png");
     this->_model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = this->_texture;
 }

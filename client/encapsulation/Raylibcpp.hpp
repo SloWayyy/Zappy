@@ -32,6 +32,7 @@ namespace Raylibcpp {
         ~Draw() = default;
         void drawCube(Vector3 pos, float widht, float height, float lenght, Color color);
         void drawCubeWires(Vector3 pos, float widht, float height, float lenght, Color color);
+        void drawTexture(Texture2D texture, int posX, int posY, Color color);
     private:
     protected:
     };

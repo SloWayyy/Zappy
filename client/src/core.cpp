@@ -11,6 +11,7 @@ Core::Core()
 {
     this->window = Window();
     this->map = Map(10, 10);
+    this->menu = Menu();
 }
 
 void Core::initPlayer(void)
@@ -23,16 +24,30 @@ void Core::run(void)
 {
     window.createWindow(1920, 1080, 60);
     initPlayer();
+    menu.init();
+    map.initMineral();
     while (!WindowShouldClose()) {
-        BeginDrawing();
-        ClearBackground(RAYWHITE);
-        BeginMode3D(window.getCamera());
-        DrawFPS(10, 10);
-        window.run();
-        map.run();
-        drawPlayers();
-        EndMode3D();
-        EndDrawing();
+        switch (window.getGameEvent()) {
+            case MENU:
+                BeginDrawing();
+                ClearBackground(RAYWHITE);
+                window.run();
+                menu.run();
+                EndDrawing();
+                break;
+            case GAMEPLAY:
+                // DisableCursor();
+                BeginDrawing();
+                ClearBackground(RAYWHITE);
+                BeginMode3D(window.getCamera());
+                DrawFPS(10, 10);
+                window.run();
+                map.run();
+                drawPlayers();
+                EndMode3D();
+                EndDrawing();
+                break;
+        }
     }
 }
 
