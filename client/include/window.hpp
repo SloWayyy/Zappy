@@ -8,6 +8,8 @@
 #ifndef WINDOW_HPP_
     #define WINDOW_HPP_
 
+    #include "encapsulation/Raylibcpp.hpp"
+
 typedef enum GameEvent {
     MENU,
     GAMEPLAY,
