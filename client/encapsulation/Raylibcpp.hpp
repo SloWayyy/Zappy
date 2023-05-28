@@ -8,8 +8,8 @@
 #ifndef RAYLIBCPP_HPP_
     #define RAYLIBCPP_HPP_
 
-#include <iostream>
-#include <raylib.h>
+    #include <iostream>
+    #include <raylib.h>
 
 namespace Raylibcpp {
     class RayModel {

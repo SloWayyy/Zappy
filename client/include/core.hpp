@@ -8,12 +8,12 @@
 #ifndef CORE_HPP_
     #define CORE_HPP_
 
-#include <raylib.h>
-#include <vector>
-#include "window.hpp"
-#include "Map.hpp"
-#include "character.hpp"
-#include "Menu/include/menu.hpp"
+    #include <raylib.h>
+    #include <vector>
+    #include "window.hpp"
+    #include "Map.hpp"
+    #include "character.hpp"
+    #include "Menu/include/menu.hpp"
 
 class Core : public Raylibcpp::Draw {
     public:

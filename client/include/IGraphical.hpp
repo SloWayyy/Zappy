@@ -8,8 +8,8 @@
 #ifndef IGRAPHICAL_HPP_
     #define IGRAPHICAL_HPP_
 
-#include <memory>
-#include "encapsulation/Raylibcpp.hpp"
+    #include <memory>
+    #include "encapsulation/Raylibcpp.hpp"
 
 class IGraphical {
     public:
