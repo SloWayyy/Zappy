@@ -9,41 +9,42 @@
 
 Core::Core()
 {
-    this->window = Window();
-    this->map = Map(10, 10);
-    this->menu = Menu();
+    this->_window = Window();
+    this->_map = Map(10, 10);
+    this->_menu = Menu();
 }
 
 void Core::initPlayer(void)
 {
     character player(this->PING, 0, 0, {0, 1.0, 0});
-    characters.push_back(player);
+
+    _characters.push_back(player);
 }
 
 void Core::run(void)
 {
-    window.createWindow(1920, 1080, 60);
-    initPlayer();
-    menu.init();
-    map.initMineral();
+    this->_window.createWindow(1920, 1080, 60);
+    this->initPlayer();
+    this->_menu.init();
+    this->_map.initMineral();
     while (!WindowShouldClose()) {
-        switch (window.getGameEvent()) {
+        switch (this->_window.getGameEvent()) {
             case MENU:
                 BeginDrawing();
                 ClearBackground(RAYWHITE);
-                window.run();
-                menu.run();
+                this->_window.run();
+                this->_menu.run();
                 EndDrawing();
                 break;
             case GAMEPLAY:
                 // DisableCursor();
                 BeginDrawing();
                 ClearBackground(RAYWHITE);
-                BeginMode3D(window.getCamera());
+                BeginMode3D(this->_window.getCamera());
                 DrawFPS(10, 10);
-                window.run();
-                map.run();
-                drawPlayers();
+                this->_window.run();
+                this->_map.run();
+                this->drawPlayers();
                 EndMode3D();
                 EndDrawing();
                 break;
@@ -53,6 +54,6 @@ void Core::run(void)
 
 void Core::drawPlayers(void)
 {
-    for (auto &character : characters)
+    for (auto &character : this->_characters)
         character.run();
 }

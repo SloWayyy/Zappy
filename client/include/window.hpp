@@ -26,10 +26,10 @@ class Window {
         Camera getCamera() const { return _camera; };
         void handleInput();
         void run();
-        void setGameEvent(GameEvent event) { this->gameEvent = event; };
-        GameEvent getGameEvent(void) { return this->gameEvent; };
+        void setGameEvent(GameEvent event) { this->_gameEvent = event; };
+        GameEvent getGameEvent(void) { return this->_gameEvent; };
     protected:
-        GameEvent gameEvent;
+        GameEvent _gameEvent;
         Camera _camera;
         int _screenHeight;
         int _screenWidth;

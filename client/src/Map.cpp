@@ -6,15 +6,15 @@
 */
 
 #include <fstream>
+#include <array>
 #include "Map.hpp"
 
-Map::Map(int height, float width)
+Map::Map(std::size_t height, std::size_t width)
 {
-    this->height = height;
-    this->width = width;
-    this->cubePosition = { 0.0f, 0.0f, 0.0f };
+    this->_height = height;
+    this->_width = width;
+    this->_cubePosition = { 0.0f, 0.0f, 0.0f };
     this->_currentMineral = 0;
-    // this->initMineral();
     this->openMap("../map.txt");
 }
 
@@ -30,7 +30,7 @@ void Map::initMineral()
             // {this->APPLE, {"assets/food/apple/Apple.obj", "assets/food/apple/Apple.png"}},
         }
     };
-    for (const auto &i : model) {
+    for (auto &i : model) {
         this->modelArray.push_back(modelLoad(LoadModel(i.second.first.c_str()), LoadTexture(i.second.second.c_str())));
         SetMaterialTexture(&this->modelArray.back()._model.materials[0], MATERIAL_MAP_DIFFUSE, this->modelArray.back()._texture);
     }
@@ -38,7 +38,7 @@ void Map::initMineral()
 
 void Map::drawMineral()
 {
-    for (const auto &i : this->_MineralPositionArray) {
+    for (auto &i : this->_MineralPositionArray) {
         drawRayModel(this->modelArray[0]._model, i, 1.0f);
     }
 }
@@ -62,17 +62,17 @@ void Map::draw()
     float _x = 0.0f;
     float _y = 0.0f;
 
-    for (int y = 0; y < height; y++) {
-        for (int x = 0; x < width; x++) {
+    for (std::size_t y = 0; y < this->_height; y++) {
+        for (std::size_t x = 0; x < this->_width; x++) {
             if (map[y][x] == 'X') {
-                cubePosition = { _x, 0.0f, _y };
-                drawCube(cubePosition, 2.0f, 2.0f, 2.0f, GREEN);
-                drawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, WHITE);
+                this->_cubePosition = { _x, 0.0f, _y };
+                drawCube(this->_cubePosition, 2.0f, 2.0f, 2.0f, GREEN);
+                drawCubeWires(this->_cubePosition, 2.0f, 2.0f, 2.0f, WHITE);
             }
             if (map[y][x] == 'O') {
-                cubePosition = { _x, 0.0f, _y };
-                drawCube(cubePosition, 2.0f, 2.0f, 2.0f, GREEN);
-                drawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, WHITE);
+                this->_cubePosition = { _x, 0.0f, _y };
+                drawCube(this->_cubePosition, 2.0f, 2.0f, 2.0f, GREEN);
+                drawCubeWires(this->_cubePosition, 2.0f, 2.0f, 2.0f, WHITE);
                 this->_MineralPositionArray.push_back({ _x, 1.0f, _y });
                 drawMineral();
             }

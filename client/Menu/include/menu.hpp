@@ -8,7 +8,6 @@
 #ifndef MENU_HPP_
     #define MENU_HPP_
 
-    #include "IGraphical.hpp"
     #include "encapsulation/Raylibcpp.hpp"
 
 class Menu : public Raylibcpp::Draw {
@@ -22,12 +21,6 @@ class Menu : public Raylibcpp::Draw {
         void handleInput();
     private:
         Texture2D _background;
-        // Raylibcpp::RayModel::modelType _type;
-        // unsigned int _animsCount;
-        // int _animFrameCounter;
-        // Vector3 _position;
-        // Model _model;
-        // Texture2D _texture;
 };
 
 #endif /* !MENU_HPP_ */

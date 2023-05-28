@@ -9,9 +9,6 @@
     #define RAYLIBCPP_HPP_
 
 #include <iostream>
-#include <vector>
-#include <string>
-#include <array>
 #include <raylib.h>
 
 namespace Raylibcpp {

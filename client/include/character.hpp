@@ -8,21 +8,12 @@
 #ifndef CHARACTER_HPP_
     #define CHARACTER_HPP_
 
-    #include <string>
-    #include <iostream>
-    #include "raylib.h"
     #include "encapsulation/Raylibcpp.hpp"
-
-typedef struct pos_s
-{
-    float x;
-    float y;
-} pos_t;
 
 class character : public Raylibcpp::RayModel {
     public:
-        character(Raylibcpp::RayModel::modelType type, unsigned int animsCount, int animFrameCounter, Vector3 pos);
         character() = default;
+        character(Raylibcpp::RayModel::modelType type, std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos);
         ~character() = default;
         void run();
         void stop();
@@ -31,8 +22,8 @@ class character : public Raylibcpp::RayModel {
     protected:
         Model _model;
         modelType _type;
-        unsigned int _animsCount;
-        int _animFrameCounter;
+        std::size_t _animsCount;
+        std::size_t _animFrameCounter;
         Texture2D _texture;
         Vector3 _position;
     private:

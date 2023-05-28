@@ -6,9 +6,8 @@
 */
 
 #include "character.hpp"
-#include "IGraphical.hpp"
 
-character::character(Raylibcpp::RayModel::modelType type, unsigned int animsCount, int animFrameCounter, Vector3 pos)
+character::character(Raylibcpp::RayModel::modelType type, std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos)
 {
     this->_position = pos;
     this->_type = type;

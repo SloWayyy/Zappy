@@ -29,11 +29,11 @@ void Window::createWindow(int screenHeight, int screenWidth, int fps)
 
 void Window::setCamera()
 {
-    this->_camera.position = (Vector3){ 0.0f, 10.0f, 10.0f }; // Camera position
-    this->_camera.target = (Vector3){ 10.0f, 2.0f, 10.0f };      // Camera looking at point
-    this->_camera.up = (Vector3){ 0.0f, 1.0f, 0.0f };          // Camera up vector (rotation towards target)
-    this->_camera.fovy = 45.0f;                                // Camera field-of-view Y
-    this->_camera.projection = CAMERA_PERSPECTIVE;             // Camera projection type
+    this->_camera.position = (Vector3){ 0.0f, 10.0f, 10.0f };
+    this->_camera.target = (Vector3){ 10.0f, 2.0f, 10.0f };
+    this->_camera.up = (Vector3){ 0.0f, 1.0f, 0.0f };
+    this->_camera.fovy = 45.0f;
+    this->_camera.projection = CAMERA_PERSPECTIVE;
 }
 
 void Window::updateCamera()
@@ -51,9 +51,9 @@ void Window::handleInput()
     if (IsKeyDown('Z'))
         this->_camera.target = (Vector3){ 0.0f, 0.0f, 0.0f };
     if (IsKeyPressed(KEY_ENTER))
-        this->gameEvent = GameEvent::GAMEPLAY;
-    if (IsKeyPressed(KEY_P) && (this->gameEvent == GameEvent::GAMEPLAY))
-        this->gameEvent = GameEvent::MENU;
+        this->_gameEvent = GameEvent::GAMEPLAY;
+    if (IsKeyPressed(KEY_P) && (this->_gameEvent == GameEvent::GAMEPLAY))
+        this->_gameEvent = GameEvent::MENU;
 }
 
 void Window::run()

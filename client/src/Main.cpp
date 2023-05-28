@@ -5,11 +5,9 @@
 ** Main
 */
 
-#include "raylib.h"
-#include "character.hpp"
+#include <memory>
 #include "encapsulation/Raylibcpp.hpp"
 #include "core.hpp"
-#include <memory>
 
 int main(void)
 {

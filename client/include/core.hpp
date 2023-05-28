@@ -9,26 +9,24 @@
     #define CORE_HPP_
 
 #include <raylib.h>
-#include <string>
-#include <iostream>
 #include <vector>
 #include "window.hpp"
 #include "Map.hpp"
 #include "character.hpp"
-#include "IGraphical.hpp"
 #include "Menu/include/menu.hpp"
 
 class Core : public Raylibcpp::Draw {
     public:
         Core();
+        ~Core() = default;
         void run(void);
         void initPlayer(void);
         void drawPlayers(void);
     protected:
-        Map map;
-        Window window;
-        std::vector<character> characters;
-        Menu menu;
+        Map _map;
+        Window _window;
+        std::vector<character> _characters;
+        Menu _menu;
 };
 
 #endif /* !CORE_HPP_ */
