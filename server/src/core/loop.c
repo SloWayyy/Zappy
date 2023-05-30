@@ -7,7 +7,6 @@
 
 #include <stdbool.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include <sys/queue.h>
 #include <sys/select.h>
 #include <unistd.h>

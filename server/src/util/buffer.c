@@ -12,6 +12,7 @@
 #include <unistd.h>
 
 #include "constants.h"
+#include "types.h"
 #include "util.h"
 
 static bool resize_buffer(buffer_t *buffer)

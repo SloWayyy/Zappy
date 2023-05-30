@@ -9,6 +9,9 @@
 #include <netinet/in.h>
 #include <stdlib.h>
 #include <sys/socket.h>
+#include <sys/time.h>
+
+struct timeval;
 
 struct sockaddr *generate_address(int port, char *address)
 {
