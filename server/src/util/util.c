@@ -6,7 +6,9 @@
 */
 
 #include <arpa/inet.h>
+#include <netinet/in.h>
 #include <stdlib.h>
+#include <sys/socket.h>
 
 struct sockaddr *generate_address(int port, char *address)
 {

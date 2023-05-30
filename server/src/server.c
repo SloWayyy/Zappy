@@ -11,6 +11,7 @@
 
 #include "constants.h"
 #include "server.h"
+#include "types.h"
 #include "util.h"
 
 static void display_help_server(char *binary)

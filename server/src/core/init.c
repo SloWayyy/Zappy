@@ -5,12 +5,12 @@
 ** init.c
 */
 
-#include <arpa/inet.h>
 #include <signal.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/signalfd.h>
+#include <sys/socket.h>
 #include <unistd.h>
 
 #include "constants.h"

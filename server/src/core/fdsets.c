@@ -9,7 +9,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/param.h>
+#include <sys/select.h>
 #include <sys/socket.h>
+#include <sys/queue.h>
 #include <unistd.h>
 
 #include "server.h"
