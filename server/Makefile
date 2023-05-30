@@ -5,7 +5,11 @@
 ## Makefile
 ##
 
-SRC			=	src/server.c
+SRC			=	src/util/args.c \
+				src/util/args_check.c \
+				src/util/arrays.c \
+				src/util/handlers.c \
+				src/server.c
 
 MAIN		=	src/main.c
 
