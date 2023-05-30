@@ -22,10 +22,10 @@ static void end_server(server_t *server)
     while (!SLIST_EMPTY(server->clients)) {
         current = SLIST_FIRST(server->clients);
         SLIST_REMOVE_HEAD(server->clients, next);
-        close(current->fd);
-        free(current);
+        close_connection(current);
+        free_connection(current);
     }
-    close(server->socket_fd);
+    close(server->data->socket_fd);
 }
 
 static bool server_loop(server_t *server)
@@ -33,28 +33,29 @@ static bool server_loop(server_t *server)
     bool exit = false;
     int max_fd = 0;
     int res = 0;
-    fd_set set;
 
+    start_game(server);
     while (!exit) {
-        max_fd = refresh_fdsets(server, &set);
-        res = select(max_fd + 1, &set, NULL, NULL, NULL);
+        refresh_timeout(server);
+        max_fd = refresh_fdsets(server);
+        res = select(max_fd + 1, &server->data->reads, &server->data->writes, \
+            NULL, &server->data->timeout);
         if (res == -1) {
             perror("select failed");
             return false;
         }
-        if (res > 0) {
-            exit = handle_fdsets(server, &set);
-        } else {
-            // TODO: Global tick
-        }
+        exit = res > 0 ? handle_fdsets(server) : tick(server);
     }
     return true;
 }
 
 bool start_server(options_t *options)
 {
+    tick_t tick;
+    zappy_t zappy = { &tick };
+    data_t data;
     struct client_list clients;
-    server_t server = { options->port, 0, 0, &clients };
+    server_t server = {  options, &data, &zappy, &clients };
 
     SLIST_INIT(&clients);
     if (!init_server(&server)) {

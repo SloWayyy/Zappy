@@ -22,3 +22,14 @@ struct sockaddr *generate_address(int port, char *address)
     addr->sin_addr.s_addr = address == NULL ? INADDR_ANY : inet_addr(address);
     return (struct sockaddr *) addr;
 }
+
+void get_elapsed_time(struct timeval *start, struct timeval *end, \
+    struct timeval *ptr)
+{
+    ptr->tv_sec = end->tv_sec - start->tv_sec;
+    ptr->tv_usec = end->tv_usec - start->tv_usec;
+    if (ptr->tv_usec < 0) {
+        ptr->tv_sec--;
+        ptr->tv_usec += 1000000;
+    }
+}

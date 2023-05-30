@@ -38,7 +38,7 @@ static const option_t HANDLERS[] = {
         { "-x", "--width", &width_handler },
         { "-y", "--height", &height_handler },
         { "-n", "--names", &names_handler },
-        { "-c", "--clientsNb", &clients_handler },
+        { "-c", "--clients", &clients_handler },
         { "-f", "--freq", &freq_handler },
 };
 

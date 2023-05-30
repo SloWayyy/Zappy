@@ -9,9 +9,9 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include "constants.h"
 #include "server.h"
 #include "types.h"
+#include "util.h"
 
 client_t *new_client(int fd, FILE *stream)
 {
@@ -23,7 +23,7 @@ client_t *new_client(int fd, FILE *stream)
     }
     new->fd = fd;
     new->stream = stream;
-    new->buffer = malloc(sizeof(char) * BUFFER_SIZE);
+    new->buffer = new_buffer();
     if (new->buffer == NULL) {
         perror("malloc failed");
         free(new);
@@ -34,11 +34,11 @@ client_t *new_client(int fd, FILE *stream)
 
 void close_connection(client_t *client)
 {
-    close(client->fd);
+    fclose(client->stream);
 }
 
 void free_connection(client_t *client)
 {
-    free(client->buffer);
+    free_buffer(client->buffer);
     free(client);
 }

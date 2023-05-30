@@ -16,41 +16,9 @@
 
 #include "server.h"
 #include "types.h"
+#include "util.h"
 
-void handle_incoming(server_t *server)
-{
-    int fd = accept(server->socket_fd, NULL, NULL);
-    FILE *stream = NULL;
-    client_t *client = NULL;
-
-    if (fd == -1) {
-        perror("accept failed");
-        return;
-    }
-    stream = fdopen(fd, "r");
-    if (stream == NULL) {
-        close(fd);
-        return;
-    }
-    client = new_client(fd, stream);
-    SLIST_INSERT_HEAD(server->clients, client, next);
-}
-
-void handle_clients(server_t *server, fd_set *set)
-{
-    client_t *node = server->clients->slh_first;
-    client_t *tmp = NULL;
-
-    while (node != NULL) {
-        tmp = node->next.sle_next;
-        if (FD_ISSET(node->fd, set)) {
-            // TODO: handle_client(server, node);
-        }
-        node = tmp;
-    }
-}
-
-bool handle_stdin(void)
+static bool handle_stdin(void)
 {
     bool exit = false;
     size_t len = 0;
@@ -63,35 +31,83 @@ bool handle_stdin(void)
     return exit;
 }
 
-int refresh_fdsets(server_t *server, fd_set *set)
+static void handle_incoming(server_t *server)
 {
-    int max_fd = server->socket_fd;
-    client_t *node = NULL;
+    int fd = accept(server->data->socket_fd, NULL, NULL);
+    FILE *stream = NULL;
+    client_t *client = NULL;
 
-    FD_ZERO(set);
-    FD_SET(0, set);
-    FD_SET(server->socket_fd, set);
-    FD_SET(server->signal_fd, set);
-    SLIST_FOREACH(node, server->clients, next) {
-        FD_SET(node->fd, set);
-        max_fd = MAX(max_fd, node->fd);
+    if (fd == -1) {
+        perror("accept failed");
+        return;
     }
-    return MAX(max_fd, server->signal_fd);
+    stream = fdopen(fd, "r");
+    client = new_client(fd, stream);
+    if (stream == NULL || client == NULL) {
+        close(fd);
+        return;
+    }
+    append_buffer(client->buffer, "WELCOME\n");
+    SLIST_INSERT_HEAD(server->clients, client, next);
 }
 
-bool handle_fdsets(server_t *server, fd_set *set)
+static void handle_clients(server_t *server)
+{
+    bool keep = false;
+    client_t *node = server->clients->slh_first;
+    client_t *tmp = NULL;
+
+    while (node != NULL) {
+        tmp = node->next.sle_next;
+        keep = true;
+        if (FD_ISSET(node->fd, &server->data->reads)) {
+            keep = handle_input(server, node);
+        }
+        if (keep && FD_ISSET(node->fd, &server->data->writes)) {
+            keep = dump_buffer(node->buffer, node->fd);
+        }
+        if (!keep) {
+            SLIST_REMOVE(server->clients, node, client, next);
+            close_connection(node);
+            free_connection(node);
+        }
+        node = tmp;
+    }
+}
+
+int refresh_fdsets(server_t *server)
+{
+    int max_fd = server->data->socket_fd;
+    client_t *node = NULL;
+
+    FD_ZERO(&server->data->reads);
+    FD_ZERO(&server->data->writes);
+    FD_SET(STDIN_FILENO, &server->data->reads);
+    FD_SET(server->data->socket_fd, &server->data->reads);
+    FD_SET(server->data->signal_fd, &server->data->reads);
+    SLIST_FOREACH(node, server->clients, next) {
+        FD_SET(node->fd, &server->data->reads);
+        if (node->buffer->size > 0) {
+            FD_SET(node->fd, &server->data->writes);
+        }
+        max_fd = MAX(max_fd, node->fd);
+    }
+    return MAX(max_fd, server->data->signal_fd);
+}
+
+bool handle_fdsets(server_t *server)
 {
     bool exit = false;
 
-    if (FD_ISSET(0, set)) {
+    if (FD_ISSET(STDIN_FILENO, &server->data->reads)) {
         exit = handle_stdin();
     }
-    if (FD_ISSET(server->signal_fd, set)) {
+    if (FD_ISSET(server->data->signal_fd, &server->data->reads)) {
         exit = true;
     }
-    if (FD_ISSET(server->socket_fd, set)) {
+    if (FD_ISSET(server->data->socket_fd, &server->data->reads)) {
         handle_incoming(server);
     }
-    handle_clients(server, set);
+    handle_clients(server);
     return exit;
 }

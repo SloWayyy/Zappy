@@ -17,8 +17,14 @@
 int zappy_server(int argc, char **argv);
 bool start_server(options_t *options);
 bool init_server(server_t *server);
-int refresh_fdsets(server_t *server, fd_set *set);
-bool handle_fdsets(server_t *server, fd_set *set);
+int refresh_fdsets(server_t *server);
+
+bool handle_fdsets(server_t *server);
+bool handle_input(server_t *server, client_t *client);
+
+void start_game(server_t *server);
+void refresh_timeout(server_t *server);
+bool tick(server_t *server);
 
 bool check_arguments(int argc, char **argv, options_t *options);
 bool check_number(char *str, char *option, int *storage);

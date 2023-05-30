@@ -25,14 +25,14 @@ static void auto_fill(options_t *options)
         printf("No map dimensions set, default is %dx%d\n", \
             DEFAULT_WIDTH, DEFAULT_HEIGHT);
     }
-    if (options->clientsNb == 0) {
-        options->clientsNb = DEFAULT_CLIENTS;
+    if (options->clients == 0) {
+        options->clients = DEFAULT_CLIENTS;
         printf("No client number set, default client number is %d\n", \
             DEFAULT_CLIENTS);
     }
     if (options->freq == 0) {
         options->freq = DEFAULT_FREQ;
-        printf("No frequency set, default frequency is %dms\n", DEFAULT_FREQ);
+        printf("No frequency set, default frequency is %d tps\n", DEFAULT_FREQ);
     }
 }
 

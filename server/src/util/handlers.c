@@ -64,7 +64,7 @@ int clients_handler(int argc, char **argv, options_t *options, int index)
         fprintf(stderr, "Error: %s requires an argument\n", argv[index]);
         return -1;
     }
-    if (options->clientsNb != 0) {
+    if (options->clients != 0) {
         fprintf(stderr, "Error: Clients number already set\n");
         return -1;
     }

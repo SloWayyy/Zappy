@@ -17,6 +17,15 @@
 #include "types.h"
 #include "util.h"
 
+static void init_tick(server_t *server)
+{
+    long micros = 1000000 / server->options->freq;
+
+    server->zappy->tick->tick_nb = 0;
+    server->zappy->tick->tick_delay.tv_sec = micros / 1000000;
+    server->zappy->tick->tick_delay.tv_usec = micros % 1000000;
+}
+
 static bool init_signalfd(server_t *server)
 {
     int sig_fd = 0;
@@ -30,7 +39,7 @@ static bool init_signalfd(server_t *server)
         return false;
     }
     sigprocmask(SIG_BLOCK, &mask, NULL);
-    server->signal_fd = sig_fd;
+    server->data->signal_fd = sig_fd;
     return true;
 }
 
@@ -65,7 +74,7 @@ bool init_server(server_t *server)
         perror("socket failed");
         return false;
     }
-    if (!setup_socket(socket_fd, server->port)) {
+    if (!setup_socket(socket_fd, server->options->port)) {
         close(socket_fd);
         return false;
     }
@@ -73,6 +82,7 @@ bool init_server(server_t *server)
         close(socket_fd);
         return false;
     }
-    server->socket_fd = socket_fd;
+    server->data->socket_fd = socket_fd;
+    init_tick(server);
     return true;
 }
