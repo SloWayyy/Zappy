@@ -3,6 +3,7 @@
 import sys
 
 from ai.src.game import game_loop
+from ai.src.player import ErrorConnection
 from ai.src.handle_args import pars_args, BadArgumentException
 from ai.src.handle_packets import get_socket, BadConnectionException
 
@@ -24,6 +25,8 @@ def main():
     except BadArgumentException as e:
         print(e)
     except BadConnectionException as e:
+        print(e)
+    except ErrorConnection as e:
         print(e)
     sys.exit(84)
 
