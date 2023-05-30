@@ -28,7 +28,7 @@ static void auto_fill(options_t *options)
     if (options->clientsNb == 0) {
         options->clientsNb = DEFAULT_CLIENTS;
         printf("No client number set, default client number is %d\n", \
-               DEFAULT_CLIENTS);
+            DEFAULT_CLIENTS);
     }
     if (options->freq == 0) {
         options->freq = DEFAULT_FREQ;

@@ -8,15 +8,23 @@
 #ifndef SERVER_H_
     #define SERVER_H_
 
+    #include <bits/types/FILE.h>
     #include <stdbool.h>
+    #include <sys/select.h>
 
     #include "types.h"
 
-// CORE
 int zappy_server(int argc, char **argv);
-bool check_arguments(int argc, char **argv, options_t *options);
+bool start_server(options_t *options);
+bool init_server(server_t *server);
+int refresh_fdsets(server_t *server, fd_set *set);
+bool handle_fdsets(server_t *server, fd_set *set);
 
-// CHECKS
+bool check_arguments(int argc, char **argv, options_t *options);
 bool check_number(char *str, char *option, int *storage);
+
+client_t *new_client(int fd, FILE *stream);
+void close_connection(client_t *client);
+void free_connection(client_t *client);
 
 #endif

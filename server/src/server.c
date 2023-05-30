@@ -44,6 +44,7 @@ static void destroy_options(options_t *options)
 
 int zappy_server(int argc, char **argv)
 {
+    bool res = false;
     options_t options;
 
     memset(&options, 0, sizeof(options_t));
@@ -54,7 +55,7 @@ int zappy_server(int argc, char **argv)
     if (!check_arguments(argc, argv, &options)) {
         return FAILURE;
     }
-    // TODO: Init zappy
+    res = start_server(&options);
     destroy_options(&options);
-    return SUCCESS;
+    return res ? SUCCESS : FAILURE;
 }

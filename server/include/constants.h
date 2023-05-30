@@ -19,5 +19,6 @@
 
     #define MAX_CONNECTIONS 50
     #define MAX_PORT 65536
+    #define BUFFER_SIZE 8192
 
 #endif

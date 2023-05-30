@@ -27,7 +27,7 @@ int names_handler(int argc, char **argv, options_t *options, int index);
 int clients_handler(int argc, char **argv, options_t *options, int index);
 int freq_handler(int argc, char **argv, options_t *options, int index);
 
-typedef struct option_s {
+typedef struct option {
     char const *shortOpt;
     char const *longOpt;
     options_handler_t *function;
