@@ -13,7 +13,7 @@
 #include "server.h"
 #include "util.h"
 
-static void display_help_server(char *binary)
+static void display_help_server(char const *binary)
 {
     printf("USAGE: %s -p port -x width -y height", binary);
     printf(" -n name1 name2 ... -c clientsNb -f freq\n");
@@ -25,7 +25,7 @@ static void display_help_server(char *binary)
     printf("\tfreq\tis the reciprocal of time unit for execution of actions\n");
 }
 
-static bool is_help(int argc, char **argv)
+static bool is_help(int argc, char const *argv[])
 {
     for (int i = 1; i < argc; i++) {
         if (strcmp(argv[i], "-help") == 0) {
@@ -42,7 +42,7 @@ static void destroy_options(options_t *options)
     }
 }
 
-int zappy_server(int argc, char **argv)
+int zappy_server(int argc, char const *argv[])
 {
     options_t options;
 

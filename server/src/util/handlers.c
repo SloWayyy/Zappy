@@ -5,13 +5,12 @@
 ** handlers.c
 */
 
-#include <stdbool.h>
 #include <stdio.h>
 
 #include "args.h"
 #include "types.h"
 
-int port_handler(int argc, char **argv, options_t *options, int index)
+int port_handler(int argc, char const *argv[], options_t *options, int index)
 {
     if (argc <= index + 1) {
         fprintf(stderr, "Error: %s requires an argument\n", argv[index]);
@@ -27,7 +26,7 @@ int port_handler(int argc, char **argv, options_t *options, int index)
     return 1;
 }
 
-int width_handler(int argc, char **argv, options_t *options, int index)
+int width_handler(int argc, char const *argv[], options_t *options, int index)
 {
     if (argc <= index + 1) {
         fprintf(stderr, "Error: %s requires an argument\n", argv[index]);
@@ -43,7 +42,7 @@ int width_handler(int argc, char **argv, options_t *options, int index)
     return 1;
 }
 
-int height_handler(int argc, char **argv, options_t *options, int index)
+int height_handler(int argc, char const *argv[], options_t *options, int index)
 {
     if (argc <= index + 1) {
         fprintf(stderr, "Error: %s requires an argument\n", argv[index]);
@@ -59,7 +58,7 @@ int height_handler(int argc, char **argv, options_t *options, int index)
     return 1;
 }
 
-int clients_handler(int argc, char **argv, options_t *options, int index)
+int clients_handler(int argc, char const *argv[], options_t *options, int index)
 {
     if (argc <= index + 1) {
         fprintf(stderr, "Error: %s requires an argument\n", argv[index]);
@@ -69,13 +68,13 @@ int clients_handler(int argc, char **argv, options_t *options, int index)
         fprintf(stderr, "Error: Clients number already set\n");
         return -1;
     }
-    if (!check_positive(argv[index + 1], "Clients", &options->height)) {
+    if (!check_positive(argv[index + 1], "Clients", &options->clientsNb)) {
         return -1;
     }
     return 1;
 }
 
-int freq_handler(int argc, char **argv, options_t *options, int index)
+int freq_handler(int argc, char const *argv[], options_t *options, int index)
 {
     if (argc <= index + 1) {
         fprintf(stderr, "Error: %s requires an argument\n", argv[index]);

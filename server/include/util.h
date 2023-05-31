@@ -13,6 +13,5 @@
 // ARRAYS
 size_t array_len(char **array);
 void free_array(char **array);
-char **str_to_word(char const *str, char separator);
 
 #endif
