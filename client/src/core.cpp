@@ -9,58 +9,37 @@
 
 Core::Core()
 {
-    this->_window = Window();
-    this->_map = Map(10, 10);
-    this->_menu = Menu();
-}
-
-void Core::initPlayer(void)
-{
-    character player(this->PING, 0, 0, {0, 1.0, 0});
-
-    _characters.push_back(player);
+    this->_window = std::shared_ptr<Window>(new Window(1920, 1080, 60));
+    this->_menu = std::shared_ptr<Menu>(new Menu(this->_window));
+    this->_gameplay = std::shared_ptr<Gameplay>(new Gameplay());
 }
 
 void Core::run(void)
 {
-    this->_window.createWindow(1920, 1080, 60);
-    this->initPlayer();
-    this->_menu.init();
-    this->_map.initMineral();
-    while (!WindowShouldClose()) {
-        switch (this->_window.getGameEvent()) {
+    this->_gameplay->initPlayer();
+    while (!this->_window->getExit()) {
+        ClearBackground(RAYWHITE);
+        BeginDrawing();
+        switch (this->_window->getGameEvent()) {
             case MENU:
-                BeginDrawing();
-                ClearBackground(RAYWHITE);
-                this->_menu.run();
-                this->_window.run();
-                EndDrawing();
-                break;
-            case SETTINGS:
-                // BeginDrawing();
-                // ClearBackground(RAYWHITE);
-                // this->_window.run();
-                // this->_menu.run();
-                // EndDrawing();
+                this->_window->run();
+                this->_menu->run();
                 break;
             case GAMEPLAY:
-                // DisableCursor();
-                BeginDrawing();
-                ClearBackground(RAYWHITE);
-                BeginMode3D(this->_window.getCamera());
-                DrawFPS(10, 10);
-                this->_window.run();
-                this->_map.run();
-                this->drawPlayers();
+                BeginMode3D(this->_window->getCamera());
+                this->_window->run();
+                this->_gameplay->run();
                 EndMode3D();
-                EndDrawing();
                 break;
+            case SETTINGS:
+                this->_window->run();
+                break;
+            case TUTO:
+                this->_window->run();
+                break;
+            case EXIT:
+                this->_window->setExit(true);
         }
+        EndDrawing();
     }
-}
-
-void Core::drawPlayers(void)
-{
-    for (auto &character : this->_characters)
-        character.run();
 }

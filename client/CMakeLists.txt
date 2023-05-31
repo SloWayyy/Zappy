@@ -14,10 +14,12 @@ add_executable(zappy_gui
         src/Map.cpp
         src/window.cpp
         src/core.cpp
+        src/gameplay.cpp
         encapsulation/draw.cpp
         encapsulation/model.cpp
         encapsulation/text.cpp
         Menu/src/menu.cpp
+        Menu/src/button.cpp
         )
 
 target_link_libraries(zappy_gui raylib)

@@ -5,18 +5,18 @@
 ** character
 */
 
-// #include "raymath.h"
+#include "encapsulation/Raylibcpp.hpp"
+#include "raymath.h"
 #include "character.hpp"
 
-character::character(Raylibcpp::RayModel::modelType type, std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos)
+character::character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos)
 {
     this->_position = pos;
-    this->_type = type;
     this->_animsCount = animsCount;
     this->_animFrameCounter = animFrameCounter;
-    this->_model = LoadModel("assets/monster/ia.obj");
-    this->_texture = LoadTexture("assets/monster/textures/ia.png");
-    this->_anims = LoadModelAnimations("assets/monster/animations/iaRun.iqm", &this->_animsCount);
+    this->_model = LoadModel("assets/monster/woody.iqm");
+    this->_texture = LoadTexture("assets/monster/woody.png");
+    this->_anims = LoadModelAnimations("assets/monster/woodyRun.iqm", &this->_animsCount);
     this->_model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = this->_texture;
 }
 
@@ -30,18 +30,14 @@ void character::animation()
 
 void character::draw()
 {
-    drawRayModel(this->_model, this->_position, 0.01f);
+    DrawModel(this->_model, this->_position, 0.1f, WHITE);
+    this->_model.transform = MatrixRotateXYZ({-90, 0, 0});
 }
 
 void character::handleInput()
 {
     if (IsKeyDown(KEY_SPACE))
         this->animation();
-}
-
-void character::stop()
-{
-    UnloadModel(this->_model);
 }
 
 void character::run()

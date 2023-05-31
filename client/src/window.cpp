@@ -5,26 +5,17 @@
 ** window
 */
 
-#include <raylib.h>
 #include "window.hpp"
 
-Window::Window()
+Window::Window(int height, int width, int fps)
 {
-    this->_screenWidth = 1920;
-    this->_screenHeight = 1080;
-    this->_fps = 60;
+    this->_windowParam._screenWidth = width;
+    this->_windowParam._screenHeight = height;
+    this->_windowParam._fps = fps;
+    this->_isExit = false;
     this->setGameEvent(MENU);
-    // this->createWindow(1920, 1080, 60);
-}
-
-void Window::createWindow(int screenHeight, int screenWidth, int fps)
-{
-    this->_screenHeight = screenHeight;
-    this->_screenWidth = screenWidth;
-    this->_fps = fps;
-
-    InitWindow(this->_screenHeight, this->_screenWidth, "Zappy");
-    SetTargetFPS(this->_fps);
+    InitWindow(this->_windowParam._screenHeight, this->_windowParam._screenWidth, "Zappy");
+    SetTargetFPS(this->_windowParam._fps);
     setCamera();
 }
 
@@ -42,11 +33,6 @@ void Window::updateCamera()
     UpdateCamera(&this->_camera, 1);
 }
 
-void Window::setCameraPosition(float x, float y, float z)
-{
-    this->_camera.position = (Vector3){ x, y, z };
-}
-
 void Window::handleInput()
 {
     if (IsKeyDown('Z'))
@@ -59,6 +45,6 @@ void Window::handleInput()
 
 void Window::run()
 {
-    updateCamera();
-    handleInput();
+    this->updateCamera();
+    this->handleInput();
 }

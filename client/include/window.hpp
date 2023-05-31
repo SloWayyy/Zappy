@@ -15,30 +15,37 @@ typedef enum GameEvent {
     GAMEPLAY,
     SETTINGS,
     TUTO,
-    EXIT,
+    EXIT
 } GameEvent;
+
+typedef struct windowParam_s {
+    std::size_t _screenHeight;
+    std::size_t _screenWidth;
+    std::size_t _fps;
+} windowParam_t;
 
 class Window {
     public:
-        Window();
-        void createWindow(int Height, int Width, int fps);
-        int getScreenHeight(void) const { return _screenHeight; };
-        int getScreenWidth(void) const { return _screenWidth; };
-        int getFps(void) const { return _fps; };
-        void updateCamera();
-        void setCamera();
-        void setCameraPosition(float x, float y, float z);
-        Camera getCamera() const { return _camera; };
-        void handleInput();
+        Window() = default;
+        Window(int height, int width, int fps);
+        ~Window() = default;
         void run();
+        void updateCamera();
+        void handleInput();
         void setGameEvent(GameEvent event) { this->_gameEvent = event; };
-        GameEvent getGameEvent(void) { return this->_gameEvent; };
-    protected:
+        void setCamera();
+        Camera getCamera() const { return _camera; };
+        GameEvent getGameEvent(void) const { return this->_gameEvent; };
+        std::size_t getScreenHeight(void) const { return _windowParam._screenHeight; };
+        std::size_t getScreenWidth(void) const { return _windowParam._screenWidth; };
+        std::size_t getFps(void) const { return _windowParam._fps; };
+        void setExit(bool exit) { this->_isExit = exit; };
+        bool getExit(void) const { return this->_isExit; };
+    private:
         GameEvent _gameEvent;
         Camera _camera;
-        int _screenHeight;
-        int _screenWidth;
-        int _fps;
+        bool _isExit;
+        windowParam_t _windowParam;
 };
 
 #endif /* !WINDOW_HPP_ */

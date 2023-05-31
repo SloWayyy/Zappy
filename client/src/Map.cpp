@@ -11,37 +11,12 @@
 
 Map::Map(std::size_t height, std::size_t width)
 {
-    this->_height = height;
-    this->_width = width;
+    this->_mapSize = { height, width };
     this->_cubePosition = { 0.0f, 0.0f, 0.0f };
-    this->_currentMineral = 0;
     this->openMap("../map.txt");
-    // this->initMineral();
-}
-
-Map::~Map()
-{
-}
-
-void Map::initMineral()
-{
-    std::array<std::pair<modelType, std::pair<std::string, std::string>>, 1> model = {
-        {
-            {this->BANANA, {"assets/food/banana/banana.obj", "assets/food/banana/banana.png"}},
-            // {this->APPLE, {"assets/food/apple/Apple.obj", "assets/food/apple/Apple.png"}},
-        }
-    };
-    for (auto &i : model) {
-        this->modelArray.push_back(modelLoad(LoadModel(i.second.first.c_str()), LoadTexture(i.second.second.c_str())));
-        SetMaterialTexture(&this->modelArray.back()._model.materials[0], MATERIAL_MAP_DIFFUSE, this->modelArray.back()._texture);
-    }
-}
-
-void Map::drawMineral()
-{
-    for (auto &i : this->_MineralPositionArray) {
-        drawRayModel(this->modelArray[0]._model, i, 1.0f);
-    }
+    this->_modelMap.insert({this->BANANA, std::make_pair(LoadModel("assets/food/banana/banana.obj"), LoadTexture("assets/food/banana/banana.png"))});
+    SetMaterialTexture(&this->_modelMap[this->BANANA].first.materials[0], MATERIAL_MAP_DIFFUSE, this->_modelMap[this->BANANA].second);
+    this->fillMineralPositionArray();
 }
 
 void Map::openMap(std::string path)
@@ -58,30 +33,45 @@ void Map::openMap(std::string path)
     file.close();
 }
 
-void Map::draw()
+void Map::drawMineral(modelType type)
+{
+    for (auto &i : this->_MineralPositionArray) {
+        DrawModel(this->_modelMap[type].first, i, 1.0f, WHITE);
+    }
+}
+
+void Map::fillMineralPositionArray()
 {
     float _x = 0.0f;
     float _y = 0.0f;
 
-    for (std::size_t y = 0; y < this->_height; y++) {
-        for (std::size_t x = 0; x < this->_width; x++) {
-            if (map[y][x] == 'X') {
-                this->_cubePosition = { _x, 0.0f, _y };
-                drawCube(this->_cubePosition, 2.0f, 2.0f, 2.0f, GREEN);
-                drawCubeWires(this->_cubePosition, 2.0f, 2.0f, 2.0f, WHITE);
-            }
-            if (map[y][x] == 'O') {
-                this->_cubePosition = { _x, 0.0f, _y };
-                drawCube(this->_cubePosition, 2.0f, 2.0f, 2.0f, GREEN);
-                drawCubeWires(this->_cubePosition, 2.0f, 2.0f, 2.0f, WHITE);
+    for (std::size_t y = 0; y < this->_mapSize.height; y++) {
+        for (std::size_t x = 0; x < this->_mapSize.width; x++) {
+            if (map[y][x] == 'O')
                 this->_MineralPositionArray.push_back({ _x, 1.0f, _y });
-                drawMineral();
-            }
             _x += 2.0f;
         }
         _x = 0.0f;
         _y += 2.0f;
     }
+}
+
+void Map::draw()
+{
+    float _x = 0.0f;
+    float _y = 0.0f;
+
+    for (std::size_t y = 0; y < this->_mapSize.height; y++) {
+        for (std::size_t x = 0; x < this->_mapSize.width; x++) {
+            this->_cubePosition = { _x, 0.0f, _y };
+            DrawCube(this->_cubePosition, 2.0f, 2.0f, 2.0f, GREEN);
+            DrawCubeWires(this->_cubePosition, 2.0f, 2.0f, 2.0f, WHITE);
+        _x += 2.0f;
+        }
+        _x = 0.0f;
+        _y += 2.0f;
+    }
+    this->drawMineral(this->BANANA);
 }
 
 void Map::run()

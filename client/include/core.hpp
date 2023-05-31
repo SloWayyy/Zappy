@@ -12,6 +12,7 @@
     #include <vector>
     #include "window.hpp"
     #include "Map.hpp"
+    #include "gameplay.hpp"
     #include "character.hpp"
     #include "Menu/include/menu.hpp"
 
@@ -20,13 +21,10 @@ class Core : public Raylibcpp::Draw {
         Core();
         ~Core() = default;
         void run(void);
-        void initPlayer(void);
-        void drawPlayers(void);
     protected:
-        Map _map;
-        Window _window;
-        std::vector<character> _characters;
-        Menu _menu;
+        std::shared_ptr<Window> _window;
+        std::shared_ptr<Gameplay> _gameplay;
+        std::shared_ptr<Menu> _menu;
 };
 
 #endif /* !CORE_HPP_ */

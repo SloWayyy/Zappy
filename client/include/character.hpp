@@ -13,16 +13,14 @@
 class character : public Raylibcpp::RayModel {
     public:
         character() = default;
-        character(Raylibcpp::RayModel::modelType type, std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos);
+        character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos);
         ~character() = default;
         void animation();
         void run();
-        void stop();
         void draw();
         void handleInput();
     protected:
         Model _model;
-        modelType _type;
         ModelAnimation *_anims;
         unsigned int _animsCount;
         int _animFrameCounter;
