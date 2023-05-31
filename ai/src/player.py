@@ -4,15 +4,14 @@ import socket
 class ErrorConnection(Exception):
     pass
 
-OBJECT = {
-    "food": 0,
-    "linemate": 1,
-    "deraumere": 2,
-    "sibur": 3,
-    "mendiane": 4,
-    "phiras": 5,
-    "thystame": 6
-}
+class EnumObject (Enum):
+    FOOD = "food"
+    LINEMATE = "linemate"
+    DERAUMERE = "deraumere"
+    SIBUR = "sibur"
+    MENDIANE = "mendiane"
+    PHIRAS = "phiras"
+    THYSTAME = "thystame"
 
 class Direction(Enum):
     RIGHT = 0,
@@ -96,14 +95,14 @@ class Player:
             return False
         return True
 
-    def take(self, str: str):
-        self.sock.send(("Take " + OBJECT[str] + "\n").encode())
+    def take(self, enum: EnumObject):
+        self.sock.send(("Take " + enum.value + "\n").encode())
         if (self.wait_answer(self.sock)[0] == "ko"):
             return False
         return True
 
-    def set(self, str: str):
-        self.sock.send(("Set " + OBJECT[str] + "\n").encode())
+    def set(self, enum: EnumObject):
+        self.sock.send(("Set " + enum.value + "\n").encode())
         if (self.wait_answer(self.sock)[0] == "ko"):
             return False
         return True
