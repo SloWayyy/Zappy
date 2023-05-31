@@ -7,7 +7,7 @@
 
 #include "server.h"
 
-int main(int argc, char **argv)
+int main(int argc, char const *argv[])
 {
     return zappy_server(argc, argv);
 }
