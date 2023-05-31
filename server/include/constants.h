@@ -15,9 +15,11 @@
     #define DEFAULT_WIDTH 10
     #define DEFAULT_HEIGHT 10
     #define DEFAULT_CLIENTS 4
-    #define DEFAULT_FREQ 100
+    #define DEFAULT_FREQ 10
 
     #define MAX_CONNECTIONS 50
     #define MAX_PORT 65536
+    #define BUFFER_SIZE 2048
+    #define BUFFER_EXTRA 512
 
 #endif

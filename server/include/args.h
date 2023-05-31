@@ -20,14 +20,14 @@ bool check_positive(char const *str, char *option, int *storage);
 typedef int (options_handler_t) \
     (int argc, char const *argv[], options_t *options, int index);
 
-int port_handler(int argc, char const *argv[], options_t *options, int index);
-int width_handler(int argc, char const *argv[], options_t *options, int index);
-int height_handler(int argc, char const *argv[], options_t *options, int index);
-int names_handler(int argc, char const *argv[], options_t *options, int index);
-int clients_handler(int argc, char const *argv[], options_t *options, int index);
-int freq_handler(int argc, char const *argv[], options_t *options, int index);
+int port_handler(int argc, char const *argv[], options_t *options, int idx);
+int width_handler(int argc, char const *argv[], options_t *options, int idx);
+int height_handler(int argc, char const *argv[], options_t *options, int idx);
+int names_handler(int argc, char const *argv[], options_t *options, int idx);
+int clients_handler(int argc, char const *argv[], options_t *options, int idx);
+int freq_handler(int argc, char const *argv[], options_t *options, int idx);
 
-typedef struct option_s {
+typedef struct option {
     char const *shortOpt;
     char const *longOpt;
     options_handler_t *function;
@@ -38,7 +38,7 @@ static const option_t HANDLERS[] = {
         { "-x", "--width", &width_handler },
         { "-y", "--height", &height_handler },
         { "-n", "--names", &names_handler },
-        { "-c", "--clientsNb", &clients_handler },
+        { "-c", "--clients", &clients_handler },
         { "-f", "--freq", &freq_handler },
 };
 

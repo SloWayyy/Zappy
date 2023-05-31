@@ -50,7 +50,8 @@ bool check_positive(char const *str, char *option, int *storage)
     return true;
 }
 
-static void fill_names(char const *argv[], int padding, int quantity, char **array)
+static void fill_names(char const *argv[], int padding, int quantity, \
+    char **array)
 {
     for (int i = 0; i < quantity; i++) {
         array[i] = strdup(argv[padding + i]);
@@ -58,7 +59,7 @@ static void fill_names(char const *argv[], int padding, int quantity, char **arr
     array[quantity] = NULL;
 }
 
-int names_handler(int argc, char const *argv[], options_t *options, int index)
+int names_handler(int argc, char const *argv[], options_t *options, int idx)
 {
     int args = 0;
 
@@ -66,7 +67,7 @@ int names_handler(int argc, char const *argv[], options_t *options, int index)
         fprintf(stderr, "Error: Team names are already set\n");
         return -1;
     }
-    for (int i = index + 1; i < argc && argv[i][0] != '-'; i++) {
+    for (int i = idx + 1; i < argc && argv[i][0] != '-'; i++) {
         args++;
     }
     if (args == 0) {
@@ -78,6 +79,6 @@ int names_handler(int argc, char const *argv[], options_t *options, int index)
         fprintf(stderr, "Error: malloc failed\n");
         return -1;
     }
-    fill_names(argv, index + 1, args, options->names);
+    fill_names(argv, idx + 1, args, options->names);
     return args;
 }
