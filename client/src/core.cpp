@@ -32,9 +32,16 @@ void Core::run(void)
             case MENU:
                 BeginDrawing();
                 ClearBackground(RAYWHITE);
-                this->_window.run();
                 this->_menu.run();
+                this->_window.run();
                 EndDrawing();
+                break;
+            case SETTINGS:
+                // BeginDrawing();
+                // ClearBackground(RAYWHITE);
+                // this->_window.run();
+                // this->_menu.run();
+                // EndDrawing();
                 break;
             case GAMEPLAY:
                 // DisableCursor();

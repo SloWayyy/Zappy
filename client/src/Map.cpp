@@ -16,6 +16,7 @@ Map::Map(std::size_t height, std::size_t width)
     this->_cubePosition = { 0.0f, 0.0f, 0.0f };
     this->_currentMineral = 0;
     this->openMap("../map.txt");
+    // this->initMineral();
 }
 
 Map::~Map()

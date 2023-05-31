@@ -14,6 +14,7 @@ Window::Window()
     this->_screenHeight = 1080;
     this->_fps = 60;
     this->setGameEvent(MENU);
+    // this->createWindow(1920, 1080, 60);
 }
 
 void Window::createWindow(int screenHeight, int screenWidth, int fps)

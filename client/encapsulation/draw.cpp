@@ -21,3 +21,8 @@ void Raylibcpp::Draw::drawTexture(Texture2D texture, int posX, int posY, Color c
 {
     DrawTexture(texture, posX, posY, color);
 }
+
+void Raylibcpp::Draw::drawRectangle(int posX, int posY, int width, int height, Color color)
+{
+    DrawRectangle(posX, posY, width, height, color);
+}

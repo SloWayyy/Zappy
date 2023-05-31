@@ -13,6 +13,9 @@
 typedef enum GameEvent {
     MENU,
     GAMEPLAY,
+    SETTINGS,
+    TUTO,
+    EXIT,
 } GameEvent;
 
 class Window {

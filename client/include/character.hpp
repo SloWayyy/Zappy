@@ -15,6 +15,7 @@ class character : public Raylibcpp::RayModel {
         character() = default;
         character(Raylibcpp::RayModel::modelType type, std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos);
         ~character() = default;
+        void animation();
         void run();
         void stop();
         void draw();
@@ -22,8 +23,9 @@ class character : public Raylibcpp::RayModel {
     protected:
         Model _model;
         modelType _type;
-        std::size_t _animsCount;
-        std::size_t _animFrameCounter;
+        ModelAnimation *_anims;
+        unsigned int _animsCount;
+        int _animFrameCounter;
         Texture2D _texture;
         Vector3 _position;
     private:
