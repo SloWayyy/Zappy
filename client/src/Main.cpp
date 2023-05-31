@@ -2,13 +2,16 @@
 ** EPITECH PROJECT, 2023
 ** Zappy
 ** File description:
-** Main.cpp
+** Main
 */
 
-#include <OgreApplicationContext.h>
+#include <memory>
+#include "encapsulation/Raylibcpp.hpp"
+#include "core.hpp"
 
-int main()
+int main(void)
 {
-    OgreBites::ApplicationContext ctx("Zappy GUI");
-    ctx.initApp();
+    std::unique_ptr<Core> core = std::make_unique<Core>();
+    core->run();
+    return 0;
 }

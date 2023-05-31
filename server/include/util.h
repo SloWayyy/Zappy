@@ -15,7 +15,6 @@
 
 size_t array_len(char **array);
 void free_array(char **array);
-char **str_to_word(char const *str, char separator);
 
 buffer_t *new_buffer(void);
 bool append_buffer(buffer_t *buffer, char const *str);

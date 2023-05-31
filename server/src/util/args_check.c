@@ -13,7 +13,7 @@
 #include "constants.h"
 #include "types.h"
 
-bool check_number(char *str, char *option, int *storage)
+bool check_number(char const *str, char *option, int *storage)
 {
     char *end = NULL;
     long parsed = strtol(str, &end, 10);
@@ -38,7 +38,7 @@ bool check_port(char *str, int *storage)
     return true;
 }
 
-bool check_positive(char *str, char *option, int *storage)
+bool check_positive(char const *str, char *option, int *storage)
 {
     if (!check_number(str, option, storage)) {
         return false;
@@ -50,7 +50,7 @@ bool check_positive(char *str, char *option, int *storage)
     return true;
 }
 
-static void fill_names(char **argv, int padding, int quantity, char **array)
+static void fill_names(char const *argv[], int padding, int quantity, char **array)
 {
     for (int i = 0; i < quantity; i++) {
         array[i] = strdup(argv[padding + i]);
@@ -58,7 +58,7 @@ static void fill_names(char **argv, int padding, int quantity, char **array)
     array[quantity] = NULL;
 }
 
-int names_handler(int argc, char **argv, options_t *options, int index)
+int names_handler(int argc, char const *argv[], options_t *options, int index)
 {
     int args = 0;
 

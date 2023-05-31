@@ -52,7 +52,7 @@ static bool post_check(options_t *options)
     return true;
 }
 
-static int handle_argument(int argc, char **argv, options_t *options, int index)
+static int handle_argument(int argc, char const *argv[], options_t *options, int index)
 {
     int shortOpt = 0;
     int longOpt = 0;
@@ -74,7 +74,7 @@ static int handle_argument(int argc, char **argv, options_t *options, int index)
     return -1;
 }
 
-bool check_arguments(int argc, char **argv, options_t *options)
+bool check_arguments(int argc, char const *argv[], options_t *options)
 {
     int index = 0;
 
