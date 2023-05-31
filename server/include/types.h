@@ -14,6 +14,12 @@
     #include <sys/queue.h>
     #include <sys/select.h>
 
+typedef enum connection_type {
+    UNKNOWN,
+    GRAPHIC,
+    PLAYER,
+} connection_type_t;
+
 typedef struct options {
     int port;
     int width;
@@ -32,6 +38,7 @@ typedef struct buffer {
 typedef struct client {
     int fd;
     FILE *stream;
+    connection_type_t type;
     buffer_t *buffer;
     SLIST_ENTRY(client) next;
 } client_t;

@@ -22,6 +22,7 @@ client_t *new_client(int fd, FILE *stream)
     }
     new->fd = fd;
     new->stream = stream;
+    new->type = UNKNOWN;
     new->buffer = new_buffer();
     if (new->buffer == NULL) {
         perror("malloc failed");
