@@ -22,4 +22,6 @@
     #define BUFFER_SIZE 2048
     #define BUFFER_EXTRA 512
 
+    #define MICROS_PER_SEC 1000000
+
 #endif

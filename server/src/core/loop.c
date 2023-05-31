@@ -7,6 +7,7 @@
 
 #include <stdbool.h>
 #include <stdio.h>
+#include <string.h>
 #include <sys/queue.h>
 #include <sys/select.h>
 #include <unistd.h>
@@ -16,15 +17,11 @@
 
 static void end_server(server_t *server)
 {
-    client_t *current = NULL;
-
-    while (!SLIST_EMPTY(server->clients)) {
-        current = SLIST_FIRST(server->clients);
-        SLIST_REMOVE_HEAD(server->clients, next);
-        close_connection(current);
-        free_connection(current);
+    free_clients(server);
+    free_teams(server);
+    if (server->data->socket_fd != -1) {
+        close(server->data->socket_fd);
     }
-    close(server->data->socket_fd);
 }
 
 static bool server_loop(server_t *server)
@@ -50,17 +47,21 @@ static bool server_loop(server_t *server)
 
 bool start_server(options_t *options)
 {
+    bool run = false;
     tick_t tick;
-    zappy_t zappy = { &tick };
     data_t data;
     struct client_list clients;
+    struct teams_list teams;
+    zappy_t zappy = { &tick, &teams };
     server_t server = {  options, &data, &zappy, &clients };
 
     SLIST_INIT(&clients);
-    if (!init_server(&server)) {
-        return false;
+    SLIST_INIT(&teams);
+    memset(&data, 0, sizeof(data_t));
+    run = init_server(&server);
+    if (run) {
+        run = server_loop(&server);
     }
-    server_loop(&server);
     end_server(&server);
-    return true;
+    return run;
 }

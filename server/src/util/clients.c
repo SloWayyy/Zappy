@@ -7,6 +7,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/queue.h>
 
 #include "server.h"
 #include "types.h"
@@ -23,6 +24,7 @@ client_t *new_client(int fd, FILE *stream)
     new->fd = fd;
     new->stream = stream;
     new->type = UNKNOWN;
+    new->player = NULL;
     new->buffer = new_buffer();
     if (new->buffer == NULL) {
         perror("malloc failed");
@@ -32,13 +34,25 @@ client_t *new_client(int fd, FILE *stream)
     return new;
 }
 
-void close_connection(client_t *client)
+void close_client(client_t *client)
 {
     fclose(client->stream);
 }
 
-void free_connection(client_t *client)
+void free_client(client_t *client)
 {
     free_buffer(client->buffer);
     free(client);
+}
+
+void free_clients(server_t *server)
+{
+    client_t *node = NULL;
+
+    while (!SLIST_EMPTY(server->clients)) {
+        node = SLIST_FIRST(server->clients);
+        SLIST_REMOVE_HEAD(server->clients, next);
+        close_client(node);
+        free_client(node);
+    }
 }

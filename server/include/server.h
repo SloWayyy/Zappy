@@ -30,7 +30,12 @@ bool check_arguments(int argc, char const *argv[], options_t *options);
 bool check_number(char const *str, char *option, int *storage);
 
 client_t *new_client(int fd, FILE *stream);
-void close_connection(client_t *client);
-void free_connection(client_t *client);
+void close_client(client_t *client);
+void free_client(client_t *client);
+void free_clients(server_t *server);
+
+team_t *new_team(char const *name, size_t max_players);
+void free_team(team_t *team);
+void free_teams(server_t *server);
 
 #endif

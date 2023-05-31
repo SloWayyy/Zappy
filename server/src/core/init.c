@@ -9,22 +9,39 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/queue.h>
 #include <sys/signalfd.h>
 #include <sys/socket.h>
 #include <sys/time.h>
 #include <unistd.h>
 
 #include "constants.h"
+#include "server.h"
 #include "types.h"
 #include "util.h"
 
 static void init_tick(server_t *server)
 {
-    long micros = 1000000 / server->options->freq;
+    long micros = MICROS_PER_SEC / server->options->freq;
 
     server->zappy->tick->tick_nb = 0;
-    server->zappy->tick->tick_delay.tv_sec = micros / 1000000;
-    server->zappy->tick->tick_delay.tv_usec = micros % 1000000;
+    server->zappy->tick->tick_delay.tv_sec = micros / MICROS_PER_SEC;
+    server->zappy->tick->tick_delay.tv_usec = micros % MICROS_PER_SEC;
+}
+
+static bool init_zappy(server_t *server)
+{
+    team_t *team = NULL;
+
+    init_tick(server);
+    for (int i = 0; server->options->names[i] != NULL; i++) {
+        team = new_team(server->options->names[i], server->options->clients);
+        if (team == NULL) {
+            return false;
+        }
+        SLIST_INSERT_HEAD(server->zappy->teams, team, next);
+    }
+    return true;
 }
 
 static bool init_signalfd(server_t *server)
@@ -69,21 +86,20 @@ static bool setup_socket(int socket_fd, int port)
 
 bool init_server(server_t *server)
 {
-    int socket_fd = socket(AF_INET, SOCK_STREAM, 0);
+    int fd = socket(AF_INET, SOCK_STREAM, 0);
 
-    if (socket_fd == -1) {
+    if (fd == -1) {
         perror("socket failed");
         return false;
     }
-    if (!setup_socket(socket_fd, server->options->port)) {
-        close(socket_fd);
+    if (!setup_socket(fd, server->options->port) || !init_signalfd(server)) {
+        close(fd);
         return false;
     }
-    if (!init_signalfd(server)) {
-        close(socket_fd);
+    if (!init_zappy(server)) {
+        close(fd);
         return false;
     }
-    server->data->socket_fd = socket_fd;
-    init_tick(server);
+    server->data->socket_fd = fd;
     return true;
 }

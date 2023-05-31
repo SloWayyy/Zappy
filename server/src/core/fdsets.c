@@ -68,8 +68,8 @@ static void handle_clients(server_t *server)
         }
         if (!keep) {
             SLIST_REMOVE(server->clients, node, client, next);
-            close_connection(node);
-            free_connection(node);
+            close_client(node);
+            free_client(node);
         }
         node = tmp;
     }

@@ -51,10 +51,10 @@ bool check_positive(char const *str, char *option, int *storage)
 }
 
 static void fill_names(char const *argv[], int padding, int quantity, \
-    char **array)
+    char const **array)
 {
     for (int i = 0; i < quantity; i++) {
-        array[i] = strdup(argv[padding + i]);
+        array[i] = argv[padding + i];
     }
     array[quantity] = NULL;
 }
@@ -76,7 +76,7 @@ int names_handler(int argc, char const *argv[], options_t *options, int idx)
     }
     options->names = malloc(sizeof(char *) * (args + 1));
     if (options->names == NULL) {
-        fprintf(stderr, "Error: malloc failed\n");
+        perror("malloc failed");
         return -1;
     }
     fill_names(argv, idx + 1, args, options->names);
