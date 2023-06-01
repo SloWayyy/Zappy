@@ -7,9 +7,9 @@
 
 #include "encapsulation/Raylibcpp.hpp"
 #include "raymath.h"
-#include "character.hpp"
+#include "Character.hpp"
 
-character::character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos)
+Character::Character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos)
 {
     this->_position = pos;
     this->_animsCount = animsCount;
@@ -20,7 +20,7 @@ character::character(std::size_t animsCount, std::size_t animFrameCounter, Vecto
     this->_model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = this->_texture;
 }
 
-void character::animation()
+void Character::animation()
 {
     UpdateModelAnimation(this->_model, this->_anims[0], this->_animFrameCounter);
     this->_animFrameCounter++;
@@ -28,13 +28,13 @@ void character::animation()
         this->_animFrameCounter = 0;
 }
 
-void character::draw()
+void Character::draw()
 {
     DrawModel(this->_model, this->_position, 0.1f, WHITE);
     this->_model.transform = MatrixRotateXYZ({-90, 0, 0});
 }
 
-void character::run()
+void Character::run()
 {
     this->draw();
     this->animation();

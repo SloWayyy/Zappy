@@ -10,14 +10,14 @@
 Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window)
 {
     this->_map = Map(10, 10);
-    this->_characters = std::vector<character>();
+    this->_characters = std::vector<Character>();
     this->_currentCharacterId = 0;
     this->_currentCharacterIndex = 0;
 }
 
 void Gameplay::initPlayer(Vector3 pos)
 {
-    character player(0, 0, pos);
+    Character player(0, 0, pos);
 
     _characters.push_back(player);
 }

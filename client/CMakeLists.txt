@@ -10,7 +10,7 @@ include_directories(include)
 
 add_executable(zappy_gui
         src/Main.cpp
-        src/character.cpp
+        src/Character.cpp
         src/Map.cpp
         src/window.cpp
         src/core.cpp

@@ -13,7 +13,7 @@
     #include "window.hpp"
     #include "Map.hpp"
     #include "gameplay.hpp"
-    #include "character.hpp"
+    #include "Character.hpp"
     #include "Menu/include/menu.hpp"
 
 class Core : public Raylibcpp::Draw {

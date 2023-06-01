@@ -11,7 +11,7 @@
     #include <memory>
     #include "Map.hpp"
     #include "window.hpp"
-    #include "character.hpp"
+    #include "Character.hpp"
 
 class Gameplay {
     public:
@@ -26,10 +26,10 @@ class Gameplay {
     private:
         std::shared_ptr<Window> _window;
         Map _map;
-        std::vector<character> _characters;
+        std::vector<Character> _characters;
         std::size_t _currentCharacterId;
         std::size_t _currentCharacterIndex;
-        character _currentCharacter;
+        Character _currentCharacter;
 };
 
 #endif /* !GAMEPLAY_HPP_ */

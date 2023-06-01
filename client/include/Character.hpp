@@ -10,11 +10,11 @@
 
     #include "encapsulation/Raylibcpp.hpp"
 
-class character : public Raylibcpp::RayModel {
+class Character : public Raylibcpp::RayModel {
     public:
-        character() = default;
-        character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos);
-        ~character() = default;
+        Character() = default;
+        Character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos);
+        ~Character() = default;
         Vector3 getPosition() const {return this->_position;};
         void animation();
         void run();
