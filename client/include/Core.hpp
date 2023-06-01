@@ -12,7 +12,7 @@
     #include <vector>
     #include "window.hpp"
     #include "Map.hpp"
-    #include "gameplay.hpp"
+    #include "Gameplay.hpp"
     #include "Character.hpp"
     #include "Menu/include/menu.hpp"
 

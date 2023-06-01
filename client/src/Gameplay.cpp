@@ -5,7 +5,7 @@
 ** gameplay
 */
 
-#include "gameplay.hpp"
+#include "Gameplay.hpp"
 
 Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window)
 {
