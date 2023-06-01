@@ -12,7 +12,7 @@ add_executable(zappy_gui
         src/Main.cpp
         src/Character.cpp
         src/Map.cpp
-        src/window.cpp
+        src/Window.cpp
         src/Core.cpp
         src/Gameplay.cpp
         encapsulation/draw.cpp

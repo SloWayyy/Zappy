@@ -5,7 +5,7 @@
 ** window
 */
 
-#include "window.hpp"
+#include "Window.hpp"
 
 Window::Window(int height, int width, int fps)
 {
@@ -49,4 +49,44 @@ void Window::run()
 {
     this->updateCamera();
     this->handleInput();
+}
+
+void Window::setGameEvent(GameEvent event)
+{
+    this->_gameEvent = event;
+}
+
+GameEvent Window::getGameEvent(void) const
+{
+    return (this->_gameEvent);
+}
+
+std::size_t Window::getScreenHeight(void) const
+{
+    return (this->_windowParam._screenHeight);
+}
+
+std::size_t Window::getScreenWidth(void) const
+{
+    return (this->_windowParam._screenWidth);
+}
+
+std::size_t Window::getFps(void) const
+{
+    return (this->_windowParam._fps);
+}
+
+void Window::setExit(bool exit)
+{
+    this->_isExit = exit;
+}
+
+bool Window::getExit(void) const
+{
+    return (this->_isExit);
+}
+
+Camera Window::getCamera() const
+{
+    return (this->_camera);
 }

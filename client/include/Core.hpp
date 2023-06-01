@@ -10,7 +10,7 @@
 
     #include <raylib.h>
     #include <vector>
-    #include "window.hpp"
+    #include "Window.hpp"
     #include "Map.hpp"
     #include "Gameplay.hpp"
     #include "Character.hpp"

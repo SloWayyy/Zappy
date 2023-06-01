@@ -9,7 +9,7 @@
     #define BUTTON_HPP_
 
     #include <memory>
-    #include "window.hpp"
+    #include "Window.hpp"
     #include "encapsulation/Raylibcpp.hpp"
 
 typedef struct coord {

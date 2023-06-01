@@ -32,15 +32,15 @@ class Window {
         void run();
         void updateCamera();
         void handleInput();
-        void setGameEvent(GameEvent event) { this->_gameEvent = event; };
+        void setGameEvent(GameEvent event);
         void setCamera(Vector3 pos, Vector3 target, Vector3 up, float fovy, int projection);
-        Camera getCamera() const { return _camera; };
-        GameEvent getGameEvent(void) const { return this->_gameEvent; };
-        std::size_t getScreenHeight(void) const { return _windowParam._screenHeight; };
-        std::size_t getScreenWidth(void) const { return _windowParam._screenWidth; };
-        std::size_t getFps(void) const { return _windowParam._fps; };
-        void setExit(bool exit) { this->_isExit = exit; };
-        bool getExit(void) const { return this->_isExit; };
+        Camera getCamera() const;
+        GameEvent getGameEvent(void) const;
+        std::size_t getScreenHeight(void) const;
+        std::size_t getScreenWidth(void) const;
+        std::size_t getFps(void) const;
+        void setExit(bool exit);
+        bool getExit(void) const;
     private:
         GameEvent _gameEvent;
         Camera _camera;

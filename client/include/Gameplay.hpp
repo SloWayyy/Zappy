@@ -10,7 +10,7 @@
 
     #include <memory>
     #include "Map.hpp"
-    #include "window.hpp"
+    #include "Window.hpp"
     #include "Character.hpp"
 
 class Gameplay {

@@ -10,7 +10,7 @@
 
     #include <vector>
     #include "button.hpp"
-    #include "window.hpp"
+    #include "Window.hpp"
     #include "encapsulation/Raylibcpp.hpp"
 
 class Menu {
