@@ -16,6 +16,7 @@ Window::Window(int height, int width, int fps)
     this->setGameEvent(MENU);
     InitWindow(this->_windowParam._screenHeight, this->_windowParam._screenWidth, "Zappy");
     SetTargetFPS(this->_windowParam._fps);
+    // this->setCamera({ -11.0f, 14.0f, 8.0f }, { 8.0f, 0.0f, 10.0f }, { 0.9f, 0.5f, 0.0f }, 45.0f, CAMERA_PERSPECTIVE);
     this->setCamera({ 0.0f, 10.0f, 10.0f }, { 10.0f, 2.0f, 10.0f }, { 0.0f, 1.0f, 0.0f }, 45.0f, CAMERA_PERSPECTIVE);
 }
 
@@ -30,6 +31,10 @@ void Window::setCamera(Vector3 pos, Vector3 target, Vector3 up, float fovy, int 
 
 void Window::updateCamera()
 {
+    printf("Camera position: %f %f %f\n", this->_camera.position.x, this->_camera.position.y, this->_camera.position.z);
+    printf("Camera target: %f %f %f\n", this->_camera.target.x, this->_camera.target.y, this->_camera.target.z);
+    printf("Camera up: %f %f %f\n", this->_camera.up.x, this->_camera.up.y, this->_camera.up.z);
+    printf("Camera fovy: %f\n", this->_camera.fovy);
     UpdateCamera(&this->_camera, 1);
 }
 
@@ -41,8 +46,6 @@ void Window::handleInput()
         this->_gameEvent = GameEvent::GAMEPLAY;
     if (IsKeyPressed(KEY_P) && (this->_gameEvent == GameEvent::GAMEPLAY))
         this->_gameEvent = GameEvent::MENU;
-    // if (IsKeyPressed(KEY_F1))
-    //     this->setCamera({ 0.0f, 2.0f, 2.0f }, { 10.0f, 2.0f, 10.0f }, { 0.0f, 1.0f, 0.0f }, 45.0f, CAMERA_PERSPECTIVE);
 }
 
 void Window::run()
