@@ -14,6 +14,7 @@
 player_t *new_player(void)
 {
     player_t *new = malloc(sizeof(player_t));
+
     if (new == NULL) {
         perror("malloc failed");
         return NULL;

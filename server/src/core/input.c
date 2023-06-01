@@ -18,10 +18,11 @@
 
 static void send_new_player(server_t *server, client_t *client)
 {
+    static const char *format = "%d%s%d %d%s";
     team_t *team = client->player->team;
 
-    append_buffer(client->buffer, "%d%s%d %d%s", team->slots,
-        LINE_BREAK, server->options->width, server->options->height, LINE_BREAK);
+    append_buffer(client->buffer, format, team->slots, LINE_BREAK,
+        server->options->width, server->options->height, LINE_BREAK);
 }
 
 static void handle_unknown(server_t *server, client_t *client, char *line)
