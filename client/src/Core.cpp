@@ -17,18 +17,18 @@ void Core::run(void)
     this->_gameplay->initPlayer({0, 1.1, 4});
     this->_gameplay->initPlayer({0, 1.1, 6});
     while (!this->_window->getExit()) {
-        ClearBackground(RAYWHITE);
-        BeginDrawing();
+        this->_rayWindow.clearBackground(RAYWHITE);
+        this->_rayWindow.beginDrawing();
         switch (this->_window->getGameEvent()) {
             case MENU:
                 this->_window->run();
                 this->_menu->run();
                 break;
             case GAMEPLAY:
-                BeginMode3D(this->_window->getCamera());
+                this->_rayWindow.beginMode3D(this->_window->getCamera());
                 this->_window->run();
                 this->_gameplay->run();
-                EndMode3D();
+                this->_rayWindow.endMode3D();
                 break;
             case SETTINGS:
                 this->_window->run();
@@ -39,6 +39,6 @@ void Core::run(void)
             case EXIT:
                 this->_window->setExit(true);
         }
-        EndDrawing();
+        this->_rayWindow.endDrawing();
     }
 }

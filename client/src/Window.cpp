@@ -14,10 +14,10 @@ Window::Window(int height, int width, int fps)
     this->_windowParam._fps = fps;
     this->_isExit = false;
     this->setGameEvent(MENU);
-    InitWindow(this->_windowParam._screenHeight, this->_windowParam._screenWidth, "Zappy");
-    SetTargetFPS(this->_windowParam._fps);
+    this->_rayWindow.initWindow(this->_windowParam._screenHeight, this->_windowParam._screenWidth, "Zappy");
+    this->_rayWindow.setTargetFPS(this->_windowParam._fps);
     // change the fovy to change the vision of camera
-    this->setCamera({ -5.0f, 15.0f, 10.0f }, { 10.0f, 2.0f, 10.0f }, { 0.0f, 1.0f, 0.0f }, 100.0f, CAMERA_PERSPECTIVE);
+    this->setCamera({ -5.0f, 15.0f, 10.0f }, { 10.0f, 2.0f, 10.0f }, { 0.0f, 1.0f, 0.0f }, 80.0f, CAMERA_PERSPECTIVE);
 }
 
 void Window::setCamera(Vector3 pos, Vector3 target, Vector3 up, float fovy, int projection)
@@ -31,26 +31,22 @@ void Window::setCamera(Vector3 pos, Vector3 target, Vector3 up, float fovy, int 
 
 void Window::updateCamera()
 {
-    printf("Camera position: %f %f %f\n", this->_camera.position.x, this->_camera.position.y, this->_camera.position.z);
-    printf("Camera target: %f %f %f\n", this->_camera.target.x, this->_camera.target.y, this->_camera.target.z);
-    printf("Camera up: %f %f %f\n", this->_camera.up.x, this->_camera.up.y, this->_camera.up.z);
-    printf("Camera fovy: %f\n", this->_camera.fovy);
-    UpdateCamera(&this->_camera, 1);
+    // UpdateCamera(&this->_camera, 1);
 }
 
 void Window::handleInput()
 {
-    if (IsKeyDown('Z'))
+    if (this->_rayWindow.isKeyDown(KEY_Z))
         this->_camera.target = (Vector3){ 0.0f, 0.0f, 0.0f };
-    if (IsKeyPressed(KEY_ENTER))
+    if (this->_rayWindow.isKeyPressed(KEY_ENTER))
         this->_gameEvent = GameEvent::GAMEPLAY;
-    if (IsKeyPressed(KEY_P) && (this->_gameEvent == GameEvent::GAMEPLAY))
+    if (this->_rayWindow.isKeyPressed(KEY_P) && (this->_gameEvent == GameEvent::GAMEPLAY))
         this->_gameEvent = GameEvent::MENU;
 }
 
 void Window::run()
 {
-    // this->updateCamera();
+    this->updateCamera();
     this->handleInput();
 }
 

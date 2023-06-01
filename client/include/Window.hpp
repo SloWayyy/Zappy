@@ -46,6 +46,7 @@ class Window {
         Camera _camera;
         windowParam_t _windowParam;
         bool _isExit;
+        Raylibcpp::RayWindow _rayWindow;
 };
 
 #endif /* !WINDOW_HPP_ */

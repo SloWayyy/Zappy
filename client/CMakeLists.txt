@@ -18,6 +18,7 @@ add_executable(zappy_gui
         encapsulation/draw.cpp
         encapsulation/model.cpp
         encapsulation/text.cpp
+        encapsulation/window.cpp
         Menu/src/Menu.cpp
         Menu/src/Button.cpp
         )

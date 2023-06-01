@@ -12,6 +12,23 @@
     #include <raylib.h>
 
 namespace Raylibcpp {
+    class RayWindow {
+        public:
+            RayWindow() = default;
+            ~RayWindow() = default;
+            void initWindow(int width, int height, const char *title);
+            void setTargetFPS(int fps);
+            bool isKeyPressed(int key);
+            bool isKeyReleased(int key);
+            bool isKeyDown(int key);
+            void beginDrawing();
+            void endDrawing();
+            void clearBackground(Color color);
+            void beginMode3D(Camera3D camera);
+            void endMode3D();
+        protected:
+        private:
+    };
     class RayModel {
         public:
             enum modelType {
