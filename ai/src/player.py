@@ -1,7 +1,7 @@
-from enum import Enum
-import socket
 import re
+import socket
 
+from enum import Enum
 from ai.src.handle_packets import *
 
 class ErrorConnection(Exception):
@@ -20,16 +20,17 @@ class EnumHeader (Enum):
     ASKBOSS = "$1$"
     IMBOSS = "$2$"
 
-
 class Direction(Enum):
     RIGHT = 0,
     LEFT = 1
 
 class Player:
+
     def __init__(self, sock: socket.socket, name: str):
         self.sock = sock
         self.boss = -1
         self.pos = -1
+        self.ai = 1
         self.map_broadcast : dict = {}
         if (self.connection(name) == False):
             ErrorConnection("Error: connection failed")
@@ -67,6 +68,8 @@ class Player:
         if (donnees[0] == "ko"):
             raise ErrorConnection("Error: connection failed")
         if (int(donnees[0]) > 1):
+            self.ai = int(donnees[0])
+            print("cc", self.ai)
             return True
         return False
 
