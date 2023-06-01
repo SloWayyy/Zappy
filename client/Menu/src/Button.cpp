@@ -53,3 +53,73 @@ void Button::update()
         this->_click = false;
     }
 }
+
+void Button::setCoord(coord_t coord)
+{
+    this->_coord = coord;
+}
+
+coord_t Button::getCoord() const
+{
+    return this->_coord;
+}
+
+void Button::setString(std::string string)
+{
+    this->_string = string;
+}
+
+std::string Button::getString() const
+{
+    return this->_string;
+}
+
+void Button::setColor(Color color)
+{
+    this->_colorFont = color;
+}
+
+Color Button::getColor() const
+{
+    return this->_colorFont;
+}
+
+void Button::setSize(int size)
+{
+    this->_size = size;
+}
+
+int Button::getSize() const
+{
+    return this->_size;
+}
+
+void Button::setScreen(GameEvent screen)
+{
+    this->_screen = screen;
+}
+
+GameEvent Button::getScreen() const
+{
+    return this->_screen;
+}
+
+Rectangle Button::getRectButton() const
+{
+    return this->_rectButton;
+}
+
+Color Button::getColorRect() const
+{
+    return this->_colorRect;
+}
+
+bool Button::getIsClicked() const
+{
+    return this->_isClicked;
+}
+
+void Button::setIsClicked(bool isClicked)
+{
+    this->_isClicked = isClicked;
+}
