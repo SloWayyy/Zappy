@@ -15,7 +15,7 @@ class Character : public Raylibcpp::RayModel {
         Character() = default;
         Character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos);
         ~Character() = default;
-        Vector3 getPosition() const {return this->_position;};
+        Vector3 getPosition() const;
         void animation();
         void run();
         void draw();

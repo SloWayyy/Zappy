@@ -39,3 +39,8 @@ void Character::run()
     this->draw();
     this->animation();
 }
+
+Vector3 Character::getPosition() const
+{
+    return this->_position;
+}

@@ -80,3 +80,33 @@ void Map::run()
 {
     this->draw();
 }
+
+void Map::setHeight(std::size_t height)
+{
+    this->_mapSize.height = height;
+}
+
+void Map::setWidth(std::size_t width)
+{
+    this->_mapSize.width = width;
+}
+
+std::size_t Map::getheight() const
+{
+    return this->_mapSize.height;
+}
+
+std::size_t Map::getwidth() const
+{
+    return this->_mapSize.width;
+}
+
+Vector3 Map::getcubePosition() const
+{
+    return this->_cubePosition;
+}
+
+void Map::setcubePosition(Vector3 position)
+{
+    this->_cubePosition = position;
+}

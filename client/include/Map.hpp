@@ -31,13 +31,13 @@ class Map {
         void draw();
         void fillMineralPositionArray();
         void drawMineral(modelType type);
-        void setHeight(std::size_t height) {this->_mapSize.height = height;};
-        void setWidth(std::size_t width) {this->_mapSize.width = width;};
+        void setHeight(std::size_t height);
+        void setWidth(std::size_t width);
         void openMap(std::string path);
-        std::size_t getheight() const {return this->_mapSize.height;};
-        std::size_t getwidth() const {return this->_mapSize.width;};
-        Vector3 getcubePosition() const {return this->_cubePosition;};
-        void setcubePosition(Vector3 position) {this->_cubePosition = position;};
+        std::size_t getheight() const;
+        std::size_t getwidth() const;
+        Vector3 getcubePosition() const;
+        void setcubePosition(Vector3 position);
         void run();
     private:
         Model _model;
