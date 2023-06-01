@@ -22,7 +22,7 @@ SRC			=	src/core/fdsets.c \
 
 MAIN		=	src/main.c
 
-TESTS		=	tests/test_server.c
+TESTS		=	tests/test_server.c	\
 
 INC			=	include/
 
