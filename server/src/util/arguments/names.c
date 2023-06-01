@@ -11,34 +11,28 @@
 
 #include "args.h"
 
-static int team_already_exist(char **team_name, char const *name)
+static bool is_valid(char **teams, int size, char const *name)
 {
-    for (int i = 0; team_name[i] != NULL; i++) {
-        if (strcmp(team_name[i], name) == 0) {
-            fprintf(stderr, "Error: Team name already exist\n");
-            return 1;
+    for (int i = 0; i < size; i++) {
+        if (strcmp(teams[i], name) == 0) {
+            fprintf(stderr, "Error: Team %s is registered twice\n", name);
+            return true;
         }
     }
-    return 0;
+    return false;
 }
 
 static int fill_names(char const *argv[], int padding, int quantity, \
     char **array)
 {
     for (int i = 0; i < quantity; i++) {
-        if (i != 0 && team_already_exist(array, argv[padding + i]) == 1)
+        if (is_valid(array, i, argv[padding + i]) == 1) {
             return -1;
-        else
-            array[i] = strdup(argv[padding + i]);
+        }
+        array[i] = strdup(argv[padding + i]);
     }
     array[quantity] = NULL;
-    return 0;
-}
-
-static void count_number_team(int argc, char const *argv[], int idx, int *args)
-{
-    for (int i = idx + 1; i < argc && argv[i][0] != '-'; i++)
-        *args += 1;
+    return quantity;
 }
 
 int names_handler(int argc, char const *argv[], options_t *options, int idx)
@@ -49,7 +43,9 @@ int names_handler(int argc, char const *argv[], options_t *options, int idx)
         fprintf(stderr, "Error: Team names are already set\n");
         return -1;
     }
-    count_number_team(argc, argv, idx, &args);
+    for (int i = idx + 1; i < argc && argv[i][0] != '-'; i++) {
+        args++;
+    }
     if (args == 0) {
         fprintf(stderr, "Error: No team names given\n");
         return -1;
@@ -59,5 +55,5 @@ int names_handler(int argc, char const *argv[], options_t *options, int idx)
         fprintf(stderr, "Error: malloc failed\n");
         return -1;
     }
-    return (fill_names(argv, idx + 1, args, options->names)) == -1 ? -1 : args;
+    return fill_names(argv, idx + 1, args, options->names);
 }
