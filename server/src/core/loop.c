@@ -54,7 +54,7 @@ bool start_server(options_t *options)
     struct client_list clients;
     struct teams_list teams;
     zappy_t zappy = { &tick, &teams };
-    server_t server = {  options, &data, &zappy, &clients };
+    server_t server = { options, &data, &zappy, &clients };
 
     SLIST_INIT(&clients);
     SLIST_INIT(&teams);

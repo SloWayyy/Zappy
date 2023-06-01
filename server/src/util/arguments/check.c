@@ -49,36 +49,3 @@ bool check_positive(char const *str, char *option, int *storage)
     }
     return true;
 }
-
-static void fill_names(char const *argv[], int padding, int quantity, \
-    char const **array)
-{
-    for (int i = 0; i < quantity; i++) {
-        array[i] = argv[padding + i];
-    }
-    array[quantity] = NULL;
-}
-
-int names_handler(int argc, char const *argv[], options_t *options, int idx)
-{
-    int args = 0;
-
-    if (options->names != NULL) {
-        fprintf(stderr, "Error: Team names are already set\n");
-        return -1;
-    }
-    for (int i = idx + 1; i < argc && argv[i][0] != '-'; i++) {
-        args++;
-    }
-    if (args == 0) {
-        fprintf(stderr, "Error: No team names given\n");
-        return -1;
-    }
-    options->names = malloc(sizeof(char *) * (args + 1));
-    if (options->names == NULL) {
-        perror("malloc failed");
-        return -1;
-    }
-    fill_names(argv, idx + 1, args, options->names);
-    return args;
-}

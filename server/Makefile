@@ -16,11 +16,12 @@ SRC			=	src/core/fdsets.c \
 				src/objects/teams.c \
 				src/player/command.c \
 				src/player/join.c \
-				src/util/args.c \
-				src/util/args_check.c \
+				src/util/arguments/args.c \
+				src/util/arguments/check.c \
+				src/util/arguments/handlers.c \
+				src/util/arguments/names.c \
 				src/util/arrays.c \
 				src/util/buffer.c \
-				src/util/handlers.c \
 				src/util/util.c \
 				src/server.c
 

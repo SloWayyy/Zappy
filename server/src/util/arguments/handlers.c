@@ -8,6 +8,7 @@
 #include <stdio.h>
 
 #include "args.h"
+#include "constants.h"
 #include "types.h"
 
 int port_handler(int argc, char const *argv[], options_t *options, int idx)
@@ -85,6 +86,11 @@ int freq_handler(int argc, char const *argv[], options_t *options, int idx)
         return -1;
     }
     if (!check_positive(argv[idx + 1], "Frequency", &options->freq)) {
+        return -1;
+    }
+    if (options->freq > MAX_FREQ) {
+        fprintf(stderr, "Error: Frequency cannot be greater than %d\n", \
+            MAX_FREQ);
         return -1;
     }
     return 1;
