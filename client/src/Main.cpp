@@ -7,11 +7,11 @@
 
 #include <memory>
 #include "encapsulation/Raylibcpp.hpp"
-#include "core.hpp"
+#include "src/Core/Core.hpp"
 
 int main(void)
 {
-    std::unique_ptr<Core> core = std::make_unique<Core>();
-    core->run();
+    Core core = Core();
+    core.run();
     return 0;
 }
