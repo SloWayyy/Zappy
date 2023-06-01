@@ -10,13 +10,14 @@ SRC			=	src/core/fdsets.c \
 				src/core/input.c \
 				src/core/loop.c \
 				src/core/tick.c \
-				src/util/args.c \
-				src/util/args_check.c \
 				src/util/arrays.c \
 				src/util/buffer.c \
 				src/util/clients.c \
 				src/util/handlers.c \
 				src/util/util.c \
+				src/util/arguments/args.c \
+				src/util/arguments/args_check.c \
+				src/util/arguments/argument_name.c \
 				src/server.c
 
 MAIN		=	src/main.c
