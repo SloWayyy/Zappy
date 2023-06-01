@@ -8,20 +8,28 @@
 #ifndef GAMEPLAY_HPP_
     #define GAMEPLAY_HPP_
 
+    #include <memory>
     #include "Map.hpp"
+    #include "window.hpp"
     #include "character.hpp"
 
 class Gameplay {
     public:
-        Gameplay();
+        Gameplay(std::shared_ptr<Window> _window);
         ~Gameplay() = default;
         void run(void);
-        void initPlayer(void);
+        void initPlayer(Vector3 pos);
         void runPlayers(void);
+        void handleInput(void);
+        void setCurrentCharacter();
     protected:
     private:
+        std::shared_ptr<Window> _window;
         Map _map;
         std::vector<character> _characters;
+        std::size_t _currentCharacterId;
+        std::size_t _currentCharacterIndex;
+        character _currentCharacter;
 };
 
 #endif /* !GAMEPLAY_HPP_ */

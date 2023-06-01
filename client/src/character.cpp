@@ -34,14 +34,8 @@ void character::draw()
     this->_model.transform = MatrixRotateXYZ({-90, 0, 0});
 }
 
-void character::handleInput()
-{
-    if (IsKeyDown(KEY_SPACE))
-        this->animation();
-}
-
 void character::run()
 {
-    this->handleInput();
     this->draw();
+    this->animation();
 }

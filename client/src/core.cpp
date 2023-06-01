@@ -11,12 +11,14 @@ Core::Core()
 {
     this->_window = std::shared_ptr<Window>(new Window(1920, 1080, 60));
     this->_menu = std::shared_ptr<Menu>(new Menu(this->_window));
-    this->_gameplay = std::shared_ptr<Gameplay>(new Gameplay());
+    this->_gameplay = std::shared_ptr<Gameplay>(new Gameplay(this->_window));
 }
 
 void Core::run(void)
 {
-    this->_gameplay->initPlayer();
+    this->_gameplay->initPlayer({0, 1.1, 2});
+    this->_gameplay->initPlayer({0, 1.1, 4});
+    this->_gameplay->initPlayer({0, 1.1, 6});
     while (!this->_window->getExit()) {
         ClearBackground(RAYWHITE);
         BeginDrawing();

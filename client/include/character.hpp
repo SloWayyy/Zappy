@@ -15,10 +15,10 @@ class character : public Raylibcpp::RayModel {
         character() = default;
         character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos);
         ~character() = default;
+        Vector3 getPosition() const {return this->_position;};
         void animation();
         void run();
         void draw();
-        void handleInput();
     protected:
         Model _model;
         ModelAnimation *_anims;

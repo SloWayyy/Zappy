@@ -41,8 +41,8 @@ void Window::handleInput()
         this->_gameEvent = GameEvent::GAMEPLAY;
     if (IsKeyPressed(KEY_P) && (this->_gameEvent == GameEvent::GAMEPLAY))
         this->_gameEvent = GameEvent::MENU;
-    if (IsKeyPressed(KEY_F1))
-        this->setCamera({ 0.0f, 2.0f, 2.0f }, { 10.0f, 2.0f, 10.0f }, { 0.0f, 1.0f, 0.0f }, 45.0f, CAMERA_PERSPECTIVE);
+    // if (IsKeyPressed(KEY_F1))
+    //     this->setCamera({ 0.0f, 2.0f, 2.0f }, { 10.0f, 2.0f, 10.0f }, { 0.0f, 1.0f, 0.0f }, 45.0f, CAMERA_PERSPECTIVE);
 }
 
 void Window::run()
