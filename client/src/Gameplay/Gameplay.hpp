@@ -9,9 +9,10 @@
     #define GAMEPLAY_HPP_
 
     #include <memory>
-    #include "Map.hpp"
-    #include "Window.hpp"
-    #include "Character.hpp"
+    #include "src/Gameplay/Map.hpp"
+    #include "src/Core/Window.hpp"
+    #include "src/Gameplay/Character.hpp"
+    #include "encapsulation/Raylibcpp.hpp"
 
 class Gameplay {
     public:
@@ -30,6 +31,7 @@ class Gameplay {
         std::size_t _currentCharacterId;
         std::size_t _currentCharacterIndex;
         Character _currentCharacter;
+        Raylibcpp::RayWindow _rayWindow;
 };
 
 #endif /* !GAMEPLAY_HPP_ */

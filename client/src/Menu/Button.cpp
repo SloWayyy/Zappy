@@ -5,7 +5,7 @@
 ** button
 */
 
-#include "Menu/include/Button.hpp"
+#include "src/Menu/Button.hpp"
 
 Button::Button(std::string string, coord_t coord, Color color, int size, GameEvent screen, const std::shared_ptr<Window> &ptr): _window(ptr)
 {
@@ -28,12 +28,12 @@ void Button::update()
 {
     this->_colorFont = this->_colorFont;
     this->_colorRect = BLUE;
-    this->_mouse.x = GetMouseX();
-    this->_mouse.y = GetMouseY();
-    bool collision = CheckCollisionRecs(this->_mouse, this->_rectButton);
+    this->_mouse.x = this->_rayMouse.getMouseX();
+    this->_mouse.y = this->_rayMouse.getMouseY();
+    bool collision = this->_rayMouse.checkCollisionRecs(this->_mouse, this->_rectButton);
 
     if (collision) {
-        if (IsMouseButtonDown(0) == true) {
+        if (this->_rayMouse.isMouseButtonDown(0) == true) {
             this->_colorFont = GOLD;
             this->_colorRect = PURPLE;
             this->_click = true;
@@ -47,7 +47,7 @@ void Button::update()
         this->_colorFont = GOLD;
         this->_colorRect = BLUE;
     }
-    if (this->_click == true && IsMouseButtonReleased(0) == true) {
+    if (this->_click == true && this->_rayMouse.isMouseButtonReleased(0) == true) {
         this->_window->setGameEvent(this->getScreen());
         this->check = false;
         this->_click = false;

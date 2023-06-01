@@ -10,7 +10,7 @@
 
     #include <vector>
     #include "Button.hpp"
-    #include "Window.hpp"
+    #include "src/Core/Window.hpp"
     #include "encapsulation/Raylibcpp.hpp"
 
 class Menu {
@@ -25,9 +25,10 @@ class Menu {
     protected:
     private:
         Texture2D _background;
-        // Raylibcpp::Text _text;
         std::vector<Button> _buttonsScreen;
         std::shared_ptr<Window> _window;
+        Raylibcpp::RayModel _rayModel;
+        Raylibcpp::RayText _rayText;
 };
 
 #endif /* !MENU_HPP_ */

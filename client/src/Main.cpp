@@ -7,7 +7,7 @@
 
 #include <memory>
 #include "encapsulation/Raylibcpp.hpp"
-#include "Core.hpp"
+#include "src/Core/Core.hpp"
 
 int main(void)
 {

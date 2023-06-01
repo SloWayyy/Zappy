@@ -7,17 +7,17 @@
 
 #include <fstream>
 #include <array>
-#include "Map.hpp"
+#include "src/Gameplay/Map.hpp"
 
 Map::Map(std::size_t height, std::size_t width)
 {
     this->_mapSize = { height, width };
     this->_cubePosition = { 0.0f, 0.0f, 0.0f };
     this->openMap("../map.txt");
-    this->_modelMap.insert({this->BANANA, std::make_pair(LoadModel("assets/food/banana/banana.obj"), LoadTexture("assets/food/banana/banana.png"))});
-    this->_modelMap.insert({this->APPLE, std::make_pair(LoadModel("assets/food/apple/apple.obj"), LoadTexture("assets/food/apple/apple.png"))});
-    SetMaterialTexture(&this->_modelMap[this->BANANA].first.materials[0], MATERIAL_MAP_DIFFUSE, this->_modelMap[this->BANANA].second);
-    SetMaterialTexture(&this->_modelMap[this->APPLE].first.materials[0], MATERIAL_MAP_DIFFUSE, this->_modelMap[this->APPLE].second);
+    this->_modelMap.insert({this->BANANA, std::make_pair(this->_rayModel.loadModel("assets/food/banana/banana.obj"), this->_rayModel.loadTexture("assets/food/banana/banana.png"))});
+    this->_modelMap.insert({this->APPLE, std::make_pair(this->_rayModel.loadModel("assets/food/apple/apple.obj"), this->_rayModel.loadTexture("assets/food/apple/apple.png"))});
+    this->_rayModel.setMaterialTexture(&this->_modelMap[this->BANANA].first.materials[0], MATERIAL_MAP_DIFFUSE, this->_modelMap[this->BANANA].second);
+    this->_rayModel.setMaterialTexture(&this->_modelMap[this->APPLE].first.materials[0], MATERIAL_MAP_DIFFUSE, this->_modelMap[this->APPLE].second);
     this->fillMineralPositionArray();
 }
 
@@ -38,7 +38,7 @@ void Map::openMap(std::string path)
 void Map::drawMineral(modelType type)
 {
     for (auto &i : this->_MineralPositionArray) {
-        DrawModel(this->_modelMap[type].first, i, 1.0f, WHITE);
+        this->_rayModel.drawModel(this->_modelMap[type].first, i, 1.0f, WHITE);
     }
 }
 
@@ -66,8 +66,8 @@ void Map::draw()
     for (std::size_t y = 0; y < this->_mapSize.height; y++) {
         for (std::size_t x = 0; x < this->_mapSize.width; x++) {
             this->_cubePosition = { _x, 0.0f, _y };
-            DrawCube(this->_cubePosition, 2.0f, 2.0f, 2.0f, GREEN);
-            DrawCubeWires(this->_cubePosition, 2.0f, 2.0f, 2.0f, WHITE);
+            this->_rayCube.drawCube(this->_cubePosition, 2.0f, 2.0f, 2.0f, GREEN);
+            this->_rayCube.drawCubeWires(this->_cubePosition, 2.0f, 2.0f, 2.0f, WHITE);
         _x += 2.0f;
         }
         _x = 0.0f;

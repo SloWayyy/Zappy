@@ -47,7 +47,8 @@ class Map {
         mapSize_t _mapSize;
         std::unordered_map<modelType, std::pair<Model, Texture2D>> _modelMap;
         std::vector<Vector3> _MineralPositionArray;
-
+        Raylibcpp::RayModel _rayModel;
+        Raylibcpp::RayCube _rayCube;
 };
 
 #endif /* !MAP_HPP_ */

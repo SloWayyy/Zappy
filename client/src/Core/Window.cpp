@@ -5,7 +5,7 @@
 ** window
 */
 
-#include "Window.hpp"
+#include "src/Core/Window.hpp"
 
 Window::Window(int height, int width, int fps)
 {
@@ -31,7 +31,7 @@ void Window::setCamera(Vector3 pos, Vector3 target, Vector3 up, float fovy, int 
 
 void Window::updateCamera()
 {
-    // UpdateCamera(&this->_camera, 1);
+    this->_rayWindow.updateCamera(&this->_camera, 1);
 }
 
 void Window::handleInput()

@@ -21,45 +21,52 @@ namespace Raylibcpp {
             bool isKeyPressed(int key);
             bool isKeyReleased(int key);
             bool isKeyDown(int key);
+            void updateCamera(Camera *camera, int mode);
             void beginDrawing();
             void endDrawing();
             void clearBackground(Color color);
             void beginMode3D(Camera3D camera);
             void endMode3D();
-        protected:
-        private:
     };
     class RayModel {
         public:
-            enum modelType {
-                PING
-            };
             RayModel() = default;
-            Texture2D getTexture(modelType type);
-            ModelAnimation *loadModelAnimations(const char *fileName, unsigned int *animCount);
-            void drawRayModel(Model mod, Vector3 pos, float scale);
             ~RayModel() = default;
-        private:
+            Model loadModel(const char *fileName);
+            void unloadModel(Model model);
+            Texture2D loadTexture(const char *fileName);
+            void unloadTexture(Texture2D texture);
+            void setMaterialTexture(Material *material, int mapType, Texture2D texture);
+            ModelAnimation *loadModelAnimations(const char *fileName, unsigned int *animCount);
+            void updateModelAnimation(Model model, ModelAnimation anim, int frame);
+            void drawModel(Model mod, Vector3 pos, float scale, Color color);
+            void drawRectangle(int posX, int posY, int width, int height, Color color);
+            void drawTexture(Texture2D texture, int posX, int posY, Color color);
     };
-    class Draw : public Raylibcpp::RayModel {
+    class RayCube {
         public:
-        Draw() = default;
-        ~Draw() = default;
-        void drawCube(Vector3 pos, float widht, float height, float lenght, Color color);
-        void drawCubeWires(Vector3 pos, float widht, float height, float lenght, Color color);
-        void drawTexture(Texture2D texture, int posX, int posY, Color color);
-        void drawRectangle(int posX, int posY, int width, int height, Color color);
-    private:
-    protected:
+            RayCube() = default;
+            ~RayCube() = default;
+            void drawCube(Vector3 position, float width, float height, float length, Color color);
+            void drawCubeWires(Vector3 position, float width, float height, float length, Color color);
     };
-    class Text : public Raylibcpp::Draw {
+    class RayText {
         public:
-            Text() = default;
-            ~Text() = default;
+            RayText() = default;
+            ~RayText() = default;
             void drawText(std::string string, int posX, int posY, int fontSize, Color color);
-            void drawFontText(std::string text, int x, int y, int size, Color color);
-        private:
-        protected:
+    };
+    class RayMouse {
+        public:
+            RayMouse() = default;
+            ~RayMouse() = default;
+            Vector2 getMousePosition();
+            int getMouseX();
+            int getMouseY();
+            bool checkCollisionRecs(Rectangle rec1, Rectangle rec2);
+            bool isMouseButtonPressed(int button);
+            bool isMouseButtonDown(int button);
+            bool isMouseButtonReleased(int button);
     };
 }
 

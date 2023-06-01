@@ -32,6 +32,11 @@ bool Raylibcpp::RayWindow::isKeyReleased(int key)
     return IsKeyReleased(key);
 }
 
+void Raylibcpp::RayWindow::updateCamera(Camera *camera, int mode)
+{
+    UpdateCamera(camera, mode);
+}
+
 void Raylibcpp::RayWindow::beginDrawing()
 {
     BeginDrawing();

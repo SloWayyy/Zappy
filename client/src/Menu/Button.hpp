@@ -9,7 +9,7 @@
     #define BUTTON_HPP_
 
     #include <memory>
-    #include "Window.hpp"
+    #include "src/Core/Window.hpp"
     #include "encapsulation/Raylibcpp.hpp"
 
 typedef struct coord {
@@ -51,6 +51,7 @@ class Button {
         Color _colorRect;
         Rectangle _mouse;
         std::shared_ptr<Window> _window;
+        Raylibcpp::RayMouse _rayMouse;
 };
 
 #endif /* !BUTTON_HPP_ */

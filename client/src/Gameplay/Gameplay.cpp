@@ -5,7 +5,7 @@
 ** gameplay
 */
 
-#include "Gameplay.hpp"
+#include "src/Gameplay/Gameplay.hpp"
 
 Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window)
 {
@@ -51,17 +51,17 @@ void Gameplay::setCurrentCharacter()
 
 void Gameplay::handleInput(void)
 {
-    if (IsKeyDown(KEY_ESCAPE))
+    if (this->_rayWindow.isKeyDown(KEY_ESCAPE))
         this->_window->setExit(true);
-    if (IsKeyReleased(KEY_F1)) {
+    if (this->_rayWindow.isKeyReleased(KEY_F1)) {
         this->setCurrentCharacter();
         this->_window->setCamera({_currentCharacter.getPosition().x, _currentCharacter.getPosition().y + (float)1.5, _currentCharacter.getPosition().z - (float)0.5}, { 10.0f, 2.0f, 10.0f }, { 0.0f, 1.0f, 0.0f }, 45.0f, CAMERA_PERSPECTIVE);
     }
-    if (IsKeyReleased(KEY_F2)) {
+    if (this->_rayWindow.isKeyReleased(KEY_F2)) {
         this->setCurrentCharacter();
         this->_window->setCamera({_currentCharacter.getPosition().x, _currentCharacter.getPosition().y + (float)3.5, _currentCharacter.getPosition().z - (float)3.5}, { 0.6f, -4.5f, 10.0f }, { 0.0f, 1.0f, 0.0f }, 45.0f, CAMERA_PERSPECTIVE);
     }
-    if (IsKeyReleased(KEY_F3)) {
+    if (this->_rayWindow.isKeyReleased(KEY_F3)) {
         this->_window->setCamera({ -5.0f, 15.0f, 10.0f }, { 10.0f, 2.0f, 10.0f }, { 0.0f, 1.0f, 0.0f }, 80.0f, CAMERA_PERSPECTIVE);
     }
 }

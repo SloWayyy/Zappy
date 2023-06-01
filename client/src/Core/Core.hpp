@@ -10,14 +10,14 @@
 
     #include <raylib.h>
     #include <vector>
-    #include "Window.hpp"
-    #include "Map.hpp"
-    #include "Gameplay.hpp"
-    #include "Character.hpp"
-    #include "Menu/include/Menu.hpp"
+    #include "src/Core/Window.hpp"
+    #include "src/Gameplay/Map.hpp"
+    #include "src/Gameplay/Gameplay.hpp"
+    #include "src/Gameplay/Character.hpp"
+    #include "src/Menu/Menu.hpp"
     #include "encapsulation/Raylibcpp.hpp"
 
-class Core : public Raylibcpp::Draw {
+class Core {
     public:
         Core();
         ~Core() = default;

@@ -26,6 +26,7 @@ class Character : public Raylibcpp::RayModel {
         int _animFrameCounter;
         Texture2D _texture;
         Vector3 _position;
+        Raylibcpp::RayModel _rayModel;
     private:
 };
 
