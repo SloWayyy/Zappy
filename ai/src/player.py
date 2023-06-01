@@ -2,6 +2,8 @@ from enum import Enum
 import socket
 import re
 
+from ai.src.handle_packets import *
+
 class ErrorConnection(Exception):
     pass
 
@@ -42,27 +44,8 @@ class Player:
                     self.map_broadcast.update({int(x[0][0]) : (x[0][1], x[0][2])})
                 donnees.remove(i)
 
-    def wait_answer_debug(self):
-        donnees = self.sock.recv(1024)
-        if not donnees:
-            return
-        donnees = donnees.split(b'\n')
-        for i, x in enumerate(donnees):
-            donnees[i] = x.decode()
-        print("Données reçues :", donnees)
-        self.handle_broadcast(donnees)
-        if (donnees[0] == "dead"):
-            raise ErrorConnection("Error: player dead")
-        return donnees
-
     def wait_answer(self):
-        donnees = self.sock.recv(1024)
-        if not donnees:
-            return
-        donnees = donnees.split(b'\n')
-        for i, x in enumerate(donnees):
-            donnees[i] = x.decode()
-        # print("Données reçues :", donnees)
+        donnees = receive_packet(self.sock)
         self.handle_broadcast(donnees)
         if len(donnees) <= 1:
             return self.wait_answer()
