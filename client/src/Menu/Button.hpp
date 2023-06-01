@@ -39,18 +39,18 @@ class Button {
         bool getIsClicked() const;
         void setIsClicked(bool isClicked);
     private:
-        coord_t _coord;
+        std::shared_ptr<Window> _window;
         std::string _string;
+        coord_t _coord;
         Color _colorFont;
+        int _size;
+        GameEvent _screen;
+        Color _colorRect;
+        bool _isClicked;
         bool _click;
         bool check;
-        int _size;
-        bool _isClicked;
-        GameEvent _screen;
         Rectangle _rectButton;
-        Color _colorRect;
         Rectangle _mouse;
-        std::shared_ptr<Window> _window;
         Raylibcpp::RayMouse _rayMouse;
 };
 

@@ -10,24 +10,24 @@
 
     #include "encapsulation/Raylibcpp.hpp"
 
-typedef enum GameEvent {
+enum GameEvent {
     MENU,
     GAMEPLAY,
     SETTINGS,
     TUTO,
     EXIT
-} GameEvent;
+};
 
-typedef struct windowParam_s {
+struct windowParams {
     std::size_t _screenHeight;
     std::size_t _screenWidth;
     std::size_t _fps;
-} windowParam_t;
+};
 
 class Window {
     public:
         Window() = default;
-        Window(int height, int width, int fps);
+        Window(std::size_t height, std::size_t width, std::size_t fps);
         ~Window() = default;
         void run();
         void updateCamera();
@@ -42,10 +42,10 @@ class Window {
         void setExit(bool exit);
         bool getExit(void) const;
     private:
+        windowParams _windowParam;
+        bool _isExit;
         GameEvent _gameEvent;
         Camera _camera;
-        windowParam_t _windowParam;
-        bool _isExit;
         Raylibcpp::RayWindow _rayWindow;
 };
 

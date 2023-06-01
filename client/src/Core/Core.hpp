@@ -8,12 +8,9 @@
 #ifndef CORE_HPP_
     #define CORE_HPP_
 
-    #include <raylib.h>
-    #include <vector>
     #include "src/Core/Window.hpp"
     #include "src/Gameplay/Map.hpp"
     #include "src/Gameplay/Gameplay.hpp"
-    #include "src/Gameplay/Character.hpp"
     #include "src/Menu/Menu.hpp"
     #include "encapsulation/Raylibcpp.hpp"
 

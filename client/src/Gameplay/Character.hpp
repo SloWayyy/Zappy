@@ -22,10 +22,10 @@ class Character : public Raylibcpp::RayModel {
     protected:
         Model _model;
         ModelAnimation *_anims;
-        unsigned int _animsCount;
-        int _animFrameCounter;
         Texture2D _texture;
         Vector3 _position;
+        unsigned int _animsCount;
+        int _animFrameCounter;
         Raylibcpp::RayModel _rayModel;
     private:
 };

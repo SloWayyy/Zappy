@@ -7,13 +7,8 @@
 
 #include "src/Core/Window.hpp"
 
-Window::Window(int height, int width, int fps)
+Window::Window(std::size_t height, std::size_t width, std::size_t fps) : _windowParam{ height, width, fps }, _isExit(false), _gameEvent(GameEvent::MENU)
 {
-    this->_windowParam._screenWidth = width;
-    this->_windowParam._screenHeight = height;
-    this->_windowParam._fps = fps;
-    this->_isExit = false;
-    this->setGameEvent(MENU);
     this->_rayWindow.initWindow(this->_windowParam._screenHeight, this->_windowParam._screenWidth, "Zappy");
     this->_rayWindow.setTargetFPS(this->_windowParam._fps);
     // change the fovy to change the vision of camera

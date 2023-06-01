@@ -7,12 +7,12 @@
 
 #include "src/Gameplay/Gameplay.hpp"
 
-Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window)
+Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window), _map(Map(10, 10)), _currentCharacterId(0), _currentCharacterIndex(0)
 {
-    this->_map = Map(10, 10);
-    this->_characters = std::vector<Character>();
-    this->_currentCharacterId = 0;
-    this->_currentCharacterIndex = 0;
+    // this->_map = Map(10, 10);
+    // this->_characters = std::vector<Character>();
+    // this->_currentCharacterId = 0;
+    // this->_currentCharacterIndex = 0;
 }
 
 void Gameplay::initPlayer(Vector3 pos)

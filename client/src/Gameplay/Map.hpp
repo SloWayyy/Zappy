@@ -42,9 +42,9 @@ class Map {
     private:
         Model _model;
         Texture2D _texture;
-        Vector3 _cubePosition;
         std::vector<std::string> map;
         mapSize_t _mapSize;
+        Vector3 _cubePosition;
         std::unordered_map<modelType, std::pair<Model, Texture2D>> _modelMap;
         std::vector<Vector3> _MineralPositionArray;
         Raylibcpp::RayModel _rayModel;

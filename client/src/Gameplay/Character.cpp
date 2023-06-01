@@ -9,11 +9,8 @@
 #include "raymath.h"
 #include "src/Gameplay/Character.hpp"
 
-Character::Character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos)
+Character::Character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos) : _position(pos), _animsCount(animsCount), _animFrameCounter(animFrameCounter)
 {
-    this->_position = pos;
-    this->_animsCount = animsCount;
-    this->_animFrameCounter = animFrameCounter;
     this->_model = this->_rayModel.loadModel("assets/monster/woody.iqm");
     this->_texture = this->_rayModel.loadTexture("assets/monster/woody.png");
     this->_anims = this->_rayModel.loadModelAnimations("assets/monster/woodyRun.iqm", &this->_animsCount);
