@@ -14,10 +14,10 @@
     #include <unordered_map>
     #include "encapsulation/Raylibcpp.hpp"
 
-typedef struct mapSize_s {
+struct mapSize {
     std::size_t height;
     std::size_t width;
-} mapSize_t;
+};
 
 class Map {
     enum modelType {
@@ -43,7 +43,7 @@ class Map {
         Model _model;
         Texture2D _texture;
         std::vector<std::string> map;
-        mapSize_t _mapSize;
+        mapSize _mapSize;
         Vector3 _cubePosition;
         std::unordered_map<modelType, std::pair<Model, Texture2D>> _modelMap;
         std::vector<Vector3> _MineralPositionArray;

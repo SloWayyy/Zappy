@@ -19,7 +19,7 @@ class Core {
         Core();
         ~Core() = default;
         void run(void);
-    protected:
+    private:
         std::shared_ptr<Window> _window;
         std::shared_ptr<Menu> _menu;
         std::shared_ptr<Gameplay> _gameplay;

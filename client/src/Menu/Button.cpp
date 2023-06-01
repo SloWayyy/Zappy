@@ -7,17 +7,8 @@
 
 #include "src/Menu/Button.hpp"
 
-Button::Button(std::string string, coord_t coord, Color color, int size, GameEvent screen, const std::shared_ptr<Window> &ptr): _window(ptr), _string(string), _coord(coord), _colorFont(color), _size(size), _screen(screen), _colorRect(BLUE), _isClicked(false), _click(false), check(false)
+Button::Button(std::string string, coord coord, Color color, int size, GameEvent screen, const std::shared_ptr<Window> &ptr): _window(ptr), _string(string), _coord(coord), _colorFont(color), _size(size), _screen(screen), _colorRect(BLUE), _isClicked(false), _click(false), check(false)
 {
-    // this->_string = string;
-    // this->_coord = coord;
-    // this->_colorFont = color;
-    // this->_size = size;
-    // this->_screen = screen;
-    // this->_colorRect = BLUE;
-    // this->_isClicked = false;
-    // this->check = false;
-    // this->_click = false;
     this->_rectButton.x = this->getCoord().x;
     this->_rectButton.y = this->getCoord().y;
     this->_rectButton.width = this->getString().size() * this->getSize();
@@ -54,12 +45,12 @@ void Button::update()
     }
 }
 
-void Button::setCoord(coord_t coord)
+void Button::setCoord(coord coord)
 {
     this->_coord = coord;
 }
 
-coord_t Button::getCoord() const
+coord Button::getCoord() const
 {
     return this->_coord;
 }

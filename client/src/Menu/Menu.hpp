@@ -21,8 +21,7 @@ class Menu {
         void run();
         void draw();
         void handleInput();
-        void createButtons(std::string string, coord_t coord, Color color, int size, GameEvent screen);
-    protected:
+        void createButtons(std::string string, coord coord, Color color, int size, GameEvent screen);
     private:
         Texture2D _background;
         std::vector<Button> _buttonsScreen;

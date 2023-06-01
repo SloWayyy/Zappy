@@ -32,7 +32,7 @@ void Menu::run()
     this->handleInput();
 }
 
-void Menu::createButtons(std::string string, coord_t coord, Color color, int size, GameEvent screen)
+void Menu::createButtons(std::string string, coord coord, Color color, int size, GameEvent screen)
 {
     this->_buttonsScreen.emplace_back(string, coord, color, size, screen, this->_window);
 }

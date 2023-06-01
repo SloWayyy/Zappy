@@ -10,7 +10,7 @@
 
     #include "encapsulation/Raylibcpp.hpp"
 
-class Character : public Raylibcpp::RayModel {
+class Character {
     public:
         Character() = default;
         Character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos);
@@ -19,7 +19,7 @@ class Character : public Raylibcpp::RayModel {
         void animation();
         void run();
         void draw();
-    protected:
+    private:
         Model _model;
         ModelAnimation *_anims;
         Texture2D _texture;
@@ -27,7 +27,6 @@ class Character : public Raylibcpp::RayModel {
         unsigned int _animsCount;
         int _animFrameCounter;
         Raylibcpp::RayModel _rayModel;
-    private:
 };
 
 #endif /* !CHARACTER_HPP_ */

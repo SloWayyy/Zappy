@@ -12,20 +12,20 @@
     #include "src/Core/Window.hpp"
     #include "encapsulation/Raylibcpp.hpp"
 
-typedef struct coord {
+struct coord {
     float x;
     float y;
-} coord_t;
+};
 
 class Button {
     public:
-        Button(std::string string, coord_t coord, Color color, int size, GameEvent screen, const std::shared_ptr<Window> &ptr);
+        Button(std::string string, coord coord, Color color, int size, GameEvent screen, const std::shared_ptr<Window> &ptr);
         ~Button() = default;
         void update();
         void draw() {};
         void handleInput() {};
-        void setCoord(coord_t coord);
-        coord_t getCoord() const;
+        void setCoord(coord coord);
+        coord getCoord() const;
         void setString(std::string string);
         std::string getString() const;
         void setColor(Color color);
@@ -41,7 +41,7 @@ class Button {
     private:
         std::shared_ptr<Window> _window;
         std::string _string;
-        coord_t _coord;
+        coord _coord;
         Color _colorFont;
         int _size;
         GameEvent _screen;

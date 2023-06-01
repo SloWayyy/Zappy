@@ -23,7 +23,6 @@ class Gameplay {
         void runPlayers(void);
         void handleInput(void);
         void setCurrentCharacter();
-    protected:
     private:
         std::shared_ptr<Window> _window;
         Map _map;
