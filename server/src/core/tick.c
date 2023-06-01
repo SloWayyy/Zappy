@@ -9,8 +9,18 @@
 #include <stdio.h>
 #include <sys/time.h>
 
+#include "constants.h"
 #include "types.h"
 #include "util.h"
+
+void init_tick(server_t *server, long frequence)
+{
+    long micros = MICROS_PER_SEC / frequence;
+
+    server->zappy->tick->tick_nb = 0;
+    server->zappy->tick->tick_delay.tv_sec = micros / MICROS_PER_SEC;
+    server->zappy->tick->tick_delay.tv_usec = micros % MICROS_PER_SEC;
+}
 
 void start_game(server_t *server)
 {

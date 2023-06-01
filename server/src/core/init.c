@@ -12,7 +12,6 @@
 #include <sys/queue.h>
 #include <sys/signalfd.h>
 #include <sys/socket.h>
-#include <sys/time.h>
 #include <unistd.h>
 
 #include "constants.h"
@@ -21,20 +20,11 @@
 #include "types.h"
 #include "util.h"
 
-static void init_tick(server_t *server)
-{
-    long micros = MICROS_PER_SEC / server->options->freq;
-
-    server->zappy->tick->tick_nb = 0;
-    server->zappy->tick->tick_delay.tv_sec = micros / MICROS_PER_SEC;
-    server->zappy->tick->tick_delay.tv_usec = micros % MICROS_PER_SEC;
-}
-
 static bool init_zappy(server_t *server)
 {
     team_t *team = NULL;
 
-    init_tick(server);
+    init_tick(server, server->options->freq);
     for (int i = 0; server->options->names[i] != NULL; i++) {
         team = new_team(server->options->names[i], server->options->clients);
         if (team == NULL) {
