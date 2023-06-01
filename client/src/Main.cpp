@@ -11,7 +11,7 @@
 
 int main(void)
 {
-    std::unique_ptr<Core> core = std::make_unique<Core>();
-    core->run();
+    Core core = Core();
+    core.run();
     return 0;
 }

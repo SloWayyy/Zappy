@@ -7,11 +7,8 @@
 
 #include "core.hpp"
 
-Core::Core()
+Core::Core(): _window(std::make_shared<Window>(1920, 1080, 60)), _menu(std::make_shared<Menu>(this->_window)), _gameplay(std::make_shared<Gameplay>(this->_window))
 {
-    this->_window = std::shared_ptr<Window>(new Window(1920, 1080, 60));
-    this->_menu = std::shared_ptr<Menu>(new Menu(this->_window));
-    this->_gameplay = std::shared_ptr<Gameplay>(new Gameplay(this->_window));
 }
 
 void Core::run(void)

@@ -23,8 +23,8 @@ class Core : public Raylibcpp::Draw {
         void run(void);
     protected:
         std::shared_ptr<Window> _window;
-        std::shared_ptr<Gameplay> _gameplay;
         std::shared_ptr<Menu> _menu;
+        std::shared_ptr<Gameplay> _gameplay;
 };
 
 #endif /* !CORE_HPP_ */
