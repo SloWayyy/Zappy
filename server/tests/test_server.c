@@ -13,20 +13,21 @@
 #include "constants.h"
 #include "server.h"
 
-void redirect_all_stdout(void)
+static void redirect_all(void)
 {
     cr_redirect_stdout();
     cr_redirect_stderr();
 }
 
-bool check_arguments(int argc, char const *argv[], options_t *options);
 Test(check_arguments, valid_arguments)
 {
+    char const *argv[] = { "./zappy_server", "-p", "4245", "-x", "10", "-y", "10", "-n", "toto", "tata", "-c", "10", "-f", "10", NULL };
     options_t options;
-    cr_assert_eq(check_arguments(14, (char const *[]){"./zappy_server", "-p", "4245", "-x", "10", "-y", "10", "-n", "toto", "tata", "-c", "10", "-f", "10", NULL}, &options), true);
+
+    cr_assert_eq(check_arguments(14, argv, &options), true);
 }
 
-Test(check_arguments, unkow_opt, .init = redirect_all_stdout)
+Test(check_arguments, unknown_opt, .init=redirect_all)
 {
     options_t options;
     check_arguments(2, (char const *[]){"./zappy_server", "-s"}, &options);
@@ -43,6 +44,7 @@ Test(check_arguments, default_values)
 {
     options_t options;
     check_arguments(3, (char const *[]){"./zappy_server", "-n", "totoo", "tatata"}, &options);
+
     cr_assert_eq(options.port, DEFAULT_PORT);
     cr_assert_eq(options.width, DEFAULT_WIDTH);
     cr_assert_eq(options.height, DEFAULT_HEIGHT);
@@ -50,7 +52,7 @@ Test(check_arguments, default_values)
     cr_assert_eq(options.freq, DEFAULT_FREQ);
 }
 
-Test(check_arguments, invalid_port, .init = redirect_all_stdout)
+Test(check_arguments, invalid_port, .init=redirect_all)
 {
     options_t options;
     cr_assert_eq(check_arguments(5, (char const *[]){"./zappy_server", "-p", "toto", "-n", "toto", "tata", NULL}, &options), false);
