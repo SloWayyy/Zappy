@@ -16,16 +16,16 @@ Window::Window(int height, int width, int fps)
     this->setGameEvent(MENU);
     InitWindow(this->_windowParam._screenHeight, this->_windowParam._screenWidth, "Zappy");
     SetTargetFPS(this->_windowParam._fps);
-    setCamera();
+    this->setCamera({ 0.0f, 10.0f, 10.0f }, { 10.0f, 2.0f, 10.0f }, { 0.0f, 1.0f, 0.0f }, 45.0f, CAMERA_PERSPECTIVE);
 }
 
-void Window::setCamera()
+void Window::setCamera(Vector3 pos, Vector3 target, Vector3 up, float fovy, int projection)
 {
-    this->_camera.position = (Vector3){ 0.0f, 10.0f, 10.0f };
-    this->_camera.target = (Vector3){ 10.0f, 2.0f, 10.0f };
-    this->_camera.up = (Vector3){ 0.0f, 1.0f, 0.0f };
-    this->_camera.fovy = 45.0f;
-    this->_camera.projection = CAMERA_PERSPECTIVE;
+    this->_camera.position = pos;
+    this->_camera.target = target;
+    this->_camera.up = up;
+    this->_camera.fovy = fovy;
+    this->_camera.projection = projection;
 }
 
 void Window::updateCamera()
@@ -41,6 +41,8 @@ void Window::handleInput()
         this->_gameEvent = GameEvent::GAMEPLAY;
     if (IsKeyPressed(KEY_P) && (this->_gameEvent == GameEvent::GAMEPLAY))
         this->_gameEvent = GameEvent::MENU;
+    if (IsKeyPressed(KEY_F1))
+        this->setCamera({ 0.0f, 2.0f, 2.0f }, { 10.0f, 2.0f, 10.0f }, { 0.0f, 1.0f, 0.0f }, 45.0f, CAMERA_PERSPECTIVE);
 }
 
 void Window::run()

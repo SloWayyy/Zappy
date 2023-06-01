@@ -43,11 +43,5 @@ void Menu::drawButton(void)
         button.update();
         DrawRectangle(button.getCoord().x - 10, button.getCoord().y, button.getRectButton().width, button.getRectButton().height, button.getColorRect());
         DrawText(button.getString().c_str(), button.getCoord().x, button.getCoord().y, button.getSize(), button.getColor());
-        
-        // if (button.getIsClicked() == true) {
-        //     this->setGameEvent(button.getScreen());
-        //     button.setIsClicked(false);
-        //     break;
-        // }
     }
 }

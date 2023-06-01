@@ -33,7 +33,7 @@ class Window {
         void updateCamera();
         void handleInput();
         void setGameEvent(GameEvent event) { this->_gameEvent = event; };
-        void setCamera();
+        void setCamera(Vector3 pos, Vector3 target, Vector3 up, float fovy, int projection);
         Camera getCamera() const { return _camera; };
         GameEvent getGameEvent(void) const { return this->_gameEvent; };
         std::size_t getScreenHeight(void) const { return _windowParam._screenHeight; };
@@ -44,8 +44,8 @@ class Window {
     private:
         GameEvent _gameEvent;
         Camera _camera;
-        bool _isExit;
         windowParam_t _windowParam;
+        bool _isExit;
 };
 
 #endif /* !WINDOW_HPP_ */
