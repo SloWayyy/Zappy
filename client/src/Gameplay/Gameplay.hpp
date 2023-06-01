@@ -22,6 +22,7 @@ class Gameplay {
         void initPlayer(Vector3 pos);
         void runPlayers(void);
         void handleInput(void);
+        void drawTextOnScreen(std::string text, int fontSize, int posX, int posY, Color color);
         void setCurrentCharacter();
     private:
         std::shared_ptr<Window> _window;
@@ -31,6 +32,7 @@ class Gameplay {
         std::size_t _currentCharacterIndex;
         Character _currentCharacter;
         Raylibcpp::RayWindow _rayWindow;
+        Raylibcpp::RayText _rayText;
 };
 
 #endif /* !GAMEPLAY_HPP_ */
