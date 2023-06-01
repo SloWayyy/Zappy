@@ -20,8 +20,8 @@ static void send_new_player(server_t *server, client_t *client)
 {
     team_t *team = client->player->team;
 
-    append_buffer(client->buffer, "%d%s%d %d%s", team->slots, \
-        LINE_BREAK, server->options->width, LINE_BREAK, server->options);
+    append_buffer(client->buffer, "%d%s%d %d%s", team->slots,
+        LINE_BREAK, server->options->width, server->options->height, LINE_BREAK);
 }
 
 static void handle_unknown(server_t *server, client_t *client, char *line)
@@ -32,7 +32,8 @@ static void handle_unknown(server_t *server, client_t *client, char *line)
         client->type = PLAYER;
         send_new_player(server, client);
     } else {
-        append_buffer(client->buffer, PLAYER_UNKNOWN_COMMAND);
+        append_buffer(client->buffer, "%s%s", PLAYER_UNKNOWN, \
+            LINE_BREAK);
     }
 }
 
