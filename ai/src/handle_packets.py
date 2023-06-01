@@ -18,6 +18,7 @@ def receive_packet(sock: socket.socket):
     if not donnees:
         return
     donnees = donnees.split(b'\n')
+    print("Debug :", donnees)
     for i, x in enumerate(donnees):
         donnees[i] = x.decode()
     return donnees

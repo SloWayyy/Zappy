@@ -20,6 +20,7 @@ class EnumHeader (Enum):
     ASKBOSS = "$1$"
     IMBOSS = "$2$"
 
+
 class Direction(Enum):
     RIGHT = 0,
     LEFT = 1
@@ -28,6 +29,7 @@ class Player:
     def __init__(self, sock: socket.socket, name: str):
         self.sock = sock
         self.boss = -1
+        self.pos = -1
         self.map_broadcast : dict = {}
         if (self.connection(name) == False):
             ErrorConnection("Error: connection failed")
@@ -40,6 +42,9 @@ class Player:
                     self.broadcast(EnumHeader.IMBOSS.value + " IMBOSS")
                 elif x[0][1] == EnumHeader.IMBOSS.value and self.boss == -1:
                     self.boss = 0
+                    self.pos = int(x[0][0])
+                elif x[0][1] == EnumHeader.IMBOSS.value and self.boss == 0:
+                    self.pos = int(x[0][0])
                 else:
                     self.map_broadcast.update({int(x[0][0]) : (x[0][1], x[0][2])})
                 donnees.remove(i)
