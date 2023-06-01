@@ -10,18 +10,27 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "constants.h"
 #include "graphical.h"
 #include "player.h"
 #include "types.h"
 #include "util.h"
 
+static void send_new_player(server_t *server, client_t *client)
+{
+    team_t *team = client->player->team;
+
+    append_buffer(client->buffer, "%d%s%d %d%s", team->slots, \
+        LINE_BREAK, server->options->width, LINE_BREAK, server->options);
+}
+
 static void handle_unknown(server_t *server, client_t *client, char *line)
 {
     if (strcmp(line, GRAPHICAL_IDENTIFIER) == 0) {
         client->type = GRAPHIC;
-        // TODO: Send graphical data
     } else if (try_join_team(server, client, line)) {
-        // TODO: Send player data
+        client->type = PLAYER;
+        send_new_player(server, client);
     } else {
         append_buffer(client->buffer, PLAYER_UNKNOWN_COMMAND);
     }

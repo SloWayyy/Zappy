@@ -12,6 +12,7 @@
 #include <sys/select.h>
 #include <unistd.h>
 
+#include "objects.h"
 #include "server.h"
 #include "types.h"
 

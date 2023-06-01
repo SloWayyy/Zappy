@@ -14,6 +14,8 @@
 #include <sys/queue.h>
 #include <unistd.h>
 
+#include "constants.h"
+#include "objects.h"
 #include "server.h"
 #include "types.h"
 #include "util.h"
@@ -47,7 +49,7 @@ static void handle_incoming(server_t *server)
         close(fd);
         return;
     }
-    append_buffer(client->buffer, "WELCOME\n");
+    append_buffer(client->buffer, "%s%s", WELCOME_MESSAGE, LINE_BREAK);
     SLIST_INSERT_HEAD(server->clients, client, next);
 }
 

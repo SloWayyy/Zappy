@@ -16,6 +16,7 @@
 #include <unistd.h>
 
 #include "constants.h"
+#include "objects.h"
 #include "server.h"
 #include "types.h"
 #include "util.h"

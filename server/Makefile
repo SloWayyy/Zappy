@@ -11,15 +11,16 @@ SRC			=	src/core/fdsets.c \
 				src/core/loop.c \
 				src/core/tick.c \
 				src/graphical/command.c \
+				src/objects/clients.c \
+				src/objects/players.c \
+				src/objects/teams.c \
 				src/player/command.c \
 				src/player/join.c \
 				src/util/args.c \
 				src/util/args_check.c \
 				src/util/arrays.c \
 				src/util/buffer.c \
-				src/util/clients.c \
 				src/util/handlers.c \
-				src/util/teams.c \
 				src/util/util.c \
 				src/server.c
 

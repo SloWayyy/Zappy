@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include <sys/queue.h>
 
-#include "server.h"
+#include "objects.h"
 #include "types.h"
 #include "util.h"
 
@@ -41,6 +41,9 @@ void close_client(client_t *client)
 
 void free_client(client_t *client)
 {
+    if (client->player != NULL) {
+        free_player(client->player);
+    }
     free_buffer(client->buffer);
     free(client);
 }

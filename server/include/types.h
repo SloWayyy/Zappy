@@ -59,6 +59,7 @@ typedef struct player {
     team_t *team;
     size_t inventory[RESOURCES_TYPES_QUANTITY];
     size_t food_ticks;
+    SLIST_ENTRY(player) next;
 } player_t;
 
 typedef struct client {

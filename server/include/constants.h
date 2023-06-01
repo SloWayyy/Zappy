@@ -24,4 +24,7 @@
 
     #define MICROS_PER_SEC 1000000
 
+    #define LINE_BREAK "\n"
+    #define WELCOME_MESSAGE "WELCOME"
+
 #endif

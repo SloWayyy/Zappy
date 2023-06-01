@@ -21,7 +21,7 @@ team_t *new_team(char const *name, size_t capacity)
     }
     new->name = name;
     new->capacity = capacity;
-    new->slots = 0;
+    new->slots = capacity;
     new->players = malloc(sizeof(struct player_list));
     if (new->players == NULL) {
         perror("malloc failed");
