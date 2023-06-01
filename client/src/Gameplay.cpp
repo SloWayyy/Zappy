@@ -57,4 +57,7 @@ void Gameplay::handleInput(void)
         this->setCurrentCharacter();
         this->_window->setCamera({_currentCharacter.getPosition().x, _currentCharacter.getPosition().y + (float)1.5, _currentCharacter.getPosition().z - (float)0.5}, { 10.0f, 2.0f, 10.0f }, { 0.0f, 1.0f, 0.0f }, 45.0f, CAMERA_PERSPECTIVE);
     }
+    if (IsKeyDown(KEY_R)) {
+        this->_window->setCamera({ -5.0f, 15.0f, 10.0f }, { 10.0f, 2.0f, 10.0f }, { 0.0f, 1.0f, 0.0f }, 100.0f, CAMERA_PERSPECTIVE);
+    }  
 }

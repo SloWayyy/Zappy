@@ -16,7 +16,8 @@ Window::Window(int height, int width, int fps)
     this->setGameEvent(MENU);
     InitWindow(this->_windowParam._screenHeight, this->_windowParam._screenWidth, "Zappy");
     SetTargetFPS(this->_windowParam._fps);
-    this->setCamera({ 0.0f, 10.0f, 10.0f }, { 10.0f, 2.0f, 10.0f }, { 0.0f, 1.0f, 0.0f }, 45.0f, CAMERA_PERSPECTIVE);
+    // change the fovy to change the vision of camera
+    this->setCamera({ -5.0f, 15.0f, 10.0f }, { 10.0f, 2.0f, 10.0f }, { 0.0f, 1.0f, 0.0f }, 100.0f, CAMERA_PERSPECTIVE);
 }
 
 void Window::setCamera(Vector3 pos, Vector3 target, Vector3 up, float fovy, int projection)
@@ -47,7 +48,7 @@ void Window::handleInput()
 
 void Window::run()
 {
-    this->updateCamera();
+    // this->updateCamera();
     this->handleInput();
 }
 
