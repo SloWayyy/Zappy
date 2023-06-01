@@ -54,7 +54,7 @@ bool start_server(options_t *options)
     zappy_t zappy = { &tick };
     data_t data;
     struct client_list clients;
-    server_t server = {  options, &data, &zappy, &clients };
+    server_t server = { options, &data, &zappy, &clients };
 
     SLIST_INIT(&clients);
     if (!init_server(&server)) {
