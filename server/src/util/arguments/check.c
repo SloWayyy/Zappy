@@ -47,9 +47,5 @@ bool check_positive(char const *str, char *option, int *storage)
         printf("Error: %s must be positive\n", option);
         return false;
     }
-    if (*storage > 100) {
-        printf("Error: %s number must be less than %d\n", option, 100);
-        return false;
-    }
     return true;
 }
