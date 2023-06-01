@@ -14,7 +14,7 @@
     #include "Map.hpp"
     #include "Gameplay.hpp"
     #include "Character.hpp"
-    #include "Menu/include/menu.hpp"
+    #include "Menu/include/Menu.hpp"
 
 class Core : public Raylibcpp::Draw {
     public:

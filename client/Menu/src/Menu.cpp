@@ -5,7 +5,7 @@
 ** menu
 */
 
-#include "Menu/include/menu.hpp"
+#include "Menu/include/Menu.hpp"
 
 Menu::Menu(std::shared_ptr<Window> _window) : _window(_window)
 {
