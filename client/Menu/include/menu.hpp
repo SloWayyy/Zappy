@@ -9,7 +9,7 @@
     #define MENU_HPP_
 
     #include <vector>
-    #include "button.hpp"
+    #include "Button.hpp"
     #include "Window.hpp"
     #include "encapsulation/Raylibcpp.hpp"
 
@@ -26,7 +26,7 @@ class Menu {
     private:
         Texture2D _background;
         // Raylibcpp::Text _text;
-        std::vector<buttons> _buttonsScreen;
+        std::vector<Button> _buttonsScreen;
         std::shared_ptr<Window> _window;
 };
 

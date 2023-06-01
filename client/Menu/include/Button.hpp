@@ -17,10 +17,10 @@ typedef struct coord {
     float y;
 } coord_t;
 
-class buttons {
+class Button {
     public:
-        buttons(std::string string, coord_t coord, Color color, int size, GameEvent screen, const std::shared_ptr<Window> &ptr);
-        ~buttons() = default;
+        Button(std::string string, coord_t coord, Color color, int size, GameEvent screen, const std::shared_ptr<Window> &ptr);
+        ~Button() = default;
         void update();
         void draw() {};
         void handleInput() {};

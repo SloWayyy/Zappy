@@ -5,9 +5,9 @@
 ** button
 */
 
-#include "Menu/include/button.hpp"
+#include "Menu/include/Button.hpp"
 
-buttons::buttons(std::string string, coord_t coord, Color color, int size, GameEvent screen, const std::shared_ptr<Window> &ptr): _window(ptr)
+Button::Button(std::string string, coord_t coord, Color color, int size, GameEvent screen, const std::shared_ptr<Window> &ptr): _window(ptr)
 {
     this->_string = string;
     this->_coord = coord;
@@ -24,7 +24,7 @@ buttons::buttons(std::string string, coord_t coord, Color color, int size, GameE
     this->_click = false;
 }
 
-void buttons::update()
+void Button::update()
 {
     this->_colorFont = this->_colorFont;
     this->_colorRect = BLUE;
