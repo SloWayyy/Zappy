@@ -17,15 +17,15 @@
 bool check_port(char const *str, int *storage);
 bool check_positive(char const *str, char *option, int *storage);
 
-typedef int (options_handler_t) \
-    (int argc, char const *argv[], options_t *options, int index);
-
 int port_handler(int argc, char const *argv[], options_t *options, int idx);
 int width_handler(int argc, char const *argv[], options_t *options, int idx);
 int height_handler(int argc, char const *argv[], options_t *options, int idx);
 int names_handler(int argc, char const *argv[], options_t *options, int idx);
 int clients_handler(int argc, char const *argv[], options_t *options, int idx);
 int freq_handler(int argc, char const *argv[], options_t *options, int idx);
+
+typedef int (options_handler_t) \
+    (int argc, char const *argv[], options_t *options, int index);
 
 typedef struct option {
     char const *shortOpt;
