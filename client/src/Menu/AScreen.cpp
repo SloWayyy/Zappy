@@ -9,7 +9,8 @@
 
 void AScreen::draw()
 {
-    DrawTexture(this->_background, 0, 0, RAYWHITE);
+    Raylibcpp::RayModel model;
+    model.drawTexture(this->_background, 0, 0, RAYWHITE);
     this->drawText();
     this->drawButton();
 }
@@ -33,15 +34,17 @@ void AScreen::createText(std::string string, coord coord, Color color, int size)
 void AScreen::drawButton(void)
 {
     for (auto &button : this->_buttonsScreen) {
+        Raylibcpp::RayModel model;
+        Raylibcpp::RayText text(button.getString().c_str(), button.getCoord().x, button.getCoord().y, button.getSize(), button.getColor());
         button.update();
-        DrawRectangle(button.getCoord().x - 10, button.getCoord().y, button.getRectButton().width, button.getRectButton().height, button.getColorRect());
-        DrawText(button.getString().c_str(), button.getCoord().x, button.getCoord().y, button.getSize(), button.getColor());
+        model.drawRectangle(button.getCoord().x - 10, button.getCoord().y, button.getRectButton().width, button.getRectButton().height, button.getColorRect());
+        text.drawText(text._string.c_str(), text._posX, text._posY, text._fontSize, text._color);
     }
 }
 
 void AScreen::drawText(void)
 {
     for (auto &text : this->_text) {
-        DrawText(text._string.c_str(), text._posX, text._posY, text._fontSize, text._color);
+        text.drawText(text._string.c_str(), text._posX, text._posY, text._fontSize, text._color);
     }
 }
