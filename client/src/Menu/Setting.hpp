@@ -17,6 +17,8 @@ class Setting : public AScreen {
     private:    
         void handleInput() override;
         size_t _volume;
+        size_t _fps;
+        Raylibcpp::RayMouse _rayMouse;
 };
 
 #endif /* !SETTING_HPP_ */

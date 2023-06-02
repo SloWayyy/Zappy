@@ -99,3 +99,8 @@ Camera Window::getCamera() const
 {
     return (this->_camera);
 }
+
+Raylibcpp::RayWindow Window::getRayWindow(void) const
+{
+    return (this->_rayWindow);
+}
