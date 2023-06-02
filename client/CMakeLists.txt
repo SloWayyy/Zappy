@@ -16,6 +16,7 @@ add_executable(zappy_gui
         src/Gameplay/Character.cpp
         src/Gameplay/Map.cpp
         src/Menu/Menu.cpp
+        src/Menu/AScreen.cpp
         src/Menu/Button.cpp
         encapsulation/Cube.cpp
         encapsulation/Model.cpp
