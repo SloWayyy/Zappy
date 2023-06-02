@@ -30,11 +30,11 @@ class Player:
     def __init__(self, sock: socket.socket, args):
         self.sock = sock
         self.boss = -1
-        self.pos = -1
-        self.ai = 0
+        self.pos_boss = -1
+        self.nbr_ai = 1
         self.space = False
         self.args = args
-        self.positionned = False
+        self.pos_bossitionned = False
         self.map_broadcast : dict = {}
         if (self.connection(args) == False):
             ErrorConnection("Error: connection failed")
@@ -43,18 +43,16 @@ class Player:
         for i in donnees:
             x = re.findall("^message ([0-8]), (\$[0-9]\$) (\w+)$", i)
             if len(x) != 0:
-                if  x[0][1] == EnumHeader.ASKBOSS.value and self.boss == 1:
+                if x[0][1] == EnumHeader.ASKBOSS.value and self.boss == 1:
                     self.broadcast(EnumHeader.IMBOSS.value + " IMBOSS")
-                    self.ai += 1
-                    self.pos = 0
-                elif x[0][1] == EnumHeader.IMHERE.value and self.boss == 1:
-                    self.ai -= 1
+                    self.nbr_ai += 1
+                    self.pos_boss = 0
                 elif x[0][1] == EnumHeader.IMBOSS.value and self.boss == -1:
                     self.boss = 0
-                    self.pos = int(x[0][0])
+                    self.pos_boss = int(x[0][0])
                     self.broadcast(EnumHeader.ASKBOSS.value + "OK")
                 elif x[0][1] == EnumHeader.IMBOSS.value and self.boss == 0:
-                    self.pos = int(x[0][0])
+                    self.pos_boss = int(x[0][0])
                 else:
                     self.map_broadcast.update({int(x[0][0]) : (x[0][1], x[0][2])})
                 donnees.remove(i)
