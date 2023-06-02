@@ -31,6 +31,8 @@ class Player:
         self.boss = -1
         self.pos = -1
         self.ai = 1
+        self.space = False
+        self.args = args
         self.map_broadcast : dict = {}
         if (self.connection(args) == False):
             ErrorConnection("Error: connection failed")
@@ -69,7 +71,7 @@ class Player:
             raise ErrorConnection("Error: connection failed")
         print(donnees[0])
         if (int(donnees[0]) > 0):
-            duplicate(args)
+            self.space = True
         return False
 
     def move(self):
