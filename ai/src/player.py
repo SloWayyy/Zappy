@@ -21,7 +21,7 @@ class EnumHeader (Enum):
     IMBOSS = "$2$"
     IMHERE = "$3$"
 
-class Direction(Enum):
+class EnumDirection(Enum):
     RIGHT = 0,
     LEFT = 1
 
@@ -34,6 +34,7 @@ class Player:
         self.ai = 0
         self.space = False
         self.args = args
+        self.positionned = False
         self.map_broadcast : dict = {}
         if (self.connection(args) == False):
             ErrorConnection("Error: connection failed")
@@ -45,11 +46,13 @@ class Player:
                 if  x[0][1] == EnumHeader.ASKBOSS.value and self.boss == 1:
                     self.broadcast(EnumHeader.IMBOSS.value + " IMBOSS")
                     self.ai += 1
+                    self.pos = 0
                 elif x[0][1] == EnumHeader.IMHERE.value and self.boss == 1:
                     self.ai -= 1
                 elif x[0][1] == EnumHeader.IMBOSS.value and self.boss == -1:
                     self.boss = 0
                     self.pos = int(x[0][0])
+                    self.broadcast(EnumHeader.ASKBOSS.value + "OK")
                 elif x[0][1] == EnumHeader.IMBOSS.value and self.boss == 0:
                     self.pos = int(x[0][0])
                 else:
@@ -84,8 +87,8 @@ class Player:
             return False
         return True
 
-    def turn(self, direction: Direction):
-        if (direction == Direction.RIGHT):
+    def turn(self, direction: EnumDirection):
+        if (direction == EnumDirection.RIGHT):
             self.sock.send("Right\n".encode())
         else:
             self.sock.send("Left\n".encode())
