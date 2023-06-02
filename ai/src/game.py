@@ -18,12 +18,31 @@ def find_boss(player: Player):
         duplicate(player.args)
         player.space = False
 
+def locate(player: Player):
+    if (player.pos == -1):
+        return False
+    if (player.pos == 0):
+        player.broadcast(EnumHeader.IMHERE.value + " IMHERE\n")
+        return True
+    if (player.pos == 1):
+        player.move()
+        return False
+    
+
+def join_boss(player: Player):
+    if player.boss == 1:
+        while (player.ia > 0):
+            player.broadcast(EnumHeader.IMBOSS.value + " IMBOSS\n")
+    if player.boss == 0:
+        while (player.positionned == False):
+            player.positionned = locate(player)
+
+
 def game_loop(sock: socket.socket, args):
     player = Player(sock, args)
-
-
-    find_boss(player)
-
+    # find_boss(player)
+    # join_boss(player)
+    print(player.look())
 
     while True:
         player.look()

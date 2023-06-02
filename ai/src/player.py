@@ -19,6 +19,7 @@ class EnumObject (Enum):
 class EnumHeader (Enum):
     ASKBOSS = "$1$"
     IMBOSS = "$2$"
+    IMHERE = "$3$"
 
 class Direction(Enum):
     RIGHT = 0,
@@ -30,7 +31,7 @@ class Player:
         self.sock = sock
         self.boss = -1
         self.pos = -1
-        self.ai = 1
+        self.ai = 0
         self.space = False
         self.args = args
         self.map_broadcast : dict = {}
@@ -43,6 +44,9 @@ class Player:
             if len(x) != 0:
                 if  x[0][1] == EnumHeader.ASKBOSS.value and self.boss == 1:
                     self.broadcast(EnumHeader.IMBOSS.value + " IMBOSS")
+                    self.ai += 1
+                elif x[0][1] == EnumHeader.IMHERE.value and self.boss == 1:
+                    self.ai -= 1
                 elif x[0][1] == EnumHeader.IMBOSS.value and self.boss == -1:
                     self.boss = 0
                     self.pos = int(x[0][0])
