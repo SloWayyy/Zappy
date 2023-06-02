@@ -3,7 +3,7 @@ import socket
 
 from ai.src.player import Player, EnumObject, EnumHeader
 
-def find_boss(sock: socket.socket, name: str, player: Player):
+def find_boss(player: Player):
     player.broadcast(EnumHeader.ASKBOSS.value + " Who\n")
     player.look()
     player.take(EnumObject.FOOD.value)
@@ -17,11 +17,11 @@ def find_boss(sock: socket.socket, name: str, player: Player):
         print("I'm the new boss\n")
     # player.wait_answer()
 
-def game_loop(sock: socket.socket, name: str):
-    player = Player(sock, name)
+def game_loop(sock: socket.socket, args):
+    player = Player(sock, args)
 
 
-    find_boss(sock, name, player)
+    find_boss(player)
 
     # for i in range(0, player.ai):
     # pid = os.fork()
