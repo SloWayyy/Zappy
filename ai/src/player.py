@@ -47,6 +47,8 @@ class Player:
                     self.broadcast(EnumHeader.IMBOSS.value + " IMBOSS")
                     self.nbr_ai += 1
                     self.pos_boss = 0
+                elif x[0][1] == EnumHeader.IMHERE.value and self.boss == 1:
+                    self.nbr_ai -= 1
                 elif x[0][1] == EnumHeader.IMBOSS.value and self.boss == -1:
                     self.boss = 0
                     self.pos_boss = int(x[0][0])

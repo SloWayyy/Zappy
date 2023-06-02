@@ -19,7 +19,6 @@ def locate(player: Player):
     print("player pos: ", player.pos_boss)
     if (player.pos_boss == 0):
         player.broadcast(EnumHeader.IMHERE.value + " IMHERE\n")
-        player.nbr_ai -= 1
         print ("IMHERE\n")
         return True
     elif (player.pos_boss == 1 or player.pos_boss == 2 or player.pos_boss == 8):
@@ -35,14 +34,24 @@ def locate(player: Player):
 
 def join_boss(player: Player):
     if player.boss == 1:
-        while (player.nbr_ai != 0):
+        while (player.nbr_ai > 1):
             player.broadcast(EnumHeader.IMBOSS.value + " IMBOSS\n")
     else:
         while (locate(player) == False):
             player.look()
 
+# def get_mineral(player: Player):
+#     if player.boss == 1:
+#         print (player.look())
+#     else:
+#         for _ in range(0, 3):
+#             player.move()
+#         player.look()
+#         player.turn(EnumDirection.LEFT.value)
+
 def game_loop(sock: socket.socket, args):
     player = Player(sock, args)
     find_boss(player)
     join_boss(player)
+    # get_mineral(player)
     sock.close()
