@@ -16,6 +16,7 @@ class Setting : public AScreen {
         ~Setting() = default;
     private:    
         void handleInput() override;
+        size_t _volume;
 };
 
 #endif /* !SETTING_HPP_ */
