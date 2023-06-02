@@ -26,13 +26,13 @@ class Direction(Enum):
 
 class Player:
 
-    def __init__(self, sock: socket.socket, name: str):
+    def __init__(self, sock: socket.socket, args):
         self.sock = sock
         self.boss = -1
         self.pos = -1
         self.ai = 1
         self.map_broadcast : dict = {}
-        if (self.connection(name) == False):
+        if (self.connection(args) == False):
             ErrorConnection("Error: connection failed")
 
     def handle_broadcast(self, donnees: str):
@@ -59,18 +59,17 @@ class Player:
             raise ErrorConnection("Error: player dead")
         return donnees
 
-    def connection(self, name: str):
+    def connection(self, args):
         donnees = self.wait_answer()
         if (donnees[0] == "WELCOME"):
-            self.sock.send((name + "\n").encode())
-            print("Envoi du nom de l'équipe... ({})".format(name))
+            self.sock.send((args.name + "\n").encode())
+            print("Envoi du nom de l'équipe... ({})".format(args.name))
         donnees = self.wait_answer()
         if (donnees[0] == "ko"):
             raise ErrorConnection("Error: connection failed")
-        if (int(donnees[0]) > 1):
-            self.ai = int(donnees[0])
-            print("cc", self.ai)
-            return True
+        print(donnees[0])
+        if (int(donnees[0]) > 0):
+            duplicate(args)
         return False
 
     def move(self):
