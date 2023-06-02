@@ -1,5 +1,6 @@
 from typing import Final
 import socket
+import os
 
 class BadConnectionException(Exception):
     pass
@@ -31,3 +32,11 @@ def receive_debug(sock: socket.socket):
         donnees[i] = x.decode()
     print("Debug :", donnees)
     return
+
+def duplicate(args):
+    pid = os.fork()
+    if pid < 0:
+        return 84
+    if pid == 0:
+        return 0
+    os.execve("./zappy_ai", ["./zappy_ai", "-p", str(args.port), "-n", args.name,], os.environ)
