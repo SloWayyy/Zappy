@@ -67,7 +67,7 @@ jobs:
     runs-on: ubuntu-latest
     container: epitechcontent/epitest-docker:latest
     needs:
-      - check_program_compilation
+      - repository_compilation
     steps:
       - name: Repository checkout
         uses: actions/checkout@v3
