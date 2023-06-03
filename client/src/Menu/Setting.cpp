@@ -22,6 +22,9 @@ Setting::Setting(std::shared_ptr<Window> window) : _volume(50), _fps(60)
     createButtons("<", {(float)this->_window->getScreenWidth() / 5.0f, this->_window->getScreenHeight() / 4.0f}, PINK, 50, SETTINGS);
     createButtons(">", {(float)this->_window->getScreenWidth() / 2.0f, this->_window->getScreenHeight() / 4.0f}, PINK, 50, SETTINGS);
     createText("Météo :", {(float)this->_window->getScreenWidth() / 50.0f, this->_window->getScreenHeight() / 3.0f}, RAYWHITE, 50);
+    createText("Jour", {(float)this->_window->getScreenWidth() / 3.0f, this->_window->getScreenHeight() / 2.5f}, RAYWHITE, 50);
+    createButtons("<", {(float)this->_window->getScreenWidth() / 5.0f, this->_window->getScreenHeight() / 2.5f}, PINK, 50, SETTINGS);
+    createButtons(">", {(float)this->_window->getScreenWidth() / 2.0f, this->_window->getScreenHeight() / 2.5f}, PINK, 50, SETTINGS);
 }
 
 void Setting::handleInput()
@@ -52,6 +55,18 @@ void Setting::handleInput()
             else
                 this->_fps = 30;
             this->_text[4]._string = std::to_string(_fps);
+        }
+        if (x >= this->_buttonsScreen[5].getCoord().x && x <= this->_buttonsScreen[5].getCoord().x + this->_buttonsScreen[5].getRectButton().width && y >= this->_buttonsScreen[5].getCoord().y && y <= this->_buttonsScreen[5].getCoord().y + this->_buttonsScreen[5].getRectButton().height) {
+            if (this->_text[6]._string == "Jour")
+                this->_text[6]._string = "Nuit";
+            else
+                this->_text[6]._string = "Jour";
+        }
+        if (x >= this->_buttonsScreen[6].getCoord().x && x <= this->_buttonsScreen[6].getCoord().x + this->_buttonsScreen[6].getRectButton().width && y >= this->_buttonsScreen[6].getCoord().y && y <= this->_buttonsScreen[6].getCoord().y + this->_buttonsScreen[6].getRectButton().height) {
+            if (this->_text[6]._string == "Jour")
+                this->_text[6]._string = "Nuit";
+            else
+                this->_text[6]._string = "Jour";
         }
     }
 
