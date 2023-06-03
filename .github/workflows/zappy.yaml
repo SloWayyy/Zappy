@@ -1,7 +1,6 @@
 name: Zappy
 
 on:
-  push:
   pull_request:
 
 env:
