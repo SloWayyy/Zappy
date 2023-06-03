@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT 2023
+** EPITECH PROJECT, 2023
 ** Zappy
 ** File description:
 ** test_utils.c
