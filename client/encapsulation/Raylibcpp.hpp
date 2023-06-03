@@ -52,6 +52,7 @@ namespace Raylibcpp {
     };
     class RayText {
         public:
+            RayText() = default;
             RayText(std::string string, int posX, int posY, int fontSize, Color color);
             ~RayText() = default;
             void drawText(std::string string, int posX, int posY, int fontSize, Color color);

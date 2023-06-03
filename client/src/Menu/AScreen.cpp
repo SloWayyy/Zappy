@@ -35,10 +35,10 @@ void AScreen::drawButton(void)
 {
     for (auto &button : this->_buttonsScreen) {
         Raylibcpp::RayModel model;
-        Raylibcpp::RayText text(button.getString().c_str(), button.getCoord().x, button.getCoord().y, button.getSize(), button.getColor());
+        Raylibcpp::RayText text;
         button.update();
         model.drawRectangle(button.getCoord().x - 10, button.getCoord().y, button.getRectButton().width, button.getRectButton().height, button.getColorRect());
-        text.drawText(text._string.c_str(), text._posX, text._posY, text._fontSize, text._color);
+        text.drawText(button.getString().c_str(), button.getCoord().x, button.getCoord().y, button.getSize(), button.getColor());
     }
 }
 
