@@ -77,8 +77,6 @@ jobs:
       - name: Compilation execution
         timeout-minutes: 2
         run: make
-      - name: Clean execution
-        run: make clean
       - name: Test executables presence
         run: IFS=',' read -r -a array <<< ${{ env.EXECUTABLES }} ; for value in ${array[@]} ; do find . -executable -name "${value}" | grep -q . || echo "::error title="Executable not found"::${value}" ; done
       - name: Exit if executable not found
