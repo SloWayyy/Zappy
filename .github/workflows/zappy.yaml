@@ -33,8 +33,8 @@ jobs:
         run: |
           check.sh $(pwd)/server/ $(pwd)
           while IFS=':' read -r file line type; do
-            file="server/$file"
-            echo "::error file=$file,line=$line,title=$type"
+            file="server/${file#./}"
+            echo "::error file=$file,line=$line,title="Coding style: $type"::$file"
           done < $CODING_STYLE
           if [ -s "$CODING_STYLE" ]; then
             exit 1
