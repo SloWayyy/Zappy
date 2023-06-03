@@ -30,10 +30,7 @@ jobs:
       - name: Repository Makefiles checkout
         uses: Bhacaz/checkout-files@v2
         with:
-          files:
-            - "Makefile"
-            - "client/Makefile"
-            - "server/Makefile"
+          files: "Makefile client/Makefile server/Makefile"
       - name: Check coding style
         run: |
           check.sh $(pwd)/server/ $(pwd)
