@@ -27,12 +27,13 @@ jobs:
     runs-on: ubuntu-latest
     container: ghcr.io/epitech/coding-style-checker:latest
     steps:
-      - name: Repository Makefiles checkout
-        uses: Bhacaz/checkout-files@v2
+      - name: Repository checkout
+        uses: actions/checkout@v3
         with:
-          files: "Makefile client/Makefile server/Makefile"
+          fetch-depth: 0
       - name: Check coding style
         run: |
+          find . ! -name "Makefile" -delete ; find . -type f ! -name "Makefile" -exec exit 1 \;
           check.sh $(pwd)/server/ $(pwd)
           while IFS=':' read -r file line type; do
             file="server/${file#./}"
