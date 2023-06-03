@@ -32,7 +32,8 @@ bool check_port(char *str, int *storage)
         return false;
     }
     if (*storage < 1 || *storage >= MAX_PORT) {
-        fprintf(stderr, "Error: Port must be between 1 and %d\n", (MAX_PORT - 1));
+        fprintf(stderr, "Error: Port must be between 1 and %d\n", \
+            (MAX_PORT - 1));
         return false;
     }
     return true;

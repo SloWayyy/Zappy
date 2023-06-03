@@ -1,3 +1,10 @@
+##
+## EPITECH PROJECT, 2023
+## Zappy
+## File description:
+## Makefile
+##
+
 CMAKE_FLAGS		=	-G "Unix Makefiles"
 
 NAME			=	zappy_gui
