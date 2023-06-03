@@ -18,7 +18,7 @@ bool check_number(char const *str, char *option, int *storage)
     long parsed = strtol(str, &end, 10);
 
     if (strlen(end) > 0) {
-        printf("Error: %s must be a number\n", option);
+        fprintf(stderr, "Error: %s must be a number\n", option);
         return false;
     }
     *storage = (int) parsed;
@@ -31,7 +31,7 @@ bool check_port(char *str, int *storage)
         return false;
     }
     if (*storage < 1 || *storage >= MAX_PORT) {
-        printf("Error: Port must be between 1 and %d\n", (MAX_PORT - 1));
+        fprintf(stderr, "Error: Port must be between 1 and %d\n", (MAX_PORT - 1));
         return false;
     }
     return true;
@@ -43,7 +43,7 @@ bool check_positive(char const *str, char *option, int *storage)
         return false;
     }
     if (*storage < 1) {
-        printf("Error: %s must be positive\n", option);
+        fprintf(stderr, "Error: %s must be positive\n", option);
         return false;
     }
     return true;

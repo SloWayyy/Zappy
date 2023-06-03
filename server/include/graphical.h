@@ -14,6 +14,7 @@
     #define GRAPHICAL_IDENTIFIER "GRAPHIC"
 
     #define GRAPHICAL_MAP_SIZE "msz"
+    #define GRAPHICAL_TEAM_NAME "tna"
     #define GRAPHICAL_UNKNOWN "suc"
 
     #include "types.h"
@@ -21,6 +22,7 @@
 void handle_graphical_command(server_t *server, client_t *client, char *line);
 
 void msz_handler(server_t *server, client_t *client, char *line);
+void tna_handler(server_t *server, client_t *client, char *line);
 
 typedef void (graphical_handler_t) \
     (server_t *server, client_t *client, char *line);
@@ -32,6 +34,7 @@ typedef struct graphical_command {
 
 static const graphical_command_t GRAPHICAL_COMMANDS[] = {
         { GRAPHICAL_MAP_SIZE, &msz_handler },
+        { GRAPHICAL_TEAM_NAME, &tna_handler}
 };
 
 #endif

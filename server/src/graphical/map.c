@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2023
 ** server
 ** File description:
-** info.c
+** map_answers.c
 */
 
 #include "constants.h"
