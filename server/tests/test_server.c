@@ -76,7 +76,7 @@ Test(port_handler, invalid_port_nbr_arg, .init=redirect_all)
 Test(port_handler, port_already_set, .init=redirect_all)
 {
     options_t options;
-    check_arguments(8, (char const *[]){"./zappy_server", "-n", "toto", "tata", "-p", "10", "-p", "15"}, &options);
+    check_arguments(8, (char const *[]){"./zappy_server", "-n", "toto", "tata", "-p", "2000", "-p", "1500"}, &options);
     cr_assert_stderr_eq_str("Error: Port already set\n");
 }
 
@@ -84,6 +84,132 @@ Test(port_handler, port_too_big)
 {
     options_t options;
     cr_assert_eq(port_handler(6, (char const *[]){"./zappy_server", "-n", "toto", "tata", "-p", "65536"}, &options, 4), -1);
+}
+
+Test(check_arguments, no_team_name, .init=redirect_all)
+{
+    options_t options;
+    check_arguments(1, (char const *[]){"./zappy_server"}, &options);
+    cr_assert_stderr_eq_str("Error: Team names are not set\n");
+}
+
+int height_handler(int argc, char const *argv[], options_t *options, int idx);
+
+Test(height_handler, invalid_height_nbr_arg, .init=redirect_all)
+{
+    options_t options;
+    height_handler(5, (char const *[]){"./zappy_server", "-n", "toto", "tata", "-y"}, &options, 4);
+    cr_assert_stderr_eq_str("Error: -y requires an argument\n");
+}
+
+Test(height_handler, height_already_set, .init=redirect_all)
+{
+    options_t options;
+    cr_assert_eq(check_arguments(8, (char const *[]){"./zappy_server", "-n", "toto", "tata", "-y", "10", "-y", "15"}, &options), false);
+}
+
+bool check_positive(char const *str, char *option, int *storage);
+
+Test(check_positive, valid_nbr)
+{
+    int storage = 0;
+    cr_assert_eq(check_positive("10", "-p", &storage), true);
+    cr_assert_eq(storage, 10);
+}
+
+Test(check_positive, invalid_nbr)
+{
+    int storage = 0;
+    cr_assert_eq(check_positive("toto", "-p", &storage), false);
+}
+
+Test(check_positive, neg_nbr)
+{
+    int storage = 0;
+    cr_assert_eq(check_positive("-10", "-p", &storage), false);
+}
+
+int width_handler(int argc, char const *argv[], options_t *options, int idx);
+
+Test(width_handler, invalid_width_nbr_arg, .init=redirect_all)
+{
+    options_t options;
+    width_handler(5, (char const *[]){"./zappy_server", "-n", "toto", "tata", "-x"}, &options, 4);
+    cr_assert_stderr_eq_str("Error: -x requires an argument\n");
+}
+
+Test(width_handler, invalid_value, .init=redirect_all)
+{
+    options_t options;
+    cr_assert_eq(check_arguments(5, (char const *[]){"./zappy_server", "-n", "toto", "tata", "-x", "fdfd"}, &options), false);
+}
+
+int clients_handler(int argc, char const *argv[], options_t *options, int idx);
+
+Test(clients_handler, invalid_clients_nbr_arg, .init=redirect_all)
+{
+    options_t options;
+    clients_handler(5, (char const *[]){"./zappy_server", "-n", "toto", "tata", "-c"}, &options, 4);
+    cr_assert_stderr_eq_str("Error: -c requires an argument\n");
+}
+
+Test(clients_handler, invalid_value, .init=redirect_all)
+{
+    options_t options;
+    cr_assert_eq(check_arguments(5, (char const *[]){"./zappy_server", "-n", "toto", "tata", "-c", "fdfd"}, &options), false);
+}
+
+Test(clients_handler, already_set, .init=redirect_all)
+{
+    options_t options;
+    options.clients = 10;
+    clients_handler(8, (char const *[]){"./zappy_server", "-n", "toto", "tata", "-c", "10", "-c", "15"}, &options, 6);
+    cr_assert_stderr_eq_str("Error: Clients number already set\n");
+}
+
+int freq_handler(int argc, char const *argv[], options_t *options, int idx);
+
+Test(freq_handler, invalid_freq_nbr_arg, .init=redirect_all)
+{
+    options_t options;
+    freq_handler(5, (char const *[]){"./zappy_server", "-n", "toto", "tata", "-f"}, &options, 4);
+    cr_assert_stderr_eq_str("Error: -f requires an argument\n");
+}
+
+Test(freq_handler, invalid_value, .init=redirect_all)
+{
+    options_t options;
+    cr_assert_eq(check_arguments(5, (char const *[]){"./zappy_server", "-n", "toto", "tata", "-f", "fdfd"}, &options), false);
+}
+
+Test(freq_handler, already_set, .init=redirect_all)
+{
+    options_t options;
+    options.freq = 10;
+    freq_handler(8, (char const *[]){"./zappy_server", "-n", "toto", "tata", "-f", "10", "-f", "15"}, &options, 6);
+    cr_assert_stderr_eq_str("Error: Frequency already set\n");
+}
+
+Test(freq_handler, freq_too_big, .init=redirect_all)
+{
+    options_t options;
+    freq_handler(6, (char const *[]){"./zappy_server", "-n", "toto", "tata", "-f", "200"}, &options, 4);
+    cr_assert_stderr_eq_str("Error: Frequency cannot be greater than 100\n");
+}
+
+int names_handler(int argc, char const *argv[], options_t *options, int idx);
+
+Test(names_handler, invalid_names_nbr_arg, .init=redirect_all)
+{
+    options_t options;
+    names_handler(5, (char const *[]){"./zappy_server", "-n", "toto", "tata", "-n"}, &options, 5);
+    cr_assert_stderr_eq_str("Error: No team names given\n");
+}
+
+Test(names_handler, same_team_name, .init=redirect_all)
+{
+    options_t options;
+    cr_assert_eq(check_arguments(5, (char const *[]){"./zappy_server", "-n", "toto", "tata", "toto"}, &options), false);
 }
 
 
