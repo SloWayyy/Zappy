@@ -34,8 +34,7 @@ jobs:
       - name: Check coding style
         run: |
           find . -type f ! -name "Makefile" -delete ; find . -type d -empty -delete
-          ls -R
-          check.sh $(pwd)/server/ $(pwd)
+          check.sh $(pwd) $(pwd)
           while IFS=':' read -r file line type; do
             file="server/${file#./}"
             echo "::error file=$file,line=$line,title="$type"::$file"
