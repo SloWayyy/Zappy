@@ -22,6 +22,29 @@ jobs:
       - name: Exit if file is found
         run: find . -regextype posix-extended -regex '.*\.(a|o|so|gcda|gcno|gcov)' | grep -q . || exit 0 && exit 1
 
+  repository_coding_style:
+    name: "Repository: Coding style"
+    runs-on: ubuntu-latest
+    container: ghcr.io/epitech/coding-style-checker:latest
+    steps:
+      - name: Repository Makefiles checkout
+        uses: Bhacaz/checkout-files@v2
+        with:
+          files:
+            - "Makefile"
+            - "client/Makefile"
+            - "server/Makefile"
+      - name: Check coding style
+        run: |
+          check.sh $(pwd)/server/ $(pwd)
+          while IFS=':' read -r file line type; do
+            file="server/${file#./}"
+            echo "::error file=$file,line=$line,title="$type"::$file"
+          done < $CODING_STYLE
+          if [ -s "$CODING_STYLE" ]; then
+            exit 1
+          fi
+
   server_coding_style:
     name: "Server: Coding style"
     runs-on: ubuntu-latest
@@ -34,7 +57,7 @@ jobs:
           check.sh $(pwd)/server/ $(pwd)
           while IFS=':' read -r file line type; do
             file="server/${file#./}"
-            echo "::error file=$file,line=$line,title="Coding style: $type"::$file"
+            echo "::error file=$file,line=$line,title="$type"::$file"
           done < $CODING_STYLE
           if [ -s "$CODING_STYLE" ]; then
             exit 1
@@ -46,6 +69,7 @@ jobs:
     container: epitechcontent/epitest-docker:latest
     needs:
       - repository_cleanliness
+      - repository_coding_style
       - server_coding_style
     steps:
       - name: Repository checkout
