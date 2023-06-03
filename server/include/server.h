@@ -22,6 +22,9 @@ int refresh_fdsets(server_t *server);
 bool handle_fdsets(server_t *server);
 bool handle_input(server_t *server, client_t *client);
 
+bool init_map(server_t *server);
+void free_map(server_t *server);
+
 void start_game(server_t *server);
 void refresh_timeout(server_t *server);
 void init_tick(server_t *server, long frequence);

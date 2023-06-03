@@ -22,7 +22,7 @@ static bool join_team(client_t *client, team_t *team)
     }
     client->player->team = team;
     team->slots--;
-    SLIST_INSERT_HEAD(team->players, client->player, next);
+    SLIST_INSERT_HEAD(team->players, client->player, next_team);
     return true;
 }
 

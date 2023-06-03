@@ -11,7 +11,6 @@
 #include <string.h>
 
 #include "constants.h"
-#include "types.h"
 
 bool check_number(char const *str, char *option, int *storage)
 {

@@ -6,7 +6,7 @@
 */
 
 #include "constants.h"
-#include "graphical.h"
+#include "types.h"
 #include "util.h"
 
 void slots_handler(server_t *server, client_t *client, char *line)
