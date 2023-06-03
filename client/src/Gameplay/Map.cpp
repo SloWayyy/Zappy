@@ -56,27 +56,8 @@ void Map::fillMineralPositionArray()
     }
 }
 
-void Map::draw()
-{
-    float _x = 0.0f;
-    float _y = 0.0f;
-
-    for (std::size_t y = 0; y < this->_mapSize.height; y++) {
-        for (std::size_t x = 0; x < this->_mapSize.width; x++) {
-            this->_cubePosition = { _x, 0.0f, _y };
-            this->_rayCube.drawCube(this->_cubePosition, 2.0f, 2.0f, 2.0f, GREEN);
-            this->_rayCube.drawCubeWires(this->_cubePosition, 2.0f, 2.0f, 2.0f, WHITE);
-        _x += 2.0f;
-        }
-        _x = 0.0f;
-        _y += 2.0f;
-    }
-    this->drawMineral(this->BANANA);
-}
-
 void Map::run()
 {
-    this->draw();
 }
 
 void Map::setHeight(std::size_t height)

@@ -13,6 +13,7 @@
     #include "src/Gameplay/Gameplay.hpp"
     #include "src/Menu/Menu.hpp"
     #include "src/Menu/Tuto.hpp"
+    #include "src/Menu/Setting.hpp"
     #include "encapsulation/Raylibcpp.hpp"
 
 class Core {
@@ -24,6 +25,7 @@ class Core {
         std::shared_ptr<Window> _window;
         std::shared_ptr<Menu> _menu;
         std::shared_ptr<Tuto> _tuto;
+        std::shared_ptr<Setting> _setting;
         std::shared_ptr<Gameplay> _gameplay;
         Raylibcpp::RayWindow _rayWindow;
 };

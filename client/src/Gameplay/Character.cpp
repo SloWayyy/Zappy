@@ -9,12 +9,14 @@
 #include "raymath.h"
 #include "src/Gameplay/Character.hpp"
 
+#include <stdio.h>
+
 Character::Character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos) : _position(pos), _animsCount(animsCount), _animFrameCounter(animFrameCounter)
 {
-    this->_model = this->_rayModel.loadModel("assets/monster/woody.iqm");
-    this->_texture = this->_rayModel.loadTexture("assets/monster/woody.png");
-    this->_anims = this->_rayModel.loadModelAnimations("assets/monster/woodyRun.iqm", &this->_animsCount);
-    this->_model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = this->_texture;
+    this->_model = this->_rayModel.loadModel("assets/mign.glb");
+    // this->_texture = this->_rayModel.loadTexture("assets/robot.png");
+    // this->_anims = this->_rayModel.loadModelAnimations("assets/monster/woodyRun.iqm", &this->_animsCount);
+    // this->_model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = this->_texture;
 }
 
 void Character::animation()
@@ -27,17 +29,22 @@ void Character::animation()
 
 void Character::draw()
 {
-    this->_rayModel.drawModel(this->_model, this->_position, 0.1f, WHITE);
-    this->_model.transform = MatrixRotateXYZ({-90, 0, 0});
+    this->_rayModel.drawModel(this->_model, this->_position, 1.0f, WHITE);
+    this->_model.transform = MatrixRotateXYZ({0 * DEG2RAD, 0, RIGHT});
 }
 
 void Character::run()
 {
     this->draw();
-    this->animation();
+    // this->animation();
 }
 
 Vector3 Character::getPosition() const
 {
     return this->_position;
+}
+
+Model Character::getModel() const
+{
+    return this->_model;
 }
