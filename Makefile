@@ -23,12 +23,12 @@ $(NAME_SERVER):
 
 ai: $(NAME_AI)
 
-all: 
+all:
 	$(MAKE) $(NAME_AI)
 	$(MAKE) $(NAME_CLIENT)
 	$(MAKE) $(NAME_SERVER)
 
-ci: 
+ci:
 	$(MAKE) $(NAME_AI)
 	$(MAKE) $(NAME_SERVER)
 
