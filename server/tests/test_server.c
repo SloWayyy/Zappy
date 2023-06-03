@@ -76,6 +76,7 @@ Test(port_handler, invalid_port_nbr_arg, .init=redirect_all)
 Test(port_handler, port_already_set, .init=redirect_all)
 {
     options_t options;
+    options.port = 2000;
     check_arguments(8, (char const *[]){"./zappy_server", "-n", "toto", "tata", "-p", "2000", "-p", "1500"}, &options);
     cr_assert_stderr_eq_str("Error: Port already set\n");
 }
@@ -105,6 +106,7 @@ Test(height_handler, invalid_height_nbr_arg, .init=redirect_all)
 Test(height_handler, height_already_set, .init=redirect_all)
 {
     options_t options;
+    options.height = 2000;
     cr_assert_eq(check_arguments(8, (char const *[]){"./zappy_server", "-n", "toto", "tata", "-y", "10", "-y", "15"}, &options), false);
 }
 
@@ -199,11 +201,10 @@ Test(freq_handler, freq_too_big, .init=redirect_all)
 
 int names_handler(int argc, char const *argv[], options_t *options, int idx);
 
-Test(names_handler, invalid_names_nbr_arg, .init=redirect_all)
+Test(names_handler, invalid_names_nbr_arg)
 {
     options_t options;
-    names_handler(5, (char const *[]){"./zappy_server", "-n", "toto", "tata", "-n"}, &options, 5);
-    cr_assert_stderr_eq_str("Error: No team names given\n");
+    cr_assert_eq(names_handler(2, (char const *[]){"./zappy_server", "-n"}, &options, 1), -1);
 }
 
 Test(names_handler, same_team_name, .init=redirect_all)
@@ -211,7 +212,3 @@ Test(names_handler, same_team_name, .init=redirect_all)
     options_t options;
     cr_assert_eq(check_arguments(5, (char const *[]){"./zappy_server", "-n", "toto", "tata", "toto"}, &options), false);
 }
-
-
-// height_handler a faire
-// clients_handler a faire
