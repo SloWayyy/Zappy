@@ -13,9 +13,6 @@ Core::Core(): _window(std::make_shared<Window>(1920, 1080, 60)), _menu(std::make
 
 void Core::run(void)
 {
-    this->_gameplay->initPlayer({0, 1.1, 2});
-    this->_gameplay->initPlayer({0, 1.1, 4});
-    this->_gameplay->initPlayer({0, 1.1, 6});
     while (!this->_window->getExit()) {
         this->_rayWindow.clearBackground(RAYWHITE);
         this->_rayWindow.beginDrawing();
