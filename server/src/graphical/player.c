@@ -5,8 +5,11 @@
 ** team_name_answers.c
 */
 
+#include <stddef.h>
+
 #include "constants.h"
 #include "graphical.h"
+#include "types.h"
 #include "util.h"
 
 void tna_handler(server_t *server, client_t *client, char *line)
