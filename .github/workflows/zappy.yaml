@@ -5,7 +5,7 @@ on:
   pull_request:
 
 env:
-  EXECUTABLES: "zappy_server"
+  EXECUTABLES: "zappy_ai,zappy_server"
   CODING_STYLE: "coding-style-reports.log"
 
 jobs:
