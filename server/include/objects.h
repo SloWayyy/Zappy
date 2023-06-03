@@ -14,6 +14,7 @@ client_t *new_client(int fd, FILE *stream);
 void close_client(client_t *client);
 void free_client(client_t *client);
 void free_clients(server_t *server);
+client_t *get_client_by_player_id(server_t *server, size_t id);
 
 team_t *new_team(char const *name, size_t max_players);
 void free_team(team_t *team);

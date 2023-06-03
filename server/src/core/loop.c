@@ -7,10 +7,12 @@
 
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <sys/queue.h>
 #include <sys/select.h>
 #include <unistd.h>
+#include <time.h>
 
 #include "objects.h"
 #include "server.h"
@@ -20,7 +22,9 @@ static void end_server(server_t *server)
 {
     free_clients(server);
     free_teams(server);
-    free_map(server);
+    if (server->zappy->map != NULL) {
+        free_map(server);
+    }
     if (server->data->socket_fd != -1) {
         close(server->data->socket_fd);
     }
@@ -52,8 +56,8 @@ bool start_server(options_t *options)
     bool run = false;
     tick_t tick;
     data_t data;
-    struct client_list clients;
-    struct teams_list teams;
+    client_list_t clients;
+    team_list_t teams;
     zappy_t zappy = { &tick, NULL, &teams };
     server_t server = { options, &data, &zappy, &clients };
 
@@ -61,6 +65,7 @@ bool start_server(options_t *options)
     SLIST_INIT(&teams);
     memset(&data, 0, sizeof(data_t));
     run = init_server(&server);
+    srand(time(NULL) + (unsigned long)&server);
     if (run) {
         run = server_loop(&server);
     }
