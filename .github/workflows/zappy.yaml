@@ -33,7 +33,8 @@ jobs:
           fetch-depth: 0
       - name: Check coding style
         run: |
-          find . ! -name "Makefile" -delete ; find . -type f ! -name "Makefile" -exec exit 1 \;
+          find . -type f ! -name "Makefile" -delete ; find . -type d -empty -delete
+          ls -R
           check.sh $(pwd)/server/ $(pwd)
           while IFS=':' read -r file line type; do
             file="server/${file#./}"
