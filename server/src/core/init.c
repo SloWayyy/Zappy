@@ -25,6 +25,9 @@ static bool init_zappy(server_t *server)
     team_t *team = NULL;
 
     init_tick(server, server->options->freq);
+    if (!init_map(server)) {
+        return false;
+    }
     for (int i = 0; server->options->names[i] != NULL; i++) {
         team = new_team(server->options->names[i], server->options->clients);
         if (team == NULL) {

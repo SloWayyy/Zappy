@@ -22,6 +22,13 @@ typedef enum connection_type {
     PLAYER,
 } connection_type_t;
 
+typedef enum direction_type {
+    NORTH,
+    EAST,
+    SOUTH,
+    WEST,
+} direction_type_t;
+
 typedef enum resource_type {
     FOOD,
     LINEMATE,
@@ -58,8 +65,10 @@ typedef struct team {
 typedef struct player {
     team_t *team;
     size_t inventory[RESOURCES_TYPES_QUANTITY];
+    size_t level;
     size_t food_ticks;
-    SLIST_ENTRY(player) next;
+    SLIST_ENTRY(player) next_team;
+    SLIST_ENTRY(player) next_tile;
 } player_t;
 
 typedef struct client {
@@ -86,8 +95,16 @@ typedef struct tick {
     struct timeval last_tick;
 } tick_t;
 
+typedef struct tile {
+    size_t x;
+    size_t y;
+    size_t resources[RESOURCES_TYPES_QUANTITY];
+    SLIST_HEAD(players_list, player) players;
+} tile_t;
+
 typedef struct zappy {
     tick_t *tick;
+    tile_t **map;
     SLIST_HEAD(teams_list, team) *teams;
 } zappy_t;
 

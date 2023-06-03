@@ -9,6 +9,7 @@ SRC			=	src/core/fdsets.c \
 				src/core/init.c \
 				src/core/input.c \
 				src/core/loop.c \
+				src/core/map.c \
 				src/core/tick.c \
 				src/graphical/command.c \
 				src/graphical/map.c \
