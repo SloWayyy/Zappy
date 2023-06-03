@@ -18,11 +18,11 @@ SRC			=	src/core/fdsets.c \
 				src/util/arguments/check.c \
 				src/util/arguments/handlers.c \
 				src/util/arguments/names.c \
-				src/server.c \
+				src/server.c
 
 MAIN		=	src/main.c
 
-TESTS		=	tests/test_server.c	\
+TESTS		=	tests/test_server.c
 
 INC			=	include/
 
