@@ -23,7 +23,7 @@ build/$(NAME): build/Makefile
 $(NAME): build/$(NAME)
 	cp build/$(NAME) .
 
-clean:
+clean: build/Makefile
 	$(MAKE) -C build/ clean
 
 fclean: clean
