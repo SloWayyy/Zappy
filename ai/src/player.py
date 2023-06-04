@@ -42,14 +42,20 @@ class Player:
     def handle_broadcast(self, donnees: str):
         for i in donnees:
             x = re.findall("^message ([0-8]), (\$[0-9]\$) (\w+)$", i)
-            if len(x):           
+            if len(x):
                 if x[0][1] == EnumHeader.ASKBOSS.value and self.boss == 1:
                     self.broadcast(EnumHeader.IMBOSS.value + " IMBOSS")
                     self.nbr_ai += 1
                     self.pos_boss = 0
                 elif x[0][1] == EnumHeader.IMHERE.value and self.boss == 1:
                     self.nbr_ai -= 1
-                    print("--------------------receive broadcast-----------------\n")
+                    # print("--------------------receive broadcast-----------------\n")
+                elif x[0][1] == EnumHeader.IMHERE.value and self.boss == 0:
+                    # print("----1-----re wait------1-----")
+                    donnees = receive_packet(self.sock)
+                    if x[0][1] == EnumHeader.IMBOSS.value:
+                        self.pos_boss = int(x[0][0])
+                    # print("----2-----re wait------2-----")
                 elif x[0][1] == EnumHeader.IMBOSS.value and self.boss == -1:
                     self.boss = 0
                     self.pos_boss = int(x[0][0])
@@ -58,13 +64,18 @@ class Player:
                     self.pos_boss = int(x[0][0])
                 else:
                     self.map_broadcast.update({int(x[0][0]) : (x[0][1], x[0][2])})
-        for i in donnees:
-            x = re.findall("^message ([0-8]), (\$[0-9]\$) (\w+)$", i)
-            if x:
-                donnees.remove(i)
+        i = 0
+        while i < len(donnees):
+            x = re.findall("^message ([0-8]), (\$[0-9]\$) (\w+)$", donnees[i])
+            if len(x):
+                donnees.remove(donnees[i])
+                i = 0
+                continue
+            i += 1
 
     def wait_answer(self, broadcast: bool = False):
         donnees = receive_packet(self.sock)
+        # print(donnees)
         self.handle_broadcast(donnees)
         if len(donnees) <= 1 and broadcast == False:
             return self.wait_answer()

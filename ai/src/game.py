@@ -1,6 +1,8 @@
 import socket
 import os
 
+from anyio import sleep
+
 from ai.src.player import Player, EnumObject, EnumHeader, EnumDirection
 from ai.src.handle_packets import duplicate
 
@@ -17,10 +19,15 @@ def find_boss(player: Player):
         player.wait_answer()
 
 def locate(player: Player):
-    print("player pos: ", player.pos_boss)
+    # print ("\n\nA---------------------------------------------------------------\n")
+    player.wait_answer(True)
+    # print("player pos before: ", player.pos_boss)
+    # player.wait_answer(True)
+    # print("player pos after: ", player.pos_boss)
+    # print ("\n---------------------------------------------------------------Z\n\n")
     if (player.pos_boss == 0):
-        player.broadcast(EnumHeader.IMHERE.value +" IMHERE\n")
-        print ("IMHERE\n")
+        player.broadcast(EnumHeader.IMHERE.value + " IMHERE\n")
+        print("IMHERE\n")
         return True
     elif (player.pos_boss == 1 or player.pos_boss == 2 or player.pos_boss == 8):
         player.move()
@@ -31,7 +38,6 @@ def locate(player: Player):
     elif (player.pos_boss == 6 or player.pos_boss == 7):
         player.turn(EnumDirection.RIGHT.value)
         print("RIGHT\n")
-    player.wait_answer(True)
     return False
 
 def join_boss(player: Player):
