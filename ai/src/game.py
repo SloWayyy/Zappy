@@ -1,9 +1,12 @@
-def game_loop(sock):
+import socket
 
-    while True:
-        donnees = sock.recv(1024)
-        if not donnees:
-            break
-        print("Données reçues :", donnees.decode())
+from ai.src.player import Player, Direction
 
+def game_loop(sock: socket.socket, name: str):
+    player = Player(sock, name)
+    player.move()
+    player.turn(Direction.RIGHT)
+    player.look()
+    player.inventory()
+    player.broadcast("test")
     sock.close()

@@ -24,6 +24,7 @@ class Gameplay {
         void handleInput(void);
         void drawMap(void);
         void findPlayer(void);
+        void drawTextOnScreen(std::string text, int fontSize, int posX, int posY, Color color);
         void setCurrentCharacter();
     private:
         std::shared_ptr<Window> _window;
@@ -35,6 +36,7 @@ class Gameplay {
         Raylibcpp::RayWindow _rayWindow;
         Raylibcpp::RayCube _rayCube;
         Raylibcpp::RayModel _rayModel;
+        Raylibcpp::RayText _rayText;
 };
 
 #endif /* !GAMEPLAY_HPP_ */

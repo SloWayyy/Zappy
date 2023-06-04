@@ -13,6 +13,8 @@ ${NAME}:
 	cp src/main.py ../${NAME}
 	chmod +x ../${NAME}
 
+RM	  =   rm -rf
+
 clean:
 	${RM} src/__pycache__/
 	${RM} ./sources/__pycache__/

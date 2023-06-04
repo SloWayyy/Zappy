@@ -44,10 +44,20 @@ void Gameplay::findPlayer(void)
     }
 }
 
+void Gameplay::drawTextOnScreen(std::string text, int fontSize, int posX, int posY, Color color)
+{
+    this->_rayWindow.endMode3D();
+    this->_rayText.drawText(text, posX, posY, fontSize, color);
+    this->_rayWindow.beginMode3D(this->_window->getCamera());
+}
+
 void Gameplay::run(void)
 {
     this->_map.run();
     this->drawMap();
+    this->drawTextOnScreen("F1:  Camera 1", 20, this->_window->getScreenHeight() - 150, 10, BLACK);
+    this->drawTextOnScreen("F2: Camera 2", 20, this->_window->getScreenHeight() - 150, 60, BLACK);
+    this->drawTextOnScreen("F3: Camera 3", 20, this->_window->getScreenHeight() - 150, 110, BLACK);
     this->handleInput();
     this->runPlayers();
 }

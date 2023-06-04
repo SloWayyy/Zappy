@@ -21,6 +21,8 @@ void Button::update()
     this->_colorRect = BLUE;
     this->_mouse.x = this->_rayMouse.getMouseX();
     this->_mouse.y = this->_rayMouse.getMouseY();
+    this->_mouse.width = 1;
+    this->_mouse.height = 1;
     bool collision = this->_rayMouse.checkCollisionRecs(this->_mouse, this->_rectButton);
 
     if (collision) {

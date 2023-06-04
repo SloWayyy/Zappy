@@ -3,6 +3,7 @@
 import sys
 
 from ai.src.game import game_loop
+from ai.src.player import ErrorConnection
 from ai.src.handle_args import pars_args, BadArgumentException
 from ai.src.handle_packets import get_socket, BadConnectionException
 
@@ -19,11 +20,13 @@ def main():
     try:
         args = pars_args()
         sock = get_socket(args.port, args.address if args.address is not None else "")
-        game_loop(sock)
+        game_loop(sock, args.name)
         sys.exit(0)
     except BadArgumentException as e:
         print(e)
     except BadConnectionException as e:
+        print(e)
+    except ErrorConnection as e:
         print(e)
     sys.exit(84)
 
