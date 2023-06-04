@@ -7,12 +7,12 @@
 
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 #include "constants.h"
 #include "server.h"
 #include "types.h"
-#include "util.h"
 
 static void display_help_server(char const *binary)
 {
@@ -39,7 +39,7 @@ static bool is_help(int argc, char const *argv[])
 static void destroy_options(options_t *options)
 {
     if (options->names != NULL) {
-        free_array(options->names);
+        free(options->names);
     }
 }
 

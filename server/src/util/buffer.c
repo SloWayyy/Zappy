@@ -5,6 +5,7 @@
 ** buffer.c
 */
 
+#include <stdarg.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,7 +14,6 @@
 
 #include "constants.h"
 #include "types.h"
-#include "util.h"
 
 static bool resize_buffer(buffer_t *buffer)
 {
@@ -22,6 +22,7 @@ static bool resize_buffer(buffer_t *buffer)
         perror("realloc failed");
         return false;
     }
+    memset(&buffer->buffer[buffer->size], 0, buffer->capacity - buffer->size);
     return true;
 }
 
@@ -45,21 +46,24 @@ buffer_t *new_buffer(void)
     return buffer;
 }
 
-bool append_buffer(buffer_t *buffer, char const *str)
+void append_buffer(buffer_t *buffer, char const *format, ...)
 {
-    size_t len = strlen(str);
+    size_t len;
+    va_list args;
 
-    if (buffer->size + len >= buffer->capacity) {
-        while (buffer->size + len >= buffer->capacity) {
-            buffer->capacity += BUFFER_EXTRA;
-        }
-        if (!resize_buffer(buffer)) {
-            return false;
-        }
+    va_start(args, format);
+    len = vsnprintf(NULL, 0, format, args);
+    while (buffer->size + len >= buffer->capacity) {
+        buffer->capacity += BUFFER_EXTRA;
     }
-    memcpy(buffer->buffer + buffer->size, str, len);
+    if (!resize_buffer(buffer)) {
+        return;
+    }
+    va_end(args);
+    va_start(args, format);
+    vsprintf(&buffer->buffer[buffer->size], format, args);
     buffer->size += len;
-    return true;
+    va_end(args);
 }
 
 bool dump_buffer(buffer_t *buffer, int fd)

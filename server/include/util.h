@@ -9,6 +9,7 @@
     #define UTILS_H_
 
     #include <arpa/inet.h>
+    #include <stdbool.h>
     #include <stddef.h>
 
     #include "types.h"
@@ -17,7 +18,7 @@ size_t array_len(char **array);
 void free_array(char **array);
 
 buffer_t *new_buffer(void);
-bool append_buffer(buffer_t *buffer, char const *str);
+void append_buffer(buffer_t *buffer, char const *format, ...);
 bool dump_buffer(buffer_t *buffer, int fd);
 void free_buffer(buffer_t *buffer);
 
