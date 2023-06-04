@@ -16,6 +16,11 @@ class EnumObject (Enum):
     PHIRAS = "phiras"
     THYSTAME = "thystame"
 
+class EnumBoss (Enum):
+    IAM = 1
+    IMNOT = 0
+    IDK = -1
+
 class EnumHeader (Enum):
     ASKBOSS = "$1$"
     IMBOSS = "$2$"
