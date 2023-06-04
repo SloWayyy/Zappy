@@ -1,0 +1,97 @@
+name: Zappy
+
+on:
+  pull_request:
+
+env:
+  EXECUTABLES: "zappy_ai,zappy_server"
+  CODING_STYLE: "coding-style-reports.log"
+
+jobs:
+  repository_cleanliness:
+    name: "Repository: Cleanliness"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repository checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Find unwanted files
+        run: find . -regextype posix-extended -regex '.*\.(~.a|o|so|gcda|gcno|gcov)' -exec echo "::error file={},title="Unwanted file detected"::{}" \;
+      - name: Exit if file is found
+        run: find . -regextype posix-extended -regex '.*\.(a|o|so|gcda|gcno|gcov)' | grep -q . || exit 0 && exit 1
+
+  repository_coding_style:
+    name: "Repository: Coding style"
+    runs-on: ubuntu-latest
+    container: ghcr.io/epitech/coding-style-checker:latest
+    steps:
+      - name: Repository checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Check coding style
+        run: |
+          find . -type f ! -name "Makefile" -delete ; find . -type d -empty -delete
+          check.sh $(pwd) $(pwd)
+          while IFS=':' read -r file line type; do
+            file="server/${file#./}"
+            echo "::error file=$file,line=$line,title="$type"::$file"
+          done < $CODING_STYLE
+          if [ -s "$CODING_STYLE" ]; then
+            exit 1
+          fi
+
+  server_coding_style:
+    name: "Server: Coding style"
+    runs-on: ubuntu-latest
+    container: ghcr.io/epitech/coding-style-checker:latest
+    steps:
+      - name: Repository checkout
+        uses: actions/checkout@v3
+      - name: Check coding style
+        run: |
+          check.sh $(pwd)/server/ $(pwd)
+          while IFS=':' read -r file line type; do
+            file="server/${file#./}"
+            echo "::error file=$file,line=$line,title="$type"::$file"
+          done < $CODING_STYLE
+          if [ -s "$CODING_STYLE" ]; then
+            exit 1
+          fi
+
+  repository_compilation:
+    name: "Repository: Compilation"
+    runs-on: ubuntu-latest
+    container: epitechcontent/epitest-docker:latest
+    needs:
+      - repository_cleanliness
+      - repository_coding_style
+      - server_coding_style
+    steps:
+      - name: Repository checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Compilation execution
+        timeout-minutes: 2
+        run: make ci
+      - name: Test executables presence
+        run: IFS=',' read -r -a array <<< ${{ env.EXECUTABLES }} ; for value in ${array[@]} ; do find . -executable -name "${value}" | grep -q . || echo "::error title="Executable not found"::${value}" ; done
+      - name: Exit if executable not found
+        run: IFS=',' read -r -a array <<< ${{ env.EXECUTABLES }} ; for value in ${array[@]} ; do find . -executable -name "${value}" | grep -q . || exit 1 ; done
+
+  server_tests:
+    name: "Server: Tests"
+    runs-on: ubuntu-latest
+    container: epitechcontent/epitest-docker:latest
+    needs:
+      - repository_compilation
+    steps:
+      - name: Repository checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Tests execution
+        timeout-minutes: 2
+        run: make -C server/ tests_run

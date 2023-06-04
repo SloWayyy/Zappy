@@ -56,6 +56,7 @@ clean:
 	$(RM) $(OBJ)
 	$(RM) $(OBJ_M)
 	$(RM) $(OBJ_T)
+	find -name "*.gcda" -delete -o -name "*.gcno" -delete
 
 debug: CPPFLAGS += -g3
 debug: re
@@ -63,7 +64,6 @@ debug: re
 fclean:	clean
 	$(RM) $(NAME)
 	$(RM) $(TEST)
-	find -name "*.gcda" -delete -o -name "*.gcno" -delete
 
 re:	fclean all
 
@@ -71,7 +71,7 @@ tests_run: CFLAGS += --coverage
 tests_run: LDLIBS += -lcriterion
 tests_run: clean $(OBJ) $(OBJ_T)
 	$(CC) -o $(TEST) $(OBJ) $(OBJ_T) $(LDLIBS) --coverage
-	$(MAKE) clean
+	$(RM) $(OBJ)
 	./$(TEST)
 
 .PHONY: all clean fclean re tests_run

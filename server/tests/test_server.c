@@ -9,43 +9,47 @@
 #include <criterion/redirect.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <string.h>
 
 #include "args.h"
 #include "constants.h"
 #include "server.h"
 
-static void redirect_all(void)
-{
-    cr_redirect_stdout();
-    cr_redirect_stderr();
-}
-
-Test(check_arguments, valid_arguments, .init=cr_redirect_stdout)
+Test(check_arguments, valid_arguments)
 {
     char const *argv[] = { "./zappy_server", "-p", "4245", "-x", "10", "-y", "10", "-n", "toto", "tata", "-c", "10", "-f", "10", NULL };
     options_t options;
 
+    memset(&options, 0, sizeof(options_t));
     cr_assert_eq(check_arguments(14, argv, &options), true);
 }
 
-Test(check_arguments, unknown_opt, .init=redirect_all)
+Test(check_arguments, unknown_option, .init=cr_redirect_stderr)
 {
+    char const *argv[] = { "./zappy_server", "-s" };
     options_t options;
-    check_arguments(2, (char const *[]){"./zappy_server", "-s"}, &options);
+
+    memset(&options, 0, sizeof(options_t));
+    cr_assert_eq(check_arguments(2, argv, &options), false);
     cr_assert_stderr_eq_str("Error: Unknown option: -s\n");
 }
 
 Test(check_arguments, only_team_name, .init=cr_redirect_stdout)
 {
+    char const *argv[] = { "./zappy_server", "-n", "tfoto", "tatva" };
     options_t options;
-    cr_assert_eq(check_arguments(4, (char const *[]){"./zappy_server", "-n", "tfoto", "tatva"}, &options), true);
+
+    memset(&options, 0, sizeof(options_t));
+    cr_assert_eq(check_arguments(4, argv, &options), true);
 }
 
 Test(check_arguments, default_values, .init=cr_redirect_stdout)
 {
+    char const *argv[] = { "./zappy_server", "-n", "totoo", "tatata" };
     options_t options;
-    check_arguments(3, (char const *[]){"./zappy_server", "-n", "totoo", "tatata"}, &options);
 
+    memset(&options, 0, sizeof(options_t));
+    cr_assert_eq(check_arguments(4, argv, &options), true);
     cr_assert_eq(options.port, DEFAULT_PORT);
     cr_assert_eq(options.width, DEFAULT_WIDTH);
     cr_assert_eq(options.height, DEFAULT_HEIGHT);
@@ -53,150 +57,192 @@ Test(check_arguments, default_values, .init=cr_redirect_stdout)
     cr_assert_eq(options.freq, DEFAULT_FREQ);
 }
 
-Test(check_arguments, invalid_port, .init=redirect_all)
+Test(check_arguments, invalid_port, .init=cr_redirect_stderr)
 {
+    char const *argv[] = { "./zappy_server", "-p", "toto", "-n", "toto", "tata" };
     options_t options;
-    cr_assert_eq(check_arguments(5, (char const *[]){"./zappy_server", "-p", "toto", "-n", "toto", "tata", NULL}, &options), false);
+
+    memset(&options, 0, sizeof(options_t));
+    cr_assert_eq(check_arguments(6, argv, &options), false);
+    cr_assert_stderr_eq_str("Error: Port must be a number\n");
 }
 
-Test(check_arguments, invalid_map_dimension, .init=redirect_all)
+Test(check_arguments, incomplete_map_dimensions, .init=cr_redirect_stderr)
 {
+    char const *argv[] = { "./zappy_server", "-x", "10", "-n", "toto", "tata" };
     options_t options;
-    check_arguments(6, (char const *[]){"./zappy_server", "-x", "10", "-n", "toto", "tata", NULL}, &options);
+
+    memset(&options, 0, sizeof(options_t));
+    cr_assert_eq(check_arguments(6, argv, &options), false);
     cr_assert_stderr_eq_str("Error: Map dimensions are not set\n");
 }
 
-Test(port_handler, invalid_port_nbr_arg, .init=redirect_all)
+Test(check_arguments, missing_port_argument, .init=cr_redirect_stderr)
 {
+    char const *argv[] = { "./zappy_server", "-n", "toto", "tata", "-p" };
     options_t options;
-    port_handler(5, (char const *[]){"./zappy_server", "-n", "toto", "tata", "-p"}, &options, 4);
+
+    memset(&options, 0, sizeof(options_t));
+    cr_assert_eq(check_arguments(5, argv, &options), false);
     cr_assert_stderr_eq_str("Error: -p requires an argument\n");
 }
 
-Test(port_handler, port_already_set, .init=redirect_all)
+Test(check_arguments, port_already_set, .init=cr_redirect_stderr)
 {
+    char const *argv[] = { "./zappy_server", "-n", "toto", "tata", "-p", "2000", "-p", "1500" };
     options_t options;
-    options.port = 2000;
-    check_arguments(8, (char const *[]){"./zappy_server", "-n", "toto", "tata", "-p", "2000", "-p", "1500"}, &options);
+
+    memset(&options, 0, sizeof(options_t));
+    cr_assert_eq(check_arguments(8, argv, &options), false);
     cr_assert_stderr_eq_str("Error: Port already set\n");
 }
 
 Test(port_handler, port_too_big, .init=cr_redirect_stderr)
 {
+    char const *argv[] = { "./zappy_server", "-n", "toto", "tata", "-p", "65536" };
     options_t options;
-    cr_assert_eq(port_handler(6, (char const *[]){"./zappy_server", "-n", "toto", "tata", "-p", "65536"}, &options, 4), -1);
+
+    memset(&options, 0, sizeof(options_t));
+    cr_assert_eq(check_arguments(6, argv, &options), false);
+    cr_assert_stderr_eq_str("Error: Port must be between 1 and 65535\n");
 }
 
-Test(check_arguments, no_team_name, .init=redirect_all)
+Test(check_arguments, no_arguments, .init=cr_redirect_stderr)
 {
+    char const *argv[] = { "./zappy_server" };
     options_t options;
-    check_arguments(1, (char const *[]){"./zappy_server"}, &options);
+
+    memset(&options, 0, sizeof(options_t));
+    cr_assert_eq(check_arguments(1, argv, &options), false);
     cr_assert_stderr_eq_str("Error: Team names are not set\n");
 }
 
-Test(height_handler, invalid_height_nbr_arg, .init=redirect_all)
+Test(check_arguments, invalid_height_nbr_arg, .init=cr_redirect_stderr)
 {
+    char const *argv[] = { "./zappy_server", "-n", "toto", "tata", "-y" };
     options_t options;
-    height_handler(5, (char const *[]){"./zappy_server", "-n", "toto", "tata", "-y"}, &options, 4);
+
+    memset(&options, 0, sizeof(options_t));
+    cr_assert_eq(check_arguments(5, argv, &options), false);
     cr_assert_stderr_eq_str("Error: -y requires an argument\n");
 }
 
-Test(height_handler, height_already_set, .init=redirect_all)
+Test(check_arguments, height_already_set, .init=cr_redirect_stderr)
 {
+    char const *argv[] = { "./zappy_server", "-n", "toto", "tata", "-y", "10", "-y", "15" };
     options_t options;
-    options.height = 2000;
-    cr_assert_eq(check_arguments(8, (char const *[]){"./zappy_server", "-n", "toto", "tata", "-y", "10", "-y", "15"}, &options), false);
+
+    memset(&options, 0, sizeof(options_t));
+    cr_assert_eq(check_arguments(8, argv, &options), false);
+    cr_assert_stderr_eq_str("Error: Height already set\n");
 }
 
-Test(check_positive, valid_nbr)
+Test(check_arguments, invalid_width, .init=cr_redirect_stderr)
 {
-    int storage = 0;
-    cr_assert_eq(check_positive("10", "-p", &storage), true);
-    cr_assert_eq(storage, 10);
-}
-
-Test(check_positive, invalid_nbr, .init=cr_redirect_stderr)
-{
-    int storage = 0;
-    cr_assert_eq(check_positive("toto", "-p", &storage), false);
-}
-
-Test(check_positive, neg_nbr, .init=cr_redirect_stderr)
-{
-    int storage = 0;
-    cr_assert_eq(check_positive("-10", "-p", &storage), false);
-}
-
-Test(width_handler, invalid_width_nbr_arg, .init=redirect_all)
-{
+    char const *argv[] = { "./zappy_server", "-n", "toto", "tata", "-x" };
     options_t options;
-    width_handler(5, (char const *[]){"./zappy_server", "-n", "toto", "tata", "-x"}, &options, 4);
+
+    memset(&options, 0, sizeof(options_t));
+    cr_assert_eq(check_arguments(5, argv, &options), false);
     cr_assert_stderr_eq_str("Error: -x requires an argument\n");
 }
 
-Test(width_handler, invalid_value, .init=redirect_all)
+Test(check_arguments, invalid_value, .init=cr_redirect_stderr)
 {
+    char const *argv[] = { "./zappy_server", "-n", "toto", "tata", "-x", "fdfd" };
     options_t options;
-    cr_assert_eq(check_arguments(5, (char const *[]){"./zappy_server", "-n", "toto", "tata", "-x", "fdfd"}, &options), false);
+
+    memset(&options, 0, sizeof(options_t));
+    cr_assert_eq(check_arguments(6, argv, &options), false);
+    cr_assert_stderr_eq_str("Error: Width must be a number\n");
 }
 
-Test(clients_handler, invalid_clients_nbr_arg, .init=redirect_all)
+Test(check_arguments, invalid_clients_nbr_arg, .init=cr_redirect_stderr)
 {
+    char const *argv[] = { "./zappy_server", "-n", "toto", "tata", "-c" };
     options_t options;
-    clients_handler(5, (char const *[]){"./zappy_server", "-n", "toto", "tata", "-c"}, &options, 4);
+
+    memset(&options, 0, sizeof(options_t));
+    cr_assert_eq(check_arguments(5, argv, &options), false);
     cr_assert_stderr_eq_str("Error: -c requires an argument\n");
 }
 
-Test(clients_handler, invalid_value, .init=redirect_all)
+Test(check_arguments, invalid_value_clients, .init=cr_redirect_stderr)
 {
+    char const *argv[] = { "./zappy_server", "-n", "toto", "tata", "-c", "fdfd" };
     options_t options;
-    cr_assert_eq(check_arguments(5, (char const *[]){"./zappy_server", "-n", "toto", "tata", "-c", "fdfd"}, &options), false);
+
+    memset(&options, 0, sizeof(options_t));
+    cr_assert_eq(check_arguments(6, argv, &options), false);
+    cr_assert_stderr_eq_str("Error: Clients must be a number\n");
 }
 
-Test(clients_handler, already_set, .init=redirect_all)
+Test(check_arguments, already_set, .init=cr_redirect_stderr)
 {
+    char const *argv[] = { "./zappy_server", "-n", "toto", "tata", "-c", "10", "-c", "15" };
     options_t options;
-    options.clients = 10;
-    clients_handler(8, (char const *[]){"./zappy_server", "-n", "toto", "tata", "-c", "10", "-c", "15"}, &options, 6);
+
+    memset(&options, 0, sizeof(options_t));
+    cr_assert_eq(check_arguments(8, argv, &options), false);
     cr_assert_stderr_eq_str("Error: Clients number already set\n");
 }
 
-Test(freq_handler, invalid_freq_nbr_arg, .init=redirect_all)
+Test(check_arguments, invalid_freq_nbr_arg, .init=cr_redirect_stderr)
 {
+    char const *argv[] = { "./zappy_server", "-n", "toto", "tata", "-f" };
     options_t options;
-    freq_handler(5, (char const *[]){"./zappy_server", "-n", "toto", "tata", "-f"}, &options, 4);
+
+    memset(&options, 0, sizeof(options_t));
+    cr_assert_eq(check_arguments(5, argv, &options), false);
     cr_assert_stderr_eq_str("Error: -f requires an argument\n");
 }
 
-Test(freq_handler, invalid_value, .init=redirect_all)
+Test(check_arguments, freq_invalid_value, .init=cr_redirect_stderr)
 {
+    char const *argv[] = {"./zappy_server", "-n", "toto", "tata", "-f", "fdfd" };
     options_t options;
-    cr_assert_eq(check_arguments(5, (char const *[]){"./zappy_server", "-n", "toto", "tata", "-f", "fdfd"}, &options), false);
+
+    memset(&options, 0, sizeof(options_t));
+    cr_assert_eq(check_arguments(6, argv, &options), false);
+    cr_assert_stderr_eq_str("Error: Frequency must be a number\n");
 }
 
-Test(freq_handler, already_set, .init=redirect_all)
+Test(check_arguments, freq_already_set, .init=cr_redirect_stderr)
 {
+    char const *argv[] = { "./zappy_server", "-n", "toto", "tata", "-f", "10", "-f", "15" };
     options_t options;
-    options.freq = 10;
-    freq_handler(8, (char const *[]){"./zappy_server", "-n", "toto", "tata", "-f", "10", "-f", "15"}, &options, 6);
+
+    memset(&options, 0, sizeof(options_t));
+    cr_assert_eq(check_arguments(8, argv, &options), false);
     cr_assert_stderr_eq_str("Error: Frequency already set\n");
 }
 
-Test(freq_handler, freq_too_big, .init=redirect_all)
+Test(check_arguments, freq_too_big, .init=cr_redirect_stderr)
 {
+    char const *argv[] = { "./zappy_server", "-n", "toto", "tata", "-f", "200" };
     options_t options;
-    freq_handler(6, (char const *[]){"./zappy_server", "-n", "toto", "tata", "-f", "200"}, &options, 4);
+
+    memset(&options, 0, sizeof(options_t));
+    cr_assert_eq(check_arguments(6, argv, &options), false);
     cr_assert_stderr_eq_str("Error: Frequency cannot be greater than 100\n");
 }
 
-Test(names_handler, invalid_names_nbr_arg, .init=cr_redirect_stderr)
+Test(check_arguments, invalid_names_argument, .init=cr_redirect_stderr)
 {
+    char const *argv[] = { "./zappy_server", "-n" };
     options_t options;
-    cr_assert_eq(names_handler(2, (char const *[]){"./zappy_server", "-n"}, &options, 1), -1);
+
+    memset(&options, 0, sizeof(options_t));
+    cr_assert_eq(check_arguments(2, argv, &options), false);
+    cr_assert_stderr_eq_str("Error: No team names given\n");
 }
 
-Test(names_handler, same_team_name, .init=redirect_all)
+Test(check_arguments, same_team_name, .init=cr_redirect_stderr)
 {
+    char const *argv[] = { "./zappy_server", "-n", "toto", "tata", "toto" };
     options_t options;
-    cr_assert_eq(check_arguments(5, (char const *[]){"./zappy_server", "-n", "toto", "tata", "toto"}, &options), false);
+
+    memset(&options, 0, sizeof(options_t));
+    cr_assert_eq(check_arguments(5, argv, &options), false);
+    cr_assert_stderr_eq_str("Error: Team toto is registered twice\n");
 }
