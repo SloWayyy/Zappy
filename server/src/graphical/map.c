@@ -10,8 +10,8 @@
 #include "constants.h"
 #include "graphical.h"
 #include "server.h"
-#include "util.h"
 #include "types.h"
+#include "util.h"
 
 void msz_handler(server_t *server, client_t *client)
 {
@@ -31,6 +31,18 @@ client_t *client)
     return true;
 }
 
+static void send_tile(server_t *server, client_t *client,
+const int x, const int y)
+{
+    append_buffer(client->buffer, "%zu %zu %zu %zu %zu %zu", \
+        server->zappy->map[y][x].resources[0], \
+        server->zappy->map[y][x].resources[1], \
+        server->zappy->map[y][x].resources[2], \
+        server->zappy->map[y][x].resources[3], \
+        server->zappy->map[y][x].resources[4], \
+        server->zappy->map[y][x].resources[5]);
+}
+
 void bct_handler(server_t *server, client_t *client)
 {
     char *intput_x = strtok(NULL, " ");
@@ -45,13 +57,10 @@ void bct_handler(server_t *server, client_t *client)
     }
     if (!check_map_coord(server, x, y, client))
         return;
-    append_buffer(client->buffer, "%s %zu %zu %zu %zu %zu %zu %zu %zu%s", \
-        GRAPHICAL_TILE_CONTENT, x, y, server->zappy->map[y][x].resources[0], \
-        server->zappy->map[y][x].resources[1], \
-        server->zappy->map[y][x].resources[2], \
-        server->zappy->map[y][x].resources[3], \
-        server->zappy->map[y][x].resources[4], \
-        server->zappy->map[y][x].resources[5], LINE_BREAK);
+    append_buffer(client->buffer, "%s %zu %zu ", \
+        GRAPHICAL_TILE_CONTENT, x, y);
+    send_tile(server, client, x, y);
+    append_buffer(client->buffer, "%s", LINE_BREAK);
 }
 
 void mct_handler(server_t *server, client_t *client)
@@ -63,15 +72,10 @@ void mct_handler(server_t *server, client_t *client)
     }
     for (int y = 0; y < server->options->height; y++) {
         for (int x = 0; x < server->options->width; x++) {
-            append_buffer(client->buffer, \
-                "%s %d %d %zu %zu %zu %zu %zu %zu %s", \
-                GRAPHICAL_TILE_CONTENT, x, y, \
-                server->zappy->map[y][x].resources[0], \
-                server->zappy->map[y][x].resources[1], \
-                server->zappy->map[y][x].resources[2], \
-                server->zappy->map[y][x].resources[3], \
-                server->zappy->map[y][x].resources[4], \
-                server->zappy->map[y][x].resources[5], LINE_BREAK);
+            append_buffer(client->buffer, "%s %zu %zu ", \
+                GRAPHICAL_ALL_TILE_CONTENT, x, y);
+            send_tile(server, client, x, y);
+            append_buffer(client->buffer, "%s", LINE_BREAK);
         }
     }
 }
