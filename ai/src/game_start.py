@@ -50,6 +50,3 @@ def join_boss(player: Player):
     else:
         while (locate_boss(player) == False):
             pass
-
-    while (1):
-        pass
