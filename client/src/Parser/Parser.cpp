@@ -21,7 +21,7 @@ Parser::Parser(int ac, char **av)
     this->setHelp();
     if (ac != 5)
         throw ParserException("Invalid number of arguments\n" + this->_usage);
-    for (int i = 0; av[i]; i++)
+    for (int i = 0; i < ac; i++)
         this->_av.push_back(av[i]);
 }
 
