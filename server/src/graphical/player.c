@@ -57,3 +57,24 @@ void plv_handler(server_t *server, client_t *client)
     append_buffer(client->buffer, "%s %zu %zu%s", GRAPHICAL_PLAYER_LEVEL, \
         target->player->id, target->player->level, LINE_BREAK);
 }
+
+void ppo_handler(server_t *server, client_t *client)
+{
+    char *line = strtok(NULL, " ");
+    client_t *target = NULL;
+    int id = 0;
+
+    if (line == NULL || strtok(NULL, " ") != NULL || !check_number(line, &id)) {
+        append_buffer(client->buffer, "%s%s",
+            GRAPHICAL_COMMAND_PARAMETER, LINE_BREAK);
+        return;
+    }
+    target = get_client_by_player_id(server, (size_t)id);
+    if (target == NULL) {
+        append_buffer(client->buffer, "%s\n", GRAPHICAL_COMMAND_PARAMETER);
+        return;
+    }
+    append_buffer(client->buffer, "%s %zu %zu %zu %d%s", \
+        GRAPHICAL_PLAYER_POSITION, target->player->id, target->player->pos->x,
+        target->player->pos->y, target->player->direction, LINE_BREAK);
+}
