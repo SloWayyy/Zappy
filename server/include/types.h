@@ -107,6 +107,7 @@ typedef struct data {
 
 typedef struct tick {
     size_t tick_nb;
+    long freq;
     struct timeval tick_delay;
     struct timeval game_start;
     struct timeval last_tick;

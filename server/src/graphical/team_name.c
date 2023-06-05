@@ -2,23 +2,25 @@
 ** EPITECH PROJECT, 2023
 ** server
 ** File description:
-** map_answers.c
+** team_name.c
 */
 
 #include <string.h>
 
 #include "constants.h"
 #include "graphical.h"
-#include "util.h"
 #include "types.h"
+#include "util.h"
 
-void msz_handler(server_t *server, client_t *client)
+void tna_handler(server_t *server, client_t *client)
 {
     if (strtok(NULL, " ") != NULL) {
         append_buffer(client->buffer, "%s%s", GRAPHICAL_COMMAND_PARAMETER, \
             LINE_BREAK);
         return;
     }
-    append_buffer(client->buffer, "%s %d %d%s", GRAPHICAL_MAP_SIZE, \
-        server->options->width, server->options->height, LINE_BREAK);
+    for (size_t i = 0; server->options->names[i] != NULL; i++) {
+        append_buffer(client->buffer, "%s %s%s", GRAPHICAL_TEAM_NAME, \
+            server->options->names[i], LINE_BREAK);
+    }
 }

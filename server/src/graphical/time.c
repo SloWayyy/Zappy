@@ -14,7 +14,7 @@
 
 #include "server.h"
 
-void sst_handler(server_t *server, client_t *client, char *line)
+void sst_handler(server_t *server, client_t *client)
 {
     (void) line;
     int ticks = 0;
@@ -33,4 +33,15 @@ void sst_handler(server_t *server, client_t *client, char *line)
     init_tick(server, ticks);
     append_buffer(client->buffer, "%s %d%s", GRAPHICAL_CHANGE_FREQ, \
         ticks, LINE_BREAK);
+}
+
+void sgt_handler(server_t *server, client_t *client)
+{
+    if (strtok(NULL, " ") != NULL) {
+        append_buffer(client->buffer, "%s%s", \
+            GRAPHICAL_COMMAND_PARAMETER, LINE_BREAK);
+        return;
+    }
+    append_buffer(client->buffer, "%s %li%s", GRAPHICAL_FREQUENCY, \
+        server->zappy->tick->freq, LINE_BREAK);
 }
