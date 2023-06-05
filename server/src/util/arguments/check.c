@@ -12,13 +12,12 @@
 
 #include "constants.h"
 
-bool check_number(char const *str, char *option, int *storage)
+bool check_number(char const *str, int *storage)
 {
     char *end = NULL;
     long parsed = strtol(str, &end, 10);
 
     if (strlen(end) > 0) {
-        fprintf(stderr, "Error: %s must be a number\n", option);
         return false;
     }
     *storage = (int) parsed;
@@ -27,7 +26,8 @@ bool check_number(char const *str, char *option, int *storage)
 
 bool check_port(char *str, int *storage)
 {
-    if (!check_number(str, "Port", storage)) {
+    if (!check_number(str, storage)) {
+        fprintf(stderr, "Error: Port must be a number\n");
         return false;
     }
     if (*storage < 1 || *storage >= MAX_PORT) {
@@ -40,7 +40,8 @@ bool check_port(char *str, int *storage)
 
 bool check_positive(char const *str, char *option, int *storage)
 {
-    if (!check_number(str, option, storage)) {
+    if (!check_number(str, storage)) {
+        fprintf(stderr, "Error: %s must be a number\n", option);
         return false;
     }
     if (*storage < 1) {

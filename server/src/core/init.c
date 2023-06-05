@@ -25,6 +25,7 @@ static bool init_zappy(server_t *server)
     team_t *team = NULL;
 
     init_tick(server, server->options->freq);
+    server->zappy->tick->tick_nb = 0;
     if (!init_map(server)) {
         return false;
     }

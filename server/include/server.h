@@ -31,6 +31,6 @@ void init_tick(server_t *server, long frequence);
 bool tick(server_t *server);
 
 bool check_arguments(int argc, char const *argv[], options_t *options);
-bool check_number(char const *str, char *option, int *storage);
+bool check_number(char const *str, int *storage);
 
 #endif
