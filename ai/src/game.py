@@ -16,6 +16,7 @@ def game_loop(sock: socket.socket, args):
     player = Player(sock, args)
     find_boss(player)
     join_boss(player)
+    print(player.inventory())
     while (1):
         pass
     sock.close()

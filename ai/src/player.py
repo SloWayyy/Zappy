@@ -52,7 +52,7 @@ class Player:
         elif x[0][1] == EnumHeader.IMHERE.value and self.boss == 1:
             self.nbr_ai -= 1
         elif x[0][1] == EnumHeader.IMHERE.value and self.boss == 0:
-            print("donnes before : ", donnees)
+            # print("donnes before : ", donnees)
             self.pos_boss = -1
             while (self.pos_boss == -1):
                 donnees = receive_packet(self.sock)
