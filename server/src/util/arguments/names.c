@@ -5,11 +5,13 @@
 ** This file will handle the arguments -n
 */
 
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 #include "args.h"
+#include "types.h"
 
 static bool is_valid(const char **teams, int size, char const *name)
 {
