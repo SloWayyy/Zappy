@@ -14,7 +14,9 @@
     #define GRAPHICAL_IDENTIFIER "GRAPHIC"
 
     #define GRAPHICAL_MAP_SIZE "msz"
-    #define GRAPHICAL_TEAM_NAME "tna"
+    #define GRAPHICAL_TILE_CONTENT "bct"
+    #define GRAPHICAL_ALL_TILE_CONTENT "mct"
+    #define GRAPHICAL_TEAMS_NAMES "tna"
     #define GRAPHICAL_PLAYER_POSITION "ppo"
     #define GRAPHICAL_PLAYER_LEVEL "plv"
     #define GRAPHICAL_PLAYER_INVENTORY "pin"
@@ -29,6 +31,8 @@ void handle_graphical_command(server_t *server, client_t *client, char *line);
 client_t *get_client_by_player_id(server_t *server, size_t id);
 
 void msz_handler(server_t *server, client_t *client);
+void bct_handler(server_t *server, client_t *client);
+void mct_handler(server_t *server, client_t *client);
 void tna_handler(server_t *server, client_t *client);
 void ppo_handler(server_t *server, client_t *client);
 void plv_handler(server_t *server, client_t *client);
@@ -45,10 +49,12 @@ typedef struct graphical_command {
 
 static const graphical_command_t GRAPHICAL_COMMANDS[] = {
         { GRAPHICAL_MAP_SIZE, &msz_handler },
-        { GRAPHICAL_TEAM_NAME, &tna_handler },
+        { GRAPHICAL_TILE_CONTENT, &bct_handler },
+        { GRAPHICAL_ALL_TILE_CONTENT, &mct_handler },
+        { GRAPHICAL_TEAMS_NAMES, &tna_handler },
+        { GRAPHICAL_PLAYER_INVENTORY, &pin_handler },
         { GRAPHICAL_PLAYER_POSITION, &ppo_handler },
         { GRAPHICAL_PLAYER_LEVEL, &plv_handler },
-        { GRAPHICAL_PLAYER_INVENTORY, &pin_handler },
         { GRAPHICAL_FREQUENCY, &sgt_handler },
         { GRAPHICAL_CHANGE_FREQ, &sst_handler },
 };

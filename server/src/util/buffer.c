@@ -48,15 +48,17 @@ buffer_t *new_buffer(void)
 
 void vappend_buffer(buffer_t *buffer, char const *format, va_list args)
 {
+    bool resize = false;
     size_t len;
     va_list copy;
-    va_copy(copy, args);
 
+    va_copy(copy, args);
     len = vsnprintf(NULL, 0, format, args);
     while (buffer->size + len >= buffer->capacity) {
+        resize = true;
         buffer->capacity += BUFFER_EXTRA;
     }
-    if (!resize_buffer(buffer)) {
+    if (resize && !resize_buffer(buffer)) {
         return;
     }
     vsprintf(&buffer->buffer[buffer->size], format, copy);
