@@ -44,31 +44,33 @@ class Player:
         if (self.connection(args) == False):
             ErrorConnection("Error: connection failed")
 
-    def handle_broadcast(self, donnees: str):
-        for i in donnees:
-            x = re.findall("^message ([0-8]), (\$[0-9]\$) (\w+)$", i)
-            if len(x):
-                if x[0][1] == EnumHeader.ASKBOSS.value and self.boss == 1:
-                    self.broadcast(EnumHeader.IMBOSS.value + " IMBOSS")
-                    self.nbr_ai += 1
-                    self.pos_boss = 0
-                elif x[0][1] == EnumHeader.IMHERE.value and self.boss == 1:
-                    self.nbr_ai -= 1
-                    # print("--------------------receive broadcast-----------------\n")
-                elif x[0][1] == EnumHeader.IMHERE.value and self.boss == 0:
-                    # print("----1-----re wait------1-----")
-                    donnees = receive_packet(self.sock)
-                    if x[0][1] == EnumHeader.IMBOSS.value:
-                        self.pos_boss = int(x[0][0])
-                    # print("----2-----re wait------2-----")
-                elif x[0][1] == EnumHeader.IMBOSS.value and self.boss == -1:
-                    self.boss = 0
-                    self.pos_boss = int(x[0][0])
-                    self.broadcast(EnumHeader.ASKBOSS.value + "OK")
-                elif x[0][1] == EnumHeader.IMBOSS.value and self.boss == 0:
-                    self.pos_boss = int(x[0][0])
-                else:
-                    self.map_broadcast.update({int(x[0][0]) : (x[0][1], x[0][2])})
+    def handle_header(self, x, donnees):
+        if x[0][1] == EnumHeader.ASKBOSS.value and self.boss == 1:
+            self.broadcast(EnumHeader.IMBOSS.value + " IMBOSS")
+            self.nbr_ai += 1
+            self.pos_boss = 0
+        elif x[0][1] == EnumHeader.IMHERE.value and self.boss == 1:
+            self.nbr_ai -= 1
+        elif x[0][1] == EnumHeader.IMHERE.value and self.boss == 0:
+            print("donnes before : ", donnees)
+            self.pos_boss = -1
+            while (self.pos_boss == -1):
+                donnees = receive_packet(self.sock)
+                # print("donnes after : ", donnees)
+                donnees = self.handle_broadcast(donnees)
+                # print("pos after handle: ", self.pos_boss)
+            return donnees
+        elif x[0][1] == EnumHeader.IMBOSS.value and self.boss == -1:
+            self.boss = 0
+            self.pos_boss = int(x[0][0])
+            self.broadcast(EnumHeader.ASKBOSS.value + "OK")
+        elif x[0][1] == EnumHeader.IMBOSS.value and self.boss == 0:
+            self.pos_boss = int(x[0][0])
+        else:
+            self.map_broadcast.update({int(x[0][0]) : (x[0][1], x[0][2])})
+        return donnees
+
+    def clear_data(self, donnees):
         i = 0
         while i < len(donnees):
             x = re.findall("^message ([0-8]), (\$[0-9]\$) (\w+)$", donnees[i])
@@ -77,10 +79,17 @@ class Player:
                 i = 0
                 continue
             i += 1
+        return donnees
+
+    def handle_broadcast(self, donnees: str):
+        for i in donnees:
+            x = re.findall("^message ([0-8]), (\$[0-9]\$) (\w+)$", i)
+            if len(x):
+                donnees = self.handle_header(x, donnees)
+        return self.clear_data(donnees)
 
     def wait_answer(self, broadcast: bool = False):
         donnees = receive_packet(self.sock)
-        # print(donnees)
         self.handle_broadcast(donnees)
         if len(donnees) <= 1 and broadcast == False:
             return self.wait_answer()

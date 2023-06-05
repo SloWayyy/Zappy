@@ -16,12 +16,9 @@ def find_boss(player: Player):
         player.wait_answer()
 
 def locate_boss(player: Player):
-    # print ("\n\nA---------------------------------------------------------------\n")
+
     player.wait_answer(True)
-    # print("player pos before: ", player.pos_boss)
-    # player.wait_answer(True)
-    # print("player pos after: ", player.pos_boss)
-    # print ("\n---------------------------------------------------------------Z\n\n")
+
     if (player.pos_boss == 0):
         player.broadcast(EnumHeader.IMHERE.value + " IMHERE\n")
         print("IMHERE\n")
