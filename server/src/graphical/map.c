@@ -15,6 +15,11 @@
 
 void msz_handler(server_t *server, client_t *client)
 {
+    if (strtok(NULL, " ") != NULL) {
+        append_buffer(client->buffer, "%s%s", GRAPHICAL_COMMAND_PARAMETER, \
+            LINE_BREAK);
+        return;
+    }
     append_buffer(client->buffer, "%s %d %d%s", GRAPHICAL_MAP_SIZE, \
         server->options->width, server->options->height, LINE_BREAK);
 }
