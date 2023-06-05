@@ -28,4 +28,6 @@
     #define LINE_BREAK "\n"
     #define WELCOME_MESSAGE "WELCOME"
 
+    #define UNUSED __attribute__((unused))
+
 #endif

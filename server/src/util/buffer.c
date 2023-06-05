@@ -17,7 +17,6 @@
 
 static bool resize_buffer(buffer_t *buffer)
 {
-    printf("Resize %zu\n", buffer->capacity);
     buffer->buffer = realloc(buffer->buffer, buffer->capacity);
     if (buffer->buffer == NULL) {
         perror("realloc failed");
@@ -47,13 +46,13 @@ buffer_t *new_buffer(void)
     return buffer;
 }
 
-void append_buffer(buffer_t *buffer, char const *format, ...)
+void vappend_buffer(buffer_t *buffer, char const *format, va_list args)
 {
-    size_t len;
-    va_list args;
     bool resize = false;
+    size_t len;
+    va_list copy;
 
-    va_start(args, format);
+    va_copy(copy, args);
     len = vsnprintf(NULL, 0, format, args);
     while (buffer->size + len >= buffer->capacity) {
         resize = true;
@@ -62,10 +61,17 @@ void append_buffer(buffer_t *buffer, char const *format, ...)
     if (resize && !resize_buffer(buffer)) {
         return;
     }
-    va_end(args);
-    va_start(args, format);
-    vsprintf(&buffer->buffer[buffer->size], format, args);
+    vsprintf(&buffer->buffer[buffer->size], format, copy);
     buffer->size += len;
+    va_end(copy);
+}
+
+void append_buffer(buffer_t *buffer, char const *format, ...)
+{
+    va_list args;
+
+    va_start(args, format);
+    vappend_buffer(buffer, format, args);
     va_end(args);
 }
 
@@ -78,10 +84,4 @@ bool dump_buffer(buffer_t *buffer, int fd)
         return resize_buffer(buffer);
     }
     return true;
-}
-
-void free_buffer(buffer_t *buffer)
-{
-    free(buffer->buffer);
-    free(buffer);
 }
