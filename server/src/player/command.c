@@ -16,7 +16,7 @@ void handle_player_command(server_t *server, client_t *client, char *line)
 {
     for (size_t i = 0; i < PLAYER_COMMANDS_COUNT; i++) {
         if (strcmp(line, PLAYER_COMMANDS[i].command) == 0) {
-            PLAYER_COMMANDS[i].function(server, client, line);
+            PLAYER_COMMANDS[i].function(server, client);
             return;
         }
     }

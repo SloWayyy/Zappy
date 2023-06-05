@@ -10,9 +10,8 @@
 #include "util.h"
 #include "types.h"
 
-void msz_handler(server_t *server, client_t *client, char *line)
+void msz_handler(server_t *server, client_t *client)
 {
-    (void) line;
     append_buffer(client->buffer, "%s %d %d%s", GRAPHICAL_MAP_SIZE, \
         server->options->width, server->options->height, LINE_BREAK);
 }

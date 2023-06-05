@@ -21,10 +21,10 @@
 bool try_join_team(server_t *server, client_t *client, char *line);
 void handle_player_command(server_t *server, client_t *client, char *line);
 
-void slots_handler(server_t *server, client_t *client, char *line);
+void slots_handler(server_t *server, client_t *client);
 
 typedef void (player_handler_t) \
-    (server_t *server, client_t *client, char *line);
+    (server_t *server, client_t *client);
 
 typedef struct player_command {
     char const *command;
