@@ -10,12 +10,13 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "graphical.h"
 #include "args.h"
 #include "types.h"
 
 static bool is_valid(const char **teams, int size, char const *name)
 {
-    if (!strcmp("GRAPHIC", name)) {
+    if (strcmp(GRAPHICAL_IDENTIFIER, name) == 0) {
         fprintf(stderr, "Error: The team can't have this name.\n");
         return true;
     }
