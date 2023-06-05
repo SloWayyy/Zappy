@@ -22,9 +22,9 @@ void msz_handler(server_t *server, client_t *client)
 static bool check_map_coord(server_t *server, const int x, const int y,
 client_t *client)
 {
-    if (x < 0 || x >= server->options->width || y < 0 || \
-        y >= server->options->height) {
-        append_buffer(client->buffer, "%s%s", GRAPHICAL_COMMAND_PARAMETER, 
+    if (x < 0 || x >= server->options->width || y < 0
+        || y >= server->options->height) {
+        append_buffer(client->buffer, "%s%s", GRAPHICAL_COMMAND_PARAMETER, \
             LINE_BREAK);
         return false;
         }
