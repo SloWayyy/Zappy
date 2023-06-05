@@ -15,6 +15,10 @@
 
 static bool is_valid(const char **teams, int size, char const *name)
 {
+    if (!strcmp("GRAPHIC", name) || !strcmp("graphic", name)) {
+        fprintf(stderr, "Error: The team can't have this name.\n");
+        return true;
+    }
     for (int i = 0; i < size; i++) {
         if (strcmp(teams[i], name) == 0) {
             fprintf(stderr, "Error: Team %s is registered twice\n", name);
