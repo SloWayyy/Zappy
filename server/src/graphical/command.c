@@ -19,7 +19,7 @@ void handle_graphical_command(server_t *server, client_t *client, char *line)
 
     for (size_t i = 0; i < GRAPHICAL_COMMANDS_COUNT; i++) {
         if (strcmp(command, GRAPHICAL_COMMANDS[i].command) == 0) {
-            GRAPHICAL_COMMANDS[i].function(server, client, line);
+            GRAPHICAL_COMMANDS[i].function(server, client);
             return;
         }
     }

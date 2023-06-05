@@ -15,6 +15,8 @@
 
     #define GRAPHICAL_MAP_SIZE "msz"
     #define GRAPHICAL_TEAM_NAME "tna"
+    #define GRAPHICAL_PLAYER_LEVEL "plv"
+    #define GRAPHICAL_PLAYER_INVENTORY "pin"
     #define GRAPHICAL_CHANGE_FREQ "sst"
     #define GRAPHICAL_UNKNOWN "suc"
     #define GRAPHICAL_COMMAND_PARAMETER "sbp"
@@ -22,13 +24,15 @@
     #include "types.h"
 
 void handle_graphical_command(server_t *server, client_t *client, char *line);
+client_t *get_client_by_player_id(server_t *server, size_t id);
 
-void msz_handler(server_t *server, client_t *client, char *line);
-void tna_handler(server_t *server, client_t *client, char *line);
-void sst_handler(server_t *server, client_t *client, char *line);
+void msz_handler(server_t *server, client_t *client);
+void tna_handler(server_t *server, client_t *client);
+void plv_handler(server_t *server, client_t *client);
+void pin_handler(server_t *server, client_t *client);
+void sst_handler(server_t *server, client_t *client);
 
-typedef void (graphical_handler_t) \
-    (server_t *server, client_t *client, char *line);
+typedef void (graphical_handler_t) (server_t *server, client_t *client);
 
 typedef struct graphical_command {
     char const *command;
@@ -38,6 +42,8 @@ typedef struct graphical_command {
 static const graphical_command_t GRAPHICAL_COMMANDS[] = {
         { GRAPHICAL_MAP_SIZE, &msz_handler },
         { GRAPHICAL_TEAM_NAME, &tna_handler },
+        { GRAPHICAL_PLAYER_LEVEL, &plv_handler },
+        { GRAPHICAL_PLAYER_INVENTORY, &pin_handler},
         { GRAPHICAL_CHANGE_FREQ, &sst_handler },
 };
 

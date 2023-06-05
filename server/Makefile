@@ -15,6 +15,7 @@ SRC			=	src/core/fdsets.c \
 				src/graphical/map.c \
 				src/graphical/player.c \
 				src/graphical/time.c \
+				src/graphical/team_name.c \
 				src/objects/clients.c \
 				src/objects/players.c \
 				src/objects/teams.c \
