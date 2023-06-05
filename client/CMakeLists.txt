@@ -20,6 +20,7 @@ add_executable(zappy_gui
         src/Menu/Setting.cpp
         src/Menu/AScreen.cpp
         src/Menu/Button.cpp
+        src/Parser/Parser.cpp
         encapsulation/Cube.cpp
         encapsulation/Model.cpp
         encapsulation/Mouse.cpp
