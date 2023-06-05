@@ -11,7 +11,7 @@
 
 Map::Map(std::size_t height, std::size_t width) : _mapSize{ height, width }, _cubePosition{ 0.0f, 0.0f, 0.0f }
 {
-    this->openMap("../map.txt");
+    this->openMap("map.txt");
     this->_modelMap.insert({this->BANANA, std::make_pair(this->_rayModel.loadModel("assets/food/banana/banana.obj"), this->_rayModel.loadTexture("assets/food/banana/banana.png"))});
     this->_modelMap.insert({this->APPLE, std::make_pair(this->_rayModel.loadModel("assets/food/apple/apple.obj"), this->_rayModel.loadTexture("assets/food/apple/apple.png"))});
     this->_rayModel.setMaterialTexture(&this->_modelMap[this->BANANA].first.materials[0], MATERIAL_MAP_DIFFUSE, this->_modelMap[this->BANANA].second);
