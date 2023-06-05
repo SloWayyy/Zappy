@@ -40,7 +40,6 @@ class Player:
         self.space = False
         self.args = args
         self.pos_bossitionned = False
-        self.map_broadcast : dict = {}
         if (self.connection(args) == False):
             ErrorConnection("Error: connection failed")
 
@@ -49,25 +48,14 @@ class Player:
             self.broadcast(EnumHeader.IMBOSS.value + " IMBOSS")
             self.nbr_ai += 1
             self.pos_boss = 0
-        elif x[0][1] == EnumHeader.IMHERE.value and self.boss == 1:
+        if x[0][1] == EnumHeader.IMHERE.value and self.boss == 1:
             self.nbr_ai -= 1
-        elif x[0][1] == EnumHeader.IMHERE.value and self.boss == 0:
-            # print("donnes before : ", donnees)
-            self.pos_boss = -1
-            while (self.pos_boss == -1):
-                donnees = receive_packet(self.sock)
-                # print("donnes after : ", donnees)
-                donnees = self.handle_broadcast(donnees)
-                # print("pos after handle: ", self.pos_boss)
-            return donnees
-        elif x[0][1] == EnumHeader.IMBOSS.value and self.boss == -1:
+        if x[0][1] == EnumHeader.IMBOSS.value and self.boss == -1:
             self.boss = 0
             self.pos_boss = int(x[0][0])
             self.broadcast(EnumHeader.ASKBOSS.value + "OK")
-        elif x[0][1] == EnumHeader.IMBOSS.value and self.boss == 0:
+        if x[0][1] == EnumHeader.IMBOSS.value and self.boss == 0:
             self.pos_boss = int(x[0][0])
-        else:
-            self.map_broadcast.update({int(x[0][0]) : (x[0][1], x[0][2])})
         return donnees
 
     def clear_data(self, donnees):
@@ -88,14 +76,30 @@ class Player:
                 donnees = self.handle_header(x, donnees)
         return self.clear_data(donnees)
 
-    def wait_answer(self, broadcast: bool = False):
+    def wait_answer(self):
         donnees = receive_packet(self.sock)
         self.handle_broadcast(donnees)
-        if len(donnees) <= 1 and broadcast == False:
+        if len(donnees) <= 1:
             return self.wait_answer()
         if (donnees[0] == "dead"):
             raise ErrorConnection("Error: player dead")
         return donnees
+    
+    def wait_return(self):
+        donnees = receive_packet(self.sock)
+        self.clear_data(donnees)
+        if len(donnees) <= 1:
+            return self.wait_return()
+        if (donnees[0] == "dead"):
+            raise ErrorConnection("Error: player dead")
+        return donnees
+
+    def wait_broadcast(self):
+        donnees = receive_packet(self.sock)
+        self.handle_broadcast(donnees)
+        if (donnees[0] == "dead"):
+            raise ErrorConnection("Error: player dead")
+        return
 
     def connection(self, args):
         donnees = self.wait_answer()
@@ -110,69 +114,107 @@ class Player:
             self.space = True
         return False
 
-    def move(self):
+    def move(self, return_only: bool = True):
         self.sock.send("Forward\n".encode())
-        if (self.wait_answer()[0] == "ko"):
-            return False
-        return True
-
-    def turn(self, direction: EnumDirection):
-        if (direction == EnumDirection.RIGHT):
-            self.sock.send("Right\n".encode())
+        if (return_only == True):
+            if (self.wait_return()[0] == "ko"):
+                return False
         else:
+            if (self.wait_answer()[0] == "ko"):
+                return False
+        return True
+
+    def turn(self, direction: EnumDirection, return_only: bool = True):
+        if direction == EnumDirection.RIGHT:
+            self.sock.send("Right\n".encode())
+        elif direction == EnumDirection.LEFT:
             self.sock.send("Left\n".encode())
-        if (self.wait_answer()[0] == "ko"):
-            return False
+        if return_only == True:
+            if (self.wait_return()[0] == "ko"):
+                return False
+        else:
+            if (self.wait_answer()[0] == "ko"):
+                return False
         return True
 
-    def look(self):
+    def look(self, return_only: bool = True):
         self.sock.send("Look\n".encode())
+        if (return_only == True):
+            return self.wait_return()[0]
         return self.wait_answer()[0]
 
-    def inventory(self):
+    def inventory(self, return_only: bool = True):
         self.sock.send("Inventory\n".encode())
+        if (return_only == True):
+            return self.wait_return()[0]
         return self.wait_answer()[0]
 
-    def broadcast(self, message: str):
+    def broadcast(self, message: str, return_only: bool = False):
         self.sock.send(("Broadcast " + message + "\n").encode())
-        result = self.wait_answer()[0]
-        if (result == "ko"):
-            return False
+        if (return_only == True):
+            if (self.wait_return()[0] == "ko"):
+                return False
+        else:
+            if (self.wait_answer()[0] == "ko"):
+                return False
         return True
 
-    def connect_nbr(self):
+    def connect_nbr(self, return_only: bool = True):
         self.sock.send("Connect_nbr\n".encode())
-        tmp = self.wait_answer()[0]
+        if (return_only == True):
+            tmp = self.wait_return()[0]
+        else:
+            tmp = self.wait_answer()[0]
         if (tmp == "ko"):
             raise ErrorConnection("Connect nbr failed\n")
         return int(tmp)
 
-    def fork(self):
+    def fork(self, return_only: bool = True):
         self.sock.send("Fork\n".encode())
-        if (self.wait_answer()[0] == "ko"):
-            return False
+        if (return_only == True):
+            if (self.wait_return()[0] == "ko"):
+                return False
+        else:
+            if (self.wait_answer()[0] == "ko"):
+                return False
         return True
 
-    def eject(self):
+    def eject(self, return_only: bool = True):
         self.sock.send("Eject\n".encode())
-        if (self.wait_answer()[0] == "ko"):
-            return False
+        if (return_only == True):
+            if (self.wait_return()[0] == "ko"):
+                return False
+        else:
+            if (self.wait_answer()[0] == "ko"):
+                return False
         return True
 
-    def take(self, enum: EnumObject):
+    def take(self, enum: EnumObject, return_only: bool = True):
         self.sock.send(("Take " + enum + "\n").encode())
-        if (self.wait_answer()[0] == "ko"):
-            return False
+        if (return_only == True):
+            if (self.wait_return()[0] == "ko"):
+                return False
+        else:
+            if (self.wait_answer()[0] == "ko"):
+                return False
         return True
 
-    def set(self, enum: EnumObject):
+    def set(self, enum: EnumObject, return_only: bool = True):
         self.sock.send(("Set " + enum.value + "\n").encode())
-        if (self.wait_answer()[0] == "ko"):
-            return False
+        if (return_only == True):
+            if (self.wait_return()[0] == "ko"):
+                return False
+        else:
+            if (self.wait_answer()[0] == "ko"):
+                return False
         return True
 
-    def incantation(self):
+    def incantation(self, return_only: bool = True):
         self.sock.send("Incantation\n".encode())
-        if (self.wait_answer()[0] == "ko"):
-            return False
+        if (return_only == True):
+            if (self.wait_return()[0] == "ko"):
+                return False
+        else:
+            if (self.wait_answer()[0] == "ko"):
+                return False
         return True
