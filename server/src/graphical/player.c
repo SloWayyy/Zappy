@@ -22,7 +22,7 @@ void pin_handler(server_t *server, client_t *client)
 
     if (line == NULL || strtok(NULL, " ") != NULL || !check_number(line, &id)) {
         append_buffer(client->buffer, "%s%s",
-        GRAPHICAL_COMMAND_PARAMETER, LINE_BREAK);
+            GRAPHICAL_COMMAND_PARAMETER, LINE_BREAK);
         return;
     }
     target = get_client_by_player_id(server, (size_t)id);
@@ -46,7 +46,7 @@ void plv_handler(server_t *server, client_t *client)
 
     if (line == NULL || strtok(NULL, " ") != NULL || !check_number(line, &id)) {
         append_buffer(client->buffer, "%s%s",
-        GRAPHICAL_COMMAND_PARAMETER, LINE_BREAK);
+            GRAPHICAL_COMMAND_PARAMETER, LINE_BREAK);
         return;
     }
     target = get_client_by_player_id(server, (size_t)id);
