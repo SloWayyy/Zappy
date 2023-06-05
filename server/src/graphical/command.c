@@ -5,6 +5,7 @@
 ** command.c
 */
 
+#include <stdio.h>
 #include <string.h>
 
 #include "constants.h"

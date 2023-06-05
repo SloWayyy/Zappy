@@ -16,6 +16,10 @@
     #include <sys/queue.h>
     #include <sys/select.h>
 
+typedef SLIST_HEAD(client_list, client) client_list_t;
+typedef SLIST_HEAD(player_list, player) player_list_t;
+typedef SLIST_HEAD(team_list, team) team_list_t;
+
 typedef enum connection_type {
     UNKNOWN,
     GRAPHIC,
@@ -58,15 +62,24 @@ typedef struct team {
     const char *name;
     size_t capacity;
     size_t slots;
-    SLIST_HEAD(player_list, player) *players;
+    player_list_t *players;
     SLIST_ENTRY(team) next;
 } team_t;
 
+typedef struct tile {
+    size_t x;
+    size_t y;
+    size_t resources[RESOURCES_TYPES_QUANTITY];
+    player_list_t players;
+} tile_t;
+
 typedef struct player {
-    team_t *team;
-    size_t inventory[RESOURCES_TYPES_QUANTITY];
+    size_t id;
     size_t level;
-    size_t food_ticks;
+    size_t inventory[RESOURCES_TYPES_QUANTITY];
+    team_t *team;
+    tile_t *pos;
+    direction_type_t direction;
     SLIST_ENTRY(player) next_team;
     SLIST_ENTRY(player) next_tile;
 } player_t;
@@ -95,24 +108,17 @@ typedef struct tick {
     struct timeval last_tick;
 } tick_t;
 
-typedef struct tile {
-    size_t x;
-    size_t y;
-    size_t resources[RESOURCES_TYPES_QUANTITY];
-    SLIST_HEAD(players_list, player) players;
-} tile_t;
-
 typedef struct zappy {
     tick_t *tick;
     tile_t **map;
-    SLIST_HEAD(teams_list, team) *teams;
+    team_list_t *teams;
 } zappy_t;
 
 typedef struct server {
     options_t *options;
     data_t *data;
     zappy_t *zappy;
-    SLIST_HEAD(client_list, client) *clients;
+    client_list_t *clients;
 } server_t;
 
 #endif
