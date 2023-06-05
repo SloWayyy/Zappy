@@ -10,12 +10,18 @@
 
     #include "encapsulation/Raylibcpp.hpp"
 
+static const int RIGHT = 0;
+static const int TOP = 90;
+static const int LEFT = 180;
+static const int DOWN = -90;
+
 class Character {
     public:
         Character() = default;
         Character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos);
         ~Character() = default;
         Vector3 getPosition() const;
+        Model getModel() const;
         void animation();
         void run();
         void draw();

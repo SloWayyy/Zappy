@@ -28,7 +28,6 @@ class Map {
         Map() = default;
         Map(std::size_t height , std::size_t width);
         ~Map() = default;
-        void draw();
         void fillMineralPositionArray();
         void drawMineral(modelType type);
         void setHeight(std::size_t height);
@@ -36,6 +35,8 @@ class Map {
         void openMap(std::string path);
         std::size_t getheight() const;
         std::size_t getwidth() const;
+        std::vector<std::string> getMap() const {return map;};
+        modelType getmodelBanana() const {return BANANA;};
         Vector3 getcubePosition() const;
         void setcubePosition(Vector3 position);
         void run();

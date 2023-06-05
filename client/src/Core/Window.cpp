@@ -35,13 +35,28 @@ void Window::handleInput()
         this->_camera.target = (Vector3){ 0.0f, 0.0f, 0.0f };
     if (this->_rayWindow.isKeyPressed(KEY_ENTER))
         this->_gameEvent = GameEvent::GAMEPLAY;
-    if (this->_rayWindow.isKeyPressed(KEY_P) && (this->_gameEvent == GameEvent::GAMEPLAY))
-        this->_gameEvent = GameEvent::MENU;
+    if (this->_rayWindow.isKeyPressed(KEY_P)) {
+        switch (this->_gameEvent) {
+            case GameEvent::GAMEPLAY:
+                this->_gameEvent = GameEvent::MENU;
+                break;
+            case GameEvent::TUTO:
+                this->_gameEvent = GameEvent::MENU;
+                break;
+            case GameEvent::SETTINGS:
+                this->_gameEvent = GameEvent::MENU;
+                break;
+            default:
+                break;
+        }
+    }
+    if (this->_rayWindow.isKeyPressed(KEY_ESCAPE))
+        this->_gameEvent = GameEvent::EXIT;
 }
 
 void Window::run()
 {
-    this->updateCamera();
+    // this->updateCamera();
     this->handleInput();
 }
 
@@ -83,4 +98,9 @@ bool Window::getExit(void) const
 Camera Window::getCamera() const
 {
     return (this->_camera);
+}
+
+Raylibcpp::RayWindow Window::getRayWindow(void) const
+{
+    return (this->_rayWindow);
 }

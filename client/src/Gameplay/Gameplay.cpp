@@ -9,6 +9,7 @@
 
 Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window), _map(Map(10, 10)), _currentCharacterId(0), _currentCharacterIndex(0)
 {
+    this->findPlayer();
 }
 
 void Gameplay::initPlayer(Vector3 pos)
@@ -25,9 +26,38 @@ void Gameplay::runPlayers(void)
     }
 }
 
+void Gameplay::findPlayer(void)
+{
+    std::vector<std::string> map = this->_map.getMap();
+    float _x = 0.0f;
+    float _y = 0.0f;
+
+    for (std::size_t y = 0; y < this->_map.getheight(); y++) {
+        for (std::size_t x = 0; x < this->_map.getwidth(); x++) {
+            this->_map.setcubePosition({ _x, 0.0f, _y });
+            if (map[y][x] == 'P')
+                this->initPlayer({this->_map.getcubePosition().x, this->_map.getcubePosition().y + (float)1.1, this->_map.getcubePosition().z});
+            _x += 2.0f;
+        }
+        _x = 0.0f;
+        _y += 2.0f;
+    }
+}
+
+void Gameplay::drawTextOnScreen(std::string text, int fontSize, int posX, int posY, Color color)
+{
+    this->_rayWindow.endMode3D();
+    this->_rayText.drawText(text, posX, posY, fontSize, color);
+    this->_rayWindow.beginMode3D(this->_window->getCamera());
+}
+
 void Gameplay::run(void)
 {
     this->_map.run();
+    this->drawMap();
+    this->drawTextOnScreen("F1:  Camera 1", 20, this->_window->getScreenHeight() - 150, 10, BLACK);
+    this->drawTextOnScreen("F2: Camera 2", 20, this->_window->getScreenHeight() - 150, 60, BLACK);
+    this->drawTextOnScreen("F3: Camera 3", 20, this->_window->getScreenHeight() - 150, 110, BLACK);
     this->handleInput();
     this->runPlayers();
 }
@@ -60,4 +90,22 @@ void Gameplay::handleInput(void)
     if (this->_rayWindow.isKeyReleased(KEY_F3)) {
         this->_window->setCamera({ -5.0f, 15.0f, 10.0f }, { 10.0f, 2.0f, 10.0f }, { 0.0f, 1.0f, 0.0f }, 80.0f, CAMERA_PERSPECTIVE);
     }
+}
+
+void Gameplay::drawMap(void)
+{
+    float _x = 0.0f;
+    float _y = 0.0f;
+
+    for (std::size_t y = 0; y < this->_map.getheight(); y++) {
+        for (std::size_t x = 0; x < this->_map.getwidth(); x++) {
+            this->_map.setcubePosition({ _x, 0.0f, _y });
+            this->_rayCube.drawCube(this->_map.getcubePosition(), 2.0f, 2.0f, 2.0f, GREEN);
+            this->_rayCube.drawCubeWires(this->_map.getcubePosition(), 2.0f, 2.0f, 2.0f, WHITE);
+        _x += 2.0f;
+        }
+        _x = 0.0f;
+        _y += 2.0f;
+    }
+    this->_map.drawMineral(this->_map.getmodelBanana());
 }
