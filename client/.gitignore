@@ -1,3 +1,4 @@
 # build
 build/
+cmake-build-debug/
 zappy_gui
