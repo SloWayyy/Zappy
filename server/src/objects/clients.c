@@ -59,3 +59,15 @@ void free_clients(server_t *server)
         free_client(node);
     }
 }
+
+client_t *get_client_by_player_id(server_t *server, size_t id)
+{
+    client_t *node = NULL;
+
+    SLIST_FOREACH(node, server->clients, next) {
+        if (node->player != NULL && node->player->id == id) {
+            return node;
+        }
+    }
+    return NULL;
+}
