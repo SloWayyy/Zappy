@@ -29,7 +29,6 @@ void msz_handler(server_t *server, client_t *client);
 void tna_handler(server_t *server, client_t *client);
 void pin_handler(server_t *server, client_t *client);
 void sst_handler(server_t *server, client_t *client);
-// void plv_handler(server_t *server, client_t *client);
 
 typedef void (graphical_handler_t) (server_t *server, client_t *client);
 
