@@ -83,9 +83,3 @@ bool dump_buffer(buffer_t *buffer, int fd)
     }
     return true;
 }
-
-void free_buffer(buffer_t *buffer)
-{
-    free(buffer->buffer);
-    free(buffer);
-}
