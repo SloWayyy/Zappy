@@ -16,6 +16,7 @@
 
 void sst_handler(server_t *server, client_t *client, char *line)
 {
+    (void) line;
     int ticks = 0;
     char *num = strtok(NULL, " ");
 

@@ -22,6 +22,7 @@ static void end_server(server_t *server)
 {
     free_clients(server);
     free_teams(server);
+    cancel_client_tasks(server, NULL);
     if (server->zappy->map != NULL) {
         free_map(server);
     }
@@ -58,11 +59,13 @@ bool start_server(options_t *options)
     data_t data;
     client_list_t clients;
     team_list_t teams;
+    task_list_t tasks;
     zappy_t zappy = { &tick, NULL, &teams };
-    server_t server = { options, &data, &zappy, &clients };
+    server_t server = { options, &data, &zappy, &clients, &tasks };
 
     SLIST_INIT(&clients);
     SLIST_INIT(&teams);
+    SLIST_INIT(&tasks);
     memset(&data, 0, sizeof(data_t));
     run = init_server(&server);
     srand(time(NULL) + (unsigned long)&server);

@@ -11,8 +11,7 @@
     #include "types.h"
 
 client_t *new_client(int fd, FILE *stream);
-void close_client(client_t *client);
-void free_client(client_t *client);
+void free_client(server_t *server, client_t *client);
 void free_clients(server_t *server);
 client_t *get_client_by_player_id(server_t *server, size_t id);
 

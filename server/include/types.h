@@ -12,6 +12,7 @@
 
     #include <bits/types/FILE.h>
     #include <bits/types/struct_timeval.h>
+    #include <stdbool.h>
     #include <stddef.h>
     #include <sys/queue.h>
     #include <sys/select.h>
@@ -19,6 +20,7 @@
 typedef SLIST_HEAD(client_list, client) client_list_t;
 typedef SLIST_HEAD(player_list, player) player_list_t;
 typedef SLIST_HEAD(team_list, team) team_list_t;
+typedef SLIST_HEAD(task_list, task) task_list_t;
 
 typedef enum connection_type {
     UNKNOWN,
@@ -80,6 +82,8 @@ typedef struct player {
     team_t *team;
     tile_t *pos;
     direction_type_t direction;
+    size_t action_task_id;
+    bool dead;
     SLIST_ENTRY(player) next_team;
     SLIST_ENTRY(player) next_tile;
 } player_t;
@@ -119,6 +123,20 @@ typedef struct server {
     data_t *data;
     zappy_t *zappy;
     client_list_t *clients;
+    task_list_t *tasks;
 } server_t;
+
+typedef void (task_function_t)(server_t *server, client_t *client);
+
+typedef struct task {
+    size_t id;
+    bool running;
+    size_t delay;
+    size_t current;
+    int executions;
+    client_t *client;
+    task_function_t *callback;
+    SLIST_ENTRY(task) next;
+} task_t;
 
 #endif
