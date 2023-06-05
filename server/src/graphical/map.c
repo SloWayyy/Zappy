@@ -53,3 +53,25 @@ void bct_handler(server_t *server, client_t *client)
         server->zappy->map[y][x].resources[4], \
         server->zappy->map[y][x].resources[5], LINE_BREAK);
 }
+
+void mct_handler(server_t *server, client_t *client)
+{
+    if (strtok(NULL, " ") != NULL) {
+        append_buffer(client->buffer, "%s%s", GRAPHICAL_COMMAND_PARAMETER, \
+            LINE_BREAK);
+        return;
+    }
+    for (int y = 0; y < server->options->height; y++) {
+        for (int x = 0; x < server->options->width; x++) {
+            append_buffer(client->buffer, \
+                "%s %d %d %zu %zu %zu %zu %zu %zu %s", \
+                GRAPHICAL_TILE_CONTENT, x, y, \
+                server->zappy->map[y][x].resources[0], \
+                server->zappy->map[y][x].resources[1], \
+                server->zappy->map[y][x].resources[2], \
+                server->zappy->map[y][x].resources[3], \
+                server->zappy->map[y][x].resources[4], \
+                server->zappy->map[y][x].resources[5], LINE_BREAK);
+        }
+    }
+}
