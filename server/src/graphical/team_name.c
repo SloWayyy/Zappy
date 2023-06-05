@@ -5,7 +5,7 @@
 ** team_name.c
 */
 
-#include <stddef.h>
+#include <string.h>
 
 #include "constants.h"
 #include "graphical.h"

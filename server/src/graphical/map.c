@@ -5,6 +5,8 @@
 ** map_answers.c
 */
 
+#include <string.h>
+
 #include "constants.h"
 #include "graphical.h"
 #include "util.h"
