@@ -37,9 +37,8 @@ void pin_handler(server_t *server, client_t *client)
         append_buffer(client->buffer, "%s\n", GRAPHICAL_COMMAND_PARAMETER);
         return;
     }
-    append_buffer(client->buffer, "%s %zu %zu %zu", \
-        GRAPHICAL_PLAYER_INVENTORY, target->player->id, target->player->pos->x,
-        target->player->pos->y);
+    append_buffer(client->buffer, "%s %zu %zu %zu", GRAPHICAL_PLAYER_INVENTORY, \
+        target->player->id, target->player->pos->x, target->player->pos->y);
     send_inventory(client, target->player);
     append_buffer(client->buffer, "%s", LINE_BREAK);
 }
