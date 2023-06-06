@@ -24,12 +24,21 @@ def first_pattern(list_item : list, player: Player):
         player.take(i)
     player.turn(EnumDirection.RIGHT)
     player.move()
-    print("\n")
     for i in list_item[1]:
         player.take(i)
 
-def second_pattern():
-    pass
+def second_pattern(list_item : list, player: Player):
+    counter = 0
+
+    for i in range(0, 3):
+        player.turn(EnumDirection.RIGHT)
+        print("RIGHT\n")
+        for _ in range(0, 2):
+            player.move()
+            print("MOVE\n")
+            for j in list_item[counter]:
+                player.take(j)
+            counter += 1
 
 def routine_boss(player: Player):
     list_item = []
@@ -53,14 +62,12 @@ def routine_boss(player: Player):
 
     print("\n")
     tmp = list_item.copy()
-    i = 0
-    while i != len(list_item):
-        if i == 0:
-            first_pattern(list_item, player)
-            i += 2
-        else:
-            break
-    player.inventory()
+
+    first_pattern(list_item, player)
+    print("\n")
+    second_pattern(list_item[2:], player)
+    print("\n")
+    print(player.inventory())
 
 def game_loop(sock: socket.socket, args):
     player = Player(sock, args)

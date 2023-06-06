@@ -84,7 +84,7 @@ class Player:
         if (donnees[0] == "dead"):
             raise ErrorConnection("Error: player dead")
         return donnees
-    
+
     def wait_return(self):
         donnees = receive_packet(self.sock)
         self.clear_data(donnees)
