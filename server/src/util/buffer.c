@@ -46,23 +46,32 @@ buffer_t *new_buffer(void)
     return buffer;
 }
 
+void vappend_buffer(buffer_t *buffer, char const *format, va_list args)
+{
+    bool resize = false;
+    size_t len;
+    va_list copy;
+
+    va_copy(copy, args);
+    len = vsnprintf(NULL, 0, format, args);
+    while (buffer->size + len >= buffer->capacity) {
+        resize = true;
+        buffer->capacity += BUFFER_EXTRA;
+    }
+    if (resize && !resize_buffer(buffer)) {
+        return;
+    }
+    vsprintf(&buffer->buffer[buffer->size], format, copy);
+    buffer->size += len;
+    va_end(copy);
+}
+
 void append_buffer(buffer_t *buffer, char const *format, ...)
 {
-    size_t len;
     va_list args;
 
     va_start(args, format);
-    len = vsnprintf(NULL, 0, format, args);
-    while (buffer->size + len >= buffer->capacity) {
-        buffer->capacity += BUFFER_EXTRA;
-    }
-    if (!resize_buffer(buffer)) {
-        return;
-    }
-    va_end(args);
-    va_start(args, format);
-    vsprintf(&buffer->buffer[buffer->size], format, args);
-    buffer->size += len;
+    vappend_buffer(buffer, format, args);
     va_end(args);
 }
 
@@ -75,10 +84,4 @@ bool dump_buffer(buffer_t *buffer, int fd)
         return resize_buffer(buffer);
     }
     return true;
-}
-
-void free_buffer(buffer_t *buffer)
-{
-    free(buffer->buffer);
-    free(buffer);
 }

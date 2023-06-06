@@ -5,11 +5,13 @@
 ** players.c
 */
 
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/queue.h>
 
+#include "player.h"
 #include "types.h"
 
 player_t *new_player(void)
@@ -25,8 +27,10 @@ player_t *new_player(void)
     new->level = 1;
     new->team = NULL;
     new->pos = NULL;
+    new->dead = false;
     new->direction = rand() % 4;
     memset(new->inventory, 0, sizeof(new->inventory));
+    new->inventory[FOOD] = FOOD_DEFAULT;
     return new;
 }
 

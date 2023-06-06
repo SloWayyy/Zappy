@@ -10,14 +10,19 @@ SRC			=	src/core/fdsets.c \
 				src/core/input.c \
 				src/core/loop.c \
 				src/core/map.c \
+				src/core/scheduler.c \
 				src/core/tick.c \
 				src/graphical/command.c \
 				src/graphical/map.c \
 				src/graphical/player.c \
+				src/graphical/time.c \
+				src/graphical/team_name.c \
 				src/objects/clients.c \
 				src/objects/players.c \
+				src/objects/tasks.c \
 				src/objects/teams.c \
 				src/player/command.c \
+				src/player/food.c \
 				src/player/info.c \
 				src/player/join.c \
 				src/util/arguments/args.c \

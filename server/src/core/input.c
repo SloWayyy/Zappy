@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/select.h>
 
 #include "constants.h"
 #include "graphical.h"
@@ -49,7 +50,7 @@ static void handle_client_input(server_t *server, client_t *client, char *line)
     }
 }
 
-bool handle_input(server_t *server, client_t *client)
+static bool handle_input(server_t *server, client_t *client)
 {
     char *line = NULL;
     size_t len = 0;
@@ -66,4 +67,19 @@ bool handle_input(server_t *server, client_t *client)
     handle_client_input(server, client, line);
     free(line);
     return true;
+}
+
+bool handle_client(server_t *server, client_t *client)
+{
+    bool keep = true;
+    bool read = client->player == NULL || !client->player->dead;
+    bool dead = client->player && client->player->dead;
+
+    if (read && FD_ISSET(client->fd, &server->data->reads)) {
+        keep = handle_input(server, client);
+    }
+    if (keep && FD_ISSET(client->fd, &server->data->writes)) {
+        keep = dump_buffer(client->buffer, client->fd) && !dead;
+    }
+    return keep;
 }

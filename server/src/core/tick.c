@@ -10,14 +10,15 @@
 #include <sys/time.h>
 
 #include "constants.h"
+#include "server.h"
 #include "types.h"
 #include "util.h"
 
 void init_tick(server_t *server, long frequence)
 {
     long micros = MICROS_PER_SEC / frequence;
+    server->zappy->tick->freq = frequence;
 
-    server->zappy->tick->tick_nb = 0;
     server->zappy->tick->tick_delay.tv_sec = micros / MICROS_PER_SEC;
     server->zappy->tick->tick_delay.tv_usec = micros % MICROS_PER_SEC;
 }
@@ -43,6 +44,7 @@ bool tick(server_t *server)
 {
     server->zappy->tick->tick_nb += 1;
     gettimeofday(&server->zappy->tick->last_tick, NULL);
+    execute_tasks(server);
     printf("Tick %zu\n", server->zappy->tick->tick_nb);
     return false;
 }

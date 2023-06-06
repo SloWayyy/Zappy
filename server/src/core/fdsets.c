@@ -55,23 +55,14 @@ static void handle_incoming(server_t *server)
 
 static void handle_clients(server_t *server)
 {
-    bool keep = false;
     client_t *node = server->clients->slh_first;
     client_t *tmp = NULL;
 
     while (node != NULL) {
         tmp = node->next.sle_next;
-        keep = true;
-        if (FD_ISSET(node->fd, &server->data->reads)) {
-            keep = handle_input(server, node);
-        }
-        if (keep && FD_ISSET(node->fd, &server->data->writes)) {
-            keep = dump_buffer(node->buffer, node->fd);
-        }
-        if (!keep) {
+        if (!handle_client(server, node)) {
             SLIST_REMOVE(server->clients, node, client, next);
-            close_client(node);
-            free_client(node);
+            free_client(server, node);
         }
         node = tmp;
     }

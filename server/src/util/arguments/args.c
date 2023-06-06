@@ -7,6 +7,7 @@
 
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 #include "args.h"
@@ -82,6 +83,7 @@ bool check_arguments(int argc, char const *argv[], options_t *options)
     for (int i = 1; i < argc; ++i) {
         index = handle_argument(argc, argv, options, i);
         if (index == -1) {
+            free(options->names);
             return false;
         }
         i += index;
