@@ -14,6 +14,13 @@
 #include "types.h"
 #include "util.h"
 
+static void send_inventory(client_t *client, player_t *player)
+{
+    for (size_t i = 0; i < RESOURCES_TYPES_QUANTITY; i++) {
+        append_buffer(client->buffer, " %zu", player->inventory[i]);
+    }
+}
+
 void pin_handler(server_t *server, client_t *client)
 {
     char *line = strtok(NULL, " ");
@@ -30,12 +37,11 @@ void pin_handler(server_t *server, client_t *client)
         append_buffer(client->buffer, "%s\n", GRAPHICAL_COMMAND_PARAMETER);
         return;
     }
-    append_buffer(client->buffer, "%s %zu %zu %zu %zu %zu %zu %zu %zu %zu%s", \
+    append_buffer(client->buffer, "%s %zu %zu %zu", \
         GRAPHICAL_PLAYER_INVENTORY, target->player->id, target->player->pos->x,
-        target->player->pos->y, target->player->inventory[0], \
-        target->player->inventory[1], target->player->inventory[2], \
-        target->player->inventory[3], target->player->inventory[4], \
-        target->player->inventory[5], LINE_BREAK);
+        target->player->pos->y);
+    send_inventory(client, target->player);
+    append_buffer(client->buffer, "%s", LINE_BREAK);
 }
 
 void plv_handler(server_t *server, client_t *client)
