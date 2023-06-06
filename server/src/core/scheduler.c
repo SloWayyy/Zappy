@@ -6,7 +6,7 @@
 */
 
 #include <stdbool.h>
-#include <stddef.h>
+#include <stdio.h>
 
 #include "server.h"
 #include "types.h"
@@ -17,15 +17,15 @@ static void execute_task(server_t *server, task_t *task)
     if (task->current > 0) {
         return;
     }
-    task->callback(server, task->client);
     task->current = task->delay;
-    if (task->executions == -1) {
-        return;
+    if (task->executions != -1) {
+        task->executions--;
+        if (task->executions == 0) {
+            task->running = false;
+        }
     }
-    task->executions--;
-    if (task->executions == 0) {
-        task->running = false;
-    }
+
+    task->callback(server, task->client);
 }
 
 void execute_tasks(server_t *server)
