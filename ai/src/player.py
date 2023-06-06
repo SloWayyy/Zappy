@@ -190,6 +190,7 @@ class Player:
         return True
 
     def take(self, enum: EnumObject, return_only: bool = True):
+        print("enum", enum)
         self.sock.send(("Take " + enum + "\n").encode())
         if (return_only == True):
             if (self.wait_return()[0] == "ko"):
