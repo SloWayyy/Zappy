@@ -10,6 +10,7 @@
 #include <sys/queue.h>
 
 #include "constants.h"
+#include "graphical.h"
 #include "player.h"
 #include "types.h"
 #include "util.h"
@@ -29,4 +30,6 @@ void food_callback(UNUSED server_t *server, client_t *client)
             node->running = false;
         }
     }
+    send_graphical_event(server, "%s %zu%s", GRAPHICAL_PLAYER_DEATH, \
+        client->player->id, LINE_BREAK);
 }

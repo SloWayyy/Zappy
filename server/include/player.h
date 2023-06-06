@@ -11,7 +11,7 @@
     #define PLAYER_COMMANDS_COUNT \
         (sizeof(PLAYER_COMMANDS) / sizeof(player_command_t))
 
-    #define FOOD_CONSUME_TICKS 126
+    #define FOOD_CONSUME_TICKS 12
     #define FOOD_DEFAULT 10
 
     #define PLAYER_UNUSED_SLOTS "Connect_nbr"

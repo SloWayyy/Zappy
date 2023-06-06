@@ -22,12 +22,16 @@
     #define GRAPHICAL_PLAYER_INVENTORY "pin"
     #define GRAPHICAL_FREQUENCY "sgt"
     #define GRAPHICAL_CHANGE_FREQ "sst"
+
+    #define GRAPHICAL_PLAYER_DEATH "pdi"
+
     #define GRAPHICAL_UNKNOWN "suc"
     #define GRAPHICAL_COMMAND_PARAMETER "sbp"
 
     #include "types.h"
 
 void handle_graphical_command(server_t *server, client_t *client, char *line);
+void send_graphical_event(server_t *server, const char *format, ...);
 client_t *get_client_by_player_id(server_t *server, size_t id);
 
 void msz_handler(server_t *server, client_t *client);
