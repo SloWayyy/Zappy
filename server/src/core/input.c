@@ -63,6 +63,7 @@ static bool handle_input(server_t *server, client_t *client)
     if (res == 1) {
         return true;
     }
+    printf("Received line %s\n", line);
     line[res - 1] = '\0';
     handle_client_input(server, client, line);
     free(line);
