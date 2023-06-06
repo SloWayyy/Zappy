@@ -27,7 +27,7 @@ class EnumHeader (Enum):
     IMHERE = "$3$"
 
 class EnumDirection(Enum):
-    RIGHT = 0,
+    RIGHT = 0
     LEFT = 1
 
 class Player:
