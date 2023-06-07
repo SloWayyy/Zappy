@@ -16,7 +16,7 @@
     #include "src/Menu/Setting.hpp"
     #include "encapsulation/Raylibcpp.hpp"
     #include "DDLoader/DDLoader.hpp"
-    #include "sdk/include/ICommunicationModule.hpp"
+    #include "ICommunicationModule.hpp"
 
 
 class Core {

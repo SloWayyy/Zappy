@@ -9,7 +9,14 @@ CMAKE_FLAGS		=	-G "Unix Makefiles"
 
 NAME			=	zappy_gui
 
+DIR_DEST		=	libs/
+
 all: $(NAME)
+
+sdk: $(NAME_SDK)
+	$(MAKE) -C ../sdk/communication/
+	mkdir -p $(DIR_DEST)
+	cp -r ../sdk/communication/include/ ../sdk/communication/communication_sdk.so $(DIR_DEST)
 
 build:
 	mkdir -p build

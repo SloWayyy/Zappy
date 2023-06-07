@@ -7,6 +7,7 @@ set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
 include_directories(.)
 include_directories(include)
+include_directories(libs/include)
 
 add_executable(zappy_gui
         src/Main.cpp
