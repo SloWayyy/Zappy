@@ -12,6 +12,10 @@
 Map::Map(std::size_t height, std::size_t width) : _mapSize{ height, width }, _cubePosition{ 0.0f, 0.0f, 0.0f }
 {
     this->openMap("map.txt");
+    this->_model = this->_rayModel.loadModel("assets/map/floor.iqm");
+    this->_texture = this->_rayModel.loadTexture("assets/map/floorTexture.png");
+    this->_model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = this->_texture;
+    this->_model.transform = this->_rayModel.matrixRotateXYZ({-90 * DEG2RAD, 0, 0});
     this->_modelMap.insert({this->BANANA, std::make_pair(this->_rayModel.loadModel("assets/food/banana/banana.obj"), this->_rayModel.loadTexture("assets/food/banana/banana.png"))});
     this->_modelMap.insert({this->APPLE, std::make_pair(this->_rayModel.loadModel("assets/food/apple/apple.obj"), this->_rayModel.loadTexture("assets/food/apple/apple.png"))});
     this->_rayModel.setMaterialTexture(&this->_modelMap[this->BANANA].first.materials[0], MATERIAL_MAP_DIFFUSE, this->_modelMap[this->BANANA].second);
@@ -54,6 +58,11 @@ void Map::fillMineralPositionArray()
         _x = 0.0f;
         _y += 2.0f;
     }
+}
+
+void Map::draw(Vector3 _position)
+{
+    this->_rayModel.drawModel(this->_model, _position, 1.0f, WHITE);
 }
 
 void Map::run()

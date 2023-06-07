@@ -10,6 +10,7 @@
 
     #include <iostream>
     #include <raylib.h>
+    #include "raymath.h"
 
 namespace Raylibcpp {
     class RayWindow {
@@ -42,6 +43,7 @@ namespace Raylibcpp {
             void drawModel(Model mod, Vector3 pos, float scale, Color color);
             void drawRectangle(int posX, int posY, int width, int height, Color color);
             void drawTexture(Texture2D texture, int posX, int posY, Color color);
+            Matrix matrixRotateXYZ(Vector3 angle);
     };
     class RayCube {
         public:

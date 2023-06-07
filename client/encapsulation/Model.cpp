@@ -56,3 +56,8 @@ void Raylibcpp::RayModel::drawRectangle(int posX, int posY, int width, int heigh
 {
     DrawRectangle(posX, posY, width, height, color);
 }
+
+Matrix Raylibcpp::RayModel::matrixRotateXYZ(Vector3 angle)
+{
+    return MatrixRotateXYZ(angle);
+}
