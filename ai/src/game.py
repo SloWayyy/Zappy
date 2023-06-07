@@ -12,11 +12,11 @@ def look_item(player : Player):
     for i in range(0, 10):
         str = str.replace(",,", ", V,")
     list : list = str.split(", ")
-    list.pop(0)
+    foot_case = list.pop(0)
     list_tmp = []
     for i in list:
         list_tmp.append(i.split(" "))
-    return list_tmp[:3]
+    return list_tmp[:3], foot_case
 
 def first_pattern(list_item : list, player: Player):
     player.move()
@@ -33,7 +33,7 @@ def first_pattern(list_item : list, player: Player):
 def second_pattern(list_item : list, player: Player):
     counter = 0
 
-    for i in range(0, 3):
+    for _ in range(0, 3):
         player.turn(EnumDirection.RIGHT)
         for _ in range(0, 2):
             player.move()
@@ -41,11 +41,32 @@ def second_pattern(list_item : list, player: Player):
                 if (j[0] != "V"):
                     player.take(j)
             counter += 1
+    for _ in range(0, 2):
+        player.turn(EnumDirection.RIGHT)
+        player.move()
+
+def dump_item(player: Player):
+    inventory = player.inventory()
+    for i in range(1, len(inventory)):
+        for _ in range(0, inventory[i]):
+            if i == 1:
+                player.set(EnumObject.LINEMATE)
+            if i == 2:
+                player.set(EnumObject.DERAUMERE)
+            if i == 3:
+                player.set(EnumObject.SIBUR)
+            if i == 4:
+                player.set(EnumObject.MENDIANE)
+            if i == 5:
+                player.set(EnumObject.PHIRAS)
+            if i == 6:
+                player.set(EnumObject.THYSTAME)
 
 def routine_boss(player: Player):
     list_item = []
+    player.take(EnumObject.FOOD.value)
     for i in range(0, 4):
-        tmp = look_item(player)
+        tmp, _ = look_item(player)
         for j in tmp:
             list_item.append(j)
         player.turn(EnumDirection.RIGHT)
@@ -56,6 +77,22 @@ def routine_boss(player: Player):
 
     first_pattern(list_item, player)
     second_pattern(list_item[2:], player)
+    dump_item(player)
+    player.take(EnumObject.FOOD.value)
+
+def routine_ai(player: Player):
+    list_item = []
+    for _ in range(0, 3):
+        player.move()
+    tmp, foot_case = look_item(player)
+    for i in tmp:
+        list_item.append(i)
+    for _ in range(0, 2):
+        player.turn(EnumDirection.RIGHT)
+    tmp, _ = look_item(player)
+    for j in tmp:
+        list_item.append(j)
+    list_item.insert(0, list_item.pop())
 
 def game_loop(sock: socket.socket, args):
     player = Player(sock, args)
@@ -64,4 +101,6 @@ def game_loop(sock: socket.socket, args):
     if player.boss == 1:
         routine_boss(player)
         print(player.inventory())
+    else:
+        routine_ai(player)
     sock.close()
