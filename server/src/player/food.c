@@ -23,7 +23,7 @@ void food_callback(UNUSED server_t *server, client_t *client)
         client->player->inventory[FOOD] -= 1;
         return;
     }
-    append_buffer(client->buffer, "%s%s", PLAYER_DEATH, LINE_BREAK);
+    append_buffer(client->buffer_out, "%s%s", PLAYER_DEATH, LINE_BREAK);
     client->player->dead = true;
     SLIST_FOREACH(node, server->tasks, next) {
         if (node->client == client) {

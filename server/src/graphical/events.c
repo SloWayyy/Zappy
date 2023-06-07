@@ -22,7 +22,7 @@ void send_graphical_event(server_t *server, const char *format, ...)
     SLIST_FOREACH(node, server->clients, next) {
         va_copy(copy, list);
         if (node->type == GRAPHIC) {
-            vappend_buffer(node->buffer, format, copy);
+            vappend_buffer(node->buffer_out, format, copy);
         }
         va_end(copy);
     }

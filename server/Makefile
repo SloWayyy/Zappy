@@ -18,6 +18,7 @@ SRC			=	src/core/fdsets.c \
 				src/graphical/player.c \
 				src/graphical/time.c \
 				src/graphical/team_name.c \
+				src/objects/buffers.c \
 				src/objects/clients.c \
 				src/objects/players.c \
 				src/objects/tasks.c \
@@ -33,7 +34,8 @@ SRC			=	src/core/fdsets.c \
 				src/util/arguments/handlers.c \
 				src/util/arguments/names.c \
 				src/util/arrays.c \
-				src/util/buffer.c \
+				src/util/buffer_in.c \
+				src/util/buffer_out.c \
 				src/util/util.c \
 				src/server.c
 

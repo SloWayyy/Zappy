@@ -12,6 +12,6 @@
 
 void slots_handler(UNUSED server_t *server, client_t *client, UNUSED char *line)
 {
-    append_buffer(client->buffer, "%d%s", client->player->team->slots, \
+    append_buffer(client->buffer_out, "%d%s", client->player->team->slots, \
         LINE_BREAK);
 }
