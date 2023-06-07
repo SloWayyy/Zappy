@@ -17,6 +17,7 @@ Core::Core(int port, std::string ip): _window(std::make_shared<Window>(1920, 108
         this->loader = std::make_shared<DDLoader<zappy::sdk::ICommunicationModule>>("libs/communication_sdk.so");
         this->network = std::shared_ptr<zappy::sdk::ICommunicationModule>(this->loader->getInstance("communicationEntrypoint"));
         this->network->connect(ip, port);
+        this->network->connectAsGraphical();
     } catch (const DDLoader<zappy::sdk::ICommunicationModule>::DDLException &e) {
         std::cerr << e.what() << std::endl;
         exit(84);
