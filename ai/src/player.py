@@ -53,7 +53,6 @@ class Player:
         if x[0][1] == EnumHeader.IMBOSS.value and self.boss == -1:
             self.boss = 0
             self.pos_boss = int(x[0][0])
-            self.broadcast(EnumHeader.ASKBOSS.value + "OK")
         if x[0][1] == EnumHeader.IMBOSS.value and self.boss == 0:
             self.pos_boss = int(x[0][0])
         return donnees
@@ -195,7 +194,6 @@ class Player:
         return True
 
     def take(self, enum: EnumObject, return_only: bool = True):
-        print("enum", enum)
         self.sock.send(("Take " + enum + "\n").encode())
         if (return_only == True):
             if (self.wait_return()[0] == "ko"):
