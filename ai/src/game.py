@@ -12,10 +12,10 @@ def look_item(player : Player):
     for i in range(0, 10):
         str = str.replace(",,", ", V,")
     list : list = str.split(", ")
-    foot_case = list.pop(0)
     list_tmp = []
     for i in list:
         list_tmp.append(i.split(" "))
+    foot_case = list_tmp.pop(0)
     return list_tmp[:3], foot_case
 
 def first_pattern(list_item : list, player: Player):
@@ -77,10 +77,9 @@ def routine_boss(player: Player):
 
     first_pattern(list_item, player)
     second_pattern(list_item[2:], player)
-    dump_item(player)
     player.take(EnumObject.FOOD.value)
 
-def routine_ai(player: Player):
+def look_aroud_ai(player: Player):
     list_item = []
     for _ in range(0, 3):
         player.move()
@@ -93,6 +92,19 @@ def routine_ai(player: Player):
     for j in tmp:
         list_item.append(j)
     list_item.insert(0, list_item.pop())
+    return list_item, foot_case
+
+def get_item_ai(player: Player, list_item: list, foot_case: list):
+    for i in foot_case:
+        player.take(i)
+    player.move()
+    print("list: ", list_item.reverse())
+    # for i in list_item.reverse():
+    #     player.take(i)
+
+def routine_ai(player: Player):
+    list_item, foot_case = look_aroud_ai(player)
+    get_item_ai(player, list_item, foot_case)
 
 def game_loop(sock: socket.socket, args):
     player = Player(sock, args)
