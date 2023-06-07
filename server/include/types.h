@@ -93,7 +93,8 @@ typedef struct client {
     FILE *stream;
     connection_type_t type;
     player_t *player;
-    buffer_t *buffer;
+    buffer_t *buffer_in;
+    buffer_t *buffer_out;
     SLIST_ENTRY(client) next;
 } client_t;
 

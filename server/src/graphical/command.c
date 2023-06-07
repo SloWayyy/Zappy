@@ -22,5 +22,5 @@ void handle_graphical_command(server_t *server, client_t *client, char *line)
             return;
         }
     }
-    append_buffer(client->buffer, "%s%s", GRAPHICAL_UNKNOWN, LINE_BREAK);
+    append_buffer(client->buffer_out, "%s%s", GRAPHICAL_UNKNOWN, LINE_BREAK);
 }
