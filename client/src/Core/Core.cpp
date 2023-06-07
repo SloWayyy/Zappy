@@ -20,10 +20,10 @@ Core::Core(int port, std::string ip): _window(std::make_shared<Window>(1920, 108
         this->network->connectAsGraphical();
     } catch (const DDLoader<zappy::sdk::ICommunicationModule>::DDLException &e) {
         std::cerr << e.what() << std::endl;
-        exit(84);
+        throw CoreException("Error: Cannot load communication module");
     } catch (const zappy::sdk::CommunicationException &e) {
         std::cerr << e.what() << std::endl;
-        exit(84);
+        throw CoreException("Error: Cannot connect to server");
     }
 }
 
@@ -56,4 +56,13 @@ void Core::run(void)
         }
         this->_rayWindow.endDrawing();
     }
+}
+
+Core::CoreException::CoreException(std::string const &message): _message(message)
+{
+}
+
+const char *Core::CoreException::what() const noexcept
+{
+    return this->_message.c_str();
 }

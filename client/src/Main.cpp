@@ -20,7 +20,7 @@ int main(int ac, char **av)
     } catch (const Parser::ParserException &e) {
         std::cerr << e.what() << std::endl;
         return 84;
-    } catch (const std::exception &e) {
+    } catch (const Core::CoreException &e) {
         std::cerr << e.what() << std::endl;
         return 84;
     }

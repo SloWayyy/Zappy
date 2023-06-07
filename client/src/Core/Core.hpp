@@ -21,6 +21,13 @@
 
 class Core {
     public:
+        class CoreException : public std::exception {
+            public:
+                CoreException(std::string const &message);
+                const char *what() const noexcept override;
+            private:
+                std::string _message;
+        };
         Core(int port, std::string ip);
         ~Core() = default;
         void run(void);
