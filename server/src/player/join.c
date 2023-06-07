@@ -27,18 +27,18 @@ static tile_t *get_spawn(server_t *server, team_t *team)
 
 static bool init_player_tasks(server_t *server, client_t *client)
 {
-    size_t food_id = register_task(server, client, &food_callback);
-    size_t actions_id = 0;
+    task_t *food_task = register_task(server, client, &food_callback);
 
-    if (food_id == 0) {
+    if (food_task == NULL) {
         return false;
     }
-    schedule_task(server, food_id, FOOD_CONSUME_TICKS, -1);
-    actions_id = register_task(server, client, &food_callback);
-    if (actions_id == 0) {
+    client->player->action_task = register_task(server, client, NULL);
+    if (client->player->action_task == NULL) {
+        SLIST_REMOVE(server->tasks, food_task, task, next);
+        free(food_task);
         return false;
     }
-    client->player->action_task_id = actions_id;
+    schedule_task(food_task, FOOD_CONSUME_TICKS, -1);
     return true;
 }
 
@@ -52,7 +52,7 @@ static bool join_team(server_t *server, client_t *client, team_t *team)
         return false;
     }
     if (!init_player_tasks(server, client)) {
-        free(client->player);
+        free_player(client->player);
         return false;
     }
     client->player->team = team;
