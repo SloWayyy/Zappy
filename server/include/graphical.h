@@ -23,6 +23,7 @@
     #define GRAPHICAL_FREQUENCY "sgt"
     #define GRAPHICAL_CHANGE_FREQ "sst"
 
+    #define GRAPHICAL_PLAYER_JOIN "pnw"
     #define GRAPHICAL_PLAYER_DEATH "pdi"
 
     #define GRAPHICAL_UNKNOWN "suc"
@@ -33,6 +34,13 @@
 void handle_graphical_command(server_t *server, client_t *client, char *line);
 void send_graphical_event(server_t *server, const char *format, ...);
 client_t *get_client_by_player_id(server_t *server, size_t id);
+
+void send_new_graphical(server_t *server, client_t *client);
+void send_map_size(server_t *server, client_t *client);
+void send_map(server_t *server, client_t *client);
+void send_tile(server_t *server, client_t *client, int x, int y);
+void send_team_names(server_t *server, client_t *client);
+void send_time(server_t *server, client_t *client);
 
 void msz_handler(server_t *server, client_t *client);
 void bct_handler(server_t *server, client_t *client);

@@ -14,17 +14,6 @@
 #include "types.h"
 #include "util.h"
 
-void msz_handler(server_t *server, client_t *client)
-{
-    if (strtok(NULL, " ") != NULL) {
-        append_buffer(client->buffer_out, "%s%s", GRAPHICAL_COMMAND_PARAMETER, \
-            LINE_BREAK);
-        return;
-    }
-    append_buffer(client->buffer_out, "%s %d %d%s", GRAPHICAL_MAP_SIZE, \
-        server->options->width, server->options->height, LINE_BREAK);
-}
-
 static bool check_map_coord(server_t *server, int x, int y, client_t *client)
 {
     if (x < 0 || x >= server->options->width || y < 0
@@ -36,7 +25,7 @@ static bool check_map_coord(server_t *server, int x, int y, client_t *client)
     return true;
 }
 
-static void send_tile(server_t *server, client_t *client, int x, int y)
+void send_tile(server_t *server, client_t *client, int x, int y)
 {
     append_buffer(client->buffer_out, "%s %zu %zu", \
         GRAPHICAL_TILE_CONTENT, x, y);
@@ -45,6 +34,15 @@ static void send_tile(server_t *server, client_t *client, int x, int y)
             server->zappy->map[y][x].resources[i]);
     }
     append_buffer(client->buffer_out, "%s", LINE_BREAK);
+}
+
+void send_map(server_t *server, client_t *client)
+{
+    for (int y = 0; y < server->options->height; y++) {
+        for (int x = 0; x < server->options->width; x++) {
+            send_tile(server, client, x, y);
+        }
+    }
 }
 
 void bct_handler(server_t *server, client_t *client)
@@ -73,9 +71,5 @@ void mct_handler(server_t *server, client_t *client)
             LINE_BREAK);
         return;
     }
-    for (int y = 0; y < server->options->height; y++) {
-        for (int x = 0; x < server->options->width; x++) {
-            send_tile(server, client, x, y);
-        }
-    }
+    send_map(server, client);
 }
