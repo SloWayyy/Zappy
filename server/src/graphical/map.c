@@ -5,6 +5,7 @@
 ** map_answers.c
 */
 
+#include <stdbool.h>
 #include <string.h>
 
 #include "constants.h"

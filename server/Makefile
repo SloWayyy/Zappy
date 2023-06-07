@@ -13,6 +13,7 @@ SRC			=	src/core/fdsets.c \
 				src/core/scheduler.c \
 				src/core/tick.c \
 				src/graphical/command.c \
+				src/graphical/events.c \
 				src/graphical/map.c \
 				src/graphical/player.c \
 				src/graphical/time.c \
