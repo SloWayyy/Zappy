@@ -15,7 +15,7 @@
 #include "constants.h"
 #include "types.h"
 
-static bool resize_buffer(buffer_t *buffer)
+bool resize_buffer(buffer_t *buffer)
 {
     buffer->buffer = realloc(buffer->buffer, buffer->capacity);
     if (buffer->buffer == NULL) {
@@ -24,26 +24,6 @@ static bool resize_buffer(buffer_t *buffer)
     }
     memset(&buffer->buffer[buffer->size], 0, buffer->capacity - buffer->size);
     return true;
-}
-
-buffer_t *new_buffer(void)
-{
-    buffer_t *buffer = malloc(sizeof(buffer_t));
-
-    if (buffer == NULL) {
-        perror("malloc failed");
-        return NULL;
-    }
-    buffer->buffer = malloc(sizeof(char) * BUFFER_SIZE);
-    if (buffer->buffer == NULL) {
-        perror("malloc failed");
-        free(buffer);
-        return NULL;
-    }
-    memset(buffer->buffer, 0, BUFFER_SIZE);
-    buffer->size = 0;
-    buffer->capacity = BUFFER_SIZE;
-    return buffer;
 }
 
 void vappend_buffer(buffer_t *buffer, char const *format, va_list args)

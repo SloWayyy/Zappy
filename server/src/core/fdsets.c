@@ -49,7 +49,7 @@ static void handle_incoming(server_t *server)
         close(fd);
         return;
     }
-    append_buffer(client->buffer, "%s%s", WELCOME_MESSAGE, LINE_BREAK);
+    append_buffer(client->buffer_out, "%s%s", WELCOME_MESSAGE, LINE_BREAK);
     SLIST_INSERT_HEAD(server->clients, client, next);
 }
 
@@ -80,7 +80,7 @@ int refresh_fdsets(server_t *server)
     FD_SET(server->data->signal_fd, &server->data->reads);
     SLIST_FOREACH(node, server->clients, next) {
         FD_SET(node->fd, &server->data->reads);
-        if (node->buffer->size > 0) {
+        if (node->buffer_out->size > 0) {
             FD_SET(node->fd, &server->data->writes);
         }
         max_fd = MAX(max_fd, node->fd);

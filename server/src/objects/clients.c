@@ -5,6 +5,7 @@
 ** clients.c
 */
 
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/queue.h>
@@ -12,7 +13,22 @@
 #include "objects.h"
 #include "server.h"
 #include "types.h"
-#include "util.h"
+
+static bool init_buffers(client_t *client)
+{
+    client->buffer_in = new_buffer();
+    if (client->buffer_in == NULL) {
+        perror("malloc failed");
+        return false;
+    }
+    client->buffer_out = new_buffer();
+    if (client->buffer_out == NULL) {
+        free_buffer(client->buffer_in);
+        perror("malloc failed");
+        return false;
+    }
+    return true;
+}
 
 client_t *new_client(int fd, FILE *stream)
 {
@@ -26,9 +42,7 @@ client_t *new_client(int fd, FILE *stream)
     new->stream = stream;
     new->type = UNKNOWN;
     new->player = NULL;
-    new->buffer = new_buffer();
-    if (new->buffer == NULL) {
-        perror("malloc failed");
+    if (!init_buffers(new)) {
         free(new);
         return NULL;
     }
@@ -42,8 +56,8 @@ void free_client(server_t *server, client_t *client)
         free_player(client->player);
     }
     cancel_client_tasks(server, client);
-    free(client->buffer->buffer);
-    free(client->buffer);
+    free_buffer(client->buffer_in);
+    free_buffer(client->buffer_out);
     free(client);
 }
 

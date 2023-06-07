@@ -21,6 +21,10 @@ typedef SLIST_HEAD(client_list, client) client_list_t;
 typedef SLIST_HEAD(player_list, player) player_list_t;
 typedef SLIST_HEAD(team_list, team) team_list_t;
 typedef SLIST_HEAD(task_list, task) task_list_t;
+typedef STAILQ_HEAD(action_list, action) action_list_t;
+
+struct server;
+struct task;
 
 typedef enum connection_type {
     UNKNOWN,
@@ -77,13 +81,14 @@ typedef struct tile {
 
 typedef struct player {
     size_t id;
+    bool dead;
     size_t level;
     size_t inventory[RESOURCES_TYPES_QUANTITY];
     team_t *team;
     tile_t *pos;
     direction_type_t direction;
-    size_t action_task_id;
-    bool dead;
+    struct task *action_task;
+    action_list_t *actions;
     SLIST_ENTRY(player) next_team;
     SLIST_ENTRY(player) next_tile;
 } player_t;
@@ -93,9 +98,29 @@ typedef struct client {
     FILE *stream;
     connection_type_t type;
     player_t *player;
-    buffer_t *buffer;
+    buffer_t *buffer_in;
+    buffer_t *buffer_out;
     SLIST_ENTRY(client) next;
 } client_t;
+
+typedef void (task_function_t)(struct server *server, client_t *client);
+
+typedef struct action {
+    size_t delay;
+    task_function_t *callback;
+    STAILQ_ENTRY(action) next;
+} action_t;
+
+typedef struct task {
+    size_t id;
+    bool running;
+    size_t delay;
+    size_t current;
+    int executions;
+    client_t *client;
+    task_function_t *callback;
+    SLIST_ENTRY(task) next;
+} task_t;
 
 typedef struct data {
     int socket_fd;
@@ -126,18 +151,5 @@ typedef struct server {
     client_list_t *clients;
     task_list_t *tasks;
 } server_t;
-
-typedef void (task_function_t)(server_t *server, client_t *client);
-
-typedef struct task {
-    size_t id;
-    bool running;
-    size_t delay;
-    size_t current;
-    int executions;
-    client_t *client;
-    task_function_t *callback;
-    SLIST_ENTRY(task) next;
-} task_t;
 
 #endif

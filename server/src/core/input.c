@@ -6,10 +6,10 @@
 */
 
 #include <stdbool.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/select.h>
+#include <unistd.h>
 
 #include "constants.h"
 #include "graphical.h"
@@ -22,7 +22,7 @@ static void send_new_player(server_t *server, client_t *client)
     static const char *format = "%d%s%d %d%s";
     team_t *team = client->player->team;
 
-    append_buffer(client->buffer, format, team->slots, LINE_BREAK,
+    append_buffer(client->buffer_out, format, team->slots, LINE_BREAK,
         server->options->width, server->options->height, LINE_BREAK);
 }
 
@@ -34,7 +34,7 @@ static void handle_unknown(server_t *server, client_t *client, char *line)
         client->type = PLAYER;
         send_new_player(server, client);
     } else {
-        append_buffer(client->buffer, "%s%s", PLAYER_UNKNOWN, \
+        append_buffer(client->buffer_out, "%s%s", PLAYER_UNKNOWN, \
             LINE_BREAK);
     }
 }
@@ -52,21 +52,25 @@ static void handle_client_input(server_t *server, client_t *client, char *line)
 
 static bool handle_input(server_t *server, client_t *client)
 {
-    char *line = NULL;
-    size_t len = 0;
-    ssize_t res = getline(&line, &len, client->stream);
+    bool exit = false;
+    char buffer[BUFFER_EXTRA + 1];
+    char *command = NULL;
+    int re = read(client->fd, buffer, BUFFER_EXTRA);
 
-    if (res == -1) {
-        free(line);
+    if (re <= 0) {
         return false;
     }
-    if (res == 1) {
-        return true;
+    buffer[re] = '\0';
+    append_buffer(client->buffer_in, buffer);
+    while (!exit) {
+        command = extract_line(client->buffer_in);
+        if (command != NULL) {
+            handle_client_input(server, client, command);
+            free(command);
+        } else {
+            exit = true;
+        }
     }
-    printf("Received line %s\n", line);
-    line[res - 1] = '\0';
-    handle_client_input(server, client, line);
-    free(line);
     return true;
 }
 
@@ -80,7 +84,7 @@ bool handle_client(server_t *server, client_t *client)
         keep = handle_input(server, client);
     }
     if (keep && FD_ISSET(client->fd, &server->data->writes)) {
-        keep = dump_buffer(client->buffer, client->fd) && !dead;
+        keep = dump_buffer(client->buffer_out, client->fd) && !dead;
     }
     return keep;
 }
