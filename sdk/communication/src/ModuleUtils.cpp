@@ -14,11 +14,3 @@
 zappy::sdk::ICommunicationModule *communicationEntrypoint() {
     return new zappy::sdk::ZappyCommunicationModule();
 }
-
-zappy::sdk::CommunicationException::CommunicationException(std::string message): _message(std::move(message)) {
-
-}
-
-const char *zappy::sdk::CommunicationException::what() const noexcept {
-    return this->_message.c_str();
-}

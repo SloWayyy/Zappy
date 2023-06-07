@@ -9,7 +9,6 @@
 #include "encapsulation/Raylibcpp.hpp"
 #include "src/Core/Core.hpp"
 #include "src/Parser/Parser.hpp"
-#include "Network/Network.hpp"
 
 int main(int ac, char **av)
 {
@@ -21,7 +20,7 @@ int main(int ac, char **av)
     } catch (const Parser::ParserException &e) {
         std::cerr << e.what() << std::endl;
         return 84;
-    } catch (const Network::NetworkException &e) {
+    } catch (const std::exception &e) {
         std::cerr << e.what() << std::endl;
         return 84;
     }

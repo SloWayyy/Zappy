@@ -15,7 +15,9 @@
     #include "src/Menu/Tuto.hpp"
     #include "src/Menu/Setting.hpp"
     #include "encapsulation/Raylibcpp.hpp"
-    #include "Network/Network.hpp"
+    #include "DDLoader/DDLoader.hpp"
+    #include "sdk/include/ICommunicationModule.hpp"
+
 
 class Core {
     public:
@@ -29,7 +31,8 @@ class Core {
         std::shared_ptr<Setting> _setting;
         std::shared_ptr<Gameplay> _gameplay;
         Raylibcpp::RayWindow _rayWindow;
-        std::shared_ptr<Network> _network;
+        std::shared_ptr<DDLoader<zappy::sdk::ICommunicationModule>> loader;
+        std::shared_ptr<zappy::sdk::ICommunicationModule> network;
 };
 
 #endif /* !CORE_HPP_ */

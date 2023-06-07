@@ -15,9 +15,11 @@
 namespace zappy::sdk {
     class CommunicationException : std::exception {
         public:
-            explicit CommunicationException(std::string message);
+            explicit CommunicationException(std::string message) : _message(std::move(message)) {}
 
-            [[nodiscard]] const char *what() const noexcept override;
+            [[nodiscard]] const char *what() const noexcept override {
+                return this->_message.c_str();
+            }
 
         private:
             std::string _message;

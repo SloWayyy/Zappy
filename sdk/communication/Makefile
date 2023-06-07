@@ -21,11 +21,15 @@ CXX			=	g++
 CXXFLAGS	=	-Wall -Wextra -Wpedantic
 CPPFLAGS	=	-iquote include/
 
+DIR_DEST	=	../../client/sdk
+
 all:	$(NAME)
 
 $(NAME): CXXFLAGS += -fPIC
 $(NAME): $(OBJ)
 	g++ $(CXXFLAGS) -o $(NAME) $(OBJ) --shared
+	mkdir $(DIR_DEST)
+	cp -r include/ $(NAME) $(DIR_DEST)
 
 clean:
 	$(RM) $(OBJ)
@@ -38,6 +42,7 @@ debug: re
 fclean:	clean
 	rm -f $(NAME)
 	rm -f $(OBJ)
+	rm -rf ../../client/sdk
 
 re:	fclean all
 
