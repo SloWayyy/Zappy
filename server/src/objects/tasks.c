@@ -12,19 +12,7 @@
 
 #include "types.h"
 
-static task_t *get_task_by_id(server_t *server, size_t id)
-{
-    task_t *node = NULL;
-
-    SLIST_FOREACH(node, server->tasks, next) {
-        if (node->id == id) {
-            return node;
-        }
-    }
-    return NULL;
-}
-
-size_t register_task(server_t *server, client_t *client, \
+task_t *register_task(server_t *server, client_t *client, \
     task_function_t *callback)
 {
     static size_t next_id = 1;
@@ -42,35 +30,18 @@ size_t register_task(server_t *server, client_t *client, \
     task->client = client;
     task->callback = callback;
     SLIST_INSERT_HEAD(server->tasks, task, next);
-    return task->id;
+    return task;
 }
 
-void schedule_task(server_t *server, size_t task_id, size_t delay, int exec)
+void schedule_task(task_t *task, size_t delay, int exec)
 {
-    task_t *task = get_task_by_id(server, task_id);
-
-    if (task == NULL) {
-        return;
-    }
-    if (task->running) {
+    if (task == NULL || task->running) {
         return;
     }
     task->current = delay;
     task->delay = delay;
     task->executions = exec;
     task->running = true;
-}
-
-void cancel_task(server_t *server, size_t id)
-{
-    task_t *node = NULL;
-
-    SLIST_FOREACH(node, server->tasks, next) {
-        if (node->id == id) {
-            node->running = false;
-            return;
-        }
-    }
 }
 
 void cancel_client_tasks(server_t *server, client_t *client)

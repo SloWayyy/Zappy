@@ -15,6 +15,11 @@
 
     #include "types.h"
 
+typedef struct vector {
+    int x;
+    int y;
+} vector_t;
+
 size_t array_len(char **array);
 void free_array(char **array);
 
