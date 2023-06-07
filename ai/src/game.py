@@ -20,8 +20,11 @@ def look_item(player : Player):
 
 def first_pattern(list_item : list, player: Player):
     player.move()
+    if (list_item == []):
+        return
     for i in list_item[0]:
-        player.take(i)
+        if (i[0] != "V"):
+            player.take(i)
     player.turn(EnumDirection.RIGHT)
     player.move()
     for i in list_item[1]:
@@ -37,7 +40,8 @@ def second_pattern(list_item : list, player: Player):
             player.move()
             print("MOVE\n")
             for j in list_item[counter]:
-                player.take(j)
+                if (j[0] != "V"):
+                    player.take(j)
             counter += 1
 
 def routine_boss(player: Player):
@@ -67,12 +71,23 @@ def routine_boss(player: Player):
     print("\n")
     second_pattern(list_item[2:], player)
     print("\n")
-    print(player.inventory())
 
 def game_loop(sock: socket.socket, args):
     player = Player(sock, args)
     find_boss(player)
     join_boss(player)
     if player.boss == 1:
-        routine_boss(player)
+        for int in range(0, 5):
+            routine_boss(player)
+            # print(player.inventory())
+            # print(player.inventory())
+            # player.set(EnumObject.LINEMATE)
+            player.move()
+            player.move()
+            player.move()
+            # print(player.incantation())
+            # routine_boss(player)
+        print(player.inventory())
+        # print(player.wait_answer())
+        # while True:
     sock.close()

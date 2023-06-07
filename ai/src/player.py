@@ -146,8 +146,13 @@ class Player:
     def inventory(self, return_only: bool = True):
         self.sock.send("Inventory\n".encode())
         if (return_only == True):
-            return self.wait_return()[0]
-        return self.wait_answer()[0]
+            string = self.wait_return()[0]
+        else:
+            string = self.wait_answer()[0]
+        number = re.findall(r'\b\d+\b', string)
+        if len(number) == 0:
+            return False
+        return [int(num) for num in number]
 
     def broadcast(self, message: str, return_only: bool = False):
         self.sock.send(("Broadcast " + message + "\n").encode())
@@ -218,4 +223,15 @@ class Player:
         else:
             if (self.wait_answer()[0] == "ko"):
                 return False
-        return True
+        if (return_only == True):
+            tmp = self.wait_return()[0]
+            if (tmp == "ko"):
+                return False
+            else:
+                return tmp
+        else:
+            tmp = self.wait_answer()[0]
+            if (tmp == "ko"):
+                return False
+            else:
+                return tmp
