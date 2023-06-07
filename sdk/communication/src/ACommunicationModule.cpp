@@ -74,3 +74,7 @@ bool zappy::sdk::ACommunicationModule::dumpBuffers() {
     }
     return true;
 }
+
+int zappy::sdk::ACommunicationModule::getSocketFd() const {
+    return this->_socketFd;
+}
