@@ -41,6 +41,7 @@ class Window {
         std::size_t getFps(void) const;
         void setExit(bool exit);
         bool getExit(void) const;
+        void setDefaultCamera(void);
         Raylibcpp::RayWindow getRayWindow(void) const;
     private:
         windowParams _windowParam;

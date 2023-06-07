@@ -12,7 +12,12 @@ Window::Window(std::size_t height, std::size_t width, std::size_t fps) : _window
     this->_rayWindow.initWindow(this->_windowParam._screenHeight, this->_windowParam._screenWidth, "Zappy");
     this->_rayWindow.setTargetFPS(this->_windowParam._fps);
     // change the fovy to change the vision of camera
-    this->setCamera({ -5.0f, 15.0f, 10.0f }, { 10.0f, 2.0f, 10.0f }, { 0.0f, 1.0f, 0.0f }, 80.0f, CAMERA_PERSPECTIVE);
+    this->setDefaultCamera();
+}
+
+void Window::setDefaultCamera(void)
+{
+    this->setCamera({ -12.0f, 24.0f, 18.0f }, { 0.15f, 8.0f, 17.0f }, { 0.8f, 1.0f, 0.0f }, 80.0f, CAMERA_PERSPECTIVE);
 }
 
 void Window::setCamera(Vector3 pos, Vector3 target, Vector3 up, float fovy, int projection)
@@ -56,6 +61,10 @@ void Window::handleInput()
 
 void Window::run()
 {
+    printf("pos: %f %f %f\n", this->_camera.position.x, this->_camera.position.y, this->_camera.position.z);
+    printf("target: %f %f %f\n", this->_camera.target.x, this->_camera.target.y, this->_camera.target.z);
+    printf("up: %f %f %f\n", this->_camera.up.x, this->_camera.up.y, this->_camera.up.z);
+    printf("fovy: %f\n", this->_camera.fovy);
     this->updateCamera();
     this->handleInput();
 }
