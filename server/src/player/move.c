@@ -50,7 +50,7 @@ void forward_callback(server_t *server, client_t *client)
     send_graphical_event(server, "%s %zu %d %d %zu%s", \
         GRAPHICAL_PLAYER_POSITION, client->player->id, x, y, \
         client->player->direction, LINE_BREAK);
-    append_buffer(client->buffer, "%s%s", PLAYER_OK, LINE_BREAK);
+    append_buffer(client->buffer_out, "%s%s", PLAYER_OK, LINE_BREAK);
 }
 
 void forward_handler(UNUSED server_t *server, client_t *client, \

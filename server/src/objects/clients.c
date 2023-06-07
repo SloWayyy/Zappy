@@ -42,7 +42,6 @@ client_t *new_client(int fd, FILE *stream)
     new->stream = stream;
     new->type = UNKNOWN;
     new->player = NULL;
-    new->buffer_in = new_buffer();
     if (!init_buffers(new)) {
         free(new);
         return NULL;
