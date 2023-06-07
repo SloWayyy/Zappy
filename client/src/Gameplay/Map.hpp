@@ -39,6 +39,7 @@ class Map {
         modelType getmodelBanana() const {return BANANA;};
         Vector3 getcubePosition() const;
         void setcubePosition(Vector3 position);
+        void draw(Vector3 _position);
         void run();
     private:
         Model _model;

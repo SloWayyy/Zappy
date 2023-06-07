@@ -56,7 +56,7 @@ void Window::handleInput()
 
 void Window::run()
 {
-    // this->updateCamera();
+    this->updateCamera();
     this->handleInput();
 }
 

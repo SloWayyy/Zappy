@@ -26,6 +26,7 @@ class Gameplay {
         void findPlayer(void);
         void drawTextOnScreen(std::string text, int fontSize, int posX, int posY, Color color);
         void setCurrentCharacter();
+        void startAnimation();
     private:
         std::shared_ptr<Window> _window;
         Map _map;
