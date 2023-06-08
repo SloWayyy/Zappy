@@ -37,6 +37,7 @@ class Player:
         self.boss = -1
         self.pos_boss = -1
         self.nbr_ai = 0
+        self.level = 1
         self.space = False
         self.args = args
         self.pos_bossitionned = False

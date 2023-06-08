@@ -55,3 +55,18 @@ def routine_boss(player: Player):
     first_pattern(list_item, player, EnumDirection.RIGHT)
     second_pattern(list_item[2:], player)
     player.take(EnumObject.FOOD.value)
+    print("inventory boss: ", player.inventory())
+    if player.level == 1:
+        player.take(EnumObject.FOOD.value)
+        player.take(EnumObject.LINEMATE.value)
+        player.take(EnumObject.DERAUMERE.value)
+        player.take(EnumObject.SIBUR.value)
+        player.take(EnumObject.MENDIANE.value)
+        player.take(EnumObject.PHIRAS.value)
+        player.take(EnumObject.THYSTAME.value)
+        player.set(EnumObject.LINEMATE, 1)
+        print("boss: ", player.look())
+        print("boss: ", player.incantation())
+        player.level += 1
+    while(1):
+        pass

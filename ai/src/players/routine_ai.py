@@ -1,3 +1,4 @@
+from asyncio import sleep
 from ai.src.player import Player, EnumDirection, EnumObject, EnumHeader
 from ai.src.players.routine_boss import look_item
 
@@ -49,17 +50,28 @@ def return_to_boss(player: Player):
     player.move()
     player.turn(EnumDirection.RIGHT)
     player.move()
-    player.move()
+    # player.move() faut le remettre c'est juste pour test le serveur de merde mdr ahahaaahah
 
 def routine_ai(player: Player):
     list_item, foot_case = look_aroud_ai(player)
     for i in foot_case:
         player.take(i)
     list_item.reverse()
-    print(list_item)
-    print("\n")
-    print(player.inventory())
     first_pattern_ai(list_item, player)
     second_pattern_ai(list_item[2:], player)
     return_to_boss(player)
-    print(player.inventory())
+    print("inventory ai: ", player.inventory())
+    if player.level == 1:
+        player.take(EnumObject.FOOD.value)
+        player.take(EnumObject.LINEMATE.value)
+        player.take(EnumObject.DERAUMERE.value)
+        player.take(EnumObject.SIBUR.value)
+        player.take(EnumObject.MENDIANE.value)
+        player.take(EnumObject.PHIRAS.value)
+        player.take(EnumObject.THYSTAME.value)
+        player.set(EnumObject.LINEMATE, 1)
+        print("ai: ", player.look())
+        print("ai: ", player.incantation())
+        player.level += 1
+    while(1):
+        pass
