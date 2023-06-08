@@ -95,3 +95,13 @@ void Character::handleEvent()
     if (this->_currentlyAnimation == LEFT_TURN)
         this->chooseAnimation(LEFT_TURN);
 }
+
+void Character::setPos(int x, int z, int orientation)
+{
+    (void)orientation;
+    if (this->_position.x != x || this->_position.z != z) {
+        this->setCurrentlyAnimation(WALKING);
+    }
+    this->_position.x = x;
+    this->_position.z = z;
+}
