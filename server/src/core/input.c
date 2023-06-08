@@ -17,22 +17,16 @@
 #include "types.h"
 #include "util.h"
 
-static void send_new_player(server_t *server, client_t *client)
-{
-    static const char *format = "%d%s%d %d%s";
-    team_t *team = client->player->team;
-
-    append_buffer(client->buffer_out, format, team->slots, LINE_BREAK,
-        server->options->width, server->options->height, LINE_BREAK);
-}
-
 static void handle_unknown(server_t *server, client_t *client, char *line)
 {
     if (strcmp(line, GRAPHICAL_IDENTIFIER) == 0) {
         client->type = GRAPHIC;
+        send_new_graphical(server, client);
     } else if (try_join_team(server, client, line)) {
         client->type = PLAYER;
-        send_new_player(server, client);
+        append_buffer(client->buffer_out, "%d%s%d %d%s", \
+            client->player->team->slots, LINE_BREAK, \
+            server->options->width, server->options->height, LINE_BREAK);
     } else {
         append_buffer(client->buffer_out, "%s%s", PLAYER_UNKNOWN, \
             LINE_BREAK);

@@ -14,6 +14,12 @@
 
 #include "server.h"
 
+void send_time(server_t *server, client_t *client)
+{
+    append_buffer(client->buffer_out, "%s %li%s", GRAPHICAL_FREQUENCY, \
+        server->zappy->tick->freq, LINE_BREAK);
+}
+
 void sgt_handler(server_t *server, client_t *client)
 {
     if (strtok(NULL, " ") != NULL) {
@@ -21,8 +27,7 @@ void sgt_handler(server_t *server, client_t *client)
             GRAPHICAL_COMMAND_PARAMETER, LINE_BREAK);
         return;
     }
-    append_buffer(client->buffer_out, "%s %li%s", GRAPHICAL_FREQUENCY, \
-        server->zappy->tick->freq, LINE_BREAK);
+    send_time(server, client);
 }
 
 void sst_handler(server_t *server, client_t *client)

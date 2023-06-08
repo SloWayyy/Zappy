@@ -20,7 +20,7 @@ def main():
     try:
         args = pars_args()
         sock = get_socket(args.port, args.address if args.address is not None else "")
-        game_loop(sock, args.name)
+        game_loop(sock, args)
         sys.exit(0)
     except BadArgumentException as e:
         print(e)

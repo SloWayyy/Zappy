@@ -11,6 +11,8 @@
 #include <string.h>
 #include <sys/queue.h>
 
+#include "constants.h"
+#include "graphical.h"
 #include "objects.h"
 #include "player.h"
 #include "server.h"
@@ -45,13 +47,13 @@ static bool init_player_tasks(server_t *server, client_t *client)
 static bool join_team(server_t *server, client_t *client, team_t *team)
 {
     tile_t *spawn = get_spawn(server, team);
+    player_t *player = new_player();
 
-    client->player = new_player();
+    client->player = player;
     if (client->player == NULL) {
         perror("malloc failed");
         return false;
-    }
-    if (!init_player_tasks(server, client)) {
+    } else if (!init_player_tasks(server, client)) {
         free_player(client->player);
         return false;
     }
@@ -60,6 +62,9 @@ static bool join_team(server_t *server, client_t *client, team_t *team)
     team->slots--;
     SLIST_INSERT_HEAD(team->players, client->player, next_team);
     SLIST_INSERT_HEAD(&spawn->players, client->player, next_tile);
+    send_graphical_event(server, "%s %zu %zu %zu %zu %zu %s%s", \
+        GRAPHICAL_PLAYER_JOIN, player->id, player->pos->x, player->pos->y, \
+        player->direction, player->level, player->team->name, LINE_BREAK);
     return true;
 }
 
