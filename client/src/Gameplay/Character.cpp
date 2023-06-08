@@ -98,7 +98,6 @@ void Character::handleEvent()
 
 void Character::setPos(int x, int z, int orientation)
 {
-    (void)orientation;
     if (this->_position.x != x || this->_position.z != z) {
         this->setCurrentlyAnimation(WALKING);
     }
