@@ -5,6 +5,7 @@
 ** move.c
 */
 
+#include <stddef.h>
 #include <sys/queue.h>
 
 #include "constants.h"
@@ -62,5 +63,5 @@ static void forward_callback(server_t *server, client_t *client, \
 void forward_handler(UNUSED server_t *server, client_t *client, \
     UNUSED char *line)
 {
-    schedule_action(client->player, &forward_callback, FORWARD_DELAY, NULL);
+    schedule_action(client, &forward_callback, FORWARD_DELAY, NULL);
 }

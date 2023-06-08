@@ -29,6 +29,7 @@ task_t *register_task(server_t *server, client_t *client, \
     task->executions = 0;
     task->client = client;
     task->callback = callback;
+    task->arg = NULL;
     SLIST_INSERT_HEAD(server->tasks, task, next);
     return task;
 }

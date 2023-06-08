@@ -5,6 +5,7 @@
 ** rotate.c
 */
 
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -36,7 +37,7 @@ void left_handler(UNUSED server_t *server, client_t *client, UNUSED char *line)
         return;
     }
     *dir = false;
-    schedule_action(client->player, &rotate_callback, LEFT_DELAY, dir);
+    schedule_action(client, &rotate_callback, LEFT_DELAY, dir);
 }
 
 void right_handler(UNUSED server_t *server, client_t *client, UNUSED char *line)
@@ -48,5 +49,5 @@ void right_handler(UNUSED server_t *server, client_t *client, UNUSED char *line)
         return;
     }
     *dir = true;
-    schedule_action(client->player, &rotate_callback, RIGHT_DELAY, dir);
+    schedule_action(client, &rotate_callback, RIGHT_DELAY, dir);
 }
