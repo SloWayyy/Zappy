@@ -44,6 +44,7 @@ class Character {
         void handleEvent();
         void run();
         void draw();
+        void Rotate(Directions direction);
     private:
         Model _model;
         std::vector<ModelAnimation *> _animations;
