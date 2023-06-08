@@ -24,7 +24,6 @@ class Gameplay {
         void runPlayers(void);
         void handleInput(void);
         void drawMap(void);
-        void findPlayer(void);
         void drawTextOnScreen(std::string text, int fontSize, int posX, int posY, Color color);
         void setCurrentCharacter();
         void startAnimation();

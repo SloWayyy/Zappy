@@ -9,7 +9,7 @@
 
 Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window), _map(Map(10, 10)), _currentCharacterId(0), _currentCharacterIndex(0)
 {
-    this->findPlayer();
+    this->initPlayer({1 * 4.0f, (float)1.1, 8 * 4.0f}, 1, 2, 1, "Team1");
 }
 
 void Gameplay::initPlayer(Vector3 pos, std::size_t level, std::size_t orientation, std::size_t id, std::string teamname)
@@ -24,24 +24,6 @@ void Gameplay::runPlayers(void)
 {
     for (auto &character : this->_characters) {
         character.second.run();
-    }
-}
-
-void Gameplay::findPlayer(void)
-{
-    std::vector<std::string> map = this->_map.getMap();
-    float _x = 0.0f;
-    float _y = 0.0f;
-
-    for (std::size_t y = 0; y < this->_map.getheight(); y++) {
-        for (std::size_t x = 0; x < this->_map.getwidth(); x++) {
-            this->_map.setcubePosition({ _x, 0.0f, _y });
-            if (map[y][x] == 'P')
-                this->initPlayer({this->_map.getcubePosition().x, this->_map.getcubePosition().y + (float)1.1, this->_map.getcubePosition().z}, 1, 2, 1, "Team1");
-            _x += 4.0f;
-        }
-        _x = 0.0f;
-        _y += 4.0f;
     }
 }
 
