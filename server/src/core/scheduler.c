@@ -25,7 +25,7 @@ static void execute_task(server_t *server, task_t *task)
         }
     }
 
-    task->callback(server, task->client);
+    task->callback(server, task->client, task->arg);
 }
 
 void execute_tasks(server_t *server)

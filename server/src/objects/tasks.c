@@ -33,11 +33,12 @@ task_t *register_task(server_t *server, client_t *client, \
     return task;
 }
 
-void schedule_task(task_t *task, size_t delay, int exec)
+void schedule_task(task_t *task, size_t delay, int exec, void *arg)
 {
     if (task == NULL || task->running) {
         return;
     }
+    task->arg = arg;
     task->current = delay;
     task->delay = delay;
     task->executions = exec;
@@ -53,6 +54,7 @@ void cancel_client_tasks(server_t *server, client_t *client)
         tmp = node->next.sle_next;
         if (node->client == client) {
             SLIST_REMOVE(server->tasks, node, task, next);
+            free(node->arg);
             free(node);
         }
         node = tmp;

@@ -31,6 +31,7 @@ SRC			=	src/core/fdsets.c \
 				src/player/info.c \
 				src/player/join.c \
 				src/player/move.c \
+				src/player/rotate.c \
 				src/util/arguments/args.c \
 				src/util/arguments/check.c \
 				src/util/arguments/handlers.c \
@@ -63,6 +64,9 @@ all: $(NAME)
 
 $(NAME): $(OBJ) $(OBJ_M)
 	$(CC) -o $(NAME) $(OBJ) $(OBJ_M)
+
+ci: CFLAGS += -Werror
+ci: all
 
 clean:
 	$(RM) $(OBJ)

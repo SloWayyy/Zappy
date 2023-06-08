@@ -29,6 +29,9 @@ static void end_server(server_t *server)
     if (server->data->socket_fd != -1) {
         close(server->data->socket_fd);
     }
+    if (server->data->signal_fd != -1) {
+        close(server->data->signal_fd);
+    }
 }
 
 static bool server_loop(server_t *server)
@@ -58,6 +61,8 @@ static void init_stack_values(server_t *server)
     SLIST_INIT(server->zappy->teams);
     SLIST_INIT(server->tasks);
     memset(server->data, 0, sizeof(data_t));
+    server->data->socket_fd = -1;
+    server->data->signal_fd = -1;
 }
 
 bool start_server(options_t *options)

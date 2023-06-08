@@ -15,7 +15,7 @@
 #include "types.h"
 #include "util.h"
 
-void food_callback(UNUSED server_t *server, client_t *client)
+void food_callback(UNUSED server_t *server, client_t *client, UNUSED void *arg)
 {
     task_t *node = NULL;
 
