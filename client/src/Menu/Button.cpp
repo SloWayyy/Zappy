@@ -17,7 +17,6 @@ Button::Button(std::string string, coord coord, Color color, int size, GameEvent
 
 void Button::update()
 {
-    this->_colorFont = this->_colorFont;
     this->_colorRect = BLUE;
     this->_mouse.x = this->_rayMouse.getMouseX();
     this->_mouse.y = this->_rayMouse.getMouseY();
@@ -41,9 +40,11 @@ void Button::update()
         this->_colorRect = BLUE;
     }
     if (this->_click == true && this->_rayMouse.isMouseButtonReleased(0) == true) {
-        this->_window->setGameEvent(this->getScreen());
         this->check = false;
         this->_click = false;
+        this->_colorFont = GOLD;
+        this->_colorRect = BLUE;
+        this->_window->setGameEvent(this->getScreen());
     }
 }
 

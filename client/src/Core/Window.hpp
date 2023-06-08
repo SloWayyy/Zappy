@@ -50,13 +50,17 @@ class Window {
         void setColorBackground(Color color);
         Color getColorBackground(void) const;
         Music getMusic(void) const;
+        double getClock(void) const;
+        void setClock(double clock);
     private:
         windowParams _windowParam;
+        double _clock;
         bool _isExit;
         GameEvent _gameEvent;
         Camera _camera;
         Raylibcpp::RayWindow _rayWindow;
         Raylibcpp::RayMusic _rayMusic;
+        Raylibcpp::RayClock _rayClock;
         Color _colorBackground;
         Music _music;
 };

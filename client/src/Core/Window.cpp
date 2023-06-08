@@ -15,6 +15,7 @@ Window::Window(std::size_t height, std::size_t width, std::size_t fps) : _window
     this->setDefaultCamera();
     this->setMusic("assets/song/menu.mp3");
     this->_colorBackground = SKYBLUE;
+    this->_clock = 0;
 }
 
 void Window::setMusic(const std::string &musicPath)
@@ -70,6 +71,12 @@ void Window::handleInput()
 
 void Window::run()
 {
+    // this->_rayMusic.updateMusicStream(this->_music);
+    // if ((this->getClock() + 0.005) < this->_rayClock.getTime()) {
+    //     this->setClock(this->_rayClock.getTime());
+    //     this->updateCamera();
+    // }
+    // this->handleInput();
     this->_rayMusic.updateMusicStream(this->_music);
     this->updateCamera();
     this->handleInput();
@@ -148,4 +155,14 @@ void Window::setColorBackground(Color color)
 Color Window::getColorBackground(void) const
 {
     return (this->_colorBackground);
+}
+
+void Window::setClock(double clock)
+{
+    this->_clock = clock;
+}
+
+double Window::getClock(void) const
+{
+    return (this->_clock);
 }

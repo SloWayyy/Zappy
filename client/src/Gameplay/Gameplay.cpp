@@ -7,13 +7,17 @@
 
 #include "src/Gameplay/Gameplay.hpp"
 
-Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window), _map(Map(10, 10)), _currentCharacterId(0), _currentCharacterIndex(0)
+Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window), _map(Map(10, 10)), _currentCharacterId(0)
 {
-    this->initPlayer({1 * 4.0f, (float)1.1, 8 * 4.0f}, 1, 2, 1, "Team1");
+    this->_isDisplay = false;
+    this->_display = Display(this->_window);
+    this->initPlayer({1 * 4.0f, (float)1.1, 8 * 4.0f}, 1, 2, 3, "Team1");
+    this->initPlayer({4 * 4.0f, (float)1.1, 8 * 4.0f}, 1, 2, 5, "Team2");
+    this->initPlayer({8 * 4.0f, (float)1.1, 8 * 4.0f}, 1, 2, 8, "Team2");
+    this->_currentCharacterIndex = _characters.begin()->first;
 }
 
 void Gameplay::initPlayer(Vector3 pos, std::size_t level, std::size_t orientation, std::size_t id, std::string teamname)
-
 {
     Character player(0, 0, pos, level, orientation, teamname);
 
@@ -38,25 +42,40 @@ void Gameplay::run(void)
 {
     this->_map.run();
     this->drawMap();
-    this->drawTextOnScreen("F1:  Camera 1", 20, this->_window->getScreenHeight() - 150, 10, BLACK);
-    this->drawTextOnScreen("F2: Camera 2", 20, this->_window->getScreenHeight() - 150, 60, BLACK);
-    this->drawTextOnScreen("F3: Camera 3", 20, this->_window->getScreenHeight() - 150, 110, BLACK);
-    this->handleInput();
+    if (!this->_isDisplay) {
+        this->drawTextOnScreen("F1:  Camera 1", 20, this->_window->getScreenHeight() - 150, 10, BLACK);
+        this->drawTextOnScreen("F2: Camera 2", 20, this->_window->getScreenHeight() - 150, 60, BLACK);
+        this->drawTextOnScreen("F3: Camera 3", 20, this->_window->getScreenHeight() - 150, 110, BLACK);
+        this->handleInput();
+    }
     this->startAnimation();
     this->runPlayers();
+    if (this->_isDisplay)  {
+        this->_window->setDefaultCamera();
+        this->_display.run();
+    }
 }
 
 void Gameplay::setCurrentCharacter()
 {
-    if (this->_currentCharacterId >= this->_characters.size())
-        this->_currentCharacterId = 0;
-    for (std::size_t i = 0; i < this->_characters.size(); i++) {
-        if (this->_currentCharacterId == i) {
-            this->_currentCharacter = this->_characters[i];
-            this->_currentCharacterId++;
-            break;
+    bool isSet = false;
+    std::size_t i = 0;
+
+    for (auto &character : this->_characters)
+        i = character.first;
+    for (auto &character : this->_characters) {
+        if (isSet == true) {
+            this->_currentCharacterIndex = character.first;
+            return;
+        }
+        if (character.first == this->_currentCharacterIndex) {
+            this->_currentCharacter = character.second;
+            this->_currentCharacterIndex = character.first;
+            isSet = true;
         }
     }
+    if (this->_currentCharacterIndex == i)
+        this->_currentCharacterIndex = _characters.begin()->first;
 }
 
 void Gameplay::handleInput(void)
@@ -81,7 +100,10 @@ void Gameplay::handleInput(void)
         this->_characters[1].setPos(this->_characters[1].getPosition().x - 1, this->_characters[1].getPosition().z, DOWN_DIR);
     if (this->_rayWindow.isKeyReleased(KEY_V))
         this->_characters[1].setPos(this->_characters[1].getPosition().x, this->_characters[1].getPosition().z - 1, LEFT_DIR);
-    
+    if (this->_rayWindow.isKeyReleased(KEY_TAB) && this->_isDisplay == false)
+        this->_isDisplay = true;
+    else if (this->_rayWindow.isKeyReleased(KEY_TAB) && this->_isDisplay == true)
+        this->_isDisplay = false;
 }
 
 void Gameplay::drawMap(void)
@@ -105,13 +127,18 @@ void Gameplay::drawMap(void)
 void Gameplay::startAnimation(void)
 {
     if (this->_rayWindow.isKeyReleased(KEY_KP_1))
-        this->_characters[0].setCurrentlyAnimation(SPAWN);
+        this->_characters[1].setCurrentlyAnimation(SPAWN);
     if (this->_rayWindow.isKeyReleased(KEY_KP_2))
-        this->_characters[0].setCurrentlyAnimation(DYING);
+        this->_characters[1].setCurrentlyAnimation(DYING);
     if (this->_rayWindow.isKeyReleased(KEY_KP_3))
-        this->_characters[0].setCurrentlyAnimation(WALKING);
+        this->_characters[1].setCurrentlyAnimation(WALKING);
     if (this->_rayWindow.isKeyReleased(KEY_KP_4))
-        this->_characters[0].setCurrentlyAnimation(RIGHT_TURN);
+        this->_characters[1].setCurrentlyAnimation(RIGHT_TURN);
     if (this->_rayWindow.isKeyReleased(KEY_KP_5))
-        this->_characters[0].setCurrentlyAnimation(LEFT_TURN);
+        this->_characters[1].setCurrentlyAnimation(LEFT_TURN);
+}
+
+void Gameplay::setIsDisplay(bool isDisplay)
+{
+    this->_isDisplay = isDisplay;
 }

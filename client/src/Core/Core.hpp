@@ -38,6 +38,7 @@ class Core {
         std::shared_ptr<Setting> _setting;
         std::shared_ptr<Gameplay> _gameplay;
         Raylibcpp::RayWindow _rayWindow;
+        Raylibcpp::RayClock _rayClock;
         std::shared_ptr<DDLoader<zappy::sdk::ICommunicationModule>> loader;
         std::shared_ptr<zappy::sdk::ICommunicationModule> network;
 };

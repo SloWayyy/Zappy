@@ -128,3 +128,8 @@ Inventory Character::getInventory() const
 {
     return this->_inventory;
 }
+
+Directions Character::getDirection() const
+{
+    return this->_currentDirection;
+}

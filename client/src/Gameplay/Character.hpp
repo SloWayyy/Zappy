@@ -48,6 +48,7 @@ class Character {
         size_t getLevel() const;
         void setLevel(size_t level);
         Inventory getInventory() const;
+        Directions getDirection() const;
     private:
         Model _model;
         std::vector<ModelAnimation *> _animations;

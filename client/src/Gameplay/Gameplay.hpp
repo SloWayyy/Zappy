@@ -13,6 +13,7 @@
     #include "src/Gameplay/Map.hpp"
     #include "src/Core/Window.hpp"
     #include "src/Gameplay/Character.hpp"
+    #include "src/Gameplay/Display.hpp"
     #include "encapsulation/Raylibcpp.hpp"
 
 class Gameplay {
@@ -27,9 +28,11 @@ class Gameplay {
         void drawTextOnScreen(std::string text, int fontSize, int posX, int posY, Color color);
         void setCurrentCharacter();
         void startAnimation();
+        void setIsDisplay(bool isDisplay);
     private:
         std::shared_ptr<Window> _window;
         Map _map;
+        Display _display;
         std::map<std::size_t, Character> _characters;
         std::size_t _currentCharacterId;
         std::size_t _currentCharacterIndex;
@@ -38,6 +41,7 @@ class Gameplay {
         Raylibcpp::RayCube _rayCube;
         Raylibcpp::RayModel _rayModel;
         Raylibcpp::RayText _rayText;
+        bool _isDisplay;
 };
 
 #endif /* !GAMEPLAY_HPP_ */

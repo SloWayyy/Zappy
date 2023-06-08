@@ -93,6 +93,12 @@ namespace Raylibcpp {
             float getMusicTimeLength(Music music);
             float getMusicTimePlayed(Music music);
     };
+    class RayClock {
+        public:
+            RayClock() = default;
+            ~RayClock() = default;
+            double getTime();
+    };
 }
 
 #endif /* !RAYLIBCPP_HPP_ */
