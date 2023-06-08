@@ -11,9 +11,9 @@ Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window), _map(Map
 {
     this->_isDisplay = false;
     this->_display = Display(this->_window);
-    this->initPlayer({1 * 4.0f, (float)1.1, 8 * 4.0f}, 1, 2, 3, "Team1");
-    this->initPlayer({4 * 4.0f, (float)1.1, 8 * 4.0f}, 1, 2, 5, "Team2");
-    this->initPlayer({8 * 4.0f, (float)1.1, 8 * 4.0f}, 1, 2, 8, "Team2");
+    this->initPlayer({1 * 4.0f, 1.38f, 8 * 4.0f}, 1, 2, 3, "Team1");
+    this->initPlayer({4 * 4.0f, 1.38f, 8 * 4.0f}, 1, 2, 5, "Team2");
+    this->initPlayer({8 * 4.0f, 1.38f, 8 * 4.0f}, 1, 2, 8, "Team2");
     this->_currentCharacterIndex = _characters.begin()->first;
 }
 
@@ -93,13 +93,13 @@ void Gameplay::handleInput(void)
     if (this->_rayWindow.isKeyReleased(KEY_F3))
         this->_window->setDefaultCamera();
     if (this->_rayWindow.isKeyReleased(KEY_N))
-        this->_characters[1].setPos(this->_characters[1].getPosition().x, this->_characters[1].getPosition().z + 1, RIGHT_DIR);
+        this->_characters[3].setPos(this->_characters[3].getPosition().x, this->_characters[3].getPosition().z + 1, RIGHT_DIR);
     if (this->_rayWindow.isKeyReleased(KEY_G))
-        this->_characters[1].setPos(this->_characters[1].getPosition().x + 1, this->_characters[1].getPosition().z, TOP_DIR);
+        this->_characters[3].setPos(this->_characters[3].getPosition().x + 1, this->_characters[3].getPosition().z, TOP_DIR);
     if (this->_rayWindow.isKeyReleased(KEY_B))
-        this->_characters[1].setPos(this->_characters[1].getPosition().x - 1, this->_characters[1].getPosition().z, DOWN_DIR);
+        this->_characters[3].setPos(this->_characters[3].getPosition().x - 1, this->_characters[3].getPosition().z, DOWN_DIR);
     if (this->_rayWindow.isKeyReleased(KEY_V))
-        this->_characters[1].setPos(this->_characters[1].getPosition().x, this->_characters[1].getPosition().z - 1, LEFT_DIR);
+        this->_characters[3].setPos(this->_characters[3].getPosition().x, this->_characters[3].getPosition().z - 1, LEFT_DIR);
     if (this->_rayWindow.isKeyReleased(KEY_TAB) && this->_isDisplay == false)
         this->_isDisplay = true;
     else if (this->_rayWindow.isKeyReleased(KEY_TAB) && this->_isDisplay == true)
@@ -127,15 +127,15 @@ void Gameplay::drawMap(void)
 void Gameplay::startAnimation(void)
 {
     if (this->_rayWindow.isKeyReleased(KEY_KP_1))
-        this->_characters[1].setCurrentlyAnimation(SPAWN);
+        this->_characters[3].setCurrentlyAnimation(SPAWN);
     if (this->_rayWindow.isKeyReleased(KEY_KP_2))
-        this->_characters[1].setCurrentlyAnimation(DYING);
+        this->_characters[3].setCurrentlyAnimation(DYING);
     if (this->_rayWindow.isKeyReleased(KEY_KP_3))
-        this->_characters[1].setCurrentlyAnimation(WALKING);
+        this->_characters[3].setCurrentlyAnimation(WALKING);
     if (this->_rayWindow.isKeyReleased(KEY_KP_4))
-        this->_characters[1].setCurrentlyAnimation(RIGHT_TURN);
+        this->_characters[3].setCurrentlyAnimation(RIGHT_TURN);
     if (this->_rayWindow.isKeyReleased(KEY_KP_5))
-        this->_characters[1].setCurrentlyAnimation(LEFT_TURN);
+        this->_characters[3].setCurrentlyAnimation(LEFT_TURN);
 }
 
 void Gameplay::setIsDisplay(bool isDisplay)
