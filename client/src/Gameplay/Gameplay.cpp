@@ -37,10 +37,10 @@ void Gameplay::findPlayer(void)
             this->_map.setcubePosition({ _x, 0.0f, _y });
             if (map[y][x] == 'P')
                 this->initPlayer({this->_map.getcubePosition().x, this->_map.getcubePosition().y + (float)1.1, this->_map.getcubePosition().z});
-            _x += 2.0f;
+            _x += 4.0f;
         }
         _x = 0.0f;
-        _y += 2.0f;
+        _y += 4.0f;
     }
 }
 
@@ -89,7 +89,7 @@ void Gameplay::handleInput(void)
         this->_window->setCamera({_currentCharacter.getPosition().x, _currentCharacter.getPosition().y + (float)3.5, _currentCharacter.getPosition().z - (float)3.5}, { 0.6f, -4.5f, 10.0f }, { 0.0f, 1.0f, 0.0f }, 45.0f, CAMERA_PERSPECTIVE);
     }
     if (this->_rayWindow.isKeyReleased(KEY_F3))
-        this->_window->setCamera({ -5.0f, 15.0f, 10.0f }, { 10.0f, 2.0f, 10.0f }, { 0.0f, 1.0f, 0.0f }, 80.0f, CAMERA_PERSPECTIVE);
+        this->_window->setDefaultCamera();
     if (this->_rayWindow.isKeyReleased(KEY_N))
         this->_characters[0].setPos(this->_characters[0].getPosition().x, this->_characters[0].getPosition().z + 1, RIGHT_DIR);
     if (this->_rayWindow.isKeyReleased(KEY_G))
@@ -108,12 +108,13 @@ void Gameplay::drawMap(void)
 
     for (std::size_t y = 0; y < this->_map.getheight(); y++) {
         for (std::size_t x = 0; x < this->_map.getwidth(); x++) {
-            this->_map.setcubePosition({ _x, 0.0f, _y });
-            this->_map.draw(this->_map.getcubePosition());
-        _x += 2.0f;
+            this->_map.setcubePosition({ _x, -0.45f, _y });
+            this->_map.draw(this->_map.getmodel(), this->_map.getcubePosition(), 2.0f);
+            this->_map.draw(this->_map.getmodelPlatform(), {this->_map.getcubePosition().x, this->_map.getcubePosition().y + (float)1.6, this->_map.getcubePosition().z}, 0.02f);
+        _x += 4.0f;
         }
         _x = 0.0f;
-        _y += 2.0f;
+        _y += 4.0f;
     }
     this->_map.drawMineral(this->_map.getmodelBanana());
 }

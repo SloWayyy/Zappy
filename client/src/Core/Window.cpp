@@ -11,8 +11,22 @@ Window::Window(std::size_t height, std::size_t width, std::size_t fps) : _window
 {
     this->_rayWindow.initWindow(this->_windowParam._screenHeight, this->_windowParam._screenWidth, "Zappy");
     this->_rayWindow.setTargetFPS(this->_windowParam._fps);
-    // change the fovy to change the vision of camera
-    this->setCamera({ -5.0f, 15.0f, 10.0f }, { 10.0f, 2.0f, 10.0f }, { 0.0f, 1.0f, 0.0f }, 80.0f, CAMERA_PERSPECTIVE);
+    this->_rayMusic.initAudioDevice();
+    this->setDefaultCamera();
+    this->setMusic("assets/song/menu.mp3");
+    this->_colorBackground = SKYBLUE;
+}
+
+void Window::setMusic(const std::string &musicPath)
+{
+    this->_music = this->_rayMusic.loadMusicStream(musicPath);
+    this->_rayMusic.playMusicStream(this->_music);
+    this->_rayMusic.setMusicVolume(this->_music, 0.5f);
+}
+
+void Window::setDefaultCamera(void)
+{
+    this->setCamera({ -12.0f, 24.0f, 18.0f }, { 0.15f, 8.0f, 17.0f }, { 0.8f, 1.0f, 0.0f }, 80.0f, CAMERA_PERSPECTIVE);
 }
 
 void Window::setCamera(Vector3 pos, Vector3 target, Vector3 up, float fovy, int projection)
@@ -56,6 +70,7 @@ void Window::handleInput()
 
 void Window::run()
 {
+    this->_rayMusic.updateMusicStream(this->_music);
     this->updateCamera();
     this->handleInput();
 }
@@ -103,4 +118,34 @@ Camera Window::getCamera() const
 Raylibcpp::RayWindow Window::getRayWindow(void) const
 {
     return (this->_rayWindow);
+}
+
+Music Window::getMusic(void) const
+{
+    return (this->_music);
+}
+
+void Window::setScreenHeight(std::size_t height)
+{
+    this->_windowParam._screenHeight = height;
+}
+
+void Window::setScreenWidth(std::size_t width)
+{
+    this->_windowParam._screenWidth = width;
+}
+
+void Window::setFps(std::size_t fps)
+{
+    this->_windowParam._fps = fps;
+}
+
+void Window::setColorBackground(Color color)
+{
+    this->_colorBackground = color;
+}
+
+Color Window::getColorBackground(void) const
+{
+    return (this->_colorBackground);
 }

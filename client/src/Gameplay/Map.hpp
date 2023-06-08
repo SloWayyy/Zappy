@@ -39,11 +39,15 @@ class Map {
         modelType getmodelBanana() const {return BANANA;};
         Vector3 getcubePosition() const;
         void setcubePosition(Vector3 position);
-        void draw(Vector3 _position);
+        Model getmodel() const {return _model;};
+        Model getmodelPlatform() const {return _modelPlatform;};
+        void draw(Model model, Vector3 _position, float scale);
         void run();
     private:
         Model _model;
         Texture2D _texture;
+        Model _modelPlatform;
+        Texture2D _texturePlatform;
         std::vector<std::string> map;
         mapSize _mapSize;
         Vector3 _cubePosition;

@@ -25,7 +25,9 @@ class AScreen : public IScreen {
         Texture2D _background;
         std::vector<Button> _buttonsScreen;
         std::vector<Raylibcpp::RayText> _text;
+        Raylibcpp::RayMusic _Raymusic;
         std::shared_ptr<Window> _window;
+        Raylibcpp::RayWindow _rayWindow;
 };
 
 #endif /* !ASCREEEN_HPP_ */
