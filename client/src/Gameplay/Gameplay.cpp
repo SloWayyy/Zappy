@@ -9,38 +9,21 @@
 
 Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window), _map(Map(10, 10)), _currentCharacterId(0), _currentCharacterIndex(0)
 {
-    this->findPlayer();
+    this->initPlayer({1 * 4.0f, (float)1.1, 8 * 4.0f}, 1, 2, 1, "Team1");
 }
 
-void Gameplay::initPlayer(Vector3 pos)
-{
-    Character player(0, 0, pos);
+void Gameplay::initPlayer(Vector3 pos, std::size_t level, std::size_t orientation, std::size_t id, std::string teamname)
 
-    _characters.push_back(player);
+{
+    Character player(0, 0, pos, level, orientation, teamname);
+
+    this->_characters.insert(std::pair<std::size_t, Character>(id, player));
 }
 
 void Gameplay::runPlayers(void)
 {
     for (auto &character : this->_characters) {
-        character.run();
-    }
-}
-
-void Gameplay::findPlayer(void)
-{
-    std::vector<std::string> map = this->_map.getMap();
-    float _x = 0.0f;
-    float _y = 0.0f;
-
-    for (std::size_t y = 0; y < this->_map.getheight(); y++) {
-        for (std::size_t x = 0; x < this->_map.getwidth(); x++) {
-            this->_map.setcubePosition({ _x, 0.0f, _y });
-            if (map[y][x] == 'P')
-                this->initPlayer({this->_map.getcubePosition().x, this->_map.getcubePosition().y + (float)1.1, this->_map.getcubePosition().z});
-            _x += 4.0f;
-        }
-        _x = 0.0f;
-        _y += 4.0f;
+        character.second.run();
     }
 }
 
@@ -91,13 +74,13 @@ void Gameplay::handleInput(void)
     if (this->_rayWindow.isKeyReleased(KEY_F3))
         this->_window->setDefaultCamera();
     if (this->_rayWindow.isKeyReleased(KEY_N))
-        this->_characters[0].setPos(this->_characters[0].getPosition().x, this->_characters[0].getPosition().z + 1, RIGHT_DIR);
+        this->_characters[1].setPos(this->_characters[1].getPosition().x, this->_characters[1].getPosition().z + 1, RIGHT_DIR);
     if (this->_rayWindow.isKeyReleased(KEY_G))
-        this->_characters[0].setPos(this->_characters[0].getPosition().x + 1, this->_characters[0].getPosition().z, TOP_DIR);
+        this->_characters[1].setPos(this->_characters[1].getPosition().x + 1, this->_characters[1].getPosition().z, TOP_DIR);
     if (this->_rayWindow.isKeyReleased(KEY_B))
-        this->_characters[0].setPos(this->_characters[0].getPosition().x - 1, this->_characters[0].getPosition().z, DOWN_DIR);
+        this->_characters[1].setPos(this->_characters[1].getPosition().x - 1, this->_characters[1].getPosition().z, DOWN_DIR);
     if (this->_rayWindow.isKeyReleased(KEY_V))
-        this->_characters[0].setPos(this->_characters[0].getPosition().x, this->_characters[0].getPosition().z - 1, LEFT_DIR);
+        this->_characters[1].setPos(this->_characters[1].getPosition().x, this->_characters[1].getPosition().z - 1, LEFT_DIR);
     
 }
 

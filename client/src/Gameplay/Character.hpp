@@ -10,6 +10,7 @@
 
     #include <vector>
     #include "encapsulation/Raylibcpp.hpp"
+    #include "Inventory.hpp"
 
 enum Directions {
     RIGHT_DIR = 0,
@@ -30,7 +31,7 @@ enum Animations {
 class Character {
     public:
         Character() = default;
-        Character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos);
+        Character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos, std::size_t level, std::size_t orientation, std::string name);
         ~Character() = default;
         Vector3 getPosition() const;
         Model getModel() const;
@@ -44,7 +45,9 @@ class Character {
         void handleEvent();
         void run();
         void draw();
-        void Rotate(Directions direction);
+        size_t getLevel() const;
+        void setLevel(size_t level);
+        Inventory getInventory() const;
     private:
         Model _model;
         std::vector<ModelAnimation *> _animations;
@@ -55,6 +58,9 @@ class Character {
         Raylibcpp::RayModel _rayModel;
         Animations _currentlyAnimation;
         Directions _currentDirection;
+        Inventory _inventory;
+        std::size_t _level;
+        std::string _teamname;
 };
 
 #endif /* !CHARACTER_HPP_ */
