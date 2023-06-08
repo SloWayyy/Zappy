@@ -22,7 +22,6 @@ static void rotate_callback(server_t *server, client_t *client, void *arg)
     int velocity = *ptr ? 1 : -1;
 
     client->player->direction = (client->player->direction + velocity) % 4;
-    free(arg);
     flush_action(client->player);
     send_graphical_position_event(server, client);
     append_buffer(client->buffer_out, "%s%s", PLAYER_OK, LINE_BREAK);
