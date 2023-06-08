@@ -5,7 +5,7 @@ from ai.src.handle_packets import duplicate
 
 def find_boss(player: Player):
     player.broadcast(EnumHeader.ASKBOSS.value + " Who\n", False)
-    player.look(False)
+    player.take(EnumObject.LINEMATE.value, False)
     player.take(EnumObject.FOOD.value, False)
 
     if player.boss != 0:
