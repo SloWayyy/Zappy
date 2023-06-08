@@ -14,7 +14,7 @@ class Menu : public AScreen {
     public:
         Menu(std::shared_ptr<Window> window);
         ~Menu() = default;
-    private:    
+    private:
         void handleInput() override;
 };
 

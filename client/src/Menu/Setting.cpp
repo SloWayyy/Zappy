@@ -36,11 +36,13 @@ void Setting::handleInput()
             if (this->_volume > 0)
                 this->_volume -= 5;
             this->_text[2]._string = std::to_string(_volume);
+            this->_Raymusic.setMusicVolume(this->_window->getMusic(), (this->_volume / 100.0));
         }
         if (x >= this->_buttonsScreen[2].getCoord().x && x <= this->_buttonsScreen[2].getCoord().x + this->_buttonsScreen[2].getRectButton().width && y >= this->_buttonsScreen[2].getCoord().y && y <= this->_buttonsScreen[2].getCoord().y + this->_buttonsScreen[2].getRectButton().height) {
             if (this->_volume < 100)
                 this->_volume += 5;
             this->_text[2]._string = std::to_string(_volume);
+            this->_Raymusic.setMusicVolume(this->_window->getMusic(), (this->_volume / 100.0));
         }
         if (x >= this->_buttonsScreen[3].getCoord().x && x <= this->_buttonsScreen[3].getCoord().x + this->_buttonsScreen[3].getRectButton().width && y >= this->_buttonsScreen[3].getCoord().y && y <= this->_buttonsScreen[3].getCoord().y + this->_buttonsScreen[3].getRectButton().height) {
             if (this->_fps > 30)
@@ -48,6 +50,8 @@ void Setting::handleInput()
             else
                 this->_fps = 120;
             this->_text[4]._string = std::to_string(_fps);
+            this->_window->setFps(_fps);
+            this->_rayWindow.setTargetFPS(_fps);
         }
         if (x >= this->_buttonsScreen[4].getCoord().x && x <= this->_buttonsScreen[4].getCoord().x + this->_buttonsScreen[4].getRectButton().width && y >= this->_buttonsScreen[4].getCoord().y && y <= this->_buttonsScreen[4].getCoord().y + this->_buttonsScreen[4].getRectButton().height) {
             if (this->_fps < 120)
@@ -55,19 +59,26 @@ void Setting::handleInput()
             else
                 this->_fps = 30;
             this->_text[4]._string = std::to_string(_fps);
+            this->_window->setFps(_fps);
+            this->_rayWindow.setTargetFPS(_fps);
         }
         if (x >= this->_buttonsScreen[5].getCoord().x && x <= this->_buttonsScreen[5].getCoord().x + this->_buttonsScreen[5].getRectButton().width && y >= this->_buttonsScreen[5].getCoord().y && y <= this->_buttonsScreen[5].getCoord().y + this->_buttonsScreen[5].getRectButton().height) {
-            if (this->_text[6]._string == "Jour")
+            if (this->_text[6]._string == "Jour") {
                 this->_text[6]._string = "Nuit";
-            else
+                this->_window->setColorBackground(BLACK);
+            } else {
                 this->_text[6]._string = "Jour";
+                this->_window->setColorBackground(SKYBLUE);
+            }
         }
         if (x >= this->_buttonsScreen[6].getCoord().x && x <= this->_buttonsScreen[6].getCoord().x + this->_buttonsScreen[6].getRectButton().width && y >= this->_buttonsScreen[6].getCoord().y && y <= this->_buttonsScreen[6].getCoord().y + this->_buttonsScreen[6].getRectButton().height) {
-            if (this->_text[6]._string == "Jour")
+            if (this->_text[6]._string == "Jour") {
                 this->_text[6]._string = "Nuit";
-            else
+                this->_window->setColorBackground(BLACK);
+            } else {
                 this->_text[6]._string = "Jour";
+                this->_window->setColorBackground(SKYBLUE);
+            }
         }
     }
-
 }

@@ -76,6 +76,23 @@ namespace Raylibcpp {
             bool isMouseButtonDown(int button);
             bool isMouseButtonReleased(int button);
     };
+    class RayMusic {
+        public:
+            RayMusic() = default;
+            ~RayMusic() = default;
+            void initAudioDevice() const;
+            Music loadMusicStream(const std::string &fileName);
+            void unloadMusicStream(Music music);
+            void playMusicStream(Music music);
+            void updateMusicStream(Music music);
+            void stopMusicStream(Music music);
+            void resumeMusicStream(Music music);
+            void pauseMusicStream(Music music);
+            void setMusicVolume(Music music, float volume);
+            void setMusicPitch(Music music, float pitch);
+            float getMusicTimeLength(Music music);
+            float getMusicTimePlayed(Music music);
+    };
 }
 
 #endif /* !RAYLIBCPP_HPP_ */

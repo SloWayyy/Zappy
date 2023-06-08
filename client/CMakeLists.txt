@@ -27,6 +27,7 @@ add_executable(zappy_gui
         encapsulation/Mouse.cpp
         encapsulation/Text.cpp
         encapsulation/Window.cpp
+        encapsulation/Music.cpp
         )
 
 target_link_libraries(zappy_gui raylib)

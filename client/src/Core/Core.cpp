@@ -30,7 +30,7 @@ Core::Core(int port, std::string ip): _window(std::make_shared<Window>(1920, 108
 void Core::run(void)
 {
     while (!this->_window->getExit()) {
-        this->_rayWindow.clearBackground(SKYBLUE);
+        this->_rayWindow.clearBackground(this->_window->getColorBackground());
         this->_rayWindow.beginDrawing();
         switch (this->_window->getGameEvent()) {
             case MENU:
