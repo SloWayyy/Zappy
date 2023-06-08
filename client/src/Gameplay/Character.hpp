@@ -40,9 +40,11 @@ class Character {
         void setAnimFrameCounter(int animFrameCounter);
         Animations getCurrentlyAnimation() const;
         void setCurrentlyAnimation(Animations currentlyAnimation);
+        void setPos(int x, int z, int orientation);
         void handleEvent();
         void run();
         void draw();
+        void Rotate(Directions direction);
     private:
         Model _model;
         std::vector<ModelAnimation *> _animations;

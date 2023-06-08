@@ -90,6 +90,15 @@ void Gameplay::handleInput(void)
     }
     if (this->_rayWindow.isKeyReleased(KEY_F3))
         this->_window->setCamera({ -5.0f, 15.0f, 10.0f }, { 10.0f, 2.0f, 10.0f }, { 0.0f, 1.0f, 0.0f }, 80.0f, CAMERA_PERSPECTIVE);
+    if (this->_rayWindow.isKeyReleased(KEY_N))
+        this->_characters[0].setPos(this->_characters[0].getPosition().x, this->_characters[0].getPosition().z + 1, RIGHT_DIR);
+    if (this->_rayWindow.isKeyReleased(KEY_G))
+        this->_characters[0].setPos(this->_characters[0].getPosition().x + 1, this->_characters[0].getPosition().z, TOP_DIR);
+    if (this->_rayWindow.isKeyReleased(KEY_B))
+        this->_characters[0].setPos(this->_characters[0].getPosition().x - 1, this->_characters[0].getPosition().z, DOWN_DIR);
+    if (this->_rayWindow.isKeyReleased(KEY_V))
+        this->_characters[0].setPos(this->_characters[0].getPosition().x, this->_characters[0].getPosition().z - 1, LEFT_DIR);
+    
 }
 
 void Gameplay::drawMap(void)
