@@ -9,6 +9,7 @@
     #define GAMEPLAY_HPP_
 
     #include <memory>
+    #include <map>
     #include "src/Gameplay/Map.hpp"
     #include "src/Core/Window.hpp"
     #include "src/Gameplay/Character.hpp"
@@ -19,7 +20,7 @@ class Gameplay {
         Gameplay(std::shared_ptr<Window> _window);
         ~Gameplay() = default;
         void run(void);
-        void initPlayer(Vector3 pos);
+        void initPlayer(Vector3 pos, std::size_t level, std::size_t orientation, std::size_t id, std::string teamname);
         void runPlayers(void);
         void handleInput(void);
         void drawMap(void);
@@ -30,7 +31,7 @@ class Gameplay {
     private:
         std::shared_ptr<Window> _window;
         Map _map;
-        std::vector<Character> _characters;
+        std::map<std::size_t, Character> _characters;
         std::size_t _currentCharacterId;
         std::size_t _currentCharacterIndex;
         Character _currentCharacter;

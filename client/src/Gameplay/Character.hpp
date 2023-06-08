@@ -31,7 +31,7 @@ enum Animations {
 class Character {
     public:
         Character() = default;
-        Character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos, std::size_t level, std::size_t orientation);
+        Character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos, std::size_t level, std::size_t orientation, std::string name);
         ~Character() = default;
         Vector3 getPosition() const;
         Model getModel() const;
@@ -60,6 +60,7 @@ class Character {
         Directions _currentDirection;
         Inventory _inventory;
         std::size_t _level;
+        std::string _teamname;
 };
 
 #endif /* !CHARACTER_HPP_ */

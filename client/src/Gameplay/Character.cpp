@@ -10,7 +10,7 @@
 
 #include <stdio.h>
 
-Character::Character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos, std::size_t level, std::size_t orientation) : _position(pos), _animsCount(animsCount), _animFrameCounter(animFrameCounter), _currentlyAnimation(NONE), _level(level)
+Character::Character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos, std::size_t level, std::size_t orientation, std::string name) : _position(pos), _animsCount(animsCount), _animFrameCounter(animFrameCounter), _currentlyAnimation(NONE), _level(level), _teamname(name)
 {
     this->_model = this->_rayModel.loadModel("assets/monster/animations/monsterWalking.iqm");
     this->_texture = this->_rayModel.loadTexture("assets/monster/textures/monsterTexture.png");
