@@ -35,26 +35,32 @@ static vector_t get_direction(direction_type_t direction)
     return vector;
 }
 
-void forward_callback(server_t *server, client_t *client)
+static void forward_callback(server_t *server, client_t *client, \
+    UNUSED void *arg)
 {
     vector_t vector = get_direction(client->player->direction);
-    int x = (client->player->pos->x + vector.x) % server->options->width;
-    int y = (client->player->pos->y + vector.y) % server->options->height;
-    tile_t *tile = &server->zappy->map[y][x];
+    int pos_x = (int) client->player->pos->x + vector.x;
+    int pos_y = (int) client->player->pos->y + vector.y;
 
+    if (pos_x < 0) {
+        pos_x += server->options->width;
+    }
+    if (pos_y < 0) {
+        pos_y += server->options->height;
+    }
+    pos_x %= server->options->width;
+    pos_y %= server->options->height;
     SLIST_REMOVE(&client->player->pos->players, client->player, player, \
         next_tile);
-    SLIST_INSERT_HEAD(&tile->players, client->player, next_tile);
-    client->player->pos = tile;
+    client->player->pos = &server->zappy->map[pos_y][pos_x];
+    SLIST_INSERT_HEAD(&client->player->pos->players, client->player, next_tile);
     flush_action(client->player);
-    send_graphical_event(server, "%s %zu %d %d %zu%s", \
-        GRAPHICAL_PLAYER_POSITION, client->player->id, x, y, \
-        client->player->direction, LINE_BREAK);
+    send_graphical_position_event(server, client);
     append_buffer(client->buffer_out, "%s%s", PLAYER_OK, LINE_BREAK);
 }
 
 void forward_handler(UNUSED server_t *server, client_t *client, \
     UNUSED char *line)
 {
-    schedule_action(client->player, &forward_callback, FORWARD_DELAY);
+    schedule_action(client->player, &forward_callback, FORWARD_DELAY, NULL);
 }

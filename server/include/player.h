@@ -11,12 +11,16 @@
     #define PLAYER_COMMANDS_COUNT \
         (sizeof(PLAYER_COMMANDS) / sizeof(player_command_t))
 
-    #define FOOD_CONSUME_TICKS 12
+    #define FOOD_CONSUME_TICKS 126
     #define FOOD_DEFAULT 10
 
     #define FORWARD_DELAY 7
+    #define LEFT_DELAY 7
+    #define RIGHT_DELAY 7
 
     #define PLAYER_MOVE_FORWARD "Forward"
+    #define PLAYER_MOVE_LEFT "Left"
+    #define PLAYER_MOVE_RIGHT "Right"
     #define PLAYER_UNUSED_SLOTS "Connect_nbr"
 
     #define PLAYER_OK "ok"
@@ -31,10 +35,11 @@
 bool try_join_team(server_t *server, client_t *client, char *line);
 void handle_player_command(server_t *server, client_t *client, char *line);
 
-void food_callback(server_t *server, client_t *client);
-void forward_callback(server_t *server, client_t *client);
+void food_callback(server_t *server, client_t *client, void *arg);
 
 void forward_handler(server_t *server, client_t *client, char *line);
+void left_handler(server_t *server, client_t *client, char *line);
+void right_handler(server_t *server, client_t *client, char *line);
 void slots_handler(server_t *server, client_t *client, char *line);
 
 typedef void (player_handler_t) \
@@ -48,6 +53,8 @@ typedef struct player_command {
 
 static const player_command_t PLAYER_COMMANDS[] = {
         { PLAYER_MOVE_FORWARD, &forward_handler, false },
+        { PLAYER_MOVE_LEFT, &left_handler, false },
+        { PLAYER_MOVE_RIGHT, &right_handler, false },
         { PLAYER_UNUSED_SLOTS, &slots_handler, false },
 };
 

@@ -103,11 +103,13 @@ typedef struct client {
     SLIST_ENTRY(client) next;
 } client_t;
 
-typedef void (task_function_t)(struct server *server, client_t *client);
+typedef void (task_function_t) \
+    (struct server *server, client_t *client, void *arg);
 
 typedef struct action {
     size_t delay;
     task_function_t *callback;
+    void *arg;
     STAILQ_ENTRY(action) next;
 } action_t;
 
@@ -118,6 +120,7 @@ typedef struct task {
     size_t current;
     int executions;
     client_t *client;
+    void *arg;
     task_function_t *callback;
     SLIST_ENTRY(task) next;
 } task_t;

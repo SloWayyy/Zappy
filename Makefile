@@ -23,14 +23,12 @@ $(NAME_SERVER):
 
 ai: $(NAME_AI)
 
-all:
-	$(MAKE) $(NAME_AI)
-	$(MAKE) $(NAME_CLIENT)
-	$(MAKE) $(NAME_SERVER)
+all: $(NAME_AI) $(NAME_CLIENT) $(NAME_SERVER)
 
 ci:
 	$(MAKE) $(NAME_AI)
-	$(MAKE) $(NAME_SERVER)
+	$(MAKE) -C server/ ci
+	cp server/$(NAME_SERVER) .
 
 client: $(NAME_CLIENT)
 

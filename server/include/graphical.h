@@ -32,8 +32,10 @@
     #include "types.h"
 
 void handle_graphical_command(server_t *server, client_t *client, char *line);
-void send_graphical_event(server_t *server, const char *format, ...);
 client_t *get_client_by_player_id(server_t *server, size_t id);
+
+void send_graphical_event(server_t *server, const char *format, ...);
+void send_graphical_position_event(server_t *server, client_t *client);
 
 void send_new_graphical(server_t *server, client_t *client);
 void send_map_size(server_t *server, client_t *client);
