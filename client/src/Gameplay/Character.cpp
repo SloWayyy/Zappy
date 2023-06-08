@@ -118,3 +118,13 @@ size_t Character::getLevel() const
 {
     return this->_level;
 }
+
+void Character::setLevel(size_t level)
+{
+    this->_level = level;
+}
+
+Inventory Character::getInventory() const
+{
+    return this->_inventory;
+}
