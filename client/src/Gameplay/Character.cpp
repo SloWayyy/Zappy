@@ -99,10 +99,10 @@ void Character::handleEvent()
 void Character::setPos(int x, int z, int orientation)
 {
     if (this->_position.x != x || this->_position.z != z) {
+        this->_position.x = (this->_position.x < x) ? x + 1 : (this->_position.x > x) ? x - 1 : this->_position.x;
+        this->_position.z = (this->_position.z < z) ? z + 1 : (this->_position.z > z) ? z - 1 : this->_position.z;
         this->setCurrentlyAnimation(SPAWN);
     }
     this->_currentDirection = (Directions)orientation;
     this->_model.transform = this->_rayModel.matrixRotateXYZ({-90 * DEG2RAD, 0, (float)_currentDirection * DEG2RAD});
-    this->_position.x = x;
-    this->_position.z = z;
 }
