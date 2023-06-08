@@ -14,7 +14,7 @@ Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window), _map(Map
 
 void Gameplay::initPlayer(Vector3 pos)
 {
-    Character player(0, 0, pos);
+    Character player(0, 0, pos, 1, 2);
 
     _characters.push_back(player);
 }
