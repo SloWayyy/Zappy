@@ -21,6 +21,7 @@ static void init_tiles(server_t *server)
             server->zappy->map[i][j].x = j;
             server->zappy->map[i][j].y = i;
             SLIST_INIT(&server->zappy->map[i][j].players);
+            SLIST_INIT(&server->zappy->map[i][j].eggs);
         }
     }
 }

@@ -26,6 +26,7 @@ SRC			=	src/core/fdsets.c \
 				src/objects/tasks.c \
 				src/objects/teams.c \
 				src/player/command.c \
+				src/player/eggs.c \
 				src/player/food.c \
 				src/player/info.c \
 				src/player/join.c \

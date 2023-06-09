@@ -37,3 +37,11 @@ void send_graphical_position_event(server_t *server, client_t *client)
         GRAPHICAL_PLAYER_POSITION, client->player->id, client->player->pos->x, \
         client->player->pos->y, client->player->direction, LINE_BREAK);
 }
+
+void send_graphical_join_event(server_t *server, client_t *client)
+{
+    send_graphical_event(server, "%s %zu %zu %zu %zu %zu %s%s", \
+        GRAPHICAL_PLAYER_JOIN, client->player->id, client->player->pos->x, \
+        client->player->pos->y, client->player->direction, \
+        client->player->level, client->player->team->name, LINE_BREAK);
+}
