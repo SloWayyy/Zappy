@@ -10,6 +10,7 @@
 
     #include <memory>
     #include <map>
+    #include <vector>
     #include "src/Gameplay/Map.hpp"
     #include "src/Core/Window.hpp"
     #include "src/Gameplay/Character.hpp"

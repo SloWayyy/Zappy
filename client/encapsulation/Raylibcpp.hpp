@@ -33,6 +33,8 @@ namespace Raylibcpp {
         public:
             RayModel() = default;
             ~RayModel() = default;
+            Image loadImage(const char *fileName);
+            void unloadImage(Image image);
             Model loadModel(const char *fileName);
             void unloadModel(Model model);
             Texture2D loadTexture(const char *fileName);
@@ -43,6 +45,7 @@ namespace Raylibcpp {
             void drawModel(Model mod, Vector3 pos, float scale, Color color);
             void drawRectangle(int posX, int posY, int width, int height, Color color);
             void drawTexture(Texture2D texture, int posX, int posY, Color color);
+            void drawTextureEx(Texture2D texture, Vector2 position, float rotation, float scale, Color tint);
             Matrix matrixRotateXYZ(Vector3 angle);
     };
     class RayCube {

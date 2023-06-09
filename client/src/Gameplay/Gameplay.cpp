@@ -87,19 +87,21 @@ void Gameplay::DisplayInformations(void)
 {
     std::string id = "ID " + std::to_string(this->_currentCharacter.getId());
     std::string level = "Level: " + std::to_string(this->_currentCharacter.getLevel());
-    std::string team = "Team: " + this->_currentCharacter.getTeamName();
+
     // std::string inventory = "Inventory: " + this->_currentCharacter.getInventory();
     // std::string pos = "Position: " + std::to_string(this->_currentCharacter.getPosition().x) + " " + std::to_string(this->_currentCharacter.getPosition().y) + " " + std::to_string(this->_currentCharacter.getPosition().z);
     // std::string orientation = "Orientation: " + std::to_string(this->_currentCharacter.getDirection());
 
     this->_rayWindow.endMode3D();
     _rayModel.drawRectangle(this->_window->getScreenHeight() - (this->_window->getScreenHeight() / 4), this->_window->getScreenWidth() / 2, this->_window->getScreenHeight() / 4, this->_window->getScreenWidth() / 2, {130, 130, 130, 200});
-    this->_rayText.drawText(id, this->_window->getScreenHeight() - 300, (this->_window->getScreenWidth() / 2) + 20, 50, RED);
-    this->_rayText.drawText(level, this->_window->getScreenHeight() - 400, (this->_window->getScreenWidth() / 2) + 120, 30, BLACK);
-    this->_rayText.drawText(team, this->_window->getScreenHeight() - 400, (this->_window->getScreenWidth() / 2) + 220, 30, BLACK);
-    // this->_rayText.drawText(inventory, this->_window->getScreenHeight() - 400, 110, 30, BLACK);
-    // this->_rayText.drawText(pos, this->_window->getScreenHeight() - 400, (this->_window->getScreenWidth() / 2) + 320, 30, BLACK);
-    // this->_rayText.drawText(orientation, this->_window->getScreenHeight() - 400, (this->_window->getScreenWidth() / 2) + 320, 30, BLACK);
+    this->_rayModel.drawTextureEx(this->_map.getLevel(), {this->_window->getScreenHeight() - 450.0f, (this->_window->getScreenWidth() / 2) + 80.0f}, 0.0f, 0.2f, WHITE);
+    this->_rayModel.drawTextureEx(this->_map.getTeam(), {this->_window->getScreenHeight() - 440.0f, (this->_window->getScreenWidth() / 2) + 220.0f}, 0.0f, 0.2f, WHITE);
+    this->_rayText.drawText(id, this->_window->getScreenHeight() - 300, (this->_window->getScreenWidth() / 2) + 20, 80, RED);
+    this->_rayText.drawText(level, this->_window->getScreenHeight() - 320, (this->_window->getScreenWidth() / 2) + 150, 30, BLACK);
+    this->_rayText.drawText(this->_currentCharacter.getTeamName(), this->_window->getScreenHeight() - 320, (this->_window->getScreenWidth() / 2) + 240, 30, BLACK);
+    // this->_rayText.drawText(inventory, this->_window->getScreenHeight() - 350, 110, 30, BLACK);
+    // this->_rayText.drawText(pos, this->_window->getScreenHeight() - 350, (this->_window->getScreenWidth() / 2) + 320, 30, BLACK);
+    // this->_rayText.drawText(orientation, this->_window->getScreenHeight() - 350, (this->_window->getScreenWidth() / 2) + 320, 30, BLACK);
     this->_rayWindow.beginMode3D(this->_window->getCamera());
 }
 

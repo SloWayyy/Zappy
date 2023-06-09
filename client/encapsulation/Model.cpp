@@ -61,3 +61,18 @@ Matrix Raylibcpp::RayModel::matrixRotateXYZ(Vector3 angle)
 {
     return MatrixRotateXYZ(angle);
 }
+
+Image Raylibcpp::RayModel::loadImage(const char *fileName)
+{
+    return LoadImage(fileName);
+}
+
+void Raylibcpp::RayModel::unloadImage(Image image)
+{
+    UnloadImage(image);
+}
+
+void Raylibcpp::RayModel::drawTextureEx(Texture2D texture, Vector2 position, float rotation, float scale, Color tint)
+{
+    DrawTextureEx(texture, position, rotation, scale, tint);
+}

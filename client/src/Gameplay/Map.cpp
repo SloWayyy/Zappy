@@ -12,6 +12,8 @@
 Map::Map(std::size_t height, std::size_t width) : _mapSize{ height, width }, _cubePosition{ 0.0f, 0.0f, 0.0f }
 {
     this->openMap("map.txt");
+    this->_level = this->_rayModel.loadTexture("assets/map/levelIcone.png");
+    this->_team = this->_rayModel.loadTexture("assets/map/teamIcone.png");
     this->_model = this->_rayModel.loadModel("assets/map/floor.iqm");
     this->_texture = this->_rayModel.loadTexture("assets/map/floorTexture3.png");
     this->_model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = this->_texture;
