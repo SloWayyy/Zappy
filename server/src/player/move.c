@@ -15,9 +15,9 @@
 #include "types.h"
 #include "util.h"
 
-static vector_t get_direction(direction_type_t direction)
+vector_t get_direction(direction_type_t direction)
 {
-    vector_t vector = {0, 0};
+    vector_t vector = {0, 0 };
 
     switch (direction) {
         case NORTH:
@@ -43,14 +43,8 @@ static void forward_callback(server_t *server, client_t *client, \
     int pos_x = (int) client->player->pos->x + vector.x;
     int pos_y = (int) client->player->pos->y + vector.y;
 
-    if (pos_x < 0) {
-        pos_x += server->options->width;
-    }
-    if (pos_y < 0) {
-        pos_y += server->options->height;
-    }
-    pos_x %= server->options->width;
-    pos_y %= server->options->height;
+    pos_x = (pos_x + server->options->width) % server->options->width;
+    pos_y = (pos_y + server->options->height) % server->options->height;
     SLIST_REMOVE(&client->player->pos->players, client->player, player, \
         next_tile);
     client->player->pos = &server->zappy->map[pos_y][pos_x];

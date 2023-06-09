@@ -29,6 +29,7 @@ SRC			=	src/core/fdsets.c \
 				src/player/food.c \
 				src/player/info.c \
 				src/player/join.c \
+				src/player/look.c \
 				src/player/move.c \
 				src/player/rotate.c \
 				src/util/arguments/args.c \
