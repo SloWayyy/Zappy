@@ -14,6 +14,16 @@
 #include "server.h"
 #include "types.h"
 
+char const *resources_map[RESOURCES_TYPES_QUANTITY] = {
+    "food",
+    "linemate",
+    "deraumere",
+    "sibur",
+    "mendiane",
+    "phiras",
+    "thystame",
+};
+
 static void display_help_server(char const *binary)
 {
     printf("USAGE: %s -p port -x width -y height", binary);

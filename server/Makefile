@@ -23,7 +23,6 @@ SRC			=	src/core/fdsets.c \
 				src/objects/buffers.c \
 				src/objects/clients.c \
 				src/objects/players.c \
-				src/objects/tasks.c \
 				src/objects/teams.c \
 				src/player/actions.c \
 				src/player/command.c \
@@ -90,4 +89,4 @@ tests_run: clean $(OBJ) $(OBJ_T)
 	$(RM) $(OBJ)
 	./$(TEST)
 
-.PHONY: all clean fclean re tests_run
+.PHONY: all ci clean fclean re tests_run

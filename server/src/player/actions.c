@@ -5,21 +5,43 @@
 ** actions.c
 */
 
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/queue.h>
 
+#include "constants.h"
+#include "player.h"
 #include "server.h"
 #include "types.h"
+#include "util.h"
 
-void schedule_action(player_t *player, task_function_t *callback, \
+static bool can_accept_task(client_t *client)
+{
+    size_t len = 0;
+    action_t *action = NULL;
+
+    if (!client->player->action_task->running) {
+        return true;
+    }
+    STAILQ_FOREACH(action, client->player->actions, next) {
+        len++;
+    }
+    return len < MAX_ACTIONS - 1;
+}
+
+void schedule_action(client_t *client, task_function_t *callback, \
     size_t delay, void *arg)
 {
     action_t *action = NULL;
 
-    if (!player->action_task->running) {
-        player->action_task->callback = callback;
-        schedule_task(player->action_task, delay, 1, arg);
+    if (!can_accept_task(client)) {
+        append_buffer(client->buffer_out, "%s%s", PLAYER_KO, LINE_BREAK);
+        return;
+    }
+    if (!client->player->action_task->running) {
+        client->player->action_task->callback = callback;
+        schedule_task(client->player->action_task, delay, 1, arg);
         return;
     }
     action = malloc(sizeof(action_t));
@@ -30,7 +52,7 @@ void schedule_action(player_t *player, task_function_t *callback, \
     action->callback = callback;
     action->delay = delay;
     action->arg = arg;
-    STAILQ_INSERT_TAIL(player->actions, action, next);
+    STAILQ_INSERT_TAIL(client->player->actions, action, next);
 }
 
 void flush_action(player_t *player)

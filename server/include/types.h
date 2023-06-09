@@ -155,4 +155,6 @@ typedef struct server {
     task_list_t *tasks;
 } server_t;
 
+extern char const *resources_map[RESOURCES_TYPES_QUANTITY];
+
 #endif
