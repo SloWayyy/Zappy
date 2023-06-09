@@ -74,34 +74,64 @@ void Core::handleInput(const std::string &command)
     std::string delimiter = " ";
     std::string token;
     std::vector<std::string> args;
+    std::map<std::string, void (Core::*)(std::vector<std::string> &)> commands = {
+        {COMMAND_MSZ, &Core::setMapSize},
+        {COMMAND_BCT, &Core::setTileContent},
+        {COMMAND_TNA, &Core::setTeamNames},
+        {COMMAND_PNW, &Core::setPlayerPosition},
+        {COMMAND_PLV, &Core::setPlayerLevel},
+        {COMMAND_PIN, &Core::setPlayerInventory},
+        {COMMAND_PDI, &Core::setPlayerDeath}
+    };
 
     while ((token = tmp.substr(0, tmp.find(delimiter))) != tmp) {
         args.push_back(token);
         tmp.erase(0, tmp.find(delimiter) + delimiter.length());
     }
     args.push_back(tmp);
-    if (args[0] == COMMAND_MSZ) {
-        this->_gameplay->getMap()->setWidth(std::stoi(args[1]));
-        this->_gameplay->getMap()->setHeight(std::stoi(args[2]));
-    } else if (args[0] == COMMAND_BCT) {
-        std::cout << std::stoi(args[1]) << std::stoi(args[2]) << std::stoi(args[3]) << std::stoi(args[4]) << std::stoi(args[5]) << std::stoi(args[6]) << std::stoi(args[7]) << std::stoi(args[8]) << std::stoi(args[9]) << std::endl;
-    } else if (args[0] == COMMAND_TNA) {
-        std::cout << args[1] << std::endl;
-    } else if (args[0] == COMMAND_PNW) {
-        this->_gameplay->initPlayer({std::stof(args[2]) * 4.0f, (float)1.1, std::stof(args[3]) * 4.0f}, std::stoi(args[5]), std::stoi(args[4]), std::stoi(args[1]), args[6]);
-    } else if (args[0] == COMMAND_PPO) {
-        this->_gameplay->getCharacters()[std::stoi(args[1])].setPos(std::stof(args[2]) * 4.0f, std::stof(args[3]) * 4.0f, std::stof(args[4]) * 4.0f);
-    } else if (args[0] == COMMAND_PLV) {
-        this->_gameplay->getCharacters()[std::stoi(args[1])].setLevel(std::stoi(args[2]));
-    } else if (args[0] == COMMAND_PIN) {
-        this->_gameplay->getCharacters()[std::stoi(args[1])].getInventory()->setFood(std::stoi(args[4]));
-        this->_gameplay->getCharacters()[std::stoi(args[1])].getInventory()->setLinemate(std::stoi(args[5]));
-        this->_gameplay->getCharacters()[std::stoi(args[1])].getInventory()->setDeraumere(std::stoi(args[6]));
-        this->_gameplay->getCharacters()[std::stoi(args[1])].getInventory()->setSibur(std::stoi(args[7]));
-        this->_gameplay->getCharacters()[std::stoi(args[1])].getInventory()->setMendiane(std::stoi(args[8]));
-        this->_gameplay->getCharacters()[std::stoi(args[1])].getInventory()->setPhiras(std::stoi(args[9]));
-        this->_gameplay->getCharacters()[std::stoi(args[1])].getInventory()->setThystame(std::stoi(args[10]));
-    } else if (args[0] == COMMAND_PDI) {
-        this->_gameplay->getCharacters().erase(std::stoi(args[1]));
-    }
+    if (commands.find(args[0]) != commands.end())
+        (this->*commands[args[0]])(args);
+
+}
+
+void Core::setMapSize(std::vector<std::string> &args)
+{
+    this->_gameplay->getMap()->setWidth(std::stoi(args[1]));
+    this->_gameplay->getMap()->setHeight(std::stoi(args[2]));
+}
+
+void Core::setTileContent(std::vector<std::string> &args)
+{
+    std::cout << std::stoi(args[1]) << std::stoi(args[2]) << std::stoi(args[3]) << std::stoi(args[4]) << std::stoi(args[5]) << std::stoi(args[6]) << std::stoi(args[7]) << std::stoi(args[8]) << std::stoi(args[9]) << std::endl;
+}
+
+void Core::setTeamNames(std::vector<std::string> &args)
+{
+    std::cout << args[1] << std::endl;
+}
+
+void Core::setPlayerPosition(std::vector<std::string> &args)
+{
+    this->_gameplay->initPlayer({std::stof(args[2]) * 4.0f, (float)1.1, std::stof(args[3]) * 4.0f}, std::stoi(args[5]), std::stoi(args[4]), std::stoi(args[1]), args[6]);
+}
+
+void Core::setPlayerLevel(std::vector<std::string> &args)
+{
+    this->_gameplay->getCharacters()[std::stoi(args[1])].setLevel(std::stoi(args[2]));
+}
+
+void Core::setPlayerInventory(std::vector<std::string> &args)
+{
+    this->_gameplay->getCharacters()[std::stoi(args[1])].getInventory()->setFood(std::stoi(args[4]));
+    this->_gameplay->getCharacters()[std::stoi(args[1])].getInventory()->setLinemate(std::stoi(args[5]));
+    this->_gameplay->getCharacters()[std::stoi(args[1])].getInventory()->setDeraumere(std::stoi(args[6]));
+    this->_gameplay->getCharacters()[std::stoi(args[1])].getInventory()->setSibur(std::stoi(args[7]));
+    this->_gameplay->getCharacters()[std::stoi(args[1])].getInventory()->setMendiane(std::stoi(args[8]));
+    this->_gameplay->getCharacters()[std::stoi(args[1])].getInventory()->setPhiras(std::stoi(args[9]));
+    this->_gameplay->getCharacters()[std::stoi(args[1])].getInventory()->setThystame(std::stoi(args[10]));
+}
+
+void Core::setPlayerDeath(std::vector<std::string> &args)
+{
+    this->_gameplay->getCharacters().erase(std::stoi(args[1]));
 }

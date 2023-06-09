@@ -41,6 +41,13 @@ class Core {
         ~Core() = default;
         void run(void);
         void handleInput(const std::string &input);
+        void setMapSize(std::vector<std::string> &input);
+        void setTileContent(std::vector<std::string> &input);
+        void setTeamNames(std::vector<std::string> &input);
+        void setPlayerPosition(std::vector<std::string> &input);
+        void setPlayerLevel(std::vector<std::string> &input);
+        void setPlayerInventory(std::vector<std::string> &input);
+        void setPlayerDeath(std::vector<std::string> &input);
     private:
         std::shared_ptr<Window> _window;
         std::shared_ptr<Menu> _menu;
