@@ -41,6 +41,11 @@ void Window::setCamera(Vector3 pos, Vector3 target, Vector3 up, float fovy, int 
 
 void Window::updateCamera()
 {
+    printf("Camera position: %f, %f, %f\n", this->_camera.position.x, this->_camera.position.y, this->_camera.position.z);
+    printf("Camera target: %f, %f, %f\n", this->_camera.target.x, this->_camera.target.y, this->_camera.target.z);
+    printf("Camera up: %f, %f, %f\n", this->_camera.up.x, this->_camera.up.y, this->_camera.up.z);
+    printf("Camera fovy: %f\n", this->_camera.fovy);
+    printf("\n");
     this->_rayWindow.updateCamera(&this->_camera, 1);
 }
 

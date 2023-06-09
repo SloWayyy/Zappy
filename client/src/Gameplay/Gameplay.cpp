@@ -11,6 +11,7 @@ Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window), _map(Map
 {
     this->_isDisplay = false;
     this->_display = Display(this->_window);
+    this->_cameraType = CAMERA_THIRD;
     this->initPlayer({1 * 4.0f, 1.38f, 8 * 4.0f}, 1, 2, 3, "Team1");
     this->initPlayer({4 * 4.0f, 1.38f, 8 * 4.0f}, 1, 2, 5, "Team2");
     this->initPlayer({8 * 4.0f, 1.38f, 8 * 4.0f}, 1, 2, 8, "Team2");
@@ -19,7 +20,7 @@ Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window), _map(Map
 
 void Gameplay::initPlayer(Vector3 pos, std::size_t level, std::size_t orientation, std::size_t id, std::string teamname)
 {
-    Character player(0, 0, pos, level, orientation, teamname);
+    Character player(0, 0, pos, level, orientation, teamname, id);
 
     this->_characters.insert(std::pair<std::size_t, Character>(id, player));
 }
@@ -42,6 +43,7 @@ void Gameplay::run(void)
 {
     this->_map.run();
     this->drawMap();
+    this->setDisplayMode();
     if (!this->_isDisplay) {
         this->drawTextOnScreen("F1:  Camera 1", 20, this->_window->getScreenHeight() - 150, 10, BLACK);
         this->drawTextOnScreen("F2: Camera 2", 20, this->_window->getScreenHeight() - 150, 60, BLACK);
@@ -50,6 +52,9 @@ void Gameplay::run(void)
     }
     this->startAnimation();
     this->runPlayers();
+    if ((this->_cameraType == CAMERA_FIRST || this->_cameraType == CAMERA_SECOND) && this->_isDisplay == false) {
+        this->DisplayInformations();
+    }
     if (this->_isDisplay)  {
         this->_window->setDefaultCamera();
         this->_display.run();
@@ -78,6 +83,39 @@ void Gameplay::setCurrentCharacter()
         this->_currentCharacterIndex = _characters.begin()->first;
 }
 
+void Gameplay::DisplayInformations(void)
+{
+    std::string id = "ID " + std::to_string(this->_currentCharacter.getId());
+    std::string level = "Level: " + std::to_string(this->_currentCharacter.getLevel());
+    std::string team = "Team: " + this->_currentCharacter.getTeamName();
+    // std::string inventory = "Inventory: " + this->_currentCharacter.getInventory();
+    // std::string pos = "Position: " + std::to_string(this->_currentCharacter.getPosition().x) + " " + std::to_string(this->_currentCharacter.getPosition().y) + " " + std::to_string(this->_currentCharacter.getPosition().z);
+    // std::string orientation = "Orientation: " + std::to_string(this->_currentCharacter.getDirection());
+
+    this->_rayWindow.endMode3D();
+    _rayModel.drawRectangle(this->_window->getScreenHeight() - (this->_window->getScreenHeight() / 4), this->_window->getScreenWidth() / 2, this->_window->getScreenHeight() / 4, this->_window->getScreenWidth() / 2, {130, 130, 130, 200});
+    this->_rayText.drawText(id, this->_window->getScreenHeight() - 300, (this->_window->getScreenWidth() / 2) + 20, 50, RED);
+    this->_rayText.drawText(level, this->_window->getScreenHeight() - 400, (this->_window->getScreenWidth() / 2) + 120, 30, BLACK);
+    this->_rayText.drawText(team, this->_window->getScreenHeight() - 400, (this->_window->getScreenWidth() / 2) + 220, 30, BLACK);
+    // this->_rayText.drawText(inventory, this->_window->getScreenHeight() - 400, 110, 30, BLACK);
+    // this->_rayText.drawText(pos, this->_window->getScreenHeight() - 400, (this->_window->getScreenWidth() / 2) + 320, 30, BLACK);
+    // this->_rayText.drawText(orientation, this->_window->getScreenHeight() - 400, (this->_window->getScreenWidth() / 2) + 320, 30, BLACK);
+    this->_rayWindow.beginMode3D(this->_window->getCamera());
+}
+
+void Gameplay::setDisplayMode(void)
+{
+    if (this->_rayWindow.isKeyReleased(KEY_TAB)) {
+        if (this->_isDisplay == false) {
+            this->setCameraType(CAMERA_THIRD);
+            this->_isDisplay = true;
+        }
+        else if (this->_isDisplay == true) {
+            this->_isDisplay = false;
+        }
+    }
+}
+
 void Gameplay::handleInput(void)
 {
     if (this->_rayWindow.isKeyDown(KEY_ESCAPE))
@@ -85,13 +123,17 @@ void Gameplay::handleInput(void)
     if (this->_rayWindow.isKeyReleased(KEY_F1)) {
         this->setCurrentCharacter();
         this->_window->setCamera({_currentCharacter.getPosition().x, _currentCharacter.getPosition().y + (float)2.0, _currentCharacter.getPosition().z - (float)0.5}, { 10.0f, 2.0f, 10.0f }, { 0.0f, 1.0f, 0.0f }, 45.0f, CAMERA_PERSPECTIVE);
+        this->setCameraType(CAMERA_FIRST);
     }
     if (this->_rayWindow.isKeyReleased(KEY_F2)) {
         this->setCurrentCharacter();
-        this->_window->setCamera({_currentCharacter.getPosition().x, _currentCharacter.getPosition().y + (float)3.5, _currentCharacter.getPosition().z - (float)3.5}, { 0.6f, -4.5f, 10.0f }, { 0.0f, 1.0f, 0.0f }, 45.0f, CAMERA_PERSPECTIVE);
+        this->_window->setCamera({_currentCharacter.getPosition().x, _currentCharacter.getPosition().y + (float)4.0, _currentCharacter.getPosition().z - (float)4.0}, { 0.6f, -4.5f, 60.0f }, { 0.0f, 1.0f, 0.0f }, 45.0f, CAMERA_PERSPECTIVE);
+        this->setCameraType(CAMERA_SECOND);
     }
-    if (this->_rayWindow.isKeyReleased(KEY_F3))
+    if (this->_rayWindow.isKeyReleased(KEY_F3)) {
         this->_window->setDefaultCamera();
+        this->setCameraType(CAMERA_THIRD);
+    }
     if (this->_rayWindow.isKeyReleased(KEY_N))
         this->_characters[3].setPos(this->_characters[3].getPosition().x, this->_characters[3].getPosition().z + 1, RIGHT_DIR);
     if (this->_rayWindow.isKeyReleased(KEY_G))
@@ -100,10 +142,6 @@ void Gameplay::handleInput(void)
         this->_characters[3].setPos(this->_characters[3].getPosition().x - 1, this->_characters[3].getPosition().z, DOWN_DIR);
     if (this->_rayWindow.isKeyReleased(KEY_V))
         this->_characters[3].setPos(this->_characters[3].getPosition().x, this->_characters[3].getPosition().z - 1, LEFT_DIR);
-    if (this->_rayWindow.isKeyReleased(KEY_TAB) && this->_isDisplay == false)
-        this->_isDisplay = true;
-    else if (this->_rayWindow.isKeyReleased(KEY_TAB) && this->_isDisplay == true)
-        this->_isDisplay = false;
 }
 
 void Gameplay::drawMap(void)
@@ -141,4 +179,14 @@ void Gameplay::startAnimation(void)
 void Gameplay::setIsDisplay(bool isDisplay)
 {
     this->_isDisplay = isDisplay;
+}
+
+void Gameplay::setCameraType(CameraType camera)
+{
+    this->_cameraType = camera;
+}
+
+CameraType Gameplay::getCameraType(void) const
+{
+    return (this->_cameraType);
 }

@@ -16,6 +16,12 @@
     #include "src/Gameplay/Display.hpp"
     #include "encapsulation/Raylibcpp.hpp"
 
+enum CameraType {
+    CAMERA_FIRST,
+    CAMERA_SECOND,
+    CAMERA_THIRD
+};
+
 class Gameplay {
     public:
         Gameplay(std::shared_ptr<Window> _window);
@@ -28,7 +34,11 @@ class Gameplay {
         void drawTextOnScreen(std::string text, int fontSize, int posX, int posY, Color color);
         void setCurrentCharacter();
         void startAnimation();
+        void DisplayInformations();
+        void setDisplayMode();
         void setIsDisplay(bool isDisplay);
+        void setCameraType(CameraType cameraType);
+        CameraType getCameraType(void) const;
     private:
         std::shared_ptr<Window> _window;
         Map _map;
@@ -42,6 +52,7 @@ class Gameplay {
         Raylibcpp::RayModel _rayModel;
         Raylibcpp::RayText _rayText;
         bool _isDisplay;
+        CameraType _cameraType;
 };
 
 #endif /* !GAMEPLAY_HPP_ */

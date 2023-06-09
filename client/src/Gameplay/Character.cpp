@@ -10,8 +10,9 @@
 
 #include <stdio.h>
 
-Character::Character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos, std::size_t level, std::size_t orientation, std::string name) : _position(pos), _animsCount(animsCount), _animFrameCounter(animFrameCounter), _currentlyAnimation(NONE), _level(level), _teamname(name)
+Character::Character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos, std::size_t level, std::size_t orientation, std::string name, std::size_t id) : _position(pos), _animsCount(animsCount), _animFrameCounter(animFrameCounter), _currentlyAnimation(NONE), _level(level), _teamname(name)
 {
+    this->_id = id;
     this->_model = this->_rayModel.loadModel("assets/monster/animations/monsterWalking.iqm");
     this->_texture = this->_rayModel.loadTexture("assets/monster/textures/monsterTexture.png");
     this->_animations.push_back(this->_rayModel.loadModelAnimations("assets/monster/animations/monsterSpawn.iqm", &this->_animsCount));
@@ -132,4 +133,19 @@ Inventory Character::getInventory() const
 Directions Character::getDirection() const
 {
     return this->_currentDirection;
+}
+
+void Character::setDirection(Directions direction)
+{
+    this->_currentDirection = direction;
+}
+
+std::string Character::getTeamName() const
+{
+    return this->_teamname;
+}
+
+std::size_t Character::getId() const
+{
+    return this->_id;
 }
