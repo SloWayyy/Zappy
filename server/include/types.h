@@ -21,7 +21,7 @@ typedef SLIST_HEAD(client_list, client) client_list_t;
 typedef SLIST_HEAD(player_list, player) player_list_t;
 typedef SLIST_HEAD(team_list, team) team_list_t;
 typedef SLIST_HEAD(task_list, task) task_list_t;
-typedef STAILQ_HEAD(action_list, action) action_list_t;
+typedef STAILQ_HEAD(command_queue, command) command_queue_t;
 
 struct server;
 struct task;
@@ -79,6 +79,11 @@ typedef struct tile {
     player_list_t players;
 } tile_t;
 
+typedef struct command {
+    char *command;
+    STAILQ_ENTRY(command) next;
+} command_t;
+
 typedef struct player {
     size_t id;
     bool dead;
@@ -88,7 +93,7 @@ typedef struct player {
     tile_t *pos;
     direction_type_t direction;
     struct task *action_task;
-    action_list_t *actions;
+    command_queue_t *commands;
     SLIST_ENTRY(player) next_team;
     SLIST_ENTRY(player) next_tile;
 } player_t;
@@ -105,13 +110,6 @@ typedef struct client {
 
 typedef void (task_function_t) \
     (struct server *server, client_t *client, void *arg);
-
-typedef struct action {
-    size_t delay;
-    task_function_t *callback;
-    void *arg;
-    STAILQ_ENTRY(action) next;
-} action_t;
 
 typedef struct task {
     size_t id;

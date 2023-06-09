@@ -40,7 +40,7 @@ static bool init_player_tasks(server_t *server, client_t *client)
         free(food_task);
         return false;
     }
-    schedule_task(food_task, FOOD_CONSUME_TICKS, -1, NULL);
+    schedule_task(food_task, server, FOOD_CONSUME_TICKS, -1);
     return true;
 }
 
