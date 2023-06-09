@@ -19,7 +19,7 @@
     #define LEFT_DELAY 7
     #define RIGHT_DELAY 7
     #define INVENTORY_DELAY 1
-    #define SLOTS_DELAY 1
+    #define SLOTS_DELAY 0
 
     #define PLAYER_MOVE_FORWARD "Forward"
     #define PLAYER_MOVE_LEFT "Left"
