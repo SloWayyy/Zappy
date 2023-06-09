@@ -31,6 +31,7 @@ class Core {
         Core(int port, std::string ip);
         ~Core() = default;
         void run(void);
+        void handleInput(const std::string &input);
     private:
         std::shared_ptr<Window> _window;
         std::shared_ptr<Menu> _menu;
