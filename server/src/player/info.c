@@ -38,8 +38,13 @@ void inventory_handler(UNUSED server_t *server, client_t *client, \
 static void slots_callback(UNUSED server_t *server, client_t *client, \
     UNUSED void *arg)
 {
-    append_buffer(client->buffer_out, "%d%s", client->player->team->slots, \
-        LINE_BREAK);
+    size_t slots = client->player->team->slots;
+    egg_t *node = NULL;
+
+    SLIST_FOREACH(node, client->player->team->eggs, next_team) {
+        slots++;
+    }
+    append_buffer(client->buffer_out, "%d%s", slots, LINE_BREAK);
     flush_command(server, client);
 }
 

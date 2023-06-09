@@ -18,9 +18,10 @@
     #include <sys/select.h>
 
 typedef SLIST_HEAD(client_list, client) client_list_t;
+typedef SLIST_HEAD(egg_list, egg) egg_list_t;
 typedef SLIST_HEAD(player_list, player) player_list_t;
-typedef SLIST_HEAD(team_list, team) team_list_t;
 typedef SLIST_HEAD(task_list, task) task_list_t;
+typedef SLIST_HEAD(team_list, team) team_list_t;
 typedef STAILQ_HEAD(command_queue, command) command_queue_t;
 
 struct server;
@@ -66,9 +67,9 @@ typedef struct buffer {
 
 typedef struct team {
     const char *name;
-    size_t capacity;
     size_t slots;
     player_list_t *players;
+    egg_list_t *eggs;
     SLIST_ENTRY(team) next;
 } team_t;
 
@@ -77,6 +78,7 @@ typedef struct tile {
     size_t y;
     size_t resources[RESOURCES_TYPES_QUANTITY];
     player_list_t players;
+    egg_list_t eggs;
 } tile_t;
 
 typedef struct command {
@@ -84,9 +86,18 @@ typedef struct command {
     STAILQ_ENTRY(command) next;
 } command_t;
 
+typedef struct egg {
+    size_t id;
+    size_t player_id;
+    tile_t *pos;
+    SLIST_ENTRY(egg) next_team;
+    SLIST_ENTRY(egg) next_tile;
+} egg_t;
+
 typedef struct player {
     size_t id;
     bool dead;
+    bool from_egg;
     size_t level;
     size_t inventory[RESOURCES_TYPES_QUANTITY];
     team_t *team;

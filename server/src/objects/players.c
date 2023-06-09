@@ -35,10 +35,10 @@ player_t *new_player(void)
         return NULL;
     }
     new->id = next_id++;
+    new->dead = false;
     new->level = 1;
     new->team = NULL;
     new->pos = NULL;
-    new->dead = false;
     new->direction = rand() % 4;
     memset(new->inventory, 0, sizeof(new->inventory));
     new->inventory[FOOD] = FOOD_DEFAULT;
@@ -54,7 +54,9 @@ void free_player(player_t *player)
     command_t *command = NULL;
 
     if (player->team != NULL) {
-        player->team->slots++;
+        if (!player->from_egg) {
+            player->team->slots++;
+        }
         SLIST_REMOVE(player->team->players, player, player, next_team);
     }
     if (player->pos != NULL) {

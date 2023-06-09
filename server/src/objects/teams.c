@@ -14,26 +14,35 @@
 team_t *new_team(char const *name, size_t capacity)
 {
     team_t *new = malloc(sizeof(team_t));
+    struct player_list *players = malloc(sizeof(struct player_list));
+    struct egg_list *eggs = malloc(sizeof(struct egg_list));
 
-    if (new == NULL) {
+    if (new == NULL || players == NULL || eggs == NULL) {
         perror("malloc failed");
+        free(new);
+        free(players);
+        free(eggs);
         return NULL;
     }
     new->name = name;
-    new->capacity = capacity;
     new->slots = capacity;
-    new->players = malloc(sizeof(struct player_list));
-    if (new->players == NULL) {
-        perror("malloc failed");
-        free(new);
-        return NULL;
-    }
+    new->players = players;
+    new->eggs = eggs;
     SLIST_INIT(new->players);
+    SLIST_INIT(new->eggs);
     return new;
 }
 
 void free_team(team_t *team)
 {
+    egg_t *node = NULL;
+
+    while (!SLIST_EMPTY(team->eggs)) {
+        node = SLIST_FIRST(team->eggs);
+        SLIST_REMOVE_HEAD(team->eggs, next_team);
+        free(node);
+    }
+    free(team->eggs);
     free(team->players);
     free(team);
 }

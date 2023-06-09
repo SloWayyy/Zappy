@@ -18,12 +18,42 @@
 #include "server.h"
 #include "types.h"
 
-static tile_t *get_spawn(server_t *server, team_t *team)
+static tile_t *get_spawn_from_egg(server_t *server, team_t *team, size_t size)
 {
-    (void) team;
+    size_t i = 0;
+    size_t num = rand() % size;
+    egg_t *node = NULL;
+    tile_t *tile = NULL;
+
+    SLIST_FOREACH(node, team->eggs, next_team) {
+        if (i == num) {
+            tile = node->pos;
+            send_graphical_event(server, "%s %zu%s", \
+                GRAPHICAL_PLAYER_EGG_JOIN, node->id, LINE_BREAK);
+            SLIST_REMOVE(team->eggs, node, egg, next_team);
+            SLIST_REMOVE(&tile->eggs, node, egg, next_tile);
+            free(node);
+            return tile;
+        }
+        i++;
+    }
+    return NULL;
+}
+
+static tile_t *get_spawn(server_t *server, team_t *team, player_t *player)
+{
+    size_t eggs = 0;
+    egg_t *node = NULL;
     int x = rand() % server->options->width;
     int y = rand() % server->options->height;
 
+    SLIST_FOREACH(node, team->eggs, next_team) {
+        eggs++;
+    }
+    player->from_egg = eggs > 0;
+    if (eggs > 0) {
+        return get_spawn_from_egg(server, team, eggs);
+    }
     return &server->zappy->map[y][x];
 }
 
@@ -46,7 +76,7 @@ static bool init_player_tasks(server_t *server, client_t *client)
 
 static bool join_team(server_t *server, client_t *client, team_t *team)
 {
-    tile_t *spawn = get_spawn(server, team);
+    tile_t *spawn = NULL;
     player_t *player = new_player();
 
     client->player = player;
@@ -57,31 +87,24 @@ static bool join_team(server_t *server, client_t *client, team_t *team)
         free_player(client->player);
         return false;
     }
+    spawn = get_spawn(server, team, player);
     client->player->team = team;
     client->player->pos = spawn;
-    team->slots--;
+    team->slots -= player->from_egg ? 0 : 1;
     SLIST_INSERT_HEAD(team->players, client->player, next_team);
     SLIST_INSERT_HEAD(&spawn->players, client->player, next_tile);
-    send_graphical_event(server, "%s %zu %zu %zu %zu %zu %s%s", \
-        GRAPHICAL_PLAYER_JOIN, player->id, player->pos->x, player->pos->y, \
-        player->direction, player->level, player->team->name, LINE_BREAK);
-    return true;
-}
-
-static bool can_join(team_t *team)
-{
-    if (team->slots == 0) {
-        return false;
-    }
+    send_graphical_join_event(server, client);
     return true;
 }
 
 bool try_join_team(server_t *server, client_t *client, char *line)
 {
+    bool joinable = false;
     team_t *node = NULL;
 
     SLIST_FOREACH(node, server->zappy->teams, next) {
-        if (strcmp(line, node->name) == 0 && can_join(node)) {
+        joinable = node->eggs->slh_first != NULL || node->slots > 0;
+        if (strcmp(line, node->name) == 0 && joinable) {
             return join_team(server, client, node);
         }
     }
