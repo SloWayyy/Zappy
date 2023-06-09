@@ -8,6 +8,15 @@
 #ifndef CORE_HPP_
     #define CORE_HPP_
 
+    #define COMMAND_MSZ "msz"
+    #define COMMAND_BCT "bct"
+    #define COMMAND_TNA "tna"
+    #define COMMAND_PNW "pnw"
+    #define COMMAND_PPO "ppo"
+    #define COMMAND_PLV "plv"
+    #define COMMAND_PIN "pin"
+    #define COMMAND_PDI "pdi"
+
     #include "src/Core/Window.hpp"
     #include "src/Gameplay/Map.hpp"
     #include "src/Gameplay/Gameplay.hpp"

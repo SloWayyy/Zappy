@@ -80,20 +80,20 @@ void Core::handleInput(const std::string &command)
         tmp.erase(0, tmp.find(delimiter) + delimiter.length());
     }
     args.push_back(tmp);
-    if (args[0] == "msz") {
+    if (args[0] == COMMAND_MSZ) {
         this->_gameplay->getMap()->setWidth(std::stoi(args[1]));
         this->_gameplay->getMap()->setHeight(std::stoi(args[2]));
-    } else if (args[0] == "bct") {
+    } else if (args[0] == COMMAND_BCT) {
         std::cout << std::stoi(args[1]) << std::stoi(args[2]) << std::stoi(args[3]) << std::stoi(args[4]) << std::stoi(args[5]) << std::stoi(args[6]) << std::stoi(args[7]) << std::stoi(args[8]) << std::stoi(args[9]) << std::endl;
-    } else if (args[0] == "tna") {
+    } else if (args[0] == COMMAND_TNA) {
         std::cout << args[1] << std::endl;
-    } else if (args[0] == "pnw") {
+    } else if (args[0] == COMMAND_PNW) {
         this->_gameplay->initPlayer({std::stof(args[2]) * 4.0f, (float)1.1, std::stof(args[3]) * 4.0f}, std::stoi(args[5]), std::stoi(args[4]), std::stoi(args[1]), args[6]);
-    } else if (args[0] == "ppo") {
+    } else if (args[0] == COMMAND_PPO) {
         this->_gameplay->getCharacters()[std::stoi(args[1])].setPos(std::stof(args[2]) * 4.0f, std::stof(args[3]) * 4.0f, std::stof(args[4]) * 4.0f);
-    } else if (args[0] == "plv") {
+    } else if (args[0] == COMMAND_PLV) {
         this->_gameplay->getCharacters()[std::stoi(args[1])].setLevel(std::stoi(args[2]));
-    } else if (args[0] == "pin") {
+    } else if (args[0] == COMMAND_PIN) {
         this->_gameplay->getCharacters()[std::stoi(args[1])].getInventory()->setFood(std::stoi(args[4]));
         this->_gameplay->getCharacters()[std::stoi(args[1])].getInventory()->setLinemate(std::stoi(args[5]));
         this->_gameplay->getCharacters()[std::stoi(args[1])].getInventory()->setDeraumere(std::stoi(args[6]));
@@ -101,7 +101,7 @@ void Core::handleInput(const std::string &command)
         this->_gameplay->getCharacters()[std::stoi(args[1])].getInventory()->setMendiane(std::stoi(args[8]));
         this->_gameplay->getCharacters()[std::stoi(args[1])].getInventory()->setPhiras(std::stoi(args[9]));
         this->_gameplay->getCharacters()[std::stoi(args[1])].getInventory()->setThystame(std::stoi(args[10]));
-    } else if (args[0] == "pdi") {
+    } else if (args[0] == COMMAND_PDI) {
         this->_gameplay->getCharacters().erase(std::stoi(args[1]));
     }
 }
