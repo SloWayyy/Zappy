@@ -8,6 +8,15 @@
 #ifndef CORE_HPP_
     #define CORE_HPP_
 
+    #define COMMAND_MSZ "msz"
+    #define COMMAND_BCT "bct"
+    #define COMMAND_TNA "tna"
+    #define COMMAND_PNW "pnw"
+    #define COMMAND_PPO "ppo"
+    #define COMMAND_PLV "plv"
+    #define COMMAND_PIN "pin"
+    #define COMMAND_PDI "pdi"
+
     #include "src/Core/Window.hpp"
     #include "src/Gameplay/Map.hpp"
     #include "src/Gameplay/Gameplay.hpp"
@@ -31,6 +40,14 @@ class Core {
         Core(int port, std::string ip);
         ~Core() = default;
         void run(void);
+        void handleInput(const std::string &input);
+        void setMapSize(std::vector<std::string> &input);
+        void setTileContent(std::vector<std::string> &input);
+        void setTeamNames(std::vector<std::string> &input);
+        void setPlayerPosition(std::vector<std::string> &input);
+        void setPlayerLevel(std::vector<std::string> &input);
+        void setPlayerInventory(std::vector<std::string> &input);
+        void setPlayerDeath(std::vector<std::string> &input);
     private:
         std::shared_ptr<Window> _window;
         std::shared_ptr<Menu> _menu;

@@ -27,9 +27,11 @@ class Gameplay {
         void drawTextOnScreen(std::string text, int fontSize, int posX, int posY, Color color);
         void setCurrentCharacter();
         void startAnimation();
+        std::shared_ptr<Map> getMap() const;
+        std::map<std::size_t, Character> getCharacters() const;
     private:
         std::shared_ptr<Window> _window;
-        Map _map;
+        std::shared_ptr<Map> _map;
         std::map<std::size_t, Character> _characters;
         std::size_t _currentCharacterId;
         std::size_t _currentCharacterIndex;

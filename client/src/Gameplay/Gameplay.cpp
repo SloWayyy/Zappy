@@ -7,8 +7,9 @@
 
 #include "src/Gameplay/Gameplay.hpp"
 
-Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window), _map(Map(10, 10)), _currentCharacterId(0), _currentCharacterIndex(0)
+Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window), _currentCharacterId(0), _currentCharacterIndex(0)
 {
+    this->_map = std::make_shared<Map>(10, 10);
     this->initPlayer({1 * 4.0f, (float)1.1, 8 * 4.0f}, 1, 2, 1, "Team1");
 }
 
@@ -36,7 +37,7 @@ void Gameplay::drawTextOnScreen(std::string text, int fontSize, int posX, int po
 
 void Gameplay::run(void)
 {
-    this->_map.run();
+    this->_map->run();
     this->drawMap();
     this->drawTextOnScreen("F1:  Camera 1", 20, this->_window->getScreenHeight() - 150, 10, BLACK);
     this->drawTextOnScreen("F2: Camera 2", 20, this->_window->getScreenHeight() - 150, 60, BLACK);
@@ -89,17 +90,17 @@ void Gameplay::drawMap(void)
     float _x = 0.0f;
     float _y = 0.0f;
 
-    for (std::size_t y = 0; y < this->_map.getheight(); y++) {
-        for (std::size_t x = 0; x < this->_map.getwidth(); x++) {
-            this->_map.setcubePosition({ _x, -0.45f, _y });
-            this->_map.draw(this->_map.getmodel(), this->_map.getcubePosition(), 2.0f);
-            this->_map.draw(this->_map.getmodelPlatform(), {this->_map.getcubePosition().x, this->_map.getcubePosition().y + (float)1.6, this->_map.getcubePosition().z}, 0.02f);
+    for (std::size_t y = 0; y < this->_map->getheight(); y++) {
+        for (std::size_t x = 0; x < this->_map->getwidth(); x++) {
+            this->_map->setcubePosition({ _x, -0.45f, _y });
+            this->_map->draw(this->_map->getmodel(), this->_map->getcubePosition(), 2.0f);
+            this->_map->draw(this->_map->getmodelPlatform(), {this->_map->getcubePosition().x, this->_map->getcubePosition().y + (float)1.6, this->_map->getcubePosition().z}, 0.02f);
         _x += 4.0f;
         }
         _x = 0.0f;
         _y += 4.0f;
     }
-    this->_map.drawMineral(this->_map.getmodelBanana());
+    this->_map->drawMineral(this->_map->getmodelBanana());
 }
 
 void Gameplay::startAnimation(void)
@@ -114,4 +115,14 @@ void Gameplay::startAnimation(void)
         this->_characters[0].setCurrentlyAnimation(RIGHT_TURN);
     if (this->_rayWindow.isKeyReleased(KEY_KP_5))
         this->_characters[0].setCurrentlyAnimation(LEFT_TURN);
+}
+
+std::shared_ptr<Map> Gameplay::getMap() const
+{
+    return this->_map;
+}
+
+std::map<std::size_t, Character> Gameplay::getCharacters() const
+{
+    return this->_characters;
 }
