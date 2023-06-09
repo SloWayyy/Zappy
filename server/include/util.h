@@ -29,6 +29,8 @@ bool dump_buffer(buffer_t *buffer, int fd);
 char *extract_line(buffer_t *buffer);
 bool resize_buffer(buffer_t *buffer);
 
+vector_t get_direction(direction_type_t direction);
+
 struct sockaddr *generate_address(int port, char *address);
 void get_elapsed_time(struct timeval *start, struct timeval *end, \
     struct timeval *ptr);
