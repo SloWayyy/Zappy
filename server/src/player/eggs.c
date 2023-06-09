@@ -7,6 +7,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/queue.h>
 
 #include "constants.h"
 #include "graphical.h"

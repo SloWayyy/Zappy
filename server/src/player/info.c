@@ -6,6 +6,7 @@
 */
 
 #include <stddef.h>
+#include <sys/queue.h>
 
 #include "constants.h"
 #include "player.h"
