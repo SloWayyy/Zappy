@@ -23,8 +23,8 @@ SRC			=	src/core/fdsets.c \
 				src/objects/buffers.c \
 				src/objects/clients.c \
 				src/objects/players.c \
+				src/objects/tasks.c \
 				src/objects/teams.c \
-				src/player/actions.c \
 				src/player/command.c \
 				src/player/food.c \
 				src/player/info.c \

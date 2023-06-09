@@ -14,14 +14,14 @@
 #include "player.h"
 #include "types.h"
 
-static bool init_actions(player_t *new)
+static bool init_command_queue(player_t *new)
 {
-    new->actions = malloc(sizeof(action_list_t));
-    if (new->actions == NULL) {
+    new->commands = malloc(sizeof(command_queue_t));
+    if (new->commands == NULL) {
         perror("malloc failed");
         return false;
     }
-    STAILQ_INIT(new->actions);
+    STAILQ_INIT(new->commands);
     return true;
 }
 
@@ -42,7 +42,7 @@ player_t *new_player(void)
     new->direction = rand() % 4;
     memset(new->inventory, 0, sizeof(new->inventory));
     new->inventory[FOOD] = FOOD_DEFAULT;
-    if (!init_actions(new)) {
+    if (!init_command_queue(new)) {
         free(new);
         return NULL;
     }
@@ -51,7 +51,7 @@ player_t *new_player(void)
 
 void free_player(player_t *player)
 {
-    action_t *action = NULL;
+    command_t *command = NULL;
 
     if (player->team != NULL) {
         player->team->slots++;
@@ -60,11 +60,12 @@ void free_player(player_t *player)
     if (player->pos != NULL) {
         SLIST_REMOVE(&player->pos->players, player, player, next_tile);
     }
-    while (!STAILQ_EMPTY(player->actions)) {
-        action = STAILQ_FIRST(player->actions);
-        STAILQ_REMOVE_HEAD(player->actions, next);
-        free(action);
+    while (!STAILQ_EMPTY(player->commands)) {
+        command = STAILQ_FIRST(player->commands);
+        STAILQ_REMOVE_HEAD(player->commands, next);
+        free(command->command);
+        free(command);
     }
-    free(player->actions);
+    free(player->commands);
     free(player);
 }

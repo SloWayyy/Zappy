@@ -32,13 +32,10 @@ bool tick(server_t *server);
 
 task_t *register_task(server_t *server, client_t *client, \
     task_function_t *callback);
-void schedule_task(task_t *task, size_t delay, int exec, void *arg);
+void setup_task(task_t *task, task_function_t *callback, void *arg);
+void schedule_task(task_t *task, server_t *server, size_t delay, int exec);
 void cancel_client_tasks(server_t *server, client_t *client);
 void execute_tasks(server_t *server);
-
-void schedule_action(client_t *client, task_function_t *callback, \
-    size_t delay, void *arg);
-void flush_action(player_t *player);
 
 bool check_arguments(int argc, char const *argv[], options_t *options);
 bool check_number(char const *str, int *storage);

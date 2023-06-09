@@ -25,16 +25,26 @@ static void inventory_callback(UNUSED server_t *server, client_t *client, \
             resources_map[i], client->player->inventory[i]);
     }
     append_buffer(client->buffer_out, "]%s", LINE_BREAK);
+    flush_command(server, client);
 }
 
 void inventory_handler(UNUSED server_t *server, client_t *client, \
     UNUSED char *line)
 {
-    schedule_action(client, &inventory_callback, INVENTORY_DELAY, NULL);
+    setup_task(client->player->action_task, &inventory_callback, NULL);
+    schedule_task(client->player->action_task, server, INVENTORY_DELAY, 1);
+}
+
+static void slots_callback(UNUSED server_t *server, client_t *client, \
+    UNUSED void *arg)
+{
+    append_buffer(client->buffer_out, "%d%s", client->player->team->slots, \
+        LINE_BREAK);
+    flush_command(server, client);
 }
 
 void slots_handler(UNUSED server_t *server, client_t *client, UNUSED char *line)
 {
-    append_buffer(client->buffer_out, "%d%s", client->player->team->slots, \
-        LINE_BREAK);
+    setup_task(client->player->action_task, &slots_callback, NULL);
+    schedule_task(client->player->action_task, server, SLOTS_DELAY, 1);
 }

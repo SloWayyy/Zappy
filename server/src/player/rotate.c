@@ -22,9 +22,9 @@ static void rotate_callback(server_t *server, client_t *client, void *arg)
     int velocity = *ptr ? 1 : -1;
 
     client->player->direction = (client->player->direction + velocity) % 4;
-    flush_action(client->player);
     send_graphical_position_event(server, client);
     append_buffer(client->buffer_out, "%s%s", PLAYER_OK, LINE_BREAK);
+    flush_command(server, client);
 }
 
 void left_handler(UNUSED server_t *server, client_t *client, UNUSED char *line)
@@ -36,7 +36,8 @@ void left_handler(UNUSED server_t *server, client_t *client, UNUSED char *line)
         return;
     }
     *dir = false;
-    schedule_action(client, &rotate_callback, LEFT_DELAY, dir);
+    setup_task(client->player->action_task, &rotate_callback, dir);
+    schedule_task(client->player->action_task, server, LEFT_DELAY, 1);
 }
 
 void right_handler(UNUSED server_t *server, client_t *client, UNUSED char *line)
@@ -48,5 +49,6 @@ void right_handler(UNUSED server_t *server, client_t *client, UNUSED char *line)
         return;
     }
     *dir = true;
-    schedule_action(client, &rotate_callback, RIGHT_DELAY, dir);
+    setup_task(client->player->action_task, &rotate_callback, dir);
+    schedule_task(client->player->action_task, server, RIGHT_DELAY, 1);
 }

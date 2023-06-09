@@ -55,13 +55,13 @@ static void forward_callback(server_t *server, client_t *client, \
         next_tile);
     client->player->pos = &server->zappy->map[pos_y][pos_x];
     SLIST_INSERT_HEAD(&client->player->pos->players, client->player, next_tile);
-    flush_action(client->player);
     send_graphical_position_event(server, client);
     append_buffer(client->buffer_out, "%s%s", PLAYER_OK, LINE_BREAK);
+    flush_command(server, client);
 }
 
-void forward_handler(UNUSED server_t *server, client_t *client, \
-    UNUSED char *line)
+void forward_handler(server_t *server, client_t *client, UNUSED char *line)
 {
-    schedule_action(client, &forward_callback, FORWARD_DELAY, NULL);
+    setup_task(client->player->action_task, &forward_callback, NULL);
+    schedule_task(client->player->action_task, server, FORWARD_DELAY, 1);
 }
