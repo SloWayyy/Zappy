@@ -8,10 +8,9 @@
 #include "encapsulation/Raylibcpp.hpp"
 #include "src/Gameplay/Character.hpp"
 
-#include <stdio.h>
-
 Character::Character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos, std::size_t level, std::size_t orientation, std::string name) : _position(pos), _animsCount(animsCount), _animFrameCounter(animFrameCounter), _currentlyAnimation(NONE), _level(level), _teamname(name)
-{
+{   
+    this->_inventory = std::make_shared<Inventory>();
     this->_model = this->_rayModel.loadModel("assets/monster/animations/monsterWalking.iqm");
     this->_texture = this->_rayModel.loadTexture("assets/monster/textures/monsterTexture.png");
     this->_animations.push_back(this->_rayModel.loadModelAnimations("assets/monster/animations/monsterSpawn.iqm", &this->_animsCount));
@@ -124,7 +123,7 @@ void Character::setLevel(size_t level)
     this->_level = level;
 }
 
-Inventory Character::getInventory() const
+std::shared_ptr<Inventory> Character::getInventory() const
 {
     return this->_inventory;
 }

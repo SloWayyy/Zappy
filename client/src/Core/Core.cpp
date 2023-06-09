@@ -94,13 +94,13 @@ void Core::handleInput(const std::string &command)
     } else if (args[0] == "plv") {
         this->_gameplay->getCharacters()[std::stoi(args[1])].setLevel(std::stoi(args[2]));
     } else if (args[0] == "pin") {
-        this->_gameplay->getCharacters()[std::stoi(args[1])].getInventory().setFood(std::stoi(args[4]));
-        this->_gameplay->getCharacters()[std::stoi(args[1])].getInventory().setLinemate(std::stoi(args[5]));
-        this->_gameplay->getCharacters()[std::stoi(args[1])].getInventory().setDeraumere(std::stoi(args[6]));
-        this->_gameplay->getCharacters()[std::stoi(args[1])].getInventory().setSibur(std::stoi(args[7]));
-        this->_gameplay->getCharacters()[std::stoi(args[1])].getInventory().setMendiane(std::stoi(args[8]));
-        this->_gameplay->getCharacters()[std::stoi(args[1])].getInventory().setPhiras(std::stoi(args[9]));
-        this->_gameplay->getCharacters()[std::stoi(args[1])].getInventory().setThystame(std::stoi(args[10]));
+        this->_gameplay->getCharacters()[std::stoi(args[1])].getInventory()->setFood(std::stoi(args[4]));
+        this->_gameplay->getCharacters()[std::stoi(args[1])].getInventory()->setLinemate(std::stoi(args[5]));
+        this->_gameplay->getCharacters()[std::stoi(args[1])].getInventory()->setDeraumere(std::stoi(args[6]));
+        this->_gameplay->getCharacters()[std::stoi(args[1])].getInventory()->setSibur(std::stoi(args[7]));
+        this->_gameplay->getCharacters()[std::stoi(args[1])].getInventory()->setMendiane(std::stoi(args[8]));
+        this->_gameplay->getCharacters()[std::stoi(args[1])].getInventory()->setPhiras(std::stoi(args[9]));
+        this->_gameplay->getCharacters()[std::stoi(args[1])].getInventory()->setThystame(std::stoi(args[10]));
     } else if (args[0] == "pdi") {
         this->_gameplay->getCharacters().erase(std::stoi(args[1]));
     }
