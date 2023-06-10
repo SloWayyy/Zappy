@@ -11,6 +11,8 @@
 #include <sys/socket.h>
 #include <sys/time.h>
 
+#include "constants.h"
+
 struct timeval;
 
 struct sockaddr *generate_address(int port, char *address)
@@ -33,7 +35,7 @@ void get_elapsed_time(struct timeval *start, struct timeval *end, \
     ptr->tv_usec = end->tv_usec - start->tv_usec;
     if (ptr->tv_usec < 0) {
         ptr->tv_sec--;
-        ptr->tv_usec += 1000000;
+        ptr->tv_usec += MICROS_PER_SEC;
     }
     if (ptr->tv_sec < 0) {
         ptr->tv_sec = 0;

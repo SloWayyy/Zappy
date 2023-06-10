@@ -55,14 +55,17 @@ static bool server_loop(server_t *server)
     return true;
 }
 
-static void init_stack_values(server_t *server)
+static void init_values(server_t *server, tick_t *tick, team_list_t *teams)
 {
+    memset(server->data, 0, sizeof(data_t));
+    memset(tick, 0, sizeof(zappy_t));
+    server->data->socket_fd = -1;
+    server->data->signal_fd = -1;
+    server->zappy->tick = tick;
+    server->zappy->teams = teams;
     SLIST_INIT(server->clients);
     SLIST_INIT(server->zappy->teams);
     SLIST_INIT(server->tasks);
-    memset(server->data, 0, sizeof(data_t));
-    server->data->socket_fd = -1;
-    server->data->signal_fd = -1;
 }
 
 bool start_server(options_t *options)
@@ -73,12 +76,12 @@ bool start_server(options_t *options)
     client_list_t clients;
     team_list_t teams;
     task_list_t tasks;
-    zappy_t zappy = { &tick, NULL, &teams };
+    zappy_t zappy;
     server_t server = { options, &data, &zappy, &clients, &tasks };
 
-    init_stack_values(&server);
-    run = init_server(&server);
     srand(time(NULL) + (unsigned long)&server);
+    init_values(&server, &tick, &teams);
+    run = init_server(&server);
     if (run) {
         run = server_loop(&server);
     }
