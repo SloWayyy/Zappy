@@ -28,6 +28,9 @@
     #define LINE_BREAK "\n"
     #define WELCOME_MESSAGE "WELCOME"
 
+    #define REFILL_DELAY 20
+    #define REFILL_COEFFICIENT 100
+
     #define UNUSED __attribute__((unused))
 
 #endif

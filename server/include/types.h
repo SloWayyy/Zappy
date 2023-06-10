@@ -153,6 +153,8 @@ typedef struct tick {
 typedef struct zappy {
     tick_t *tick;
     tile_t **map;
+    size_t total[RESOURCES_TYPES_QUANTITY];
+    size_t refill[RESOURCES_TYPES_QUANTITY];
     team_list_t *teams;
 } zappy_t;
 
@@ -165,5 +167,6 @@ typedef struct server {
 } server_t;
 
 extern char const *resources_map[RESOURCES_TYPES_QUANTITY];
+extern const double resources_density[RESOURCES_TYPES_QUANTITY];
 
 #endif

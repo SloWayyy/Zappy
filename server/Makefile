@@ -5,11 +5,14 @@
 ## Makefile
 ##
 
-SRC			=	src/core/fdsets.c \
+SRC			=	src/core/config.c \
+				src/core/fdsets.c \
 				src/core/init.c \
 				src/core/input.c \
 				src/core/loop.c \
 				src/core/map.c \
+				src/core/refill.c \
+				src/core/resources.c \
 				src/core/scheduler.c \
 				src/core/tick.c \
 				src/graphical/command.c \
