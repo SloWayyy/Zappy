@@ -10,6 +10,8 @@
 #include <stdlib.h>
 #include <sys/queue.h>
 
+#include "constants.h"
+#include "graphical.h"
 #include "objects.h"
 #include "server.h"
 #include "types.h"
@@ -53,6 +55,8 @@ void free_client(server_t *server, client_t *client)
 {
     fclose(client->stream);
     if (client->player != NULL) {
+        send_graphical_event(server, "%s %zu%s", \
+            GRAPHICAL_PLAYER_DEATH, client->player->id, LINE_BREAK);
         free_player(client->player);
     }
     cancel_client_tasks(server, client);
