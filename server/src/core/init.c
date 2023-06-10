@@ -78,24 +78,6 @@ static bool setup_socket(int socket_fd, int port)
     return true;
 }
 
-static bool init_socket_options(int fd)
-{
-    int res = 0;
-    int opt = 1;
-
-    res = setsockopt(fd, SOL_SOCKET, SO_REUSEADDR, (char *)&opt, sizeof(opt));
-    if (res == -1) {
-        perror("setsockopt address failed");
-        return false;
-    }
-    res = setsockopt(fd, SOL_SOCKET, SO_REUSEPORT, (char *)&opt, sizeof(opt));
-    if (res == -1) {
-        perror("setsockopt port failed");
-        return false;
-    }
-    return true;
-}
-
 bool init_server(server_t *server)
 {
     int fd = socket(AF_INET, SOCK_STREAM, 0);
@@ -106,10 +88,10 @@ bool init_server(server_t *server)
     }
 
     server->data->socket_fd = fd;
-    if (!init_socket_options(fd) || !setup_socket(fd, server->options->port)) {
+    if (!setup_socket(fd, server->options->port) || !init_signalfd(server)) {
         return false;
     }
-    if (!init_signalfd(server) || !init_zappy(server)) {
+    if (!init_zappy(server)) {
         return false;
     }
     return true;
