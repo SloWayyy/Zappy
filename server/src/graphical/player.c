@@ -34,7 +34,8 @@ void pin_handler(server_t *server, client_t *client)
     }
     target = get_client_by_player_id(server, (size_t) id);
     if (target == NULL) {
-        append_buffer(client->buffer_out, "%s\n", GRAPHICAL_COMMAND_PARAMETER);
+        append_buffer(client->buffer_out, "%s%s", \
+            GRAPHICAL_COMMAND_PARAMETER, LINE_BREAK);
         return;
     }
     append_buffer(client->buffer_out, "%s %zu %zu %zu", \
@@ -57,7 +58,8 @@ void plv_handler(server_t *server, client_t *client)
     }
     target = get_client_by_player_id(server, (size_t) id);
     if (target == NULL) {
-        append_buffer(client->buffer_out, "%s\n", GRAPHICAL_COMMAND_PARAMETER);
+        append_buffer(client->buffer_out, "%s%s", \
+            GRAPHICAL_COMMAND_PARAMETER, LINE_BREAK);
         return;
     }
     append_buffer(client->buffer_out, "%s %zu %zu%s", GRAPHICAL_PLAYER_LEVEL, \
@@ -77,7 +79,8 @@ void ppo_handler(server_t *server, client_t *client)
     }
     target = get_client_by_player_id(server, (size_t)id);
     if (target == NULL) {
-        append_buffer(client->buffer_out, "%s\n", GRAPHICAL_COMMAND_PARAMETER);
+        append_buffer(client->buffer_out, "%s%s", \
+            GRAPHICAL_COMMAND_PARAMETER, LINE_BREAK);
         return;
     }
     append_buffer(client->buffer_out, "%s %zu %zu %zu %d%s", \

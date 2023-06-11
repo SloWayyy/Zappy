@@ -89,6 +89,7 @@ typedef struct command {
 typedef struct egg {
     size_t id;
     size_t player_id;
+    team_t *team;
     tile_t *pos;
     SLIST_ENTRY(egg) next_team;
     SLIST_ENTRY(egg) next_tile;

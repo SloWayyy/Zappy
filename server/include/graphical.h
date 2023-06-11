@@ -28,8 +28,10 @@
     #define GRAPHICAL_PLAYER_TAKE "pgt"
     #define GRAPHICAL_PLAYER_SET "pdr"
     #define GRAPHICAL_PLAYER_FORK "pfk"
+    #define GRAPHICAL_PLAYER_EJECT "pex"
     #define GRAPHICAL_PLAYER_EGG "enw"
     #define GRAPHICAL_PLAYER_EGG_JOIN "ebo"
+    #define GRAPHICAL_PLAYER_EGG_DEATH "edi"
 
     #define GRAPHICAL_UNKNOWN "suc"
     #define GRAPHICAL_COMMAND_PARAMETER "sbp"
