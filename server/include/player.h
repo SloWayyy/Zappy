@@ -22,6 +22,8 @@
     #define INVENTORY_DELAY 1
     #define SLOTS_DELAY 0
     #define FORK_DELAY 42
+    #define TAKE_DELAY 7
+    #define SET_DELAY 7
 
     #define PLAYER_MOVE_FORWARD "Forward"
     #define PLAYER_MOVE_LEFT "Left"
@@ -30,6 +32,8 @@
     #define PLAYER_MOVE_INVENTORY "Inventory"
     #define PLAYER_FORK "Fork"
     #define PLAYER_UNUSED_SLOTS "Connect_nbr"
+    #define PLAYER_TAKE_OBJECT "Take"
+    #define PLAYER_SET_OBJECT "Set"
 
     #define PLAYER_OK "ok"
     #define PLAYER_KO "ko"
@@ -43,19 +47,23 @@
 bool try_join_team(server_t *server, client_t *client, char *line);
 
 void food_callback(server_t *server, client_t *client, void *arg);
+void set_callback(server_t *server, client_t *client, void *arg);
+void take_callback(server_t *server, client_t *client, void *arg);
 
-void forward_handler(server_t *server, client_t *client, char *line);
-void left_handler(server_t *server, client_t *client, char *line);
-void right_handler(server_t *server, client_t *client, char *line);
-void look_handler(server_t *server, client_t *client, char *line);
-void inventory_handler(server_t *server, client_t *client, char *line);
-void slots_handler(server_t *server, client_t *client, char *line);
-void fork_handler(server_t *server, client_t *client, char *line);
+bool forward_handler(server_t *server, client_t *client, char *line);
+bool left_handler(server_t *server, client_t *client, char *line);
+bool right_handler(server_t *server, client_t *client, char *line);
+bool look_handler(server_t *server, client_t *client, char *line);
+bool inventory_handler(server_t *server, client_t *client, char *line);
+bool slots_handler(server_t *server, client_t *client, char *line);
+bool fork_handler(server_t *server, client_t *client, char *line);
+bool take_handler(server_t *server, client_t *client, char *line);
+bool set_handler(server_t *server, client_t *client, char *line);
 
 void register_command(server_t *server, client_t *client, char *line);
 void flush_command(server_t *server, client_t *client);
 
-typedef void (player_handler_t) \
+typedef bool (player_handler_t) \
     (server_t *server, client_t *client, char *line);
 
 typedef struct player_command {
@@ -72,6 +80,8 @@ static const player_command_t PLAYER_COMMANDS[] = {
         { PLAYER_MOVE_INVENTORY, &inventory_handler, false },
         { PLAYER_UNUSED_SLOTS, &slots_handler, false },
         { PLAYER_FORK, &fork_handler, false },
+        { PLAYER_TAKE_OBJECT, &take_handler, true },
+        { PLAYER_SET_OBJECT, &set_handler, true },
 };
 
 #endif

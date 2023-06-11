@@ -32,7 +32,7 @@ void pin_handler(server_t *server, client_t *client)
             GRAPHICAL_COMMAND_PARAMETER, LINE_BREAK);
         return;
     }
-    target = get_client_by_player_id(server, (size_t)id);
+    target = get_client_by_player_id(server, (size_t) id);
     if (target == NULL) {
         append_buffer(client->buffer_out, "%s\n", GRAPHICAL_COMMAND_PARAMETER);
         return;

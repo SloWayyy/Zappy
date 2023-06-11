@@ -155,6 +155,8 @@ typedef struct zappy {
     tile_t **map;
     size_t total[RESOURCES_TYPES_QUANTITY];
     size_t refill[RESOURCES_TYPES_QUANTITY];
+    double *densities;
+    tile_t **empty;
     team_list_t *teams;
 } zappy_t;
 
