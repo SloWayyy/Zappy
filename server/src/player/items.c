@@ -2,63 +2,76 @@
 ** EPITECH PROJECT, 2023
 ** server
 ** File description:
-** info.c
+** items_callback.cpp
 */
 
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "constants.h"
 #include "player.h"
 #include "server.h"
 #include "types.h"
-#include "util.h"
 
-void take_handler(server_t *server, client_t *client, char *line)
+static char *get_resource_name(char *line)
 {
-    size_t *index = malloc(sizeof(size_t));
-    char *item = strtok(line, " ");
+    char *str = strtok(line, " ");
 
-    if (index == NULL) {
-        perror("malloc failed");
-        return;
+    if (str == NULL) {
+        return NULL;
     }
-    if (item == NULL || strtok(NULL, " ") != NULL) {
-        append_buffer(client->buffer_out, "%s%s", PLAYER_KO, LINE_BREAK);
-        return;
+    str = strtok(NULL, " ");
+    if (str == NULL || strtok(NULL, " ") != NULL) {
+        return NULL;
     }
-    for (size_t i = 0; i < RESOURCES_TYPES_QUANTITY; i++) {
-        if (strcmp(resources_map[i], item) == 0) {
-            *index = i;
-            setup_task(client->player->action_task, &take_callback, index);
-            schedule_task(client->player->action_task, server, TAKE_DELAY, 1);
-            return;
-        }
-    }
-    append_buffer(client->buffer_out, "%s%s", PLAYER_KO, LINE_BREAK);
+    return str;
 }
 
-void set_handler(server_t *server, client_t *client, char *line)
+bool set_handler(server_t *server, client_t *client, char *line)
 {
-    size_t *index = malloc(sizeof(size_t));
-    char *item = strtok(line, " ");
+    size_t *index = NULL;
+    char *item = get_resource_name(line);
 
+    if (item == NULL)
+        return false;
+    index = malloc(sizeof(size_t));
     if (index == NULL) {
         perror("malloc failed");
-        return;
-    }
-    if (item == NULL || strtok(NULL, " ") != NULL) {
-        append_buffer(client->buffer_out, "%s%s", PLAYER_KO, LINE_BREAK);
-        return;
+        return false;
     }
     for (size_t i = 0; i < RESOURCES_TYPES_QUANTITY; i++) {
         if (strcmp(resources_map[i], item) == 0) {
             *index = i;
             setup_task(client->player->action_task, &set_callback, index);
             schedule_task(client->player->action_task, server, SET_DELAY, 1);
-            return;
+            return true;
         }
     }
-    append_buffer(client->buffer_out, "%s%s", PLAYER_KO, LINE_BREAK);
+    free(index);
+    return false;
+}
+
+bool take_handler(server_t *server, client_t *client, char *line)
+{
+    size_t *index = NULL;
+    char *item = get_resource_name(line);
+
+    if (item == NULL)
+        return false;
+    index = malloc(sizeof(size_t));
+    if (index == NULL) {
+        perror("malloc failed");
+        return false;
+    }
+    for (size_t i = 0; i < RESOURCES_TYPES_QUANTITY; i++) {
+        if (strcmp(resources_map[i], item) == 0) {
+            *index = i;
+            setup_task(client->player->action_task, &take_callback, index);
+            schedule_task(client->player->action_task, server, TAKE_DELAY, 1);
+            return true;
+        }
+    }
+    free(index);
+    return false;
 }

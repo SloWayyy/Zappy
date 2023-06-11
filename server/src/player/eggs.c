@@ -5,6 +5,7 @@
 ** eggs.c
 */
 
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/queue.h>
@@ -35,6 +36,8 @@ static void fork_callback(server_t *server, client_t *client, UNUSED void *data)
     egg_t *egg = new_egg(client->player->pos);
 
     if (egg == NULL) {
+        append_buffer(client->buffer_out, "%s%s", PLAYER_KO, LINE_BREAK);
+        flush_command(server, client);
         return;
     }
     SLIST_INSERT_HEAD(client->player->team->eggs, egg, next_team);
@@ -47,8 +50,9 @@ static void fork_callback(server_t *server, client_t *client, UNUSED void *data)
     flush_command(server, client);
 }
 
-void fork_handler(server_t *server, client_t *client, UNUSED char *line)
+bool fork_handler(server_t *server, client_t *client, UNUSED char *line)
 {
     setup_task(client->player->action_task, &fork_callback, NULL);
     schedule_task(client->player->action_task, server, FORK_DELAY, 1);
+    return true;
 }

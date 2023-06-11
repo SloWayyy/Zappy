@@ -27,28 +27,30 @@ static void rotate_callback(server_t *server, client_t *client, void *arg)
     flush_command(server, client);
 }
 
-void left_handler(UNUSED server_t *server, client_t *client, UNUSED char *line)
+bool left_handler(UNUSED server_t *server, client_t *client, UNUSED char *line)
 {
     bool *dir = malloc(sizeof(bool));
 
     if (dir == NULL) {
         perror("malloc failed");
-        return;
+        return false;
     }
     *dir = false;
     setup_task(client->player->action_task, &rotate_callback, dir);
     schedule_task(client->player->action_task, server, LEFT_DELAY, 1);
+    return true;
 }
 
-void right_handler(UNUSED server_t *server, client_t *client, UNUSED char *line)
+bool right_handler(UNUSED server_t *server, client_t *client, UNUSED char *line)
 {
     bool *dir = malloc(sizeof(bool));
 
     if (dir == NULL) {
         perror("malloc failed");
-        return;
+        return false;
     }
     *dir = true;
     setup_task(client->player->action_task, &rotate_callback, dir);
     schedule_task(client->player->action_task, server, RIGHT_DELAY, 1);
+    return true;
 }

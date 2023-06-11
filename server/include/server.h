@@ -38,8 +38,7 @@ void cancel_client_tasks(server_t *server, client_t *client);
 void execute_tasks(server_t *server);
 
 void refill_callback(server_t *server, client_t *client, void *arg);
-void refill_resources(server_t *server, double total, double *densities, \
-    tile_t **empty);
+void refill_resources(server_t *server, double total);
 
 bool check_arguments(int argc, char const *argv[], options_t *options);
 bool check_number(char const *str, int *storage);

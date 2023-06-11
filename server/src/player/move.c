@@ -5,6 +5,7 @@
 ** move.c
 */
 
+#include <stdbool.h>
 #include <stddef.h>
 #include <sys/queue.h>
 
@@ -54,8 +55,9 @@ static void forward_callback(server_t *server, client_t *client, \
     flush_command(server, client);
 }
 
-void forward_handler(server_t *server, client_t *client, UNUSED char *line)
+bool forward_handler(server_t *server, client_t *client, UNUSED char *line)
 {
     setup_task(client->player->action_task, &forward_callback, NULL);
     schedule_task(client->player->action_task, server, FORWARD_DELAY, 1);
+    return true;
 }

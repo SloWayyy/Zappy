@@ -47,21 +47,23 @@
 bool try_join_team(server_t *server, client_t *client, char *line);
 
 void food_callback(server_t *server, client_t *client, void *arg);
+void set_callback(server_t *server, client_t *client, void *arg);
+void take_callback(server_t *server, client_t *client, void *arg);
 
-void forward_handler(server_t *server, client_t *client, char *line);
-void left_handler(server_t *server, client_t *client, char *line);
-void right_handler(server_t *server, client_t *client, char *line);
-void look_handler(server_t *server, client_t *client, char *line);
-void inventory_handler(server_t *server, client_t *client, char *line);
-void slots_handler(server_t *server, client_t *client, char *line);
-void fork_handler(server_t *server, client_t *client, char *line);
-void take_handler(server_t *server, client_t *client, char *line);
-void set_handler(server_t *server, client_t *client, char *line);
+bool forward_handler(server_t *server, client_t *client, char *line);
+bool left_handler(server_t *server, client_t *client, char *line);
+bool right_handler(server_t *server, client_t *client, char *line);
+bool look_handler(server_t *server, client_t *client, char *line);
+bool inventory_handler(server_t *server, client_t *client, char *line);
+bool slots_handler(server_t *server, client_t *client, char *line);
+bool fork_handler(server_t *server, client_t *client, char *line);
+bool take_handler(server_t *server, client_t *client, char *line);
+bool set_handler(server_t *server, client_t *client, char *line);
 
 void register_command(server_t *server, client_t *client, char *line);
 void flush_command(server_t *server, client_t *client);
 
-typedef void (player_handler_t) \
+typedef bool (player_handler_t) \
     (server_t *server, client_t *client, char *line);
 
 typedef struct player_command {

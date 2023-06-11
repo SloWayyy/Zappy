@@ -16,6 +16,17 @@
 #include "types.h"
 #include "util.h"
 
+static void execute_command(server_t *server, client_t *client, \
+    char *line, const player_command_t *command)
+{
+    bool ret = command->function(server, client, line);
+
+    if (!ret) {
+        append_buffer(client->buffer_out, "%s%s", PLAYER_KO, LINE_BREAK);
+        flush_command(server, client);
+    }
+}
+
 static void handle_player_command(server_t *server, client_t *client, \
     char *line)
 {
@@ -29,7 +40,7 @@ static void handle_player_command(server_t *server, client_t *client, \
             accept = strcmp(line, PLAYER_COMMANDS[i].command) == 0;
         }
         if (accept) {
-            PLAYER_COMMANDS[i].function(server, client, line);
+            execute_command(server, client, line, &PLAYER_COMMANDS[i]);
             return;
         }
     }

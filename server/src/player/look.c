@@ -5,6 +5,7 @@
 ** look.c
 */
 
+#include <stdbool.h>
 #include <stddef.h>
 #include <sys/queue.h>
 
@@ -24,7 +25,7 @@ static void dump_tile(tile_t *tile, client_t *client)
         separator = " ";
     }
     for (size_t i = 0; i < RESOURCES_TYPES_QUANTITY; i++) {
-        for (size_t j = 0; j < tile->resources[i] || j < 2; j++) {
+        for (size_t j = 0; j < tile->resources[i]; j++) {
             append_buffer(client->buffer_out, "%s%s", \
                 separator, resources_map[i]);
             separator = " ";
@@ -68,8 +69,9 @@ void look_callback(server_t *server, client_t *client, UNUSED void *arg)
     flush_command(server, client);
 }
 
-void look_handler(server_t *server, client_t *client, UNUSED char *line)
+bool look_handler(server_t *server, client_t *client, UNUSED char *line)
 {
     setup_task(client->player->action_task, &look_callback, NULL);
     schedule_task(client->player->action_task, server, LOOK_DELAY, 1);
+    return true;
 }

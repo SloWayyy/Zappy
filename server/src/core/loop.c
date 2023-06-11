@@ -32,6 +32,8 @@ static void end_server(server_t *server)
     if (server->data->signal_fd != -1) {
         close(server->data->signal_fd);
     }
+    free(server->zappy->densities);
+    free(server->zappy->empty);
 }
 
 static bool server_loop(server_t *server)
@@ -58,7 +60,7 @@ static bool server_loop(server_t *server)
 static void init_values(server_t *server, tick_t *tick, team_list_t *teams)
 {
     memset(server->data, 0, sizeof(data_t));
-    memset(tick, 0, sizeof(tick_t));
+    memset(server->zappy, 0, sizeof(zappy_t));
     server->data->socket_fd = -1;
     server->data->signal_fd = -1;
     server->zappy->tick = tick;

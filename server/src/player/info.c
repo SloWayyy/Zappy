@@ -5,6 +5,7 @@
 ** info.c
 */
 
+#include <stdbool.h>
 #include <stddef.h>
 #include <sys/queue.h>
 
@@ -29,11 +30,12 @@ static void inventory_callback(UNUSED server_t *server, client_t *client, \
     flush_command(server, client);
 }
 
-void inventory_handler(UNUSED server_t *server, client_t *client, \
+bool inventory_handler(UNUSED server_t *server, client_t *client, \
     UNUSED char *line)
 {
     setup_task(client->player->action_task, &inventory_callback, NULL);
     schedule_task(client->player->action_task, server, INVENTORY_DELAY, 1);
+    return true;
 }
 
 static void slots_callback(UNUSED server_t *server, client_t *client, \
@@ -49,8 +51,9 @@ static void slots_callback(UNUSED server_t *server, client_t *client, \
     flush_command(server, client);
 }
 
-void slots_handler(UNUSED server_t *server, client_t *client, UNUSED char *line)
+bool slots_handler(UNUSED server_t *server, client_t *client, UNUSED char *line)
 {
     setup_task(client->player->action_task, &slots_callback, NULL);
     schedule_task(client->player->action_task, server, SLOTS_DELAY, 1);
+    return true;
 }
