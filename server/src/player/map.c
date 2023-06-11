@@ -6,11 +6,13 @@
 */
 
 #include <stdbool.h>
+#include <stddef.h>
 
 #include "constants.h"
 #include "graphical.h"
 #include "player.h"
 #include "util.h"
+#include "types.h"
 
 static void send_graphical_item_event(server_t *server, client_t *client, \
     bool take, size_t resource_id)

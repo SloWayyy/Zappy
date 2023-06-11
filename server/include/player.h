@@ -22,6 +22,7 @@
     #define INVENTORY_DELAY 1
     #define SLOTS_DELAY 0
     #define FORK_DELAY 42
+    #define EJECT_DELAY 7
     #define TAKE_DELAY 7
     #define SET_DELAY 7
 
@@ -31,12 +32,14 @@
     #define PLAYER_LOOK "Look"
     #define PLAYER_MOVE_INVENTORY "Inventory"
     #define PLAYER_FORK "Fork"
+    #define PLAYER_EJECT "Eject"
     #define PLAYER_UNUSED_SLOTS "Connect_nbr"
     #define PLAYER_TAKE_OBJECT "Take"
     #define PLAYER_SET_OBJECT "Set"
 
     #define PLAYER_OK "ok"
     #define PLAYER_KO "ko"
+    #define PLAYER_EJECTION "eject:"
     #define PLAYER_DEATH "dead"
     #define PLAYER_UNKNOWN PLAYER_KO
 
@@ -57,6 +60,7 @@ bool look_handler(server_t *server, client_t *client, char *line);
 bool inventory_handler(server_t *server, client_t *client, char *line);
 bool slots_handler(server_t *server, client_t *client, char *line);
 bool fork_handler(server_t *server, client_t *client, char *line);
+bool eject_handler(server_t *server, client_t *client, char *line);
 bool take_handler(server_t *server, client_t *client, char *line);
 bool set_handler(server_t *server, client_t *client, char *line);
 
@@ -80,6 +84,7 @@ static const player_command_t PLAYER_COMMANDS[] = {
         { PLAYER_MOVE_INVENTORY, &inventory_handler, false },
         { PLAYER_UNUSED_SLOTS, &slots_handler, false },
         { PLAYER_FORK, &fork_handler, false },
+        { PLAYER_EJECT, &eject_handler, false },
         { PLAYER_TAKE_OBJECT, &take_handler, true },
         { PLAYER_SET_OBJECT, &set_handler, true },
 };

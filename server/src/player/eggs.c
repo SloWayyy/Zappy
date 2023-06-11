@@ -17,7 +17,7 @@
 #include "types.h"
 #include "util.h"
 
-static egg_t *new_egg(tile_t *tile)
+static egg_t *new_egg(team_t *team, tile_t *tile)
 {
     static size_t next_id = 0;
     egg_t *new = malloc(sizeof(egg_t));
@@ -27,13 +27,14 @@ static egg_t *new_egg(tile_t *tile)
         return NULL;
     }
     new->id = next_id++;
+    new->team = team;
     new->pos = tile;
     return new;
 }
 
 static void fork_callback(server_t *server, client_t *client, UNUSED void *data)
 {
-    egg_t *egg = new_egg(client->player->pos);
+    egg_t *egg = new_egg(client->player->team, client->player->pos);
 
     if (egg == NULL) {
         append_buffer(client->buffer_out, "%s%s", PLAYER_KO, LINE_BREAK);

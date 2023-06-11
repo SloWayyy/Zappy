@@ -30,6 +30,7 @@ SRC			=	src/core/config.c \
 				src/objects/teams.c \
 				src/player/command.c \
 				src/player/eggs.c \
+				src/player/eject.c \
 				src/player/food.c \
 				src/player/info.c \
 				src/player/items.c \
