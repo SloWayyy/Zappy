@@ -28,7 +28,7 @@ static void eject_player(server_t *server, client_t *client, player_t *target, \
     SLIST_INSERT_HEAD(&tile->players, target, next_tile);
     target->pos = tile;
     append_buffer(node->buffer_out, "%s %zu%s", \
-        PLAYER_EJECTION, client->player->direction, LINE_BREAK);
+        PLAYER_EJECTION, client->player->direction + 1, LINE_BREAK);
     send_graphical_position_event(server, node);
 }
 
