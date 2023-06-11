@@ -9,7 +9,7 @@
 #include <string>
 #include <cstring>
 
-Core::Core(int port, std::string ip): _window(std::make_shared<Window>(1920, 1080, 60)), _menu(std::make_shared<Menu>(this->_window)), _tuto(std::make_shared<Tuto>(this->_window)), _setting(std::make_shared<Setting>(this->_window)) , _gameplay(std::make_shared<Gameplay>(this->_window))
+Core::Core(int port, std::string ip): _window(std::make_shared<Window>(1920, 1080, 60)), _menu(std::make_shared<Menu>(this->_window)), _tuto(std::make_shared<Tuto>(this->_window)), _setting(std::make_shared<Setting>(this->_window)) , _gameover(std::make_shared<Gameover>(this->_window)),_gameplay(std::make_shared<Gameplay>(this->_window))
 {
     (void)port;
     (void)ip;
@@ -51,6 +51,10 @@ void Core::run(void)
                 this->_window->run();
                 this->_tuto->run();
                 break;
+            case GAMEOVER:
+                this->_window->run();
+                this->_gameover->run();
+                break;
             case EXIT:
                 this->_window->setExit(true);
         }
@@ -81,7 +85,8 @@ void Core::handleInput(const std::string &command)
         {COMMAND_PNW, &Core::setPlayerPosition},
         {COMMAND_PLV, &Core::setPlayerLevel},
         {COMMAND_PIN, &Core::setPlayerInventory},
-        {COMMAND_PDI, &Core::setPlayerDeath}
+        {COMMAND_PDI, &Core::setPlayerDeath},
+        {COMMAND_SEG, &Core::setWinner}
     };
 
     while ((token = tmp.substr(0, tmp.find(delimiter))) != tmp) {
@@ -134,4 +139,10 @@ void Core::setPlayerInventory(std::vector<std::string> &args)
 void Core::setPlayerDeath(std::vector<std::string> &args)
 {
     this->_gameplay->getCharacters().erase(std::stoi(args[1]));
+}
+
+void Core::setWinner(std::vector<std::string> &args)
+{
+    std::cout << args[1] << std::endl; 
+    this->_window->setGameEvent(GAMEOVER);
 }
