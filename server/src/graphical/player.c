@@ -85,5 +85,5 @@ void ppo_handler(server_t *server, client_t *client)
     }
     append_buffer(client->buffer_out, "%s %zu %zu %zu %d%s", \
         GRAPHICAL_PLAYER_POSITION, target->player->id, target->player->pos->x,
-        target->player->pos->y, target->player->direction, LINE_BREAK);
+        target->player->pos->y, target->player->direction + 1, LINE_BREAK);
 }

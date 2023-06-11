@@ -23,7 +23,7 @@ static void send_players(server_t *server, client_t *client)
             player = node->player;
             append_buffer(client->buffer_out, "%s %zu %zu %zu %zu %zu %s%s", \
                 GRAPHICAL_PLAYER_JOIN, player->id, player->pos->x, \
-                player->pos->y, player->direction, player->level, \
+                player->pos->y, player->direction + 1, player->level, \
                 player->team->name, LINE_BREAK);
         }
     }
