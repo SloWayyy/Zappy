@@ -39,6 +39,7 @@ SRC			=	src/core/config.c \
 				src/player/map.c \
 				src/player/move.c \
 				src/player/rotate.c \
+				src/player/speak.c \
 				src/util/arguments/args.c \
 				src/util/arguments/check.c \
 				src/util/arguments/handlers.c \
@@ -66,11 +67,12 @@ CC			=	gcc
 
 CFLAGS		=	-Wall -Wextra -Wpedantic
 CPPFLAGS	=	-iquote $(INC)
+LDLIBS		=	-lm
 
 all: $(NAME)
 
 $(NAME): $(OBJ) $(OBJ_M)
-	$(CC) -o $(NAME) $(OBJ) $(OBJ_M)
+	$(CC) -o $(NAME) $(OBJ) $(OBJ_M) $(LDLIBS)
 
 ci: CFLAGS += -Werror
 ci: all
