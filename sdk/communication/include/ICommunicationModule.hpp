@@ -33,6 +33,7 @@ namespace zappy::sdk {
             virtual void connectAsGraphical() = 0;
             virtual void disconnect() = 0;
             virtual bool isConnected() = 0;
+            virtual std::string readBuffer() = 0;
     };
 }
 

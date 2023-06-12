@@ -17,6 +17,7 @@ SDK_COMM_PATH	=	../sdk/communication
 all: sdk $(NAME)
 
 sdk: $(NAME_SDK)
+	rm -rf $(DIR_DEST)
 	$(MAKE) -C $(SDK_COMM_PATH)
 	mkdir -p $(DIR_DEST)
 	cp -r $(SDK_COMM_PATH)/include/ $(SDK_COMM_PATH)/$(SDK_COMM) $(DIR_DEST)

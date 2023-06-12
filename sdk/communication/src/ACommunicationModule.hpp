@@ -20,16 +20,19 @@
 namespace zappy::sdk {
     class ACommunicationModule : public ICommunicationModule {
         public:
+            ~ACommunicationModule() {
+                
+            }
 
         protected:
             void connect(const std::string &host, int port) final;
             void disconnect() final;
             bool isConnected() final;
-            bool dumpBuffers();
+            std::string readBuffer();
             int getSocketFd() const;
             std::string _readBuffer;
             std::string _writeBuffer;
-
+            std::string _tmp;
         private:
             int _socketFd;
             __gnu_cxx::stdio_filebuf<char> _stream;
