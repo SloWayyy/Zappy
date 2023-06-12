@@ -8,6 +8,39 @@
 #ifndef SERVER_H_
     #define SERVER_H_
 
-int zappy_server(int argc, char **argv);
+    #include <bits/types/FILE.h>
+    #include <stdbool.h>
+    #include <sys/select.h>
+
+    #include "types.h"
+
+int zappy_server(int argc, char const *argv[]);
+bool start_server(options_t *options);
+bool init_server(server_t *server);
+int refresh_fdsets(server_t *server);
+
+bool handle_fdsets(server_t *server);
+bool handle_client(server_t *server, client_t *client);
+
+bool init_map(server_t *server);
+void free_map(server_t *server);
+
+void start_game(server_t *server);
+void refresh_timeout(server_t *server);
+void init_tick(server_t *server, long frequence);
+bool tick(server_t *server);
+
+task_t *register_task(server_t *server, client_t *client, \
+    task_function_t *callback);
+void setup_task(task_t *task, task_function_t *callback, void *arg);
+void schedule_task(task_t *task, server_t *server, size_t delay, int exec);
+void cancel_client_tasks(server_t *server, client_t *client);
+void execute_tasks(server_t *server);
+
+void refill_callback(server_t *server, client_t *client, void *arg);
+void refill_resources(server_t *server, double total);
+
+bool check_arguments(int argc, char const *argv[], options_t *options);
+bool check_number(char const *str, int *storage);
 
 #endif

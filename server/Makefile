@@ -1,11 +1,53 @@
 ##
-## EPITECH PROJECT, 2022
+## EPITECH PROJECT, 2023
 ## Zappy
 ## File description:
 ## Makefile
 ##
 
-SRC			=	src/server.c
+SRC			=	src/core/config.c \
+				src/core/fdsets.c \
+				src/core/init.c \
+				src/core/input.c \
+				src/core/loop.c \
+				src/core/map.c \
+				src/core/refill.c \
+				src/core/resources.c \
+				src/core/scheduler.c \
+				src/core/tick.c \
+				src/graphical/command.c \
+				src/graphical/data.c \
+				src/graphical/events.c \
+				src/graphical/map.c \
+				src/graphical/map_size.c \
+				src/graphical/player.c \
+				src/graphical/time.c \
+				src/graphical/team_name.c \
+				src/objects/buffers.c \
+				src/objects/clients.c \
+				src/objects/players.c \
+				src/objects/tasks.c \
+				src/objects/teams.c \
+				src/player/command.c \
+				src/player/eggs.c \
+				src/player/eject.c \
+				src/player/food.c \
+				src/player/info.c \
+				src/player/items.c \
+				src/player/join.c \
+				src/player/look.c \
+				src/player/map.c \
+				src/player/move.c \
+				src/player/rotate.c \
+				src/util/arguments/args.c \
+				src/util/arguments/check.c \
+				src/util/arguments/handlers.c \
+				src/util/arguments/names.c \
+				src/util/arrays.c \
+				src/util/buffer_in.c \
+				src/util/buffer_out.c \
+				src/util/util.c \
+				src/server.c
 
 MAIN		=	src/main.c
 
@@ -30,10 +72,14 @@ all: $(NAME)
 $(NAME): $(OBJ) $(OBJ_M)
 	$(CC) -o $(NAME) $(OBJ) $(OBJ_M)
 
+ci: CFLAGS += -Werror
+ci: all
+
 clean:
 	$(RM) $(OBJ)
 	$(RM) $(OBJ_M)
 	$(RM) $(OBJ_T)
+	find -name "*.gcda" -delete -o -name "*.gcno" -delete
 
 debug: CPPFLAGS += -g3
 debug: re
@@ -41,7 +87,6 @@ debug: re
 fclean:	clean
 	$(RM) $(NAME)
 	$(RM) $(TEST)
-	find -name "*.gcda" -delete -o -name "*.gcno" -delete
 
 re:	fclean all
 
@@ -49,7 +94,7 @@ tests_run: CFLAGS += --coverage
 tests_run: LDLIBS += -lcriterion
 tests_run: clean $(OBJ) $(OBJ_T)
 	$(CC) -o $(TEST) $(OBJ) $(OBJ_T) $(LDLIBS) --coverage
-	$(MAKE) clean
+	$(RM) $(OBJ)
 	./$(TEST)
 
-.PHONY: all clean fclean re tests_run
+.PHONY: all ci clean fclean re tests_run

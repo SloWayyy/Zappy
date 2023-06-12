@@ -7,11 +7,22 @@
 
 #include <memory>
 #include "encapsulation/Raylibcpp.hpp"
-#include "core.hpp"
+#include "src/Core/Core.hpp"
+#include "src/Parser/Parser.hpp"
 
-int main(void)
+int main(int ac, char **av)
 {
-    std::unique_ptr<Core> core = std::make_unique<Core>();
-    core->run();
+    try {
+        Parser parser(ac, av);
+        parser.handleArgs();
+        Core core(parser.getPort(), parser.getMachine());
+        core.run();
+    } catch (const Parser::ParserException &e) {
+        std::cerr << e.what() << std::endl;
+        return 84;
+    } catch (const Core::CoreException &e) {
+        std::cerr << e.what() << std::endl;
+        return 84;
+    }
     return 0;
 }

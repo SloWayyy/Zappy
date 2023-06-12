@@ -10,17 +10,13 @@ NAME    =   zappy_ai
 all: ${NAME}
 
 ${NAME}:
-	cp src/main.py ../${NAME}
-	chmod +x ../${NAME}
-
-RM	  =   rm -rf
+	cp src/main.py ${NAME}
+	chmod a+x ${NAME}
 
 clean:
-	${RM} src/__pycache__/
-	${RM} ./sources/__pycache__/
-	${RM} ./tests/__pycache__/
-	${RM} ./build/
-	${RM} ./dist/
+	${RM} -r build/
+	${RM} -r src/__pycache__/
+	${RM} -r tests/__pycache__/
 
 fclean: clean
 	${RM} ../${NAME}
