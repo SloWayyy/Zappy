@@ -13,7 +13,7 @@ Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window), _map(Map
     this->_display = Display(this->_window);
     this->_cameraType = CAMERA_THIRD;
     this->initPlayer({1 * 4.0f, 1.38f, 8 * 4.0f}, 1, 2, 3, "Team1");
-    this->initPlayer({4 * 4.0f, 1.38f, 8 * 4.0f}, 1, 2, 5, "Team2");
+    this->initPlayer({4 * 4.0f, 1.38f, 8 * 4.0f}, 2, 2, 5, "Team2");
     this->initPlayer({8 * 4.0f, 1.38f, 8 * 4.0f}, 1, 2, 8, "Team2");
     this->_currentCharacterIndex = _characters.begin()->first;
 }
@@ -57,7 +57,7 @@ void Gameplay::run(void)
     }
     if (this->_isDisplay)  {
         this->_window->setDefaultCamera();
-        this->_display.run();
+        this->_display.run(std::map<std::size_t, Character>(this->_characters));
     }
 }
 
@@ -85,23 +85,32 @@ void Gameplay::setCurrentCharacter()
 
 void Gameplay::DisplayInformations(void)
 {
+    std::size_t height = this->_window->getScreenHeight();
+    std::size_t width = this->_window->getScreenWidth();
     std::string id = "ID " + std::to_string(this->_currentCharacter.getId());
     std::string level = "Level: " + std::to_string(this->_currentCharacter.getLevel());
-
-    // std::string inventory = "Inventory: " + this->_currentCharacter.getInventory();
-    // std::string pos = "Position: " + std::to_string(this->_currentCharacter.getPosition().x) + " " + std::to_string(this->_currentCharacter.getPosition().y) + " " + std::to_string(this->_currentCharacter.getPosition().z);
-    // std::string orientation = "Orientation: " + std::to_string(this->_currentCharacter.getDirection());
+    std::string food = "Food: " + std::to_string(this->_currentCharacter.getInventory().getFood());
+    std::string linemate = "Linemate: " + std::to_string(this->_currentCharacter.getInventory().getLinemate());
+    std::string deraumere = "Deraumere: " + std::to_string(this->_currentCharacter.getInventory().getDeraumere());
+    std::string sibur = "Sibur: " + std::to_string(this->_currentCharacter.getInventory().getSibur());
+    std::string mendiane = "Mendiane: " + std::to_string(this->_currentCharacter.getInventory().getMendiane());
+    std::string phiras = "Phiras: " + std::to_string(this->_currentCharacter.getInventory().getPhiras());
+    std::string thystame = "Thystame: " + std::to_string(this->_currentCharacter.getInventory().getThystame());
 
     this->_rayWindow.endMode3D();
-    _rayModel.drawRectangle(this->_window->getScreenHeight() - (this->_window->getScreenHeight() / 4), this->_window->getScreenWidth() / 2, this->_window->getScreenHeight() / 4, this->_window->getScreenWidth() / 2, {130, 130, 130, 200});
-    this->_rayModel.drawTextureEx(this->_map.getLevel(), {this->_window->getScreenHeight() - 450.0f, (this->_window->getScreenWidth() / 2) + 80.0f}, 0.0f, 0.2f, WHITE);
-    this->_rayModel.drawTextureEx(this->_map.getTeam(), {this->_window->getScreenHeight() - 440.0f, (this->_window->getScreenWidth() / 2) + 220.0f}, 0.0f, 0.2f, WHITE);
-    this->_rayText.drawText(id, this->_window->getScreenHeight() - 300, (this->_window->getScreenWidth() / 2) + 20, 80, RED);
-    this->_rayText.drawText(level, this->_window->getScreenHeight() - 320, (this->_window->getScreenWidth() / 2) + 150, 30, BLACK);
-    this->_rayText.drawText(this->_currentCharacter.getTeamName(), this->_window->getScreenHeight() - 320, (this->_window->getScreenWidth() / 2) + 240, 30, BLACK);
-    // this->_rayText.drawText(inventory, this->_window->getScreenHeight() - 350, 110, 30, BLACK);
-    // this->_rayText.drawText(pos, this->_window->getScreenHeight() - 350, (this->_window->getScreenWidth() / 2) + 320, 30, BLACK);
-    // this->_rayText.drawText(orientation, this->_window->getScreenHeight() - 350, (this->_window->getScreenWidth() / 2) + 320, 30, BLACK);
+    this->_rayModel.drawRectangle(height - (height / 4), width / 3, height / 4, width / 1.5, {130, 130, 130, 200});
+    this->_rayModel.drawTextureEx(this->_map.getLevel(), {height - 450.0f, (width / 3) + 80.0f}, 0.0f, 0.2f, WHITE);
+    this->_rayModel.drawTextureEx(this->_map.getTeam(), {height - 440.0f, (width / 3) + 200.0f}, 0.0f, 0.2f, WHITE);
+    this->_rayText.drawText(id, height - 300, (width / 3) + 20, 80, RED);
+    this->_rayText.drawText(level, height - 320, (width / 3) + 150, 30, BLACK);
+    this->_rayText.drawText(this->_currentCharacter.getTeamName(), height - 320, (width / 3) + 230, 30, BLACK);
+    this->_rayText.drawText(food, height - 300, (width / 3) + 300, 30, BLACK);
+    this->_rayText.drawText(linemate, height - 450, (width / 3) + 350, 30, BLACK);
+    this->_rayText.drawText(deraumere, height - 220, (width / 3) + 350, 30, BLACK);
+    this->_rayText.drawText(sibur, height - 450, (width / 3) + 400, 30, BLACK);
+    this->_rayText.drawText(mendiane, height - 220, (width / 3) + 400, 30, BLACK);
+    this->_rayText.drawText(phiras, height - 450, (width / 3) + 450, 30, BLACK);
+    this->_rayText.drawText(thystame, height - 220, (width / 3) + 450, 30, BLACK);
     this->_rayWindow.beginMode3D(this->_window->getCamera());
 }
 
