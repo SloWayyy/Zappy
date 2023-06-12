@@ -38,9 +38,11 @@ bool zappy::sdk::ACommunicationModule::isConnected() {
     return this->_stream.is_open();
 }
 
-std::string zappy::sdk::ACommunicationModule::readBuffer() {
+std::vector<std::string> zappy::sdk::ACommunicationModule::readBuffer() {
     char buffer[MAX_BUFFER_SIZE];
-    this->_readBuffer.clear();
+    this->_tmp.clear();
+    std::vector<std::string> queuecommand;
+    std::string tempo;
 
     FD_ZERO(&this->reads_set);
     FD_SET(this->_socketFd, &this->reads_set);
@@ -51,22 +53,30 @@ std::string zappy::sdk::ACommunicationModule::readBuffer() {
     }
     if (FD_ISSET(this->_socketFd, &this->reads_set)) {
         if (read(this->_socketFd, buffer, MAX_BUFFER_SIZE) <= 0) {
-            return "";
+            return queuecommand;
         }
-        this->_readBuffer = buffer;
-        // if (this->_readBuffer.find('\n') == std::string::npos) {
-        //     this->_tmp = this->_readBuffer;
-        //     this->_readBuffer.clear();
-        // } else {
-        //     this->_readBuffer = this->_tmp + this->_readBuffer;
-        //     this->_tmp.clear();
-        // }
+        this->_readBuffer += buffer;
+        if (this->_readBuffer[this->_readBuffer.size() - 1] != '\n') {
+            this->_tmp = this->_readBuffer.substr(0, this->_readBuffer.find_last_of('\n') + 1);
+            this->_readBuffer = this->_readBuffer.substr(this->_readBuffer.find_last_of('\n') + 1);
+        } else {
+            this->_tmp = this->_readBuffer;
+            this->_readBuffer.clear();
+        }
     }
     if (!this->_writeBuffer.empty()) {
         write(this->_socketFd, this->_writeBuffer.c_str(), this->_writeBuffer.size());
         this->_writeBuffer.clear();
     }
-    return this->_readBuffer;
+    tempo = this->_tmp;
+    while (!tempo.empty()) {
+        queuecommand.push_back(tempo.substr(0, tempo.find_first_of('\n')));
+        tempo = tempo.substr(tempo.find_first_of('\n') + 1);
+    }
+    for (auto &command : queuecommand) {
+        std::cout << command << std::endl;
+    }
+    return queuecommand;
 }
 
 int zappy::sdk::ACommunicationModule::getSocketFd() const {

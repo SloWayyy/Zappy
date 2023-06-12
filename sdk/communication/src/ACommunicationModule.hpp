@@ -12,7 +12,7 @@
 #include <istream>
 #include <ostream>
 #include <string>
-
+#include <vector>
 #include "ICommunicationModule.hpp"
 
 #include <iostream>
@@ -28,7 +28,7 @@ namespace zappy::sdk {
             void connect(const std::string &host, int port) final;
             void disconnect() final;
             bool isConnected() final;
-            std::string readBuffer();
+            std::vector<std::string> readBuffer();
             int getSocketFd() const;
             std::string _readBuffer;
             std::string _writeBuffer;
