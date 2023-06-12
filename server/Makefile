@@ -39,6 +39,7 @@ SRC			=	src/core/config.c \
 				src/player/map.c \
 				src/player/move.c \
 				src/player/rotate.c \
+				src/player/speak.c \
 				src/util/arguments/args.c \
 				src/util/arguments/check.c \
 				src/util/arguments/handlers.c \

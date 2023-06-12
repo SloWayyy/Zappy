@@ -17,7 +17,7 @@
     #define DEFAULT_CLIENTS 4
     #define DEFAULT_FREQ 10
 
-    #define MAX_CONNECTIONS 50
+    #define MAX_CONNECTIONS 1024
     #define MAX_PORT 65536
     #define MAX_FREQ 100
     #define BUFFER_SIZE 2048
