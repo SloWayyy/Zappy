@@ -32,6 +32,10 @@ void Core::run(void)
     while (!this->_window->getExit()) {
         this->_rayWindow.clearBackground(this->_window->getColorBackground());
         this->_rayWindow.beginDrawing();
+        auto i = this->network->readBuffer();
+        for (auto &command : i) {
+            this->handleInput(command);
+        }
         switch (this->_window->getGameEvent()) {
             case MENU:
                 this->_window->run();
