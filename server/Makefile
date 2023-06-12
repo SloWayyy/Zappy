@@ -67,11 +67,12 @@ CC			=	gcc
 
 CFLAGS		=	-Wall -Wextra -Wpedantic
 CPPFLAGS	=	-iquote $(INC)
+LDLIBS		=	-lm
 
 all: $(NAME)
 
 $(NAME): $(OBJ) $(OBJ_M)
-	$(CC) -o $(NAME) $(OBJ) $(OBJ_M)
+	$(CC) -o $(NAME) $(OBJ) $(OBJ_M) $(LDLIBS)
 
 ci: CFLAGS += -Werror
 ci: all

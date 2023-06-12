@@ -20,7 +20,7 @@
     #define RIGHT_DELAY 7
     #define LOOK_DELAY 7
     #define INVENTORY_DELAY 1
-    #define BROADCAST_DELAY 1
+    #define BROADCAST_DELAY 7
     #define SLOTS_DELAY 0
     #define FORK_DELAY 42
     #define EJECT_DELAY 7
@@ -42,6 +42,7 @@
     #define PLAYER_OK "ok"
     #define PLAYER_KO "ko"
     #define PLAYER_EJECTION "eject:"
+    #define PLAYER_MESSAGE "message"
     #define PLAYER_DEATH "dead"
     #define PLAYER_UNKNOWN PLAYER_KO
 
