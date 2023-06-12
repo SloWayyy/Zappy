@@ -46,6 +46,7 @@ class Core {
         void setMapSize(std::vector<std::string> &input);
         void setTileContent(std::vector<std::string> &input);
         void setTeamNames(std::vector<std::string> &input);
+        void createNewPosition(std::vector<std::string> &input);
         void setPlayerPosition(std::vector<std::string> &input);
         void setPlayerLevel(std::vector<std::string> &input);
         void setPlayerInventory(std::vector<std::string> &input);
