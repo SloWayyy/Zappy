@@ -73,6 +73,9 @@ std::vector<std::string> zappy::sdk::ACommunicationModule::readBuffer() {
         queuecommand.push_back(tempo.substr(0, tempo.find_first_of('\n')));
         tempo = tempo.substr(tempo.find_first_of('\n') + 1);
     }
+    for (auto &command : queuecommand) {
+        std::cout << "command: " << command << std::endl;
+    }
     return queuecommand;
 }
 

@@ -27,7 +27,7 @@ Character::Character(std::size_t animsCount, std::size_t animFrameCounter, Vecto
         this->_currentDirection = DOWN_DIR;
     if (orientation == 4)
         this->_currentDirection = LEFT_DIR;
-    this->_model.transform = this->_rayModel.matrixRotateXYZ({-90 * DEG2RAD, 0, _currentDirection * 1.0f});
+    this->_model.transform = this->_rayModel.matrixRotateXYZ({-90 * DEG2RAD, 0, _currentDirection * DEG2RAD});
 }
 
 void Character::chooseAnimation(Animations anim)
