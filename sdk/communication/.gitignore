@@ -1,0 +1,9 @@
+# build
+communication_sdk.so
+unit_tests
+
+# temp files
+*.gcda
+*.gcno
+*.o
+coding-style-reports.log
