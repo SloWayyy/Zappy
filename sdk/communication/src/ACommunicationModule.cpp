@@ -50,17 +50,17 @@ std::string zappy::sdk::ACommunicationModule::readBuffer() {
         throw CommunicationException("select failed");
     }
     if (FD_ISSET(this->_socketFd, &this->reads_set)) {
-        if (read(this->_socketFd, buffer, MAX_BUFFER_SIZE) == -1) {
+        if (read(this->_socketFd, buffer, MAX_BUFFER_SIZE) <= 0) {
             return "";
         }
         this->_readBuffer = buffer;
-        if (this->_readBuffer.find('\n') == std::string::npos) {
-            this->_tmp = this->_readBuffer;
-            this->_readBuffer.clear();
-        } else {
-            this->_readBuffer = this->_tmp + this->_readBuffer;
-            this->_tmp.clear();
-        }
+        // if (this->_readBuffer.find('\n') == std::string::npos) {
+        //     this->_tmp = this->_readBuffer;
+        //     this->_readBuffer.clear();
+        // } else {
+        //     this->_readBuffer = this->_tmp + this->_readBuffer;
+        //     this->_tmp.clear();
+        // }
     }
     if (!this->_writeBuffer.empty()) {
         write(this->_socketFd, this->_writeBuffer.c_str(), this->_writeBuffer.size());
