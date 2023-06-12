@@ -7,6 +7,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <sys/param.h>
 
 #include "constants.h"
 #include "server.h"
@@ -54,5 +55,8 @@ void refill_callback(server_t *server, UNUSED client_t *client, \
     memset(server->zappy->empty, 0, sizeof(tile_t *) * area);
     total = calculate_densities(server);
     refill_resources(server, total);
-    memset(server->zappy->refill, 0, sizeof(size_t) * RESOURCES_TYPES_QUANTITY);
+    for (size_t i = 0; i < RESOURCES_TYPES_QUANTITY; i++) {
+        server->zappy->current[i] = MAX(server->zappy->current[i], \
+            server->zappy->total[i]);
+    }
 }
