@@ -97,6 +97,10 @@ bool broadcast_handler(server_t *server, client_t *client, char *line)
         return false;
     }
     message = malloc(sizeof(char) * message_len);
+    if (message == NULL) {
+        perror("malloc failed");
+        return false;
+    }
     strcpy(message, &line[prefix + 1]);
     message[message_len - 1] = '\0';
     setup_task(client->player->action_task, &broadcast_callback, message);
