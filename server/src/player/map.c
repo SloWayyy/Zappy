@@ -44,6 +44,7 @@ void set_callback(server_t *server, client_t *client, void *arg)
     } else {
         client->player->inventory[*ptr] -= 1;
         client->player->pos->resources[*ptr] += 1;
+        server->zappy->current[*ptr] += 1;
         send_graphical_item_event(server, client, false, *ptr);
         append_buffer(client->buffer_out, "%s%s", PLAYER_OK, LINE_BREAK);
     }
@@ -59,6 +60,7 @@ void take_callback(server_t *server, client_t *client, void *arg)
     } else {
         client->player->pos->resources[*ptr] -= 1;
         client->player->inventory[*ptr] += 1;
+        server->zappy->current[*ptr] -= 1;
         send_graphical_item_event(server, client, true, *ptr);
         append_buffer(client->buffer_out, "%s%s", PLAYER_OK, LINE_BREAK);
     }

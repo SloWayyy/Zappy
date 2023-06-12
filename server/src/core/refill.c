@@ -75,10 +75,15 @@ static tile_t *choose_tile(server_t *server, double total)
 void refill_resources(server_t *server, double total)
 {
     size_t coords = 0;
+    size_t amount = 0;
     tile_t *tile = NULL;
 
     for (size_t index = 0; index < RESOURCES_TYPES_QUANTITY; index++) {
-        for (size_t nb = 0; nb < server->zappy->refill[index]; nb++) {
+        amount = server->zappy->total[index] - server->zappy->current[index];
+        if (server->zappy->total[index] <= server->zappy->current[index]) {
+            continue;
+        }
+        for (size_t nb = 0; nb < amount; nb++) {
             tile = choose_tile(server, total);
             tile->resources[index] += 1;
             coords = tile->y * server->options->width + tile->x;
