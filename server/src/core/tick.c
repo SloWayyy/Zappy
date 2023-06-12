@@ -45,6 +45,5 @@ bool tick(server_t *server)
     server->zappy->tick->tick_nb += 1;
     gettimeofday(&server->zappy->tick->last_tick, NULL);
     execute_tasks(server);
-    //printf("Tick %zu\n", server->zappy->tick->tick_nb);
     return false;
 }

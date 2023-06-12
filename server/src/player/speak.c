@@ -66,23 +66,17 @@ static int get_source(server_t *server, tile_t *sender_pos, player_t *target)
     return 1;
 }
 
-static void broadcast_player(server_t *server, client_t *sender, \
-    client_t *receiver, char *message)
-{
-    int source = get_source(server, sender->player->pos, receiver->player);
-
-    append_buffer(receiver->buffer_out, "%s %d, %s%s", \
-        PLAYER_MESSAGE, source, message, LINE_BREAK);
-}
-
 static void broadcast_callback(server_t *server, client_t *client, void *arg)
 {
     char *message = (char *) arg;
+    int source = 0;
     client_t *node = NULL;
 
     SLIST_FOREACH(node, server->clients, next) {
         if (node->type == PLAYER && client != node) {
-            broadcast_player(server, client, node, message);
+            source = get_source(server, client->player->pos, node->player);
+            append_buffer(node->buffer_out, "%s %d, %s%s", \
+                PLAYER_MESSAGE, source, message, LINE_BREAK);
         }
     }
     send_graphical_event(server, "%s %zu %s%s", \
