@@ -86,7 +86,8 @@ void Core::handleInput(const std::string &command)
         {COMMAND_MSZ, &Core::setMapSize},
         {COMMAND_BCT, &Core::setTileContent},
         {COMMAND_TNA, &Core::setTeamNames},
-        {COMMAND_PNW, &Core::setPlayerPosition},
+        {COMMAND_PNW, &Core::createNewPosition},
+        {COMMAND_PPO, &Core::setPlayerPosition},
         {COMMAND_PLV, &Core::setPlayerLevel},
         {COMMAND_PIN, &Core::setPlayerInventory},
         {COMMAND_PDI, &Core::setPlayerDeath},
@@ -119,9 +120,14 @@ void Core::setTeamNames(std::vector<std::string> &args)
     std::cout << args[1] << std::endl;
 }
 
-void Core::setPlayerPosition(std::vector<std::string> &args)
+void Core::createNewPosition(std::vector<std::string> &args)
 {
     this->_gameplay->initPlayer({std::stof(args[2]) * 4.0f, (float)1.1, std::stof(args[3]) * 4.0f}, std::stoi(args[5]), std::stoi(args[4]), std::stoi(args[1]), args[6]);
+}
+
+void Core::setPlayerPosition(std::vector<std::string> &args)
+{
+    this->_gameplay->getCharacters()[std::stoi(args[1])].setPos(std::stof(args[2]) * 4.0f, std::stof(args[3]) * 4.0f, std::stof(args[4]));
 }
 
 void Core::setPlayerLevel(std::vector<std::string> &args)

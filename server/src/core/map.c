@@ -28,7 +28,7 @@ static bool populate_map(server_t *server)
         density = resources_density[i] * \
             server->options->width * server->options->height;
         server->zappy->total[i] = MAX(1, density);
-        server->zappy->refill[i] = server->zappy->total[i];
+        server->zappy->current[i] = 0;
     }
     refill_callback(server, NULL, NULL);
     schedule_task(task, server, REFILL_DELAY, -1);
