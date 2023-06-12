@@ -10,10 +10,13 @@
 
     #define PLAYER_COMMANDS_COUNT \
         (sizeof(PLAYER_COMMANDS) / sizeof(player_command_t))
+    #define INCANTATIONS_COUNT \
+        (sizeof(INCANTATIONS) / sizeof(incantation_requirements_t))
 
     #define FOOD_CONSUME_TICKS 126
     #define FOOD_DEFAULT 10
     #define MAX_ACTIONS 10
+    #define MAX_LEVEL 8
 
     #define FORWARD_DELAY 7
     #define LEFT_DELAY 7
@@ -26,6 +29,7 @@
     #define EJECT_DELAY 7
     #define TAKE_DELAY 7
     #define SET_DELAY 7
+    #define INCANTATION_DELAY 300
 
     #define PLAYER_MOVE_FORWARD "Forward"
     #define PLAYER_MOVE_LEFT "Left"
@@ -38,6 +42,7 @@
     #define PLAYER_UNUSED_SLOTS "Connect_nbr"
     #define PLAYER_TAKE_OBJECT "Take"
     #define PLAYER_SET_OBJECT "Set"
+    #define PLAYER_INCANTATION "Incantation"
 
     #define PLAYER_OK "ok"
     #define PLAYER_KO "ko"
@@ -67,6 +72,7 @@ bool fork_handler(server_t *server, client_t *client, char *line);
 bool eject_handler(server_t *server, client_t *client, char *line);
 bool take_handler(server_t *server, client_t *client, char *line);
 bool set_handler(server_t *server, client_t *client, char *line);
+bool incantation_handler(server_t *server, client_t *client, char *line);
 
 void register_command(server_t *server, client_t *client, char *line);
 void flush_command(server_t *server, client_t *client);
@@ -80,6 +86,18 @@ typedef struct player_command {
     bool args;
 } player_command_t;
 
+typedef struct incantation_requirement {
+    size_t level;
+    size_t players_nb;
+    size_t resources[RESOURCES_TYPES_QUANTITY];
+} incantation_requirements_t;
+
+typedef struct incantation {
+    player_t *leader;
+    player_list_t players;
+    const incantation_requirements_t *requirements;
+} incantation_t;
+
 static const player_command_t PLAYER_COMMANDS[] = {
         { PLAYER_MOVE_FORWARD, &forward_handler, false },
         { PLAYER_MOVE_LEFT, &left_handler, false },
@@ -92,6 +110,20 @@ static const player_command_t PLAYER_COMMANDS[] = {
         { PLAYER_EJECT, &eject_handler, false },
         { PLAYER_TAKE_OBJECT, &take_handler, true },
         { PLAYER_SET_OBJECT, &set_handler, true },
+        { PLAYER_INCANTATION, &incantation_handler, false },
 };
+
+static const incantation_requirements_t INCANTATIONS[] = {
+    { 1, 1, { 0, 1, 0, 0, 0, 0, 0 } },
+    { 2, 2, { 0, 1, 1, 1, 0, 0, 0 } },
+    { 3, 2, { 0, 2, 0, 1, 0, 2, 0 } },
+    { 4, 4, { 0, 1, 1, 2, 0, 1, 0 } },
+    { 5, 4, { 0, 1, 2, 1, 3, 0, 0 } },
+    { 6, 6, { 0, 1, 2, 3, 0, 1, 0 } },
+    { 7, 6, { 0, 2, 2, 2, 2, 2, 1 } },
+};
+
+incantation_t *setup_incantation(player_t *player, \
+    const incantation_requirements_t *requirements);
 
 #endif

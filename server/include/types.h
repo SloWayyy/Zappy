@@ -108,6 +108,7 @@ typedef struct player {
     command_queue_t *commands;
     SLIST_ENTRY(player) next_team;
     SLIST_ENTRY(player) next_tile;
+    SLIST_ENTRY(player) next_incantation;
 } player_t;
 
 typedef struct client {
