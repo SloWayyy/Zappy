@@ -32,7 +32,7 @@ void Core::run(void)
     while (!this->_window->getExit()) {
         this->_rayWindow.clearBackground(this->_window->getColorBackground());
         this->_rayWindow.beginDrawing();
-        std::cout << this->network->readBuffer();
+        auto i = this->network->readBuffer();
         switch (this->_window->getGameEvent()) {
             case MENU:
                 this->_window->run();
