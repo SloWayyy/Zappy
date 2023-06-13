@@ -41,15 +41,15 @@ class Gameplay {
         void setCameraType(CameraType cameraType);
         CameraType getCameraType(void) const;
         std::shared_ptr<Map> getMap() const;
-        std::map<std::size_t, Character> getCharacters() const;
+        std::map<std::size_t, std::shared_ptr<Character>> getCharacters() const;
     private:
         std::shared_ptr<Window> _window;
         Display _display;
         std::shared_ptr<Map> _map;
-        std::map<std::size_t, Character> _characters;
+        std::map<std::size_t, std::shared_ptr<Character>> _characters;
         std::size_t _currentCharacterId;
         std::size_t _currentCharacterIndex;
-        Character _currentCharacter;
+        std::shared_ptr<Character> _currentCharacter;
         Raylibcpp::RayWindow _rayWindow;
         Raylibcpp::RayCube _rayCube;
         Raylibcpp::RayModel _rayModel;

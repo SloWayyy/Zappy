@@ -36,7 +36,7 @@ void Display::displayInformations(void)
     this->_rayWindow.beginMode3D(this->_window->getCamera());
 }
 
-void Display::run(std::map<std::size_t, Character>(_characters))
+void Display::run(std::map<std::size_t, std::shared_ptr<Character>>(_characters))
 {
     this->drawTextOnScreen("DISPLAY MODE", 40, (this->_window->getScreenHeight() / 2) - 100, 10, BLACK);
     this->_levelNbr[1] = 0;
@@ -48,6 +48,6 @@ void Display::run(std::map<std::size_t, Character>(_characters))
     this->_levelNbr[7] = 0;
     this->_levelNbr[8] = 0;
     for (auto &Character : _characters)
-        this->_levelNbr[Character.second.getLevel()] += 1;
+        this->_levelNbr[Character.second->getLevel()] += 1;
     this->displayInformations();
 }
