@@ -28,6 +28,7 @@ class AScreen : public IScreen {
         Raylibcpp::RayMusic _Raymusic;
         std::shared_ptr<Window> _window;
         Raylibcpp::RayWindow _rayWindow;
+        Raylibcpp::RayModel _rayModel;
 };
 
 #endif /* !ASCREEEN_HPP_ */

@@ -20,6 +20,7 @@
     #define RIGHT_DELAY 7
     #define LOOK_DELAY 7
     #define INVENTORY_DELAY 1
+    #define BROADCAST_DELAY 7
     #define SLOTS_DELAY 0
     #define FORK_DELAY 42
     #define EJECT_DELAY 7
@@ -30,7 +31,8 @@
     #define PLAYER_MOVE_LEFT "Left"
     #define PLAYER_MOVE_RIGHT "Right"
     #define PLAYER_LOOK "Look"
-    #define PLAYER_MOVE_INVENTORY "Inventory"
+    #define PLAYER_INVENTORY "Inventory"
+    #define PLAYER_BROADCAST "Broadcast"
     #define PLAYER_FORK "Fork"
     #define PLAYER_EJECT "Eject"
     #define PLAYER_UNUSED_SLOTS "Connect_nbr"
@@ -40,6 +42,7 @@
     #define PLAYER_OK "ok"
     #define PLAYER_KO "ko"
     #define PLAYER_EJECTION "eject:"
+    #define PLAYER_MESSAGE "message"
     #define PLAYER_DEATH "dead"
     #define PLAYER_UNKNOWN PLAYER_KO
 
@@ -58,6 +61,7 @@ bool left_handler(server_t *server, client_t *client, char *line);
 bool right_handler(server_t *server, client_t *client, char *line);
 bool look_handler(server_t *server, client_t *client, char *line);
 bool inventory_handler(server_t *server, client_t *client, char *line);
+bool broadcast_handler(server_t *server, client_t *client, char *line);
 bool slots_handler(server_t *server, client_t *client, char *line);
 bool fork_handler(server_t *server, client_t *client, char *line);
 bool eject_handler(server_t *server, client_t *client, char *line);
@@ -81,7 +85,8 @@ static const player_command_t PLAYER_COMMANDS[] = {
         { PLAYER_MOVE_LEFT, &left_handler, false },
         { PLAYER_MOVE_RIGHT, &right_handler, false },
         { PLAYER_LOOK, &look_handler, false },
-        { PLAYER_MOVE_INVENTORY, &inventory_handler, false },
+        { PLAYER_INVENTORY, &inventory_handler, false },
+        { PLAYER_BROADCAST, &broadcast_handler, true },
         { PLAYER_UNUSED_SLOTS, &slots_handler, false },
         { PLAYER_FORK, &fork_handler, false },
         { PLAYER_EJECT, &eject_handler, false },

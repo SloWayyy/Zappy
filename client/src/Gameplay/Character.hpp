@@ -32,7 +32,7 @@ enum Animations {
 class Character {
     public:
         Character() = default;
-        Character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos, std::size_t level, std::size_t orientation, std::string name);
+        Character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos, std::size_t level, std::size_t orientation, std::string name, std::size_t id);
         ~Character() = default;
         Vector3 getPosition() const;
         Model getModel() const;
@@ -47,7 +47,11 @@ class Character {
         void run();
         void draw();
         size_t getLevel() const;
+        std::string getTeamName() const;
+        void setDirection(Directions direction);
         void setLevel(size_t level);
+        Directions getDirection() const;
+        std::size_t getId() const;
         std::shared_ptr<Inventory> getInventory() const;
     private:
         Model _model;
@@ -61,6 +65,7 @@ class Character {
         Directions _currentDirection;
         std::shared_ptr<Inventory> _inventory;
         std::size_t _level;
+        std::size_t _id;
         std::string _teamname;
 };
 

@@ -10,10 +10,18 @@
 
     #include <memory>
     #include <map>
+    #include <vector>
     #include "src/Gameplay/Map.hpp"
     #include "src/Core/Window.hpp"
     #include "src/Gameplay/Character.hpp"
+    #include "src/Gameplay/Display.hpp"
     #include "encapsulation/Raylibcpp.hpp"
+
+enum CameraType {
+    CAMERA_FIRST,
+    CAMERA_SECOND,
+    CAMERA_THIRD
+};
 
 class Gameplay {
     public:
@@ -27,10 +35,16 @@ class Gameplay {
         void drawTextOnScreen(std::string text, int fontSize, int posX, int posY, Color color);
         void setCurrentCharacter();
         void startAnimation();
+        void DisplayInformations();
+        void setDisplayMode();
+        void setIsDisplay(bool isDisplay);
+        void setCameraType(CameraType cameraType);
+        CameraType getCameraType(void) const;
         std::shared_ptr<Map> getMap() const;
         std::map<std::size_t, Character> getCharacters() const;
     private:
         std::shared_ptr<Window> _window;
+        Display _display;
         std::shared_ptr<Map> _map;
         std::map<std::size_t, Character> _characters;
         std::size_t _currentCharacterId;
@@ -40,6 +54,8 @@ class Gameplay {
         Raylibcpp::RayCube _rayCube;
         Raylibcpp::RayModel _rayModel;
         Raylibcpp::RayText _rayText;
+        bool _isDisplay;
+        CameraType _cameraType;
 };
 
 #endif /* !GAMEPLAY_HPP_ */

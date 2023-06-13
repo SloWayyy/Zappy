@@ -8,8 +8,11 @@
 #include "encapsulation/Raylibcpp.hpp"
 #include "src/Gameplay/Character.hpp"
 
-Character::Character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos, std::size_t level, std::size_t orientation, std::string name) : _position(pos), _animsCount(animsCount), _animFrameCounter(animFrameCounter), _currentlyAnimation(NONE), _level(level), _teamname(name)
-{   
+#include <stdio.h>
+
+Character::Character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos, std::size_t level, std::size_t orientation, std::string name, std::size_t id) : _position(pos), _animsCount(animsCount), _animFrameCounter(animFrameCounter), _currentlyAnimation(NONE), _level(level), _teamname(name)
+{
+    this->_id = id;  
     this->_inventory = std::make_shared<Inventory>();
     this->_model = this->_rayModel.loadModel("assets/monster/animations/monsterWalking.iqm");
     this->_texture = this->_rayModel.loadTexture("assets/monster/textures/monsterTexture.png");
@@ -27,7 +30,7 @@ Character::Character(std::size_t animsCount, std::size_t animFrameCounter, Vecto
         this->_currentDirection = DOWN_DIR;
     if (orientation == 4)
         this->_currentDirection = LEFT_DIR;
-    this->_model.transform = this->_rayModel.matrixRotateXYZ({-90 * DEG2RAD, 0, _currentDirection * 1.0f});
+    this->_model.transform = this->_rayModel.matrixRotateXYZ({-90 * DEG2RAD, 0, _currentDirection * DEG2RAD});
 }
 
 void Character::chooseAnimation(Animations anim)
@@ -126,4 +129,24 @@ void Character::setLevel(size_t level)
 std::shared_ptr<Inventory> Character::getInventory() const
 {
     return this->_inventory;
+}
+
+Directions Character::getDirection() const
+{
+    return this->_currentDirection;
+}
+
+void Character::setDirection(Directions direction)
+{
+    this->_currentDirection = direction;
+}
+
+std::string Character::getTeamName() const
+{
+    return this->_teamname;
+}
+
+std::size_t Character::getId() const
+{
+    return this->_id;
 }
