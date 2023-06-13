@@ -43,7 +43,7 @@ class Character {
         void setAnimFrameCounter(int animFrameCounter);
         Animations getCurrentlyAnimation() const;
         void setCurrentlyAnimation(Animations currentlyAnimation);
-        void setPos(int x, int z, int orientation);
+        void setPos(float x, float z, int orientation);
         void handleEvent();
         void run();
         void checkLevel();
