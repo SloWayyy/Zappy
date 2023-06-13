@@ -29,15 +29,17 @@ SRC			=	src/core/config.c \
 				src/objects/tasks.c \
 				src/objects/teams.c \
 				src/player/command.c \
+				src/player/incantation/incantation.c \
+				src/player/incantation/magic.c \
+				src/player/incantation/start.c \
+				src/player/incantation/upgrade.c \
 				src/player/eggs.c \
 				src/player/eject.c \
 				src/player/food.c \
-				src/player/incantation.c \
 				src/player/info.c \
 				src/player/items.c \
 				src/player/join.c \
 				src/player/look.c \
-				src/player/magic.c \
 				src/player/map.c \
 				src/player/move.c \
 				src/player/rotate.c \

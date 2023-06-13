@@ -16,7 +16,6 @@
     #define FOOD_CONSUME_TICKS 126
     #define FOOD_DEFAULT 10
     #define MAX_ACTIONS 10
-    #define MAX_LEVEL 8
 
     #define FORWARD_DELAY 7
     #define LEFT_DELAY 7
@@ -48,6 +47,8 @@
     #define PLAYER_KO "ko"
     #define PLAYER_EJECTION "eject:"
     #define PLAYER_MESSAGE "message"
+    #define PLAYER_ELEVATION_START "Elevation underway"
+    #define PLAYER_ELEVATION_END "Current level:"
     #define PLAYER_DEATH "dead"
     #define PLAYER_UNKNOWN PLAYER_KO
 
@@ -60,6 +61,7 @@ bool try_join_team(server_t *server, client_t *client, char *line);
 void food_callback(server_t *server, client_t *client, void *arg);
 void set_callback(server_t *server, client_t *client, void *arg);
 void take_callback(server_t *server, client_t *client, void *arg);
+void incantation_callback(server_t *server, client_t *client, void *arg);
 
 bool forward_handler(server_t *server, client_t *client, char *line);
 bool left_handler(server_t *server, client_t *client, char *line);
@@ -86,18 +88,6 @@ typedef struct player_command {
     bool args;
 } player_command_t;
 
-typedef struct incantation_requirement {
-    size_t level;
-    size_t players_nb;
-    size_t resources[RESOURCES_TYPES_QUANTITY];
-} incantation_requirements_t;
-
-typedef struct incantation {
-    player_t *leader;
-    player_list_t players;
-    const incantation_requirements_t *requirements;
-} incantation_t;
-
 static const player_command_t PLAYER_COMMANDS[] = {
         { PLAYER_MOVE_FORWARD, &forward_handler, false },
         { PLAYER_MOVE_LEFT, &left_handler, false },
@@ -123,7 +113,10 @@ static const incantation_requirements_t INCANTATIONS[] = {
     { 7, 6, { 0, 2, 2, 2, 2, 2, 1 } },
 };
 
+bool meet_requirements(incantation_t *incantation);
 incantation_t *setup_incantation(player_t *player, \
     const incantation_requirements_t *requirements);
+bool start_incantation(server_t *server, client_t *client, \
+    incantation_t *incantation);
 
 #endif
