@@ -28,7 +28,7 @@ class Gameplay {
         Gameplay(std::shared_ptr<Window> _window);
         ~Gameplay() = default;
         void run(void);
-        void initPlayer(Vector3 pos, std::size_t level, std::size_t orientation, std::size_t id, std::string teamname);
+        void initPlayer(Vector3 pos, std::size_t level, std::size_t orientation, std::size_t id, std::string teamname, std::map<std::size_t, Texture2D>);
         void runPlayers(void);
         void handleInput(void);
         void drawMap(void);
@@ -41,6 +41,8 @@ class Gameplay {
         void setCameraType(CameraType cameraType);
         CameraType getCameraType(void) const;
         std::shared_ptr<Map> getMap() const;
+        std::map<std::size_t, Texture2D> getTextures() const;
+        void setTextures();
         std::map<std::size_t, std::shared_ptr<Character>> getCharacters() const;
     private:
         std::shared_ptr<Window> _window;
@@ -56,6 +58,7 @@ class Gameplay {
         Raylibcpp::RayText _rayText;
         bool _isDisplay;
         CameraType _cameraType;
+        std::map<std::size_t, Texture2D> _textures;
 };
 
 #endif /* !GAMEPLAY_HPP_ */

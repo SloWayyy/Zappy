@@ -10,18 +10,24 @@
 
 #include <stdio.h>
 
-Character::Character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos, std::size_t level, std::size_t orientation, std::string name, std::size_t id) : _position(pos), _animsCount(animsCount), _animFrameCounter(animFrameCounter), _currentlyAnimation(NONE), _level(level), _teamname(name)
+Character::Character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos, std::size_t level, std::size_t orientation, std::string name, std::size_t id, std::map<std::size_t, Texture2D> textures) : _position(pos), _animsCount(animsCount), _animFrameCounter(animFrameCounter), _currentlyAnimation(NONE), _level(level), _teamname(name)
 {
-    this->_id = id;  
+    this->_id = id;
+    this->_levelTmp = level;
     this->_inventory = std::make_shared<Inventory>();
     this->_model = this->_rayModel.loadModel("assets/monster/animations/monsterWalking.iqm");
-    this->_texture = this->_rayModel.loadTexture("assets/monster/textures/monsterTexture.png");
-    this->_animations.push_back(this->_rayModel.loadModelAnimations("assets/monster/animations/monsterSpawn.iqm", &this->_animsCount));
-    this->_animations.push_back(this->_rayModel.loadModelAnimations("assets/monster/animations/monsterDying.iqm", &this->_animsCount));
-    this->_animations.push_back(this->_rayModel.loadModelAnimations("assets/monster/animations/monsterWalking.iqm", &this->_animsCount));
-    this->_animations.push_back(this->_rayModel.loadModelAnimations("assets/monster/animations/monsterRightTurn.iqm", &this->_animsCount));
-    this->_animations.push_back(this->_rayModel.loadModelAnimations("assets/monster/animations/monsterLeftTurn.iqm", &this->_animsCount));
-    this->_model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = this->_texture;
+    // this->_textures.insert(std::pair<std::size_t, Texture2D>(1, this->_rayModel.loadTexture("assets/monster/textures/monsterBLUE.png")));
+    // this->_textures.insert(std::pair<std::size_t, Texture2D>(2, this->_rayModel.loadTexture("assets/monster/textures/monsterGREEN.png")));
+    // this->_textures.insert(std::pair<std::size_t, Texture2D>(3, this->_rayModel.loadTexture("assets/monster/textures/monsterRED.png")));
+    // this->_textures.insert(std::pair<std::size_t, Texture2D>(4, this->_rayModel.loadTexture("assets/monster/textures/monsterPINK.png")));
+    // this->_textures.insert(std::pair<std::size_t, Texture2D>(5, this->_rayModel.loadTexture("assets/monster/textures/monsterYELLOW.png")));
+    // this->_textures.insert(std::pair<std::size_t, Texture2D>(6, this->_rayModel.loadTexture("assets/monster/textures/monsterORANGE.png")));
+    // this->_textures.insert(std::pair<std::size_t, Texture2D>(7, this->_rayModel.loadTexture("assets/monster/textures/monsterWHITE.png")));
+    // this->_textures.insert(std::pair<std::size_t, Texture2D>(8, this->_rayModel.loadTexture("assets/monster/textures/monsterGOLD.png")));
+    // this->_model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = this->_textures[this->_level];
+    this->_textures = textures;
+    // printf("textures size: %lu\n", this->_textures.size());
+    this->_model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = this->_textures[this->_level];
     if (orientation == 1)
         this->_currentDirection = TOP_DIR;
     if (orientation == 2)
@@ -31,6 +37,11 @@ Character::Character(std::size_t animsCount, std::size_t animFrameCounter, Vecto
     if (orientation == 4)
         this->_currentDirection = LEFT_DIR;
     this->_model.transform = this->_rayModel.matrixRotateXYZ({-90 * DEG2RAD, 0, _currentDirection * DEG2RAD});
+}
+
+std::map<std::size_t, Texture2D> Character::getTextures() const
+{
+    return this->_textures;
 }
 
 void Character::chooseAnimation(Animations anim)
@@ -50,8 +61,17 @@ void Character::draw()
     this->_rayModel.drawModel(this->_model, this->_position, 0.05f, WHITE);
 }
 
+void Character::checkLevel()
+{
+    if (this->_levelTmp != this->_level) {
+        this->_levelTmp = this->_level;
+        this->_model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = this->_textures[this->_level];
+    }
+}
+
 void Character::run()
 {
+    this->checkLevel();
     this->draw();
     this->handleEvent();
 }
