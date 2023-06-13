@@ -15,10 +15,10 @@
     #include <memory>
 
 enum Directions {
-    RIGHT_DIR = 0,
-    DOWN_DIR = -90,
-    LEFT_DIR = 180,
-    TOP_DIR = 90
+    EAST = 90,
+    SOUTH = 0,
+    WEST = -90,
+    NORTH = 180
 };
 
 enum Animations {

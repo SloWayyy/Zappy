@@ -171,14 +171,6 @@ void Gameplay::handleInput(void)
         this->_window->setDefaultCamera();
         this->setCameraType(CAMERA_THIRD);
     }
-    if (this->_rayWindow.isKeyReleased(KEY_N))
-        this->_characters[3]->setPos(this->_characters[3]->getPosition().x, this->_characters[3]->getPosition().z + 1, RIGHT_DIR);
-    if (this->_rayWindow.isKeyReleased(KEY_G))
-        this->_characters[3]->setPos(this->_characters[3]->getPosition().x + 1, this->_characters[3]->getPosition().z, TOP_DIR);
-    if (this->_rayWindow.isKeyReleased(KEY_B))
-        this->_characters[3]->setPos(this->_characters[3]->getPosition().x - 1, this->_characters[3]->getPosition().z, DOWN_DIR);
-    if (this->_rayWindow.isKeyReleased(KEY_V))
-        this->_characters[3]->setPos(this->_characters[3]->getPosition().x, this->_characters[3]->getPosition().z - 1, LEFT_DIR);
 }
 
 void Gameplay::drawMap(void)
