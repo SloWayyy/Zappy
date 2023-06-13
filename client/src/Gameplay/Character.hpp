@@ -52,7 +52,7 @@ class Character {
         void setLevel(size_t level);
         Directions getDirection() const;
         std::size_t getId() const;
-        std::shared_ptr<Inventory> getInventory() const;
+        std::shared_ptr<Inventory> &getInventory();
     private:
         Model _model;
         std::vector<ModelAnimation *> _animations;
