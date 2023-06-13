@@ -19,13 +19,13 @@ Character::Character(std::size_t animsCount, std::size_t animFrameCounter, Vecto
     this->_textures = textures;
     this->_model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = this->_textures[this->_level];
     if (orientation == 1)
-        this->_currentDirection = TOP_DIR;
+        this->_currentDirection = NORTH;
     if (orientation == 2)
-        this->_currentDirection = RIGHT_DIR;
+        this->_currentDirection = EAST;
     if (orientation == 3)
-        this->_currentDirection = DOWN_DIR;
+        this->_currentDirection = SOUTH;
     if (orientation == 4)
-        this->_currentDirection = LEFT_DIR;
+        this->_currentDirection = WEST;
     this->_model.transform = this->_rayModel.matrixRotateXYZ({-90 * DEG2RAD, 0, _currentDirection * DEG2RAD});
 }
 
