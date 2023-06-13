@@ -12,17 +12,41 @@ Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window), _current
     this->_isDisplay = false;
     this->_display = Display(this->_window);
     this->_cameraType = CAMERA_THIRD;
-    // this->initPlayer({1 * 4.0f, 1.38f, 8 * 4.0f}, 1, 2, 3, "Team1");
-    // this->initPlayer({4 * 4.0f, 1.38f, 8 * 4.0f}, 2, 2, 5, "Team2");
+    this->setTextures();
+    // this->initPlayer({1 * 4.0f, 1.38f, 8 * 4.0f}, 1, 2, 3, "Team1", _textures);
+    // this->initPlayer({2 * 4.0f, 1.38f, 8 * 4.0f}, 2, 2, 4, "Team2", _textures);
+    // this->initPlayer({3 * 4.0f, 1.38f, 8 * 4.0f}, 3, 2, 5, "Team1", _textures);
+    // this->initPlayer({4 * 4.0f, 1.38f, 8 * 4.0f}, 4, 2, 6, "Team2", _textures);
+    // this->initPlayer({5 * 4.0f, 1.38f, 8 * 4.0f}, 5, 2, 7, "Team1", _textures);
+    // this->initPlayer({6 * 4.0f, 1.38f, 8 * 4.0f}, 6, 2, 8, "Team2", _textures);
+    // this->initPlayer({7 * 4.0f, 1.38f, 8 * 4.0f}, 7, 2, 9, "Team1", _textures);
+    // this->initPlayer({8 * 4.0f, 1.38f, 8 * 4.0f}, 8, 2, 10, "Team2", _textures);
     // this->initPlayer({8 * 4.0f, 1.38f, 8 * 4.0f}, 1, 2, 8, "Team2");
     this->_currentCharacterIndex = _characters.begin()->first;
     this->_map = std::make_shared<Map>(10, 10);
     // this->initPlayer({1 * 4.0f, (float)1.1, 8 * 4.0f}, 1, 2, 1, "Team1");
 }
 
-void Gameplay::initPlayer(Vector3 pos, std::size_t level, std::size_t orientation, std::size_t id, std::string teamname)
+void Gameplay::setTextures()
 {
-    std::shared_ptr<Character> player = std::make_shared<Character>(5, 0, pos, level, orientation, teamname, id);
+    this->_textures.insert(std::pair<std::size_t, Texture2D>(1, this->_rayModel.loadTexture("assets/monster/textures/monsterBLUE.png")));
+    this->_textures.insert(std::pair<std::size_t, Texture2D>(2, this->_rayModel.loadTexture("assets/monster/textures/monsterGREEN.png")));
+    this->_textures.insert(std::pair<std::size_t, Texture2D>(3, this->_rayModel.loadTexture("assets/monster/textures/monsterRED.png")));
+    this->_textures.insert(std::pair<std::size_t, Texture2D>(4, this->_rayModel.loadTexture("assets/monster/textures/monsterPINK.png")));
+    this->_textures.insert(std::pair<std::size_t, Texture2D>(5, this->_rayModel.loadTexture("assets/monster/textures/monsterYELLOW.png")));
+    this->_textures.insert(std::pair<std::size_t, Texture2D>(6, this->_rayModel.loadTexture("assets/monster/textures/monsterORANGE.png")));
+    this->_textures.insert(std::pair<std::size_t, Texture2D>(7, this->_rayModel.loadTexture("assets/monster/textures/monsterWHITE.png")));
+    this->_textures.insert(std::pair<std::size_t, Texture2D>(8, this->_rayModel.loadTexture("assets/monster/textures/monsterGOLD.png")));
+}
+
+std::map<std::size_t, Texture2D> Gameplay::getTextures() const
+{
+    return this->_textures;
+}
+
+void Gameplay::initPlayer(Vector3 pos, std::size_t level, std::size_t orientation, std::size_t id, std::string teamname, std::map<std::size_t, Texture2D> textures)
+{
+    std::shared_ptr<Character> player = std::make_shared<Character>(5, 0, pos, level, orientation, teamname, id, textures);
 
     this->_characters.insert(std::pair<std::size_t, std::shared_ptr<Character>>(id, player));
 }
