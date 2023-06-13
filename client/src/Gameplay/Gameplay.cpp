@@ -12,25 +12,49 @@ Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window), _current
     this->_isDisplay = false;
     this->_display = Display(this->_window);
     this->_cameraType = CAMERA_THIRD;
-    // this->initPlayer({1 * 4.0f, 1.38f, 8 * 4.0f}, 1, 2, 3, "Team1");
-    // this->initPlayer({4 * 4.0f, 1.38f, 8 * 4.0f}, 2, 2, 5, "Team2");
+    this->setTextures();
+    // this->initPlayer({1 * 4.0f, 1.38f, 8 * 4.0f}, 1, 2, 3, "Team1", _textures);
+    // this->initPlayer({2 * 4.0f, 1.38f, 8 * 4.0f}, 2, 2, 4, "Team2", _textures);
+    // this->initPlayer({3 * 4.0f, 1.38f, 8 * 4.0f}, 3, 2, 5, "Team1", _textures);
+    // this->initPlayer({4 * 4.0f, 1.38f, 8 * 4.0f}, 4, 2, 6, "Team2", _textures);
+    // this->initPlayer({5 * 4.0f, 1.38f, 8 * 4.0f}, 5, 2, 7, "Team1", _textures);
+    // this->initPlayer({6 * 4.0f, 1.38f, 8 * 4.0f}, 6, 2, 8, "Team2", _textures);
+    // this->initPlayer({7 * 4.0f, 1.38f, 8 * 4.0f}, 7, 2, 9, "Team1", _textures);
+    // this->initPlayer({8 * 4.0f, 1.38f, 8 * 4.0f}, 8, 2, 10, "Team2", _textures);
     // this->initPlayer({8 * 4.0f, 1.38f, 8 * 4.0f}, 1, 2, 8, "Team2");
     this->_currentCharacterIndex = _characters.begin()->first;
     this->_map = std::make_shared<Map>(10, 10);
     // this->initPlayer({1 * 4.0f, (float)1.1, 8 * 4.0f}, 1, 2, 1, "Team1");
 }
 
-void Gameplay::initPlayer(Vector3 pos, std::size_t level, std::size_t orientation, std::size_t id, std::string teamname)
+void Gameplay::setTextures()
 {
-    Character player(0, 0, pos, level, orientation, teamname, id);
+    this->_textures.insert(std::pair<std::size_t, Texture2D>(1, this->_rayModel.loadTexture("assets/monster/textures/monsterBLUE.png")));
+    this->_textures.insert(std::pair<std::size_t, Texture2D>(2, this->_rayModel.loadTexture("assets/monster/textures/monsterGREEN.png")));
+    this->_textures.insert(std::pair<std::size_t, Texture2D>(3, this->_rayModel.loadTexture("assets/monster/textures/monsterRED.png")));
+    this->_textures.insert(std::pair<std::size_t, Texture2D>(4, this->_rayModel.loadTexture("assets/monster/textures/monsterPINK.png")));
+    this->_textures.insert(std::pair<std::size_t, Texture2D>(5, this->_rayModel.loadTexture("assets/monster/textures/monsterYELLOW.png")));
+    this->_textures.insert(std::pair<std::size_t, Texture2D>(6, this->_rayModel.loadTexture("assets/monster/textures/monsterORANGE.png")));
+    this->_textures.insert(std::pair<std::size_t, Texture2D>(7, this->_rayModel.loadTexture("assets/monster/textures/monsterWHITE.png")));
+    this->_textures.insert(std::pair<std::size_t, Texture2D>(8, this->_rayModel.loadTexture("assets/monster/textures/monsterGOLD.png")));
+}
 
-    this->_characters.insert(std::pair<std::size_t, Character>(id, player));
+std::map<std::size_t, Texture2D> Gameplay::getTextures() const
+{
+    return this->_textures;
+}
+
+void Gameplay::initPlayer(Vector3 pos, std::size_t level, std::size_t orientation, std::size_t id, std::string teamname, std::map<std::size_t, Texture2D> textures)
+{
+    std::shared_ptr<Character> player = std::make_shared<Character>(5, 0, pos, level, orientation, teamname, id, textures);
+
+    this->_characters.insert(std::pair<std::size_t, std::shared_ptr<Character>>(id, player));
 }
 
 void Gameplay::runPlayers(void)
 {
     for (auto &character : this->_characters) {
-        character.second.run();
+        character.second->run();
     }
 }
 
@@ -59,7 +83,7 @@ void Gameplay::run(void)
     }
     if (this->_isDisplay)  {
         this->_window->setDefaultCamera();
-        this->_display.run(std::map<std::size_t, Character>(this->_characters));
+        this->_display.run(std::map<std::size_t, std::shared_ptr<Character>>(this->_characters));
     }
 }
 
@@ -89,15 +113,15 @@ void Gameplay::DisplayInformations(void)
 {
     std::size_t height = this->_window->getScreenHeight();
     std::size_t width = this->_window->getScreenWidth();
-    std::string id = "ID " + std::to_string(this->_currentCharacter.getId());
-    std::string level = "Level: " + std::to_string(this->_currentCharacter.getLevel());
-    std::string food = "Food: " + std::to_string(this->_currentCharacter.getInventory()->getFood());
-    std::string linemate = "Linemate: " + std::to_string(this->_currentCharacter.getInventory()->getLinemate());
-    std::string deraumere = "Deraumere: " + std::to_string(this->_currentCharacter.getInventory()->getDeraumere());
-    std::string sibur = "Sibur: " + std::to_string(this->_currentCharacter.getInventory()->getSibur());
-    std::string mendiane = "Mendiane: " + std::to_string(this->_currentCharacter.getInventory()->getMendiane());
-    std::string phiras = "Phiras: " + std::to_string(this->_currentCharacter.getInventory()->getPhiras());
-    std::string thystame = "Thystame: " + std::to_string(this->_currentCharacter.getInventory()->getThystame());
+    std::string id = "ID " + std::to_string(this->_currentCharacter->getId());
+    std::string level = "Level: " + std::to_string(this->_currentCharacter->getLevel());
+    std::string food = "Food: " + std::to_string(this->_currentCharacter->getInventory()->getFood());
+    std::string linemate = "Linemate: " + std::to_string(this->_currentCharacter->getInventory()->getLinemate());
+    std::string deraumere = "Deraumere: " + std::to_string(this->_currentCharacter->getInventory()->getDeraumere());
+    std::string sibur = "Sibur: " + std::to_string(this->_currentCharacter->getInventory()->getSibur());
+    std::string mendiane = "Mendiane: " + std::to_string(this->_currentCharacter->getInventory()->getMendiane());
+    std::string phiras = "Phiras: " + std::to_string(this->_currentCharacter->getInventory()->getPhiras());
+    std::string thystame = "Thystame: " + std::to_string(this->_currentCharacter->getInventory()->getThystame());
 
     this->_rayWindow.endMode3D();
     this->_rayModel.drawRectangle(height - (height / 4), width / 3, height / 4, width / 1.5, {130, 130, 130, 200});
@@ -105,7 +129,7 @@ void Gameplay::DisplayInformations(void)
     this->_rayModel.drawTextureEx(this->_map->getTeam(), {height - 440.0f, (width / 3) + 200.0f}, 0.0f, 0.2f, WHITE);
     this->_rayText.drawText(id, height - 300, (width / 3) + 20, 80, RED);
     this->_rayText.drawText(level, height - 320, (width / 3) + 150, 30, BLACK);
-    this->_rayText.drawText(this->_currentCharacter.getTeamName(), height - 320, (width / 3) + 230, 30, BLACK);
+    this->_rayText.drawText(this->_currentCharacter->getTeamName(), height - 320, (width / 3) + 230, 30, BLACK);
     this->_rayText.drawText(food, height - 300, (width / 3) + 300, 30, BLACK);
     this->_rayText.drawText(linemate, height - 450, (width / 3) + 350, 30, BLACK);
     this->_rayText.drawText(deraumere, height - 220, (width / 3) + 350, 30, BLACK);
@@ -135,12 +159,12 @@ void Gameplay::handleInput(void)
         this->_window->setExit(true);
     if (this->_rayWindow.isKeyReleased(KEY_F1)) {
         this->setCurrentCharacter();
-        this->_window->setCamera({_currentCharacter.getPosition().x, _currentCharacter.getPosition().y + (float)2.0, _currentCharacter.getPosition().z - (float)0.5}, { 10.0f, 2.0f, 10.0f }, { 0.0f, 1.0f, 0.0f }, 45.0f, CAMERA_PERSPECTIVE);
+        this->_window->setCamera({_currentCharacter->getPosition().x, _currentCharacter->getPosition().y + (float)2.0, _currentCharacter->getPosition().z - (float)0.5}, { 10.0f, 2.0f, 10.0f }, { 0.0f, 1.0f, 0.0f }, 45.0f, CAMERA_PERSPECTIVE);
         this->setCameraType(CAMERA_FIRST);
     }
     if (this->_rayWindow.isKeyReleased(KEY_F2)) {
         this->setCurrentCharacter();
-        this->_window->setCamera({_currentCharacter.getPosition().x, _currentCharacter.getPosition().y + (float)4.0, _currentCharacter.getPosition().z - (float)4.0}, { 0.6f, -4.5f, 60.0f }, { 0.0f, 1.0f, 0.0f }, 45.0f, CAMERA_PERSPECTIVE);
+        this->_window->setCamera({_currentCharacter->getPosition().x, _currentCharacter->getPosition().y + (float)4.0, _currentCharacter->getPosition().z - (float)4.0}, { 0.6f, -4.5f, 60.0f }, { 0.0f, 1.0f, 0.0f }, 45.0f, CAMERA_PERSPECTIVE);
         this->setCameraType(CAMERA_SECOND);
     }
     if (this->_rayWindow.isKeyReleased(KEY_F3)) {
@@ -148,22 +172,24 @@ void Gameplay::handleInput(void)
         this->setCameraType(CAMERA_THIRD);
     }
     if (this->_rayWindow.isKeyReleased(KEY_N))
-        this->_characters[3].setPos(this->_characters[3].getPosition().x, this->_characters[3].getPosition().z + 1, RIGHT_DIR);
+        this->_characters[3]->setPos(this->_characters[3]->getPosition().x, this->_characters[3]->getPosition().z + 1, RIGHT_DIR);
     if (this->_rayWindow.isKeyReleased(KEY_G))
-        this->_characters[3].setPos(this->_characters[3].getPosition().x + 1, this->_characters[3].getPosition().z, TOP_DIR);
+        this->_characters[3]->setPos(this->_characters[3]->getPosition().x + 1, this->_characters[3]->getPosition().z, TOP_DIR);
     if (this->_rayWindow.isKeyReleased(KEY_B))
-        this->_characters[3].setPos(this->_characters[3].getPosition().x - 1, this->_characters[3].getPosition().z, DOWN_DIR);
+        this->_characters[3]->setPos(this->_characters[3]->getPosition().x - 1, this->_characters[3]->getPosition().z, DOWN_DIR);
     if (this->_rayWindow.isKeyReleased(KEY_V))
-        this->_characters[3].setPos(this->_characters[3].getPosition().x, this->_characters[3].getPosition().z - 1, LEFT_DIR);
+        this->_characters[3]->setPos(this->_characters[3]->getPosition().x, this->_characters[3]->getPosition().z - 1, LEFT_DIR);
 }
 
 void Gameplay::drawMap(void)
 {
     float _x = 0.0f;
     float _y = 0.0f;
+    std::size_t height = this->_map->getheight();
+    std::size_t width = this->_map->getwidth();
 
-    for (std::size_t y = 0; y < this->_map->getheight(); y++) {
-        for (std::size_t x = 0; x < this->_map->getwidth(); x++) {
+    for (std::size_t y = 0; y < height; y++) {
+        for (std::size_t x = 0; x < width; x++) {
             this->_map->setcubePosition({ _x, -0.45f, _y });
             this->_map->draw(this->_map->getmodel(), this->_map->getcubePosition(), 2.0f);
             this->_map->draw(this->_map->getmodelPlatform(), {this->_map->getcubePosition().x, this->_map->getcubePosition().y + (float)1.6, this->_map->getcubePosition().z}, 0.02f);
@@ -178,15 +204,15 @@ void Gameplay::drawMap(void)
 void Gameplay::startAnimation(void)
 {
     if (this->_rayWindow.isKeyReleased(KEY_KP_1))
-        this->_characters[3].setCurrentlyAnimation(SPAWN);
+        this->_characters[3]->setCurrentlyAnimation(SPAWN);
     if (this->_rayWindow.isKeyReleased(KEY_KP_2))
-        this->_characters[3].setCurrentlyAnimation(DYING);
+        this->_characters[3]->setCurrentlyAnimation(DYING);
     if (this->_rayWindow.isKeyReleased(KEY_KP_3))
-        this->_characters[3].setCurrentlyAnimation(WALKING);
+        this->_characters[3]->setCurrentlyAnimation(WALKING);
     if (this->_rayWindow.isKeyReleased(KEY_KP_4))
-        this->_characters[3].setCurrentlyAnimation(RIGHT_TURN);
+        this->_characters[3]->setCurrentlyAnimation(RIGHT_TURN);
     if (this->_rayWindow.isKeyReleased(KEY_KP_5))
-        this->_characters[3].setCurrentlyAnimation(LEFT_TURN);
+        this->_characters[3]->setCurrentlyAnimation(LEFT_TURN);
 }
 
 void Gameplay::setIsDisplay(bool isDisplay)
@@ -209,7 +235,7 @@ std::shared_ptr<Map> Gameplay::getMap() const
     return this->_map;
 }
 
-std::map<std::size_t, Character> Gameplay::getCharacters() const
+std::map<std::size_t, std::shared_ptr<Character>> &Gameplay::getCharacters()
 {
     return this->_characters;
 }

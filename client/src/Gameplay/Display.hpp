@@ -20,7 +20,7 @@ class Display {
         Display(std::shared_ptr<Window> _window);
         ~Display() = default;
         void displayInformations(void);
-        void run(std::map<std::size_t, Character>(_characters));
+        void run(std::map<std::size_t, std::shared_ptr<Character>>(_characters));
         void drawTextOnScreen(std::string text, int fontSize, int posX, int posY, Color color);
     private:
         std::shared_ptr<Window> _window;
