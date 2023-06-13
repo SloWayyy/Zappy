@@ -16,17 +16,7 @@ Character::Character(std::size_t animsCount, std::size_t animFrameCounter, Vecto
     this->_levelTmp = level;
     this->_inventory = std::make_shared<Inventory>();
     this->_model = this->_rayModel.loadModel("assets/monster/animations/monsterWalking.iqm");
-    // this->_textures.insert(std::pair<std::size_t, Texture2D>(1, this->_rayModel.loadTexture("assets/monster/textures/monsterBLUE.png")));
-    // this->_textures.insert(std::pair<std::size_t, Texture2D>(2, this->_rayModel.loadTexture("assets/monster/textures/monsterGREEN.png")));
-    // this->_textures.insert(std::pair<std::size_t, Texture2D>(3, this->_rayModel.loadTexture("assets/monster/textures/monsterRED.png")));
-    // this->_textures.insert(std::pair<std::size_t, Texture2D>(4, this->_rayModel.loadTexture("assets/monster/textures/monsterPINK.png")));
-    // this->_textures.insert(std::pair<std::size_t, Texture2D>(5, this->_rayModel.loadTexture("assets/monster/textures/monsterYELLOW.png")));
-    // this->_textures.insert(std::pair<std::size_t, Texture2D>(6, this->_rayModel.loadTexture("assets/monster/textures/monsterORANGE.png")));
-    // this->_textures.insert(std::pair<std::size_t, Texture2D>(7, this->_rayModel.loadTexture("assets/monster/textures/monsterWHITE.png")));
-    // this->_textures.insert(std::pair<std::size_t, Texture2D>(8, this->_rayModel.loadTexture("assets/monster/textures/monsterGOLD.png")));
-    // this->_model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = this->_textures[this->_level];
     this->_textures = textures;
-    // printf("textures size: %lu\n", this->_textures.size());
     this->_model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = this->_textures[this->_level];
     if (orientation == 1)
         this->_currentDirection = TOP_DIR;
