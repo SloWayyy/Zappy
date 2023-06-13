@@ -29,7 +29,7 @@ class Map {
         Map() = default;
         Map(std::size_t height , std::size_t width);
         ~Map() = default;
-        void drawMineral(modelType type);
+        void drawMineral(modelType type, Vector3 position);
         void setHeight(std::size_t height);
         void setWidth(std::size_t width);
         std::size_t getheight() const;

@@ -190,7 +190,10 @@ void Gameplay::drawMap(void)
         _x = 0.0f;
         _y += 4.0f;
     }
-    this->_map->drawMineral(this->_map->getmodelBanana());
+    for (auto &tile : this->_map->getMapInventory()) {
+        if (tile.second[0] > 0)
+            this->_map->drawMineral(this->_map->getmodelBanana(), {tile.first.first * 4.0f + 1.0f, 1.38f, tile.first.second * 4.0f});
+    }
 }
 
 void Gameplay::startAnimation(void)

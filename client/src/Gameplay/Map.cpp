@@ -27,11 +27,9 @@ Map::Map(std::size_t height, std::size_t width) : _mapSize{ height, width }, _cu
     // this->_rayModel.setMaterialTexture(&this->_modelMap[this->APPLE].first.materials[0], MATERIAL_MAP_DIFFUSE, this->_modelMap[this->APPLE].second);
 }
 
-void Map::drawMineral(modelType type)
+void Map::drawMineral(modelType type, Vector3 position)
 {
-    for (auto &i : this->_MineralPositionArray) {
-        this->_rayModel.drawModel(this->_modelMap[type].first, i, 1.0f, WHITE);
-    }
+    this->_rayModel.drawModel(this->_modelMap[type].first, position, 0.5f, WHITE);
 }
 
 void Map::draw(Model model, Vector3 _position, float scale)
