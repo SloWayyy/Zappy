@@ -119,8 +119,10 @@ void Character::handleEvent()
 void Character::setPos(float x, float z, int orientation)
 {
     if (this->_position.x != x || this->_position.z != z) {
-        this->_position.x = (this->_position.x < x) ? x + 3 : (this->_position.x > x) ? x - 3 : this->_position.x;
-        this->_position.z = (this->_position.z < z) ? z + 3 : (this->_position.z > z) ? z - 3 : this->_position.z;
+        this->_position.x = x;
+        this->_position.z = z;
+        // this->_position.x = (this->_position.x < x) ? x + 3 : (this->_position.x > x) ? x - 3 : this->_position.x;
+        // this->_position.z = (this->_position.z < z) ? z + 3 : (this->_position.z > z) ? z - 3 : this->_position.z;
         // this->setCurrentlyAnimation(SPAWN);
     }
     this->_currentDirection = (orientation == 1) ? NORTH : (orientation == 2) ? EAST : (orientation == 3) ? SOUTH : WEST;
