@@ -147,6 +147,10 @@ void Core::setPlayerInventory(std::vector<std::string> &args)
 void Core::setPlayerDeath(std::vector<std::string> &args)
 {
     this->_gameplay->getCharacters().erase(std::stoi(args[1]));
+    for (auto &character : this->_gameplay->getCharacters()) {
+        std::cout << character.first << std::endl;
+    }
+    std::cout << "Player " << args[1] << " died" << std::endl;
 }
 
 void Core::setWinner(std::vector<std::string> &args)

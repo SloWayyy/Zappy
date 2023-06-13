@@ -126,7 +126,7 @@ void Character::setLevel(size_t level)
     this->_level = level;
 }
 
-std::shared_ptr<Inventory> Character::getInventory() const
+std::shared_ptr<Inventory> &Character::getInventory()
 {
     return this->_inventory;
 }

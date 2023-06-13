@@ -28,11 +28,9 @@ class Map {
         Map() = default;
         Map(std::size_t height , std::size_t width);
         ~Map() = default;
-        void fillMineralPositionArray();
         void drawMineral(modelType type);
         void setHeight(std::size_t height);
         void setWidth(std::size_t width);
-        void openMap(std::string path);
         std::size_t getheight() const;
         std::size_t getwidth() const;
         std::vector<std::string> getMap() const {return map;};
