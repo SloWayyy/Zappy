@@ -43,7 +43,7 @@ class Player:
         self.pos_boss = -1
         self.nbr_ai = 0
         self.level = 1
-        self.space = False
+        self.slot = 0
         self.args = args
         self.key = hashlib.sha256(self.args.name.encode()).digest()
         self.pos_bossitionned = False
@@ -152,7 +152,7 @@ class Player:
             raise ErrorConnection("Error: connection failed")
         print(donnees[0])
         if (int(donnees[0]) > 0):
-            self.space = True
+            self.slot = int(donnees[0])
         return False
 
     def move(self, return_only: bool = True):

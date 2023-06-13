@@ -11,10 +11,10 @@ def find_boss(player: Player):
     if player.boss != 0:
         player.boss = 1
         print("I AM THE BOSS\n")
-    if (player.space == True):
-        duplicate(player.args)
-        player.space = False
-        player.wait_broadcast()
+        if (player.slot > 0):
+            for _ in range(0, player.slot):
+                duplicate(player.args)
+                player.wait_broadcast()
 
 def locate_boss(player: Player):
 
