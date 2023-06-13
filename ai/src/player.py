@@ -5,6 +5,7 @@ from Crypto.Util.Padding import pad
 from Crypto.Util.Padding import unpad
 from Crypto.Random import get_random_bytes
 import hashlib
+import uuid
 
 from enum import Enum
 from ai.src.handle_packets import *
@@ -44,6 +45,9 @@ class Player:
         self.nbr_ai = 0
         self.level = 1
         self.slot = 0
+        self.uuid = str(uuid.uuid1())[:5]
+        self.array_uuid = []
+        print("UUID: " + self.uuid)
         self.args = args
         self.key = hashlib.sha256(self.args.name.encode()).digest()
         self.pos_bossitionned = False
@@ -69,6 +73,8 @@ class Player:
             self.nbr_ai += 1
             self.pos_boss = 0
         if x[0][1] == EnumHeader.IMHERE.value and self.boss == 1:
+            self.array_uuid.append(x[0][2])
+            print("array_uuid: ", self.array_uuid)
             self.nbr_ai -= 1
         if x[0][1] == EnumHeader.IMBOSS.value and self.boss == -1:
             self.boss = 0
