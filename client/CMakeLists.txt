@@ -15,6 +15,7 @@ add_executable(zappy_gui
         src/Core/Window.cpp
         src/Gameplay/Gameplay.cpp
         src/Gameplay/Character.cpp
+        src/Gameplay/Display.cpp
         src/Gameplay/Inventory.cpp
         src/Gameplay/Map.cpp
         src/Menu/Menu.cpp
@@ -30,6 +31,7 @@ add_executable(zappy_gui
         encapsulation/Text.cpp
         encapsulation/Window.cpp
         encapsulation/Music.cpp
+        encapsulation/Clock.cpp
         )
 
 target_link_libraries(zappy_gui raylib)

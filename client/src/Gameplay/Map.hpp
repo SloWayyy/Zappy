@@ -42,6 +42,8 @@ class Map {
         Model getmodel() const {return _model;};
         Model getmodelPlatform() const {return _modelPlatform;};
         void draw(Model model, Vector3 _position, float scale);
+        Texture2D getLevel() const {return _level;};
+        Texture2D getTeam() const {return _team;};
         void run();
     private:
         Model _model;
@@ -55,6 +57,8 @@ class Map {
         std::vector<Vector3> _MineralPositionArray;
         Raylibcpp::RayModel _rayModel;
         Raylibcpp::RayCube _rayCube;
+        Texture2D _level;
+        Texture2D _team;
 };
 
 #endif /* !MAP_HPP_ */
