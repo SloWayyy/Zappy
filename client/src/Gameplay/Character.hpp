@@ -55,7 +55,7 @@ class Character {
         Directions getDirection() const;
         std::size_t getId() const;
         std::map<std::size_t, Texture2D> getTextures() const;
-        std::shared_ptr<Inventory> getInventory() const;
+        std::shared_ptr<Inventory> &getInventory();
     private:
         Model _model;
         std::vector<ModelAnimation *> _animations;

@@ -185,9 +185,11 @@ void Gameplay::drawMap(void)
 {
     float _x = 0.0f;
     float _y = 0.0f;
+    std::size_t height = this->_map->getheight();
+    std::size_t width = this->_map->getwidth();
 
-    for (std::size_t y = 0; y < this->_map->getheight(); y++) {
-        for (std::size_t x = 0; x < this->_map->getwidth(); x++) {
+    for (std::size_t y = 0; y < height; y++) {
+        for (std::size_t x = 0; x < width; x++) {
             this->_map->setcubePosition({ _x, -0.45f, _y });
             this->_map->draw(this->_map->getmodel(), this->_map->getcubePosition(), 2.0f);
             this->_map->draw(this->_map->getmodelPlatform(), {this->_map->getcubePosition().x, this->_map->getcubePosition().y + (float)1.6, this->_map->getcubePosition().z}, 0.02f);
@@ -233,7 +235,7 @@ std::shared_ptr<Map> Gameplay::getMap() const
     return this->_map;
 }
 
-std::map<std::size_t, std::shared_ptr<Character>> Gameplay::getCharacters() const
+std::map<std::size_t, std::shared_ptr<Character>> &Gameplay::getCharacters()
 {
     return this->_characters;
 }

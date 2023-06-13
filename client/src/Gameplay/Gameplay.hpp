@@ -43,7 +43,7 @@ class Gameplay {
         std::shared_ptr<Map> getMap() const;
         std::map<std::size_t, Texture2D> getTextures() const;
         void setTextures();
-        std::map<std::size_t, std::shared_ptr<Character>> getCharacters() const;
+        std::map<std::size_t, std::shared_ptr<Character>> &getCharacters();
     private:
         std::shared_ptr<Window> _window;
         Display _display;

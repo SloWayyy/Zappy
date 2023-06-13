@@ -110,7 +110,13 @@ void Core::setMapSize(std::vector<std::string> &args)
 
 void Core::setTileContent(std::vector<std::string> &args)
 {
-    std::cout << std::stoi(args[1]) << std::stoi(args[2]) << std::stoi(args[3]) << std::stoi(args[4]) << std::stoi(args[5]) << std::stoi(args[6]) << std::stoi(args[7]) << std::stoi(args[8]) << std::stoi(args[9]) << std::endl;
+    try {
+        std::array <int, 7> inventory = {std::stoi(args[3]), std::stoi(args[4]), std::stoi(args[5]), std::stoi(args[6]), std::stoi(args[7]), std::stoi(args[8]), std::stoi(args[9])};
+        this->_gameplay->getMap()->getMapInventory()[{std::stoi(args[1]), std::stoi(args[2])}] = inventory;
+    } catch (const std::exception &e) {
+        std::array <int, 7> inventory = {std::stoi(args[3]), std::stoi(args[4]), std::stoi(args[5]), std::stoi(args[6]), std::stoi(args[7]), std::stoi(args[8]), std::stoi(args[9])};
+        this->_gameplay->getMap()->getMapInventory().insert({{std::stoi(args[1]), std::stoi(args[2])}, inventory});
+    }
 }
 
 void Core::setTeamNames(std::vector<std::string> &args)
