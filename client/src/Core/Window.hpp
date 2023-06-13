@@ -15,6 +15,7 @@ enum GameEvent {
     GAMEPLAY,
     SETTINGS,
     TUTO,
+    GAMEOVER,
     EXIT
 };
 

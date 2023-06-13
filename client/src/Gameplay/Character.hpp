@@ -11,6 +11,7 @@
     #include <vector>
     #include "encapsulation/Raylibcpp.hpp"
     #include "Inventory.hpp"
+    #include <memory>
 
 enum Directions {
     RIGHT_DIR = 0,
@@ -49,9 +50,9 @@ class Character {
         std::string getTeamName() const;
         void setDirection(Directions direction);
         void setLevel(size_t level);
-        Inventory getInventory() const;
         Directions getDirection() const;
         std::size_t getId() const;
+        std::shared_ptr<Inventory> getInventory() const;
     private:
         Model _model;
         std::vector<ModelAnimation *> _animations;
@@ -62,7 +63,7 @@ class Character {
         Raylibcpp::RayModel _rayModel;
         Animations _currentlyAnimation;
         Directions _currentDirection;
-        Inventory _inventory;
+        std::shared_ptr<Inventory> _inventory;
         std::size_t _level;
         std::size_t _id;
         std::string _teamname;

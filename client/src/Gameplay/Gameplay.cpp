@@ -7,15 +7,17 @@
 
 #include "src/Gameplay/Gameplay.hpp"
 
-Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window), _map(Map(10, 10)), _currentCharacterId(0)
+Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window), _currentCharacterId(0), _currentCharacterIndex(0)
 {
     this->_isDisplay = false;
     this->_display = Display(this->_window);
     this->_cameraType = CAMERA_THIRD;
-    this->initPlayer({1 * 4.0f, 1.38f, 8 * 4.0f}, 1, 2, 3, "Team1");
-    this->initPlayer({4 * 4.0f, 1.38f, 8 * 4.0f}, 2, 2, 5, "Team2");
-    this->initPlayer({8 * 4.0f, 1.38f, 8 * 4.0f}, 1, 2, 8, "Team2");
+    // this->initPlayer({1 * 4.0f, 1.38f, 8 * 4.0f}, 1, 2, 3, "Team1");
+    // this->initPlayer({4 * 4.0f, 1.38f, 8 * 4.0f}, 2, 2, 5, "Team2");
+    // this->initPlayer({8 * 4.0f, 1.38f, 8 * 4.0f}, 1, 2, 8, "Team2");
     this->_currentCharacterIndex = _characters.begin()->first;
+    this->_map = std::make_shared<Map>(10, 10);
+    // this->initPlayer({1 * 4.0f, (float)1.1, 8 * 4.0f}, 1, 2, 1, "Team1");
 }
 
 void Gameplay::initPlayer(Vector3 pos, std::size_t level, std::size_t orientation, std::size_t id, std::string teamname)
@@ -41,7 +43,7 @@ void Gameplay::drawTextOnScreen(std::string text, int fontSize, int posX, int po
 
 void Gameplay::run(void)
 {
-    this->_map.run();
+    this->_map->run();
     this->drawMap();
     this->setDisplayMode();
     if (!this->_isDisplay) {
@@ -89,18 +91,18 @@ void Gameplay::DisplayInformations(void)
     std::size_t width = this->_window->getScreenWidth();
     std::string id = "ID " + std::to_string(this->_currentCharacter.getId());
     std::string level = "Level: " + std::to_string(this->_currentCharacter.getLevel());
-    std::string food = "Food: " + std::to_string(this->_currentCharacter.getInventory().getFood());
-    std::string linemate = "Linemate: " + std::to_string(this->_currentCharacter.getInventory().getLinemate());
-    std::string deraumere = "Deraumere: " + std::to_string(this->_currentCharacter.getInventory().getDeraumere());
-    std::string sibur = "Sibur: " + std::to_string(this->_currentCharacter.getInventory().getSibur());
-    std::string mendiane = "Mendiane: " + std::to_string(this->_currentCharacter.getInventory().getMendiane());
-    std::string phiras = "Phiras: " + std::to_string(this->_currentCharacter.getInventory().getPhiras());
-    std::string thystame = "Thystame: " + std::to_string(this->_currentCharacter.getInventory().getThystame());
+    std::string food = "Food: " + std::to_string(this->_currentCharacter.getInventory()->getFood());
+    std::string linemate = "Linemate: " + std::to_string(this->_currentCharacter.getInventory()->getLinemate());
+    std::string deraumere = "Deraumere: " + std::to_string(this->_currentCharacter.getInventory()->getDeraumere());
+    std::string sibur = "Sibur: " + std::to_string(this->_currentCharacter.getInventory()->getSibur());
+    std::string mendiane = "Mendiane: " + std::to_string(this->_currentCharacter.getInventory()->getMendiane());
+    std::string phiras = "Phiras: " + std::to_string(this->_currentCharacter.getInventory()->getPhiras());
+    std::string thystame = "Thystame: " + std::to_string(this->_currentCharacter.getInventory()->getThystame());
 
     this->_rayWindow.endMode3D();
     this->_rayModel.drawRectangle(height - (height / 4), width / 3, height / 4, width / 1.5, {130, 130, 130, 200});
-    this->_rayModel.drawTextureEx(this->_map.getLevel(), {height - 450.0f, (width / 3) + 80.0f}, 0.0f, 0.2f, WHITE);
-    this->_rayModel.drawTextureEx(this->_map.getTeam(), {height - 440.0f, (width / 3) + 200.0f}, 0.0f, 0.2f, WHITE);
+    this->_rayModel.drawTextureEx(this->_map->getLevel(), {height - 450.0f, (width / 3) + 80.0f}, 0.0f, 0.2f, WHITE);
+    this->_rayModel.drawTextureEx(this->_map->getTeam(), {height - 440.0f, (width / 3) + 200.0f}, 0.0f, 0.2f, WHITE);
     this->_rayText.drawText(id, height - 300, (width / 3) + 20, 80, RED);
     this->_rayText.drawText(level, height - 320, (width / 3) + 150, 30, BLACK);
     this->_rayText.drawText(this->_currentCharacter.getTeamName(), height - 320, (width / 3) + 230, 30, BLACK);
@@ -160,17 +162,17 @@ void Gameplay::drawMap(void)
     float _x = 0.0f;
     float _y = 0.0f;
 
-    for (std::size_t y = 0; y < this->_map.getheight(); y++) {
-        for (std::size_t x = 0; x < this->_map.getwidth(); x++) {
-            this->_map.setcubePosition({ _x, -0.45f, _y });
-            this->_map.draw(this->_map.getmodel(), this->_map.getcubePosition(), 2.0f);
-            this->_map.draw(this->_map.getmodelPlatform(), {this->_map.getcubePosition().x, this->_map.getcubePosition().y + (float)1.6, this->_map.getcubePosition().z}, 0.02f);
+    for (std::size_t y = 0; y < this->_map->getheight(); y++) {
+        for (std::size_t x = 0; x < this->_map->getwidth(); x++) {
+            this->_map->setcubePosition({ _x, -0.45f, _y });
+            this->_map->draw(this->_map->getmodel(), this->_map->getcubePosition(), 2.0f);
+            this->_map->draw(this->_map->getmodelPlatform(), {this->_map->getcubePosition().x, this->_map->getcubePosition().y + (float)1.6, this->_map->getcubePosition().z}, 0.02f);
         _x += 4.0f;
         }
         _x = 0.0f;
         _y += 4.0f;
     }
-    this->_map.drawMineral(this->_map.getmodelBanana());
+    this->_map->drawMineral(this->_map->getmodelBanana());
 }
 
 void Gameplay::startAnimation(void)
@@ -200,4 +202,14 @@ void Gameplay::setCameraType(CameraType camera)
 CameraType Gameplay::getCameraType(void) const
 {
     return (this->_cameraType);
+}
+
+std::shared_ptr<Map> Gameplay::getMap() const
+{
+    return this->_map;
+}
+
+std::map<std::size_t, Character> Gameplay::getCharacters() const
+{
+    return this->_characters;
 }

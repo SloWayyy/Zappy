@@ -9,7 +9,7 @@
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <unistd.h>
-
+#define MAX_BUFFER_SIZE 512
 #include "ACommunicationModule.hpp"
 
 void zappy::sdk::ACommunicationModule::connect(const std::string &host, int port) {
@@ -38,41 +38,42 @@ bool zappy::sdk::ACommunicationModule::isConnected() {
     return this->_stream.is_open();
 }
 
-bool zappy::sdk::ACommunicationModule::dumpBuffers() {
-    bool exit = false;
-    int res = 0;
-    std::string line;
-    struct timeval timeout = { 0, 1 };
-    this->_readBuffer.clear();
+std::vector<std::string> zappy::sdk::ACommunicationModule::readBuffer() {
+    char buffer[MAX_BUFFER_SIZE];
+    this->_tmp.clear();
+    std::vector<std::string> queuecommand;
+    std::string tempo;
 
-    while (!exit) {
-        FD_ZERO(&this->reads_set);
-        FD_ZERO(&this->writes_set);
-        FD_SET(this->_socketFd, &this->reads_set);
-        if (!this->_writeBuffer.empty()) {
-            FD_SET(this->_socketFd, &this->writes_set);
-        }
-        res = select(this->_socketFd + 1, &this->reads_set, &this->writes_set, nullptr, &timeout);
-        if (res == -1) {
-            throw CommunicationException("select failed");
-        }
-        if (FD_ISSET(this->_socketFd, &this->reads_set)) {
-            std::istream is(&this->_stream);
-            if (!std::getline(is, line)) {
-                this->disconnect();
-                return false;
-            }
-            this->_readBuffer += line;
-            std::cout << line << std::endl;
-        }
-        if (!this->_writeBuffer.empty()) {
-            std::ostream os(&this->_stream);
-            os << this->_writeBuffer;
-            this->_writeBuffer.clear();
-        }
-        exit = res == 0;
+    FD_ZERO(&this->reads_set);
+    FD_SET(this->_socketFd, &this->reads_set);
+    FD_ZERO(&this->writes_set);
+    FD_SET(this->_socketFd, &this->writes_set);
+    if (select(this->_socketFd + 1, &this->reads_set, &this->writes_set, nullptr, nullptr) == -1) {
+        throw CommunicationException("select failed");
     }
-    return true;
+    if (FD_ISSET(this->_socketFd, &this->reads_set)) {
+        if (read(this->_socketFd, buffer, MAX_BUFFER_SIZE) <= 0) {
+            return queuecommand;
+        }
+        this->_readBuffer += buffer;
+        if (this->_readBuffer[this->_readBuffer.size() - 1] != '\n') {
+            this->_tmp = this->_readBuffer.substr(0, this->_readBuffer.find_last_of('\n') + 1);
+            this->_readBuffer = this->_readBuffer.substr(this->_readBuffer.find_last_of('\n') + 1);
+        } else {
+            this->_tmp = this->_readBuffer;
+            this->_readBuffer.clear();
+        }
+    }
+    if (!this->_writeBuffer.empty()) {
+        write(this->_socketFd, this->_writeBuffer.c_str(), this->_writeBuffer.size());
+        this->_writeBuffer.clear();
+    }
+    tempo = this->_tmp;
+    while (!tempo.empty()) {
+        queuecommand.push_back(tempo.substr(0, tempo.find_first_of('\n')));
+        tempo = tempo.substr(tempo.find_first_of('\n') + 1);
+    }
+    return queuecommand;
 }
 
 int zappy::sdk::ACommunicationModule::getSocketFd() const {

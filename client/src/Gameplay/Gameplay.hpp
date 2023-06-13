@@ -40,10 +40,12 @@ class Gameplay {
         void setIsDisplay(bool isDisplay);
         void setCameraType(CameraType cameraType);
         CameraType getCameraType(void) const;
+        std::shared_ptr<Map> getMap() const;
+        std::map<std::size_t, Character> getCharacters() const;
     private:
         std::shared_ptr<Window> _window;
-        Map _map;
         Display _display;
+        std::shared_ptr<Map> _map;
         std::map<std::size_t, Character> _characters;
         std::size_t _currentCharacterId;
         std::size_t _currentCharacterIndex;

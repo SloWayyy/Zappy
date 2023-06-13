@@ -12,7 +12,8 @@
 
 Character::Character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos, std::size_t level, std::size_t orientation, std::string name, std::size_t id) : _position(pos), _animsCount(animsCount), _animFrameCounter(animFrameCounter), _currentlyAnimation(NONE), _level(level), _teamname(name)
 {
-    this->_id = id;
+    this->_id = id;  
+    this->_inventory = std::make_shared<Inventory>();
     this->_model = this->_rayModel.loadModel("assets/monster/animations/monsterWalking.iqm");
     this->_texture = this->_rayModel.loadTexture("assets/monster/textures/monsterTexture.png");
     this->_animations.push_back(this->_rayModel.loadModelAnimations("assets/monster/animations/monsterSpawn.iqm", &this->_animsCount));
@@ -29,7 +30,7 @@ Character::Character(std::size_t animsCount, std::size_t animFrameCounter, Vecto
         this->_currentDirection = DOWN_DIR;
     if (orientation == 4)
         this->_currentDirection = LEFT_DIR;
-    this->_model.transform = this->_rayModel.matrixRotateXYZ({-90 * DEG2RAD, 0, _currentDirection * 1.0f});
+    this->_model.transform = this->_rayModel.matrixRotateXYZ({-90 * DEG2RAD, 0, _currentDirection * DEG2RAD});
 }
 
 void Character::chooseAnimation(Animations anim)
@@ -125,7 +126,7 @@ void Character::setLevel(size_t level)
     this->_level = level;
 }
 
-Inventory Character::getInventory() const
+std::shared_ptr<Inventory> Character::getInventory() const
 {
     return this->_inventory;
 }

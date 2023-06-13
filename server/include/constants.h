@@ -17,7 +17,7 @@
     #define DEFAULT_CLIENTS 4
     #define DEFAULT_FREQ 10
 
-    #define MAX_CONNECTIONS 50
+    #define MAX_CONNECTIONS 1024
     #define MAX_PORT 65536
     #define MAX_FREQ 100
     #define BUFFER_SIZE 2048
@@ -27,6 +27,9 @@
 
     #define LINE_BREAK "\n"
     #define WELCOME_MESSAGE "WELCOME"
+
+    #define REFILL_DELAY 20
+    #define REFILL_COEFFICIENT 100
 
     #define UNUSED __attribute__((unused))
 

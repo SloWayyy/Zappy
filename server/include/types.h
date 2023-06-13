@@ -18,10 +18,11 @@
     #include <sys/select.h>
 
 typedef SLIST_HEAD(client_list, client) client_list_t;
+typedef SLIST_HEAD(egg_list, egg) egg_list_t;
 typedef SLIST_HEAD(player_list, player) player_list_t;
-typedef SLIST_HEAD(team_list, team) team_list_t;
 typedef SLIST_HEAD(task_list, task) task_list_t;
-typedef STAILQ_HEAD(action_list, action) action_list_t;
+typedef SLIST_HEAD(team_list, team) team_list_t;
+typedef STAILQ_HEAD(command_queue, command) command_queue_t;
 
 struct server;
 struct task;
@@ -66,9 +67,9 @@ typedef struct buffer {
 
 typedef struct team {
     const char *name;
-    size_t capacity;
     size_t slots;
     player_list_t *players;
+    egg_list_t *eggs;
     SLIST_ENTRY(team) next;
 } team_t;
 
@@ -77,18 +78,34 @@ typedef struct tile {
     size_t y;
     size_t resources[RESOURCES_TYPES_QUANTITY];
     player_list_t players;
+    egg_list_t eggs;
 } tile_t;
+
+typedef struct command {
+    char *command;
+    STAILQ_ENTRY(command) next;
+} command_t;
+
+typedef struct egg {
+    size_t id;
+    size_t player_id;
+    team_t *team;
+    tile_t *pos;
+    SLIST_ENTRY(egg) next_team;
+    SLIST_ENTRY(egg) next_tile;
+} egg_t;
 
 typedef struct player {
     size_t id;
     bool dead;
+    bool from_egg;
     size_t level;
     size_t inventory[RESOURCES_TYPES_QUANTITY];
     team_t *team;
     tile_t *pos;
     direction_type_t direction;
     struct task *action_task;
-    action_list_t *actions;
+    command_queue_t *commands;
     SLIST_ENTRY(player) next_team;
     SLIST_ENTRY(player) next_tile;
 } player_t;
@@ -103,13 +120,8 @@ typedef struct client {
     SLIST_ENTRY(client) next;
 } client_t;
 
-typedef void (task_function_t)(struct server *server, client_t *client);
-
-typedef struct action {
-    size_t delay;
-    task_function_t *callback;
-    STAILQ_ENTRY(action) next;
-} action_t;
+typedef void (task_function_t) \
+    (struct server *server, client_t *client, void *arg);
 
 typedef struct task {
     size_t id;
@@ -118,6 +130,7 @@ typedef struct task {
     size_t current;
     int executions;
     client_t *client;
+    void *arg;
     task_function_t *callback;
     SLIST_ENTRY(task) next;
 } task_t;
@@ -141,6 +154,10 @@ typedef struct tick {
 typedef struct zappy {
     tick_t *tick;
     tile_t **map;
+    size_t total[RESOURCES_TYPES_QUANTITY];
+    size_t current[RESOURCES_TYPES_QUANTITY];
+    double *densities;
+    tile_t **empty;
     team_list_t *teams;
 } zappy_t;
 
@@ -151,5 +168,8 @@ typedef struct server {
     client_list_t *clients;
     task_list_t *tasks;
 } server_t;
+
+extern char const *resources_map[RESOURCES_TYPES_QUANTITY];
+extern const double resources_density[RESOURCES_TYPES_QUANTITY];
 
 #endif

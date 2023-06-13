@@ -5,11 +5,14 @@
 ## Makefile
 ##
 
-SRC			=	src/core/fdsets.c \
+SRC			=	src/core/config.c \
+				src/core/fdsets.c \
 				src/core/init.c \
 				src/core/input.c \
 				src/core/loop.c \
 				src/core/map.c \
+				src/core/refill.c \
+				src/core/resources.c \
 				src/core/scheduler.c \
 				src/core/tick.c \
 				src/graphical/command.c \
@@ -25,12 +28,18 @@ SRC			=	src/core/fdsets.c \
 				src/objects/players.c \
 				src/objects/tasks.c \
 				src/objects/teams.c \
-				src/player/actions.c \
 				src/player/command.c \
+				src/player/eggs.c \
+				src/player/eject.c \
 				src/player/food.c \
 				src/player/info.c \
+				src/player/items.c \
 				src/player/join.c \
+				src/player/look.c \
+				src/player/map.c \
 				src/player/move.c \
+				src/player/rotate.c \
+				src/player/speak.c \
 				src/util/arguments/args.c \
 				src/util/arguments/check.c \
 				src/util/arguments/handlers.c \
@@ -58,11 +67,15 @@ CC			=	gcc
 
 CFLAGS		=	-Wall -Wextra -Wpedantic
 CPPFLAGS	=	-iquote $(INC)
+LDLIBS		=	-lm
 
 all: $(NAME)
 
 $(NAME): $(OBJ) $(OBJ_M)
-	$(CC) -o $(NAME) $(OBJ) $(OBJ_M)
+	$(CC) -o $(NAME) $(OBJ) $(OBJ_M) $(LDLIBS)
+
+ci: CFLAGS += -Werror
+ci: all
 
 clean:
 	$(RM) $(OBJ)
@@ -86,4 +99,4 @@ tests_run: clean $(OBJ) $(OBJ_T)
 	$(RM) $(OBJ)
 	./$(TEST)
 
-.PHONY: all clean fclean re tests_run
+.PHONY: all ci clean fclean re tests_run

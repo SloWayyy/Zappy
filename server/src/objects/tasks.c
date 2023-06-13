@@ -29,13 +29,27 @@ task_t *register_task(server_t *server, client_t *client, \
     task->executions = 0;
     task->client = client;
     task->callback = callback;
+    task->arg = NULL;
     SLIST_INSERT_HEAD(server->tasks, task, next);
     return task;
 }
 
-void schedule_task(task_t *task, size_t delay, int exec)
+void setup_task(task_t *task, task_function_t *callback, void *arg)
 {
-    if (task == NULL || task->running) {
+    if (task->arg != NULL) {
+        free(task->arg);
+    }
+    task->arg = arg;
+    task->callback = callback;
+}
+
+void schedule_task(task_t *task, server_t *server, size_t delay, int exec)
+{
+    if (task->running) {
+        return;
+    }
+    if (delay == 0) {
+        task->callback(server, task->client, task->arg);
         return;
     }
     task->current = delay;
@@ -53,6 +67,7 @@ void cancel_client_tasks(server_t *server, client_t *client)
         tmp = node->next.sle_next;
         if (node->client == client) {
             SLIST_REMOVE(server->tasks, node, task, next);
+            free(node->arg);
             free(node);
         }
         node = tmp;

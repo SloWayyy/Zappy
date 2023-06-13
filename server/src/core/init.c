@@ -12,7 +12,6 @@
 #include <sys/queue.h>
 #include <sys/signalfd.h>
 #include <sys/socket.h>
-#include <unistd.h>
 
 #include "constants.h"
 #include "objects.h"
@@ -20,13 +19,26 @@
 #include "types.h"
 #include "util.h"
 
+static bool init_map_utils(server_t *server)
+{
+    size_t area = server->options->width * server->options->height;
+
+    server->zappy->densities = malloc(sizeof(double) * area);
+    server->zappy->empty = malloc(sizeof(tile_t *) * area);
+    if (server->zappy->densities == NULL || server->zappy->empty == NULL) {
+        perror("malloc failed");
+        return false;
+    }
+    return true;
+}
+
 static bool init_zappy(server_t *server)
 {
     team_t *team = NULL;
 
     init_tick(server, server->options->freq);
     server->zappy->tick->tick_nb = 0;
-    if (!init_map(server)) {
+    if (!init_map_utils(server) || !init_map(server)) {
         return false;
     }
     for (int i = 0; server->options->names[i] != NULL; i++) {
@@ -87,14 +99,12 @@ bool init_server(server_t *server)
         perror("socket failed");
         return false;
     }
+    server->data->socket_fd = fd;
     if (!setup_socket(fd, server->options->port) || !init_signalfd(server)) {
-        close(fd);
         return false;
     }
     if (!init_zappy(server)) {
-        close(fd);
         return false;
     }
-    server->data->socket_fd = fd;
     return true;
 }

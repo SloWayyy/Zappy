@@ -23,8 +23,22 @@ static void send_players(server_t *server, client_t *client)
             player = node->player;
             append_buffer(client->buffer_out, "%s %zu %zu %zu %zu %zu %s%s", \
                 GRAPHICAL_PLAYER_JOIN, player->id, player->pos->x, \
-                player->pos->y, player->direction, player->level, \
+                player->pos->y, player->direction + 1, player->level, \
                 player->team->name, LINE_BREAK);
+        }
+    }
+}
+
+static void send_eggs(server_t *server, client_t *client)
+{
+    egg_t *node = NULL;
+    team_t *team = NULL;
+
+    SLIST_FOREACH(team, server->zappy->teams, next) {
+        SLIST_FOREACH(node, team->eggs, next_team) {
+            append_buffer(client->buffer_out, "%s %zu %zu %zu %zu%s", \
+                GRAPHICAL_PLAYER_EGG, node->id, node->player_id, \
+                node->pos->x, node->pos->y, LINE_BREAK);
         }
     }
 }
@@ -36,4 +50,5 @@ void send_new_graphical(server_t *server, client_t *client)
     send_map(server, client);
     send_team_names(server, client);
     send_players(server, client);
+    send_eggs(server, client);
 }

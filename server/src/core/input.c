@@ -36,7 +36,7 @@ static void handle_unknown(server_t *server, client_t *client, char *line)
 static void handle_client_input(server_t *server, client_t *client, char *line)
 {
     if (client->type == PLAYER) {
-        handle_player_command(server, client, line);
+        register_command(server, client, line);
     } else if (client->type == GRAPHIC) {
         handle_graphical_command(server, client, line);
     } else {

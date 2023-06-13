@@ -8,7 +8,6 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-#include "server.h"
 #include "types.h"
 
 static void execute_task(server_t *server, task_t *task)
@@ -24,8 +23,7 @@ static void execute_task(server_t *server, task_t *task)
             task->running = false;
         }
     }
-
-    task->callback(server, task->client);
+    task->callback(server, task->client, task->arg);
 }
 
 void execute_tasks(server_t *server)
