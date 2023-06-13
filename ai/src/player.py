@@ -45,7 +45,7 @@ class Player:
         self.nbr_ai = 0
         self.level = 1
         self.slot = 0
-        self.uuid = str(uuid.uuid1())[:5]
+        self.uuid = str(uuid.uuid1())
         self.array_uuid = []
         print("UUID: " + self.uuid)
         self.args = args
@@ -97,18 +97,17 @@ class Player:
 
     def handle_broadcast(self, donnees: str):
         for i in donnees:
-            x = re.findall("^message ([0-8]), (\$[0-9]\$) (\w+)$", i)
+            x = re.findall("^message ([0-8]), (\$[0-9]\$) (.*)$", i)
             if len(x):
                 donnees = self.handle_header(x, donnees)
         return self.clear_data(donnees)
 
     def decrypt_donnees(self, donnees):
         array_decrypt = []
-
         for i in donnees:
             if i.find("message") != -1:
                 array = i.split(", ")
-                if len(array[1]) != 64:
+                if (len(array[1]) % 64) != 0:
                     return array_decrypt.append(array[0] + ", " + array[1])
                 msg_decode = self.decrypt_message(bytes.fromhex(array[1]))
                 msg_decode = msg_decode.replace("\n", "")
