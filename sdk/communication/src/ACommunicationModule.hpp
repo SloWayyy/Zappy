@@ -33,6 +33,7 @@ namespace zappy::sdk {
             std::string _readBuffer;
             std::string _writeBuffer;
             std::string _tmp;
+            std::string _saveNextBuffer;
         private:
             int _socketFd;
             __gnu_cxx::stdio_filebuf<char> _stream;
