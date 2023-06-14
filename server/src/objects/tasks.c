@@ -49,7 +49,9 @@ void schedule_task(task_t *task, server_t *server, size_t delay, int exec)
         return;
     }
     if (delay == 0) {
-        task->callback(server, task->client, task->arg);
+        if (task->callback != NULL) {
+            task->callback(server, task->client, task->arg);
+        }
         return;
     }
     task->current = delay;

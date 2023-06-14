@@ -34,11 +34,9 @@ player_t *new_player(void)
         perror("malloc failed");
         return NULL;
     }
+    memset(new, 0, sizeof(player_t));
     new->id = next_id++;
-    new->dead = false;
     new->level = 1;
-    new->team = NULL;
-    new->pos = NULL;
     new->direction = rand() % 4;
     memset(new->inventory, 0, sizeof(new->inventory));
     new->inventory[FOOD] = FOOD_DEFAULT;
@@ -49,10 +47,8 @@ player_t *new_player(void)
     return new;
 }
 
-void free_player(player_t *player)
+static void free_player_nodes(player_t *player)
 {
-    command_t *command = NULL;
-
     if (player->team != NULL) {
         if (!player->from_egg) {
             player->team->slots++;
@@ -62,6 +58,17 @@ void free_player(player_t *player)
     if (player->pos != NULL) {
         SLIST_REMOVE(&player->pos->players, player, player, next_tile);
     }
+    if (player->incantation != NULL) {
+        SLIST_REMOVE(&player->incantation->players, player, player, \
+            next_incantation);
+    }
+}
+
+void free_player(player_t *player)
+{
+    command_t *command = NULL;
+
+    free_player_nodes(player);
     while (!STAILQ_EMPTY(player->commands)) {
         command = STAILQ_FIRST(player->commands);
         STAILQ_REMOVE_HEAD(player->commands, next);

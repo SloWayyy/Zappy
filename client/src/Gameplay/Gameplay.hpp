@@ -28,7 +28,7 @@ class Gameplay {
         Gameplay(std::shared_ptr<Window> _window);
         ~Gameplay() = default;
         void run(void);
-        void initPlayer(Vector3 pos, std::size_t level, std::size_t orientation, std::size_t id, std::string teamname);
+        void initPlayer(Vector3 pos, std::size_t level, std::size_t orientation, std::size_t id, std::string teamname, std::map<std::size_t, Texture2D>);
         void runPlayers(void);
         void handleInput(void);
         void drawMap(void);
@@ -41,21 +41,24 @@ class Gameplay {
         void setCameraType(CameraType cameraType);
         CameraType getCameraType(void) const;
         std::shared_ptr<Map> getMap() const;
-        std::map<std::size_t, Character> getCharacters() const;
+        std::map<std::size_t, Texture2D> getTextures() const;
+        void setTextures();
+        std::map<std::size_t, std::shared_ptr<Character>> &getCharacters();
     private:
         std::shared_ptr<Window> _window;
         Display _display;
         std::shared_ptr<Map> _map;
-        std::map<std::size_t, Character> _characters;
+        std::map<std::size_t, std::shared_ptr<Character>> _characters;
         std::size_t _currentCharacterId;
         std::size_t _currentCharacterIndex;
-        Character _currentCharacter;
+        std::shared_ptr<Character> _currentCharacter;
         Raylibcpp::RayWindow _rayWindow;
         Raylibcpp::RayCube _rayCube;
         Raylibcpp::RayModel _rayModel;
         Raylibcpp::RayText _rayText;
         bool _isDisplay;
         CameraType _cameraType;
+        std::map<std::size_t, Texture2D> _textures;
 };
 
 #endif /* !GAMEPLAY_HPP_ */

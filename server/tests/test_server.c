@@ -219,12 +219,12 @@ Test(check_arguments, freq_already_set, .init=cr_redirect_stderr)
 
 Test(check_arguments, freq_too_big, .init=cr_redirect_stderr)
 {
-    char const *argv[] = { "./zappy_server", "-n", "toto", "tata", "-f", "200" };
+    char const *argv[] = { "./zappy_server", "-n", "toto", "tata", "-f", "20000" };
     options_t options;
 
     memset(&options, 0, sizeof(options_t));
     cr_assert_eq(check_arguments(6, argv, &options), false);
-    cr_assert_stderr_eq_str("Error: Frequency cannot be greater than 100\n");
+    cr_assert_stderr_eq_str("Error: Frequency cannot be greater than 10000\n");
 }
 
 Test(check_arguments, invalid_names_argument, .init=cr_redirect_stderr)
