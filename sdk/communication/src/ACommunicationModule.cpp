@@ -52,7 +52,8 @@ std::vector<std::string> zappy::sdk::ACommunicationModule::readBuffer() {
         throw CommunicationException("select failed");
     }
     if (FD_ISSET(this->_socketFd, &this->reads_set)) {
-        if ((i = read(this->_socketFd, buffer, MAX_BUFFER_SIZE)) <= 0) {
+        i = read(this->_socketFd, buffer, MAX_BUFFER_SIZE);
+        if (i <= 0) {
             return queuecommand;
         }
         buffer[i] = '\0';
