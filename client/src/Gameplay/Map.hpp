@@ -14,6 +14,7 @@
     #include <map>
     #include <unordered_map>
     #include "encapsulation/Raylibcpp.hpp"
+    #include <array>
 
 struct mapSize {
     std::size_t height;

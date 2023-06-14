@@ -6,7 +6,6 @@
 */
 
 #include <fstream>
-#include <array>
 #include "src/Gameplay/Map.hpp"
 
 Map::Map(std::size_t height, std::size_t width) : _mapSize{ height, width }, _cubePosition{ 0.0f, 0.0f, 0.0f }
