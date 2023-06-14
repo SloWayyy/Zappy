@@ -9,19 +9,31 @@
 #include <string>
 #include <cstring>
 
-Core::Core(int port, std::string ip): _window(std::make_shared<Window>(1920, 1080, 60)), _menu(std::make_shared<Menu>(this->_window)), _tuto(std::make_shared<Tuto>(this->_window)), _setting(std::make_shared<Setting>(this->_window)) , _gameover(std::make_shared<Gameover>(this->_window)),_gameplay(std::make_shared<Gameplay>(this->_window))
+Core::Core(int port, std::string ip)
 {
     try {
-        this->loader = std::make_shared<DDLoader<zappy::sdk::ICommunicationModule>>("libs/communication_sdk.so");
+        this->loader = std::make_shared<DDLoader<zappy::sdk::ICommunicationModule>>("client/libs/communication_sdk.so");
         this->network = std::shared_ptr<zappy::sdk::ICommunicationModule>(this->loader->getInstance("communicationEntrypoint"));
         this->network->connect(ip, port);
         this->network->connectAsGraphical();
+        this->_window = std::make_shared<Window>(1920, 1080, 60);
+        this->_menu = std::make_shared<Menu>(this->_window);
+        this->_tuto = std::make_shared<Tuto>(this->_window);
+        this->_setting = std::make_shared<Setting>(this->_window);
+        this->_gameover = std::make_shared<Gameover>(this->_window);
+        this->_gameplay = std::make_shared<Gameplay>(this->_window);
     } catch (const DDLoader<zappy::sdk::ICommunicationModule>::DDLException &e) {
         std::cerr << e.what() << std::endl;
         throw CoreException("Error: Cannot load communication module");
     } catch (const zappy::sdk::CommunicationException &e) {
         std::cerr << e.what() << std::endl;
         throw CoreException("Error: Cannot connect to server");
+    } catch (const AScreen::Error &e) {
+        std::cerr << e.what() << std::endl;
+        throw CoreException("Error: Cannot load raylib");
+    } catch (const Gameplay::Error &e) {
+        std::cerr << e.what() << std::endl;
+        throw CoreException("Error: Cannot load gameplay");
     }
 }
 
@@ -89,6 +101,9 @@ void Core::handleInput(const std::string &command)
         {COMMAND_PLV, &Core::setPlayerLevel},
         {COMMAND_PIN, &Core::setPlayerInventory},
         {COMMAND_PDI, &Core::setPlayerDeath},
+        {COMMAND_ENW, &Core::createNewEgg},
+        {COMMAND_EBO, &Core::destroyEgg},
+        {COMMAND_EDI, &Core::destroyEgg},
         {COMMAND_SEG, &Core::setWinner}
     };
 
@@ -159,4 +174,18 @@ void Core::setWinner(std::vector<std::string> &args)
 {
     std::cout << args[1] << std::endl; 
     this->_window->setGameEvent(GAMEOVER);
+}
+
+void Core::createNewEgg(std::vector<std::string> &args)
+{
+    this->_gameplay->initEgg(std::stoi(args[1]), std::stof(args[2]) * 4.0f, std::stof(args[3]) * 4.0f);
+}
+
+void Core::destroyEgg(std::vector<std::string> &args)
+{
+    try {
+        this->_gameplay->getEggs().erase(std::stoi(args[1]));
+    } catch (const std::exception &e) {
+        std::cerr << e.what() << std::endl;
+    }
 }

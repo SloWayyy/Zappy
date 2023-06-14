@@ -17,6 +17,9 @@
     #define COMMAND_PIN "pin"
     #define COMMAND_PDI "pdi"
     #define COMMAND_SEG "seg"
+    #define COMMAND_ENW "enw"
+    #define COMMAND_EBO "ebo"
+    #define COMMAND_EDI "edi"
 
     #include "src/Core/Window.hpp"
     #include "src/Gameplay/Map.hpp"
@@ -52,6 +55,8 @@ class Core {
         void setPlayerInventory(std::vector<std::string> &input);
         void setPlayerDeath(std::vector<std::string> &input);
         void setWinner(std::vector<std::string> &input);
+        void createNewEgg(std::vector<std::string> &input);
+        void destroyEgg(std::vector<std::string> &input);
     private:
         std::shared_ptr<Window> _window;
         std::shared_ptr<Menu> _menu;

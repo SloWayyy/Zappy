@@ -27,7 +27,6 @@ void zappy::sdk::ACommunicationModule::connect(const std::string &host, int port
     if (::connect(this->_socketFd, addr_ptr, sizeof(addr)) == -1) {
         throw CommunicationException("connect failed");
     }
-    this->_stream = __gnu_cxx::stdio_filebuf<char>(this->_socketFd, std::ios_base::in | std::ios_base::out);
 }
 
 void zappy::sdk::ACommunicationModule::disconnect() {

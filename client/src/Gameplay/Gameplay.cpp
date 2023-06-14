@@ -21,22 +21,26 @@ Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window), _current
     // this->initPlayer({6 * 4.0f, 1.38f, 8 * 4.0f}, 6, 2, 8, "Team2", _textures);
     // this->initPlayer({7 * 4.0f, 1.38f, 8 * 4.0f}, 7, 2, 9, "Team1", _textures);
     // this->initPlayer({8 * 4.0f, 1.38f, 8 * 4.0f}, 8, 2, 10, "Team2", _textures);
-    // this->initPlayer({8 * 4.0f, 1.38f, 8 * 4.0f}, 1, 2, 8, "Team2");
+    // this->initEgg(3, 2 * 3 * 4.0f, 8 * 4.0f);
     this->_currentCharacterIndex = _characters.begin()->first;
     this->_map = std::make_shared<Map>(10, 10);
-    // this->initPlayer({1 * 4.0f, (float)1.1, 8 * 4.0f}, 1, 2, 1, "Team1");
 }
 
 void Gameplay::setTextures()
 {
-    this->_textures.insert(std::pair<std::size_t, Texture2D>(1, this->_rayModel.loadTexture("assets/monster/textures/monsterBLUE.png")));
-    this->_textures.insert(std::pair<std::size_t, Texture2D>(2, this->_rayModel.loadTexture("assets/monster/textures/monsterGREEN.png")));
-    this->_textures.insert(std::pair<std::size_t, Texture2D>(3, this->_rayModel.loadTexture("assets/monster/textures/monsterRED.png")));
-    this->_textures.insert(std::pair<std::size_t, Texture2D>(4, this->_rayModel.loadTexture("assets/monster/textures/monsterPINK.png")));
-    this->_textures.insert(std::pair<std::size_t, Texture2D>(5, this->_rayModel.loadTexture("assets/monster/textures/monsterYELLOW.png")));
-    this->_textures.insert(std::pair<std::size_t, Texture2D>(6, this->_rayModel.loadTexture("assets/monster/textures/monsterORANGE.png")));
-    this->_textures.insert(std::pair<std::size_t, Texture2D>(7, this->_rayModel.loadTexture("assets/monster/textures/monsterWHITE.png")));
-    this->_textures.insert(std::pair<std::size_t, Texture2D>(8, this->_rayModel.loadTexture("assets/monster/textures/monsterGOLD.png")));
+    try {
+        this->_textures.insert(std::pair<std::size_t, Texture2D>(1, this->_rayModel.loadTexture("client/assets/monster/textures/monsterBLUE.png")));
+        this->_textures.insert(std::pair<std::size_t, Texture2D>(2, this->_rayModel.loadTexture("client/assets/monster/textures/monsterGREEN.png")));
+        this->_textures.insert(std::pair<std::size_t, Texture2D>(3, this->_rayModel.loadTexture("client/assets/monster/textures/monsterRED.png")));
+        this->_textures.insert(std::pair<std::size_t, Texture2D>(4, this->_rayModel.loadTexture("client/assets/monster/textures/monsterPINK.png")));
+        this->_textures.insert(std::pair<std::size_t, Texture2D>(5, this->_rayModel.loadTexture("client/assets/monster/textures/monsterORANGE.png")));
+        this->_textures.insert(std::pair<std::size_t, Texture2D>(6, this->_rayModel.loadTexture("client/assets/monster/textures/monsterBLACK.png")));
+        this->_textures.insert(std::pair<std::size_t, Texture2D>(7, this->_rayModel.loadTexture("client/assets/monster/textures/monsterGOLD.png")));
+        this->_textures.insert(std::pair<std::size_t, Texture2D>(8, this->_rayModel.loadTexture("client/assets/monster/textures/monsterWHITE.png")));
+    } catch (const Raylibcpp::Error &e) {
+        std::cerr << e.what() << std::endl;
+        throw Error("Error: Gameplay constructor failed");
+    }
 }
 
 std::map<std::size_t, Texture2D> Gameplay::getTextures() const
@@ -51,10 +55,24 @@ void Gameplay::initPlayer(Vector3 pos, std::size_t level, std::size_t orientatio
     this->_characters.insert(std::pair<std::size_t, std::shared_ptr<Character>>(id, player));
 }
 
+void Gameplay::initEgg(std::size_t id, float x, float y)
+{
+    std::shared_ptr<Egg> egg = std::make_shared<Egg>(id, x, y);
+
+    this->_eggs.insert(std::pair<std::size_t, std::shared_ptr<Egg>>(id, egg));
+}
+
 void Gameplay::runPlayers(void)
 {
     for (auto &character : this->_characters) {
         character.second->run();
+    }
+}
+
+void Gameplay::runEggs(void)
+{
+    for (auto &egg : this->_eggs) {
+        egg.second->run();
     }
 }
 
@@ -78,9 +96,9 @@ void Gameplay::run(void)
     }
     this->startAnimation();
     this->runPlayers();
-    if ((this->_cameraType == CAMERA_FIRST || this->_cameraType == CAMERA_SECOND) && this->_isDisplay == false) {
+    this->runEggs();
+    if ((this->_cameraType == CAMERA_FIRST || this->_cameraType == CAMERA_SECOND) && this->_isDisplay == false)
         this->DisplayInformations();
-    }
     if (this->_isDisplay)  {
         this->_window->setDefaultCamera();
         this->_display.run(std::map<std::size_t, std::shared_ptr<Character>>(this->_characters));
@@ -190,7 +208,22 @@ void Gameplay::drawMap(void)
         _x = 0.0f;
         _y += 4.0f;
     }
-    this->_map->drawMineral(this->_map->getmodelBanana());
+    for (auto &tile : this->_map->getMapInventory()) {
+        if (tile.second[0] > 0)
+            this->_map->drawMineral(this->_map->getmodelBanana(), {tile.first.first * 4.0f, 1.38f, tile.first.second * 4.0f}, 0.5f);
+        if (tile.second[1] > 0)
+            this->_map->drawMineral(this->_map->getmodelLinemate(), {tile.first.first * 4.0f - 1.0f, 1.38f, tile.first.second * 4.0f - 1.0f}, 0.2f);
+        if (tile.second[2] > 0)
+            this->_map->drawMineral(this->_map->getmodelDeraumere(), {tile.first.first * 4.0f, 1.38f, tile.first.second * 4.0f - 1.0f}, 0.2f);
+        if (tile.second[3] > 0)
+            this->_map->drawMineral(this->_map->getmodelSibur(), {tile.first.first * 4.0f + 1.0f, 1.38f, tile.first.second * 4.0f - 1.0f}, 0.2f);
+        if (tile.second[4] > 0)
+            this->_map->drawMineral(this->_map->getmodelMendiane(), {tile.first.first * 4.0f - 1.0f, 1.38f, tile.first.second * 4.0f}, 0.2f);
+        if (tile.second[5] > 0)
+            this->_map->drawMineral(this->_map->getmodelPhiras(), {tile.first.first * 4.0f + 1.0f, 1.38f, tile.first.second * 4.0f}, 0.2f);
+        if (tile.second[6] > 0)
+            this->_map->drawMineral(this->_map->getmodelThystame(), {tile.first.first * 4.0f, 1.38f, tile.first.second * 4.0f + 1.0f}, 0.2f);
+    }
 }
 
 void Gameplay::startAnimation(void)
@@ -230,4 +263,9 @@ std::shared_ptr<Map> Gameplay::getMap() const
 std::map<std::size_t, std::shared_ptr<Character>> &Gameplay::getCharacters()
 {
     return this->_characters;
+}
+
+std::map<std::size_t, std::shared_ptr<Egg>> &Gameplay::getEggs()
+{
+    return this->_eggs;
 }
