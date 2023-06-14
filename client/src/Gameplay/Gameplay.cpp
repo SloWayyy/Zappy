@@ -56,10 +56,24 @@ void Gameplay::initPlayer(Vector3 pos, std::size_t level, std::size_t orientatio
     this->_characters.insert(std::pair<std::size_t, std::shared_ptr<Character>>(id, player));
 }
 
+void Gameplay::initEgg(std::size_t id, float x, float y)
+{
+    std::shared_ptr<Egg> egg = std::make_shared<Egg>(id, x, y);
+
+    this->_eggs.insert(std::pair<std::size_t, std::shared_ptr<Egg>>(id, egg));
+}
+
 void Gameplay::runPlayers(void)
 {
     for (auto &character : this->_characters) {
         character.second->run();
+    }
+}
+
+void Gameplay::runEggs(void)
+{
+    for (auto &egg : this->_eggs) {
+        egg.second->run();
     }
 }
 
@@ -83,6 +97,7 @@ void Gameplay::run(void)
     }
     this->startAnimation();
     this->runPlayers();
+    this->runEggs();
     if ((this->_cameraType == CAMERA_FIRST || this->_cameraType == CAMERA_SECOND) && this->_isDisplay == false) {
         this->DisplayInformations();
     }
@@ -238,4 +253,9 @@ std::shared_ptr<Map> Gameplay::getMap() const
 std::map<std::size_t, std::shared_ptr<Character>> &Gameplay::getCharacters()
 {
     return this->_characters;
+}
+
+std::map<std::size_t, std::shared_ptr<Egg>> &Gameplay::getEggs()
+{
+    return this->_eggs;
 }
