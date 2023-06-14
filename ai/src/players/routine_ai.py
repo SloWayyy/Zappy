@@ -51,7 +51,7 @@ def return_to_boss(player: Player):
     player.move()
     player.turn(EnumDirection.RIGHT)
     player.move()
-    # player.move() faut le remettre c'est juste pour test le serveur de merde mdr ahahaaahah
+    player.move()
 
 def routine_ai(player: Player):
     list_item, foot_case = look_aroud_ai(player)
@@ -63,13 +63,6 @@ def routine_ai(player: Player):
     return_to_boss(player)
     print("inventory ai: ", player.inventory())
     if player.level == 1:
-        player.take(EnumObject.FOOD.value)
-        player.take(EnumObject.LINEMATE.value)
-        player.take(EnumObject.DERAUMERE.value)
-        player.take(EnumObject.SIBUR.value)
-        player.take(EnumObject.MENDIANE.value)
-        player.take(EnumObject.PHIRAS.value)
-        player.take(EnumObject.THYSTAME.value)
         player.set(EnumObject.LINEMATE, 1)
         print("ai: ", player.look())
         print("ai: ", player.incantation())
