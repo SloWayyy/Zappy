@@ -13,14 +13,14 @@ Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window), _current
     this->_display = Display(this->_window);
     this->_cameraType = CAMERA_THIRD;
     this->setTextures();
-    // this->initPlayer({1 * 4.0f, 1.38f, 8 * 4.0f}, 1, 2, 3, "Team1", _textures);
-    // this->initPlayer({2 * 4.0f, 1.38f, 8 * 4.0f}, 2, 2, 4, "Team2", _textures);
-    // this->initPlayer({3 * 4.0f, 1.38f, 8 * 4.0f}, 3, 2, 5, "Team1", _textures);
-    // this->initPlayer({4 * 4.0f, 1.38f, 8 * 4.0f}, 4, 2, 6, "Team2", _textures);
-    // this->initPlayer({5 * 4.0f, 1.38f, 8 * 4.0f}, 5, 2, 7, "Team1", _textures);
-    // this->initPlayer({6 * 4.0f, 1.38f, 8 * 4.0f}, 6, 2, 8, "Team2", _textures);
-    // this->initPlayer({7 * 4.0f, 1.38f, 8 * 4.0f}, 7, 2, 9, "Team1", _textures);
-    // this->initPlayer({8 * 4.0f, 1.38f, 8 * 4.0f}, 8, 2, 10, "Team2", _textures);
+    this->initPlayer({1 * 4.0f, 1.38f, 8 * 4.0f}, 1, 2, 3, "Team1", _textures);
+    this->initPlayer({2 * 4.0f, 1.38f, 8 * 4.0f}, 2, 2, 4, "Team2", _textures);
+    this->initPlayer({3 * 4.0f, 1.38f, 8 * 4.0f}, 3, 2, 5, "Team1", _textures);
+    this->initPlayer({4 * 4.0f, 1.38f, 8 * 4.0f}, 4, 2, 6, "Team2", _textures);
+    this->initPlayer({5 * 4.0f, 1.38f, 8 * 4.0f}, 5, 2, 7, "Team1", _textures);
+    this->initPlayer({6 * 4.0f, 1.38f, 8 * 4.0f}, 6, 2, 8, "Team2", _textures);
+    this->initPlayer({7 * 4.0f, 1.38f, 8 * 4.0f}, 7, 2, 9, "Team1", _textures);
+    this->initPlayer({8 * 4.0f, 1.38f, 8 * 4.0f}, 8, 2, 10, "Team2", _textures);
     // this->initPlayer({8 * 4.0f, 1.38f, 8 * 4.0f}, 1, 2, 8, "Team2");
     this->_currentCharacterIndex = _characters.begin()->first;
     this->_map = std::make_shared<Map>(10, 10);
@@ -34,10 +34,10 @@ void Gameplay::setTextures()
         this->_textures.insert(std::pair<std::size_t, Texture2D>(2, this->_rayModel.loadTexture("client/assets/monster/textures/monsterGREEN.png")));
         this->_textures.insert(std::pair<std::size_t, Texture2D>(3, this->_rayModel.loadTexture("client/assets/monster/textures/monsterRED.png")));
         this->_textures.insert(std::pair<std::size_t, Texture2D>(4, this->_rayModel.loadTexture("client/assets/monster/textures/monsterPINK.png")));
-        this->_textures.insert(std::pair<std::size_t, Texture2D>(5, this->_rayModel.loadTexture("client/assets/monster/textures/monsterYELLOW.png")));
-        this->_textures.insert(std::pair<std::size_t, Texture2D>(6, this->_rayModel.loadTexture("client/assets/monster/textures/monsterORANGE.png")));
-        this->_textures.insert(std::pair<std::size_t, Texture2D>(7, this->_rayModel.loadTexture("client/assets/monster/textures/monsterWHITE.png")));
-        this->_textures.insert(std::pair<std::size_t, Texture2D>(8, this->_rayModel.loadTexture("client/assets/monster/textures/monsterGOLD.png")));
+        this->_textures.insert(std::pair<std::size_t, Texture2D>(5, this->_rayModel.loadTexture("client/assets/monster/textures/monsterORANGE.png")));
+        this->_textures.insert(std::pair<std::size_t, Texture2D>(6, this->_rayModel.loadTexture("client/assets/monster/textures/monsterBLACK.png")));
+        this->_textures.insert(std::pair<std::size_t, Texture2D>(7, this->_rayModel.loadTexture("client/assets/monster/textures/monsterGOLD.png")));
+        this->_textures.insert(std::pair<std::size_t, Texture2D>(8, this->_rayModel.loadTexture("client/assets/monster/textures/monsterWHITE.png")));
     } catch (const Raylibcpp::Error &e) {
         std::cerr << e.what() << std::endl;
         throw Error("Error: Gameplay constructor failed");
@@ -197,7 +197,19 @@ void Gameplay::drawMap(void)
     }
     for (auto &tile : this->_map->getMapInventory()) {
         if (tile.second[0] > 0)
-            this->_map->drawMineral(this->_map->getmodelBanana(), {tile.first.first * 4.0f + 1.0f, 1.38f, tile.first.second * 4.0f});
+            this->_map->drawMineral(this->_map->getmodelBanana(), {tile.first.first * 4.0f, 1.38f, tile.first.second * 4.0f}, 0.5f);
+        if (tile.second[1] > 0)
+            this->_map->drawMineral(this->_map->getmodelLinemate(), {tile.first.first * 4.0f - 1.0f, 1.38f, tile.first.second * 4.0f - 1.0f}, 0.2f);
+        if (tile.second[2] > 0)
+            this->_map->drawMineral(this->_map->getmodelDeraumere(), {tile.first.first * 4.0f, 1.38f, tile.first.second * 4.0f - 1.0f}, 0.2f);
+        if (tile.second[3] > 0)
+            this->_map->drawMineral(this->_map->getmodelSibur(), {tile.first.first * 4.0f + 1.0f, 1.38f, tile.first.second * 4.0f - 1.0f}, 0.2f);
+        if (tile.second[4] > 0)
+            this->_map->drawMineral(this->_map->getmodelMendiane(), {tile.first.first * 4.0f - 1.0f, 1.38f, tile.first.second * 4.0f}, 0.2f);
+        if (tile.second[5] > 0)
+            this->_map->drawMineral(this->_map->getmodelPhiras(), {tile.first.first * 4.0f + 1.0f, 1.38f, tile.first.second * 4.0f}, 0.2f);
+        if (tile.second[6] > 0)
+            this->_map->drawMineral(this->_map->getmodelThystame(), {tile.first.first * 4.0f, 1.38f, tile.first.second * 4.0f + 1.0f}, 0.2f);
     }
 }
 

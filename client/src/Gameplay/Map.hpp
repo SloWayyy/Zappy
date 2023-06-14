@@ -24,19 +24,30 @@ struct mapSize {
 class Map {
     enum modelType {
         BANANA,
-        APPLE,
+        LINEMATE,
+        DERAUMERE,
+        SIBUR,
+        MENDIANE,
+        PHIRAS,
+        THYSTAME
     };
     public:
         Map() = default;
         Map(std::size_t height , std::size_t width);
         ~Map() = default;
-        void drawMineral(modelType type, Vector3 position);
+        void drawMineral(modelType type, Vector3 position, float scale);
         void setHeight(std::size_t height);
         void setWidth(std::size_t width);
         std::size_t getheight() const;
         std::size_t getwidth() const;
         std::vector<std::string> &getMap() {return map;};
         modelType getmodelBanana() const {return BANANA;};
+        modelType getmodelLinemate() const {return LINEMATE;};
+        modelType getmodelDeraumere() const {return DERAUMERE;};
+        modelType getmodelSibur() const {return SIBUR;};
+        modelType getmodelMendiane() const {return MENDIANE;};
+        modelType getmodelPhiras() const {return PHIRAS;};
+        modelType getmodelThystame() const {return THYSTAME;};
         Vector3 getcubePosition() const;
         void setcubePosition(Vector3 position);
         Model getmodel() const {return _model;};
