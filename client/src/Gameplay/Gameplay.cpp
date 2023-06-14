@@ -25,7 +25,6 @@ Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window), _current
     // this->initPlayer({8 * 4.0f, 1.38f, 8 * 4.0f}, 1, 2, 8, "Team2");
     this->_currentCharacterIndex = _characters.begin()->first;
     this->_map = std::make_shared<Map>(10, 10);
-    // this->initPlayer({1 * 4.0f, (float)1.1, 8 * 4.0f}, 1, 2, 1, "Team1");
 }
 
 void Gameplay::setTextures()
@@ -99,9 +98,8 @@ void Gameplay::run(void)
     this->startAnimation();
     this->runPlayers();
     this->runEggs();
-    if ((this->_cameraType == CAMERA_FIRST || this->_cameraType == CAMERA_SECOND) && this->_isDisplay == false) {
+    if ((this->_cameraType == CAMERA_FIRST || this->_cameraType == CAMERA_SECOND) && this->_isDisplay == false)
         this->DisplayInformations();
-    }
     if (this->_isDisplay)  {
         this->_window->setDefaultCamera();
         this->_display.run(std::map<std::size_t, std::shared_ptr<Character>>(this->_characters));

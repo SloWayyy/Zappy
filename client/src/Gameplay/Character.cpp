@@ -58,7 +58,6 @@ void Character::chooseAnimation(Animations anim)
 
 void Character::draw()
 {
-    // std::cout << "x: " << _position.x << " y: " << _position.z << std::endl;
     this->_rayModel.drawModel(this->_model, this->_position, 0.05f, WHITE);
 }
 
@@ -131,8 +130,6 @@ void Character::setPos(float x, float z, int orientation)
     if (this->_position.x != x || this->_position.z != z) {
         this->_position.x = x;
         this->_position.z = z;
-        // this->_position.x = (this->_position.x < x) ? x + 3 : (this->_position.x > x) ? x - 3 : this->_position.x;
-        // this->_position.z = (this->_position.z < z) ? z + 3 : (this->_position.z > z) ? z - 3 : this->_position.z;
         this->setCurrentlyAnimation(SPAWN);
     }
     this->_currentDirection = (orientation == 1) ? NORTH : (orientation == 2) ? EAST : (orientation == 3) ? SOUTH : WEST;

@@ -10,13 +10,13 @@
 Window::Window(std::size_t height, std::size_t width, std::size_t fps) : _windowParam{ height, width, fps }, _isExit(false), _gameEvent(GameEvent::MENU)
 {
     try {
-    this->_rayWindow.initWindow(this->_windowParam._screenHeight, this->_windowParam._screenWidth, "Zappy");
-    this->_rayWindow.setTargetFPS(this->_windowParam._fps);
-    this->_rayMusic.initAudioDevice();
-    this->setDefaultCamera();
-    this->setMusic("client/assets/song/gameSong.mp3");
-    this->_colorBackground = SKYBLUE;
-    this->_clock = 0;
+        this->_rayWindow.initWindow(this->_windowParam._screenHeight, this->_windowParam._screenWidth, "Zappy");
+        this->_rayWindow.setTargetFPS(this->_windowParam._fps);
+        this->_rayMusic.initAudioDevice();
+        this->setDefaultCamera();
+        this->setMusic("client/assets/song/gameSong.mp3");
+        this->_colorBackground = SKYBLUE;
+        this->_clock = 0;
     } catch (const Raylibcpp::Error &e) {
         std::cerr << e.what() << std::endl;
         exit (84);
