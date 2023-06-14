@@ -42,7 +42,8 @@ def look_aroud_ai(player: Player):
     tmp, _ = look_item(player)
     for j in tmp:
         list_item.append(j)
-    list_item.insert(0, list_item.pop())
+    if (len(list_item) > 1):
+        list_item.insert(0, list_item.pop())
     return list_item, foot_case
 
 def return_to_boss(player: Player):
