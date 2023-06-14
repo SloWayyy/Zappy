@@ -14,6 +14,7 @@
     #include "src/Gameplay/Map.hpp"
     #include "src/Core/Window.hpp"
     #include "src/Gameplay/Character.hpp"
+    #include "src/Gameplay/Egg.hpp"
     #include "src/Gameplay/Display.hpp"
     #include "encapsulation/Raylibcpp.hpp"
 
@@ -25,11 +26,21 @@ enum CameraType {
 
 class Gameplay {
     public:
+        class Error : public std::exception {
+            public:
+                Error(std::string const &message) : _message(message) {};
+                ~Error() = default;
+                const char *what() const noexcept override { return _message.c_str(); }
+            private:
+                std::string _message;
+        };
         Gameplay(std::shared_ptr<Window> _window);
         ~Gameplay() = default;
         void run(void);
         void initPlayer(Vector3 pos, std::size_t level, std::size_t orientation, std::size_t id, std::string teamname, std::map<std::size_t, Texture2D>);
+        void initEgg(std::size_t id, float x, float y);
         void runPlayers(void);
+        void runEggs(void);
         void handleInput(void);
         void drawMap(void);
         void drawTextOnScreen(std::string text, int fontSize, int posX, int posY, Color color);
@@ -44,11 +55,13 @@ class Gameplay {
         std::map<std::size_t, Texture2D> getTextures() const;
         void setTextures();
         std::map<std::size_t, std::shared_ptr<Character>> &getCharacters();
+        std::map<std::size_t, std::shared_ptr<Egg>> &getEggs();
     private:
         std::shared_ptr<Window> _window;
         Display _display;
         std::shared_ptr<Map> _map;
         std::map<std::size_t, std::shared_ptr<Character>> _characters;
+        std::map<std::size_t, std::shared_ptr<Egg>> _eggs;
         std::size_t _currentCharacterId;
         std::size_t _currentCharacterIndex;
         std::shared_ptr<Character> _currentCharacter;

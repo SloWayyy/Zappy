@@ -9,22 +9,27 @@
 
 Setting::Setting(std::shared_ptr<Window> window) : _volume(50), _fps(60)
 {
-    this->_window = window;
-    this->_background = LoadTexture("assets/menu/background_menu.png");
-    createButtons("BACK", {(float)this->_window->getScreenWidth() / 50.0f, this->_window->getScreenHeight() / 30.0f}, GOLD, 50, MENU);
-    createText("SETTINGS", {(float)this->_window->getScreenWidth() / 1.5f, this->_window->getScreenHeight() / 30.0f}, RED, 100);
-    createText("Volumes :", {(float)this->_window->getScreenWidth() / 50.0f, this->_window->getScreenHeight() / 10.0f}, RAYWHITE, 50);
-    createText(std::to_string(_volume), {(float)this->_window->getScreenWidth() / 3.0f, this->_window->getScreenHeight() / 7.5f}, RAYWHITE, 50);
-    createButtons("-", {(float)this->_window->getScreenWidth() / 5.0f, this->_window->getScreenHeight() / 7.5f}, PINK, 50, SETTINGS);
-    createButtons("+", {(float)this->_window->getScreenWidth() / 2.0f, this->_window->getScreenHeight() / 7.5f}, PINK, 50, SETTINGS);
-    createText("FPS :", {(float)this->_window->getScreenWidth() / 50.0f, this->_window->getScreenHeight() / 5.0f}, RAYWHITE, 50);
-    createText(std::to_string(_fps), {(float)this->_window->getScreenWidth() / 3.0f, this->_window->getScreenHeight() / 4.0f}, RAYWHITE, 50);
-    createButtons("<", {(float)this->_window->getScreenWidth() / 5.0f, this->_window->getScreenHeight() / 4.0f}, PINK, 50, SETTINGS);
-    createButtons(">", {(float)this->_window->getScreenWidth() / 2.0f, this->_window->getScreenHeight() / 4.0f}, PINK, 50, SETTINGS);
-    createText("Météo :", {(float)this->_window->getScreenWidth() / 50.0f, this->_window->getScreenHeight() / 3.0f}, RAYWHITE, 50);
-    createText("Jour", {(float)this->_window->getScreenWidth() / 3.0f, this->_window->getScreenHeight() / 2.5f}, RAYWHITE, 50);
-    createButtons("<", {(float)this->_window->getScreenWidth() / 5.0f, this->_window->getScreenHeight() / 2.5f}, PINK, 50, SETTINGS);
-    createButtons(">", {(float)this->_window->getScreenWidth() / 2.0f, this->_window->getScreenHeight() / 2.5f}, PINK, 50, SETTINGS);
+    try {
+        this->_window = window;
+        this->_background = LoadTexture("client/assets/menu/background_menu.png");
+        createButtons("BACK", {(float)this->_window->getScreenWidth() / 50.0f, this->_window->getScreenHeight() / 30.0f}, GOLD, 50, MENU);
+        createText("SETTINGS", {(float)this->_window->getScreenWidth() / 1.5f, this->_window->getScreenHeight() / 30.0f}, RED, 100);
+        createText("Volumes :", {(float)this->_window->getScreenWidth() / 50.0f, this->_window->getScreenHeight() / 10.0f}, RAYWHITE, 50);
+        createText(std::to_string(_volume), {(float)this->_window->getScreenWidth() / 3.0f, this->_window->getScreenHeight() / 7.5f}, RAYWHITE, 50);
+        createButtons("-", {(float)this->_window->getScreenWidth() / 5.0f, this->_window->getScreenHeight() / 7.5f}, PINK, 50, SETTINGS);
+        createButtons("+", {(float)this->_window->getScreenWidth() / 2.0f, this->_window->getScreenHeight() / 7.5f}, PINK, 50, SETTINGS);
+        createText("FPS :", {(float)this->_window->getScreenWidth() / 50.0f, this->_window->getScreenHeight() / 5.0f}, RAYWHITE, 50);
+        createText(std::to_string(_fps), {(float)this->_window->getScreenWidth() / 3.0f, this->_window->getScreenHeight() / 4.0f}, RAYWHITE, 50);
+        createButtons("<", {(float)this->_window->getScreenWidth() / 5.0f, this->_window->getScreenHeight() / 4.0f}, PINK, 50, SETTINGS);
+        createButtons(">", {(float)this->_window->getScreenWidth() / 2.0f, this->_window->getScreenHeight() / 4.0f}, PINK, 50, SETTINGS);
+        createText("Météo :", {(float)this->_window->getScreenWidth() / 50.0f, this->_window->getScreenHeight() / 3.0f}, RAYWHITE, 50);
+        createText("Jour", {(float)this->_window->getScreenWidth() / 3.0f, this->_window->getScreenHeight() / 2.5f}, RAYWHITE, 50);
+        createButtons("<", {(float)this->_window->getScreenWidth() / 5.0f, this->_window->getScreenHeight() / 2.5f}, PINK, 50, SETTINGS);
+        createButtons(">", {(float)this->_window->getScreenWidth() / 2.0f, this->_window->getScreenHeight() / 2.5f}, PINK, 50, SETTINGS);
+    } catch (const Raylibcpp::Error &e) {
+        std::cerr << e.what() << std::endl;
+        throw Error("Error: Setting constructor failed");
+    }
 }
 
 void Setting::handleInput()

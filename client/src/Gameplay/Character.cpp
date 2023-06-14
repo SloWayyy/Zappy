@@ -12,26 +12,31 @@
 
 Character::Character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos, std::size_t level, std::size_t orientation, std::string name, std::size_t id, std::map<std::size_t, Texture2D> textures) : _position(pos), _animsCount(animsCount), _animFrameCounter(animFrameCounter), _currentlyAnimation(NONE), _level(level), _teamname(name)
 {
-    this->_id = id;
-    this->_levelTmp = level;
-    this->_inventory = std::make_shared<Inventory>();
-    this->_model = this->_rayModel.loadModel("assets/monster/animations/monsterWalking.iqm");
-    this->_textures = textures;
-    this->_animations.push_back(this->_rayModel.loadModelAnimations("assets/monster/animations/monsterSpawn.iqm", &this->_animsCount));
-    this->_animations.push_back(this->_rayModel.loadModelAnimations("assets/monster/animations/monsterDying.iqm", &this->_animsCount));
-    this->_animations.push_back(this->_rayModel.loadModelAnimations("assets/monster/animations/monsterWalking.iqm", &this->_animsCount));
-    this->_animations.push_back(this->_rayModel.loadModelAnimations("assets/monster/animations/monsterRightTurn.iqm", &this->_animsCount));
-    this->_animations.push_back(this->_rayModel.loadModelAnimations("assets/monster/animations/monsterLeftTurn.iqm", &this->_animsCount));
-    this->_model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = this->_textures[this->_level];
-    if (orientation == 1)
-        this->_currentDirection = NORTH;
-    if (orientation == 2)
-        this->_currentDirection = EAST;
-    if (orientation == 3)
-        this->_currentDirection = SOUTH;
-    if (orientation == 4)
-        this->_currentDirection = WEST;
-    this->_model.transform = this->_rayModel.matrixRotateXYZ({-90 * DEG2RAD, 0, _currentDirection * DEG2RAD});
+    try {
+        this->_id = id;
+        this->_levelTmp = level;
+        this->_inventory = std::make_shared<Inventory>();
+        this->_model = this->_rayModel.loadModel("client/assets/monster/animations/monsterWalking.iqm");
+        this->_textures = textures;
+        this->_animations.push_back(this->_rayModel.loadModelAnimations("client/assets/monster/animations/monsterSpawn.iqm", &this->_animsCount));
+        this->_animations.push_back(this->_rayModel.loadModelAnimations("client/assets/monster/animations/monsterDying.iqm", &this->_animsCount));
+        this->_animations.push_back(this->_rayModel.loadModelAnimations("client/assets/monster/animations/monsterWalking.iqm", &this->_animsCount));
+        this->_animations.push_back(this->_rayModel.loadModelAnimations("client/assets/monster/animations/monsterRightTurn.iqm", &this->_animsCount));
+        this->_animations.push_back(this->_rayModel.loadModelAnimations("client/assets/monster/animations/monsterLeftTurn.iqm", &this->_animsCount));
+        this->_model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = this->_textures[this->_level];
+        if (orientation == 1)
+            this->_currentDirection = NORTH;
+        if (orientation == 2)
+            this->_currentDirection = EAST;
+        if (orientation == 3)
+            this->_currentDirection = SOUTH;
+        if (orientation == 4)
+            this->_currentDirection = WEST;
+        this->_model.transform = this->_rayModel.matrixRotateXYZ({-90 * DEG2RAD, 0, _currentDirection * DEG2RAD});
+    } catch (const Raylibcpp::Error &e) {
+        std::cerr << e.what() << std::endl;
+        exit (84);
+    }
 }
 
 std::map<std::size_t, Texture2D> Character::getTextures() const
@@ -53,7 +58,6 @@ void Character::chooseAnimation(Animations anim)
 
 void Character::draw()
 {
-    // std::cout << "x: " << _position.x << " y: " << _position.z << std::endl;
     this->_rayModel.drawModel(this->_model, this->_position, 0.05f, WHITE);
 }
 
@@ -126,8 +130,6 @@ void Character::setPos(float x, float z, int orientation)
     if (this->_position.x != x || this->_position.z != z) {
         this->_position.x = x;
         this->_position.z = z;
-        // this->_position.x = (this->_position.x < x) ? x + 3 : (this->_position.x > x) ? x - 3 : this->_position.x;
-        // this->_position.z = (this->_position.z < z) ? z + 3 : (this->_position.z > z) ? z - 3 : this->_position.z;
         this->setCurrentlyAnimation(SPAWN);
     }
     this->_currentDirection = (orientation == 1) ? NORTH : (orientation == 2) ? EAST : (orientation == 3) ? SOUTH : WEST;
