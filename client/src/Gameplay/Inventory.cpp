@@ -80,5 +80,3 @@ std::size_t Inventory::getThystame() const
 {
     return this->_thystame;
 }
-
-

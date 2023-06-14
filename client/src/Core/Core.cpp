@@ -101,6 +101,9 @@ void Core::handleInput(const std::string &command)
         {COMMAND_PLV, &Core::setPlayerLevel},
         {COMMAND_PIN, &Core::setPlayerInventory},
         {COMMAND_PDI, &Core::setPlayerDeath},
+        {COMMAND_ENW, &Core::createNewEgg},
+        {COMMAND_EBO, &Core::destroyEgg},
+        {COMMAND_EDI, &Core::destroyEgg},
         {COMMAND_SEG, &Core::setWinner}
     };
 
@@ -171,4 +174,18 @@ void Core::setWinner(std::vector<std::string> &args)
 {
     std::cout << args[1] << std::endl; 
     this->_window->setGameEvent(GAMEOVER);
+}
+
+void Core::createNewEgg(std::vector<std::string> &args)
+{
+    this->_gameplay->initEgg(std::stoi(args[1]), std::stof(args[2]) * 4.0f, std::stof(args[3]) * 4.0f);
+}
+
+void Core::destroyEgg(std::vector<std::string> &args)
+{
+    try {
+        this->_gameplay->getEggs().erase(std::stoi(args[1]));
+    } catch (const std::exception &e) {
+        std::cerr << e.what() << std::endl;
+    }
 }

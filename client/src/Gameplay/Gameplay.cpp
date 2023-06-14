@@ -13,18 +13,17 @@ Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window), _current
     this->_display = Display(this->_window);
     this->_cameraType = CAMERA_THIRD;
     this->setTextures();
-    this->initPlayer({1 * 4.0f, 1.38f, 8 * 4.0f}, 1, 2, 3, "Team1", _textures);
-    this->initPlayer({2 * 4.0f, 1.38f, 8 * 4.0f}, 2, 2, 4, "Team2", _textures);
-    this->initPlayer({3 * 4.0f, 1.38f, 8 * 4.0f}, 3, 2, 5, "Team1", _textures);
-    this->initPlayer({4 * 4.0f, 1.38f, 8 * 4.0f}, 4, 2, 6, "Team2", _textures);
-    this->initPlayer({5 * 4.0f, 1.38f, 8 * 4.0f}, 5, 2, 7, "Team1", _textures);
-    this->initPlayer({6 * 4.0f, 1.38f, 8 * 4.0f}, 6, 2, 8, "Team2", _textures);
-    this->initPlayer({7 * 4.0f, 1.38f, 8 * 4.0f}, 7, 2, 9, "Team1", _textures);
-    this->initPlayer({8 * 4.0f, 1.38f, 8 * 4.0f}, 8, 2, 10, "Team2", _textures);
-    // this->initPlayer({8 * 4.0f, 1.38f, 8 * 4.0f}, 1, 2, 8, "Team2");
+    // this->initPlayer({1 * 4.0f, 1.38f, 8 * 4.0f}, 1, 2, 3, "Team1", _textures);
+    // this->initPlayer({2 * 4.0f, 1.38f, 8 * 4.0f}, 2, 2, 4, "Team2", _textures);
+    // this->initPlayer({3 * 4.0f, 1.38f, 8 * 4.0f}, 3, 2, 5, "Team1", _textures);
+    // this->initPlayer({4 * 4.0f, 1.38f, 8 * 4.0f}, 4, 2, 6, "Team2", _textures);
+    // this->initPlayer({5 * 4.0f, 1.38f, 8 * 4.0f}, 5, 2, 7, "Team1", _textures);
+    // this->initPlayer({6 * 4.0f, 1.38f, 8 * 4.0f}, 6, 2, 8, "Team2", _textures);
+    // this->initPlayer({7 * 4.0f, 1.38f, 8 * 4.0f}, 7, 2, 9, "Team1", _textures);
+    // this->initPlayer({8 * 4.0f, 1.38f, 8 * 4.0f}, 8, 2, 10, "Team2", _textures);
+    // this->initEgg(3, 2 * 3 * 4.0f, 8 * 4.0f);
     this->_currentCharacterIndex = _characters.begin()->first;
     this->_map = std::make_shared<Map>(10, 10);
-    // this->initPlayer({1 * 4.0f, (float)1.1, 8 * 4.0f}, 1, 2, 1, "Team1");
 }
 
 void Gameplay::setTextures()
@@ -56,10 +55,24 @@ void Gameplay::initPlayer(Vector3 pos, std::size_t level, std::size_t orientatio
     this->_characters.insert(std::pair<std::size_t, std::shared_ptr<Character>>(id, player));
 }
 
+void Gameplay::initEgg(std::size_t id, float x, float y)
+{
+    std::shared_ptr<Egg> egg = std::make_shared<Egg>(id, x, y);
+
+    this->_eggs.insert(std::pair<std::size_t, std::shared_ptr<Egg>>(id, egg));
+}
+
 void Gameplay::runPlayers(void)
 {
     for (auto &character : this->_characters) {
         character.second->run();
+    }
+}
+
+void Gameplay::runEggs(void)
+{
+    for (auto &egg : this->_eggs) {
+        egg.second->run();
     }
 }
 
@@ -83,9 +96,9 @@ void Gameplay::run(void)
     }
     this->startAnimation();
     this->runPlayers();
-    if ((this->_cameraType == CAMERA_FIRST || this->_cameraType == CAMERA_SECOND) && this->_isDisplay == false) {
+    this->runEggs();
+    if ((this->_cameraType == CAMERA_FIRST || this->_cameraType == CAMERA_SECOND) && this->_isDisplay == false)
         this->DisplayInformations();
-    }
     if (this->_isDisplay)  {
         this->_window->setDefaultCamera();
         this->_display.run(std::map<std::size_t, std::shared_ptr<Character>>(this->_characters));
@@ -250,4 +263,9 @@ std::shared_ptr<Map> Gameplay::getMap() const
 std::map<std::size_t, std::shared_ptr<Character>> &Gameplay::getCharacters()
 {
     return this->_characters;
+}
+
+std::map<std::size_t, std::shared_ptr<Egg>> &Gameplay::getEggs()
+{
+    return this->_eggs;
 }
