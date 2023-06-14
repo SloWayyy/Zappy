@@ -13,8 +13,9 @@ Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window), _current
     this->_display = Display(this->_window);
     this->_cameraType = CAMERA_THIRD;
     this->setTextures();
+    this->initEgg(3, 2 * 3 * 4.0f, 8 * 4.0f);
     // this->initPlayer({1 * 4.0f, 1.38f, 8 * 4.0f}, 1, 2, 3, "Team1", _textures);
-    // this->initPlayer({2 * 4.0f, 1.38f, 8 * 4.0f}, 2, 2, 4, "Team2", _textures);
+    this->initPlayer({2 * 4.0f, 1.38f, 8 * 4.0f}, 2, 2, 4, "Team2", _textures);
     // this->initPlayer({3 * 4.0f, 1.38f, 8 * 4.0f}, 3, 2, 5, "Team1", _textures);
     // this->initPlayer({4 * 4.0f, 1.38f, 8 * 4.0f}, 4, 2, 6, "Team2", _textures);
     // this->initPlayer({5 * 4.0f, 1.38f, 8 * 4.0f}, 5, 2, 7, "Team1", _textures);

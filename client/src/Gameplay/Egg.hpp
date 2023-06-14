@@ -19,6 +19,9 @@ class Egg {
         Vector3 getPosition() const;
         void run(void);
     private:
+        Model _model;
+        Texture2D _texture;
+        Raylibcpp::RayModel _rayModel;
         std::size_t _id;
         Vector3 _position;
 };

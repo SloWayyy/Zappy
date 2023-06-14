@@ -14,7 +14,7 @@ Window::Window(std::size_t height, std::size_t width, std::size_t fps) : _window
     this->_rayWindow.setTargetFPS(this->_windowParam._fps);
     this->_rayMusic.initAudioDevice();
     this->setDefaultCamera();
-    this->setMusic("client/assets/song/menu.mp3");
+    this->setMusic("client/assets/song/gameSong.mp3");
     this->_colorBackground = SKYBLUE;
     this->_clock = 0;
     } catch (const Raylibcpp::Error &e) {
