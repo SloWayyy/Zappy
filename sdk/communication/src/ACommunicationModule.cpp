@@ -54,12 +54,10 @@ std::vector<std::string> zappy::sdk::ACommunicationModule::readBuffer() {
         if (read(this->_socketFd, buffer, MAX_BUFFER_SIZE) <= 0) {
             return queuecommand;
         }
-        this->_readBuffer += buffer;
-        if (this->_readBuffer[this->_readBuffer.size() - 1] != '\n') {
-            this->_tmp = this->_readBuffer.substr(0, this->_readBuffer.find_last_of('\n') + 1);
-            this->_readBuffer = this->_readBuffer.substr(this->_readBuffer.find_last_of('\n') + 1);
-        } else {
-            this->_tmp = this->_readBuffer;
+        this->_readBuffer = this->_saveNextBuffer + buffer;
+        this->_tmp = this->_readBuffer.substr(0, this->_readBuffer.find_last_of('\n') + 1);
+        this->_saveNextBuffer = this->_readBuffer.substr(this->_readBuffer.find_last_of('\n') + 1);
+        if (this->_saveNextBuffer.empty()) {
             this->_readBuffer.clear();
         }
     }
