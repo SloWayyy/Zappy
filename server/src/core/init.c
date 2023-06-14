@@ -19,26 +19,13 @@
 #include "types.h"
 #include "util.h"
 
-static bool init_map_utils(server_t *server)
-{
-    size_t area = server->options->width * server->options->height;
-
-    server->zappy->densities = malloc(sizeof(double) * area);
-    server->zappy->empty = malloc(sizeof(tile_t *) * area);
-    if (server->zappy->densities == NULL || server->zappy->empty == NULL) {
-        perror("malloc failed");
-        return false;
-    }
-    return true;
-}
-
 static bool init_zappy(server_t *server)
 {
     team_t *team = NULL;
 
     init_tick(server, server->options->freq);
     server->zappy->tick->tick_nb = 0;
-    if (!init_map_utils(server) || !init_map(server)) {
+    if (!init_map(server)) {
         return false;
     }
     for (int i = 0; server->options->names[i] != NULL; i++) {
@@ -91,6 +78,24 @@ static bool setup_socket(int socket_fd, int port)
     return true;
 }
 
+static bool init_socket_options(int fd)
+{
+    int res = 0;
+    int opt = 1;
+
+    res = setsockopt(fd, SOL_SOCKET, SO_REUSEADDR, (char *)&opt, sizeof(opt));
+    if (res == -1) {
+        perror("setsockopt address failed");
+        return false;
+    }
+    res = setsockopt(fd, SOL_SOCKET, SO_REUSEPORT, (char *)&opt, sizeof(opt));
+    if (res == -1) {
+        perror("setsockopt port failed");
+        return false;
+    }
+    return true;
+}
+
 bool init_server(server_t *server)
 {
     int fd = socket(AF_INET, SOCK_STREAM, 0);
@@ -100,10 +105,10 @@ bool init_server(server_t *server)
         return false;
     }
     server->data->socket_fd = fd;
-    if (!setup_socket(fd, server->options->port) || !init_signalfd(server)) {
+    if (!init_socket_options(fd) || !setup_socket(fd, server->options->port)) {
         return false;
     }
-    if (!init_zappy(server)) {
+    if (!init_signalfd(server) ||!init_zappy(server)) {
         return false;
     }
     return true;

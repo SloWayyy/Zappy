@@ -37,6 +37,7 @@ static void end_incantation_success(server_t *server, \
 
     for (size_t i = 0; i < RESOURCES_TYPES_QUANTITY; i++) {
         tile->resources[i] -= incantation->requirements->resources[i];
+        server->zappy->current[i] -= incantation->requirements->resources[i];
     }
     SLIST_FOREACH(node, &incantation->players, next_incantation) {
         target = get_client_by_player_id(server, node->id);
@@ -58,9 +59,10 @@ void incantation_callback(server_t *server, UNUSED client_t *client, void *arg)
     if (SLIST_EMPTY(&incantation->players)) {
         return;
     }
+    node = SLIST_FIRST(&incantation->players);
     send_graphical_event(server, "%s %zu %zu %d%s", \
-        GRAPHICAL_PLAYER_INCANTATION_START, node->pos->x, node->pos->y, \
-        done, LINE_BREAK);
+        GRAPHICAL_PLAYER_INCANTATION_END, node->pos->x, node->pos->y, \
+            done, LINE_BREAK);
     if (!done) {
         end_incantation_error(server, incantation);
     } else {
@@ -68,6 +70,5 @@ void incantation_callback(server_t *server, UNUSED client_t *client, void *arg)
     }
     SLIST_FOREACH(node, &incantation->players, next_incantation) {
         node->incantation = NULL;
-        node->next_incantation.sle_next = NULL;
     }
 }

@@ -219,7 +219,7 @@ Test(check_arguments, freq_already_set, .init=cr_redirect_stderr)
 
 Test(check_arguments, freq_too_big, .init=cr_redirect_stderr)
 {
-    char const *argv[] = { "./zappy_server", "-n", "toto", "tata", "-f", "200" };
+    char const *argv[] = { "./zappy_server", "-n", "toto", "tata", "-f", "20000" };
     options_t options;
 
     memset(&options, 0, sizeof(options_t));
