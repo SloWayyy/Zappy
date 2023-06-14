@@ -146,28 +146,44 @@ void Core::createNewPosition(std::vector<std::string> &args)
 
 void Core::setPlayerPosition(std::vector<std::string> &args)
 {
-    this->_gameplay->getCharacters()[std::stoi(args[1])]->setPos(std::stof(args[2]) * 4.0f, std::stof(args[3]) * 4.0f, std::stof(args[4]));
+    try {
+        this->_gameplay->getCharacters()[std::stoi(args[1])]->setPos(std::stof(args[2]) * 4.0f, std::stof(args[3]) * 4.0f, std::stof(args[4]));
+    } catch (const std::exception &e) {
+        std::cerr << e.what() << std::endl;
+    }
 }
 
 void Core::setPlayerLevel(std::vector<std::string> &args)
 {
-    this->_gameplay->getCharacters()[std::stoi(args[1])]->setLevel(std::stoi(args[2]));
+    try {
+        this->_gameplay->getCharacters()[std::stoi(args[1])]->setLevel(std::stoi(args[2]));
+    } catch (const std::exception &e) {
+        std::cerr << e.what() << std::endl;
+    }
 }
 
 void Core::setPlayerInventory(std::vector<std::string> &args)
 {
-    this->_gameplay->getCharacters()[std::stoi(args[1])]->getInventory()->setFood(std::stoi(args[4]));
-    this->_gameplay->getCharacters()[std::stoi(args[1])]->getInventory()->setLinemate(std::stoi(args[5]));
-    this->_gameplay->getCharacters()[std::stoi(args[1])]->getInventory()->setDeraumere(std::stoi(args[6]));
-    this->_gameplay->getCharacters()[std::stoi(args[1])]->getInventory()->setSibur(std::stoi(args[7]));
-    this->_gameplay->getCharacters()[std::stoi(args[1])]->getInventory()->setMendiane(std::stoi(args[8]));
-    this->_gameplay->getCharacters()[std::stoi(args[1])]->getInventory()->setPhiras(std::stoi(args[9]));
-    this->_gameplay->getCharacters()[std::stoi(args[1])]->getInventory()->setThystame(std::stoi(args[10]));
+    try {
+        this->_gameplay->getCharacters()[std::stoi(args[1])]->getInventory()->setFood(std::stoi(args[4]));
+        this->_gameplay->getCharacters()[std::stoi(args[1])]->getInventory()->setLinemate(std::stoi(args[5]));
+        this->_gameplay->getCharacters()[std::stoi(args[1])]->getInventory()->setDeraumere(std::stoi(args[6]));
+        this->_gameplay->getCharacters()[std::stoi(args[1])]->getInventory()->setSibur(std::stoi(args[7]));
+        this->_gameplay->getCharacters()[std::stoi(args[1])]->getInventory()->setMendiane(std::stoi(args[8]));
+        this->_gameplay->getCharacters()[std::stoi(args[1])]->getInventory()->setPhiras(std::stoi(args[9]));
+        this->_gameplay->getCharacters()[std::stoi(args[1])]->getInventory()->setThystame(std::stoi(args[10]));
+    } catch (const std::exception &e) {
+        std::cerr << e.what() << std::endl;
+    }
 }
 
 void Core::setPlayerDeath(std::vector<std::string> &args)
 {
-    this->_gameplay->getCharacters().erase(std::stoi(args[1]));
+    try {
+        this->_gameplay->getCharacters().erase(std::stoi(args[1]));
+    } catch (const std::exception &e) {
+        std::cerr << e.what() << std::endl;
+    }
 }
 
 void Core::setWinner(std::vector<std::string> &args)
