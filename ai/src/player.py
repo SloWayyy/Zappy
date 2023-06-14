@@ -5,6 +5,7 @@ from Crypto.Util.Padding import pad
 from Crypto.Util.Padding import unpad
 from Crypto.Random import get_random_bytes
 import hashlib
+import uuid
 
 from enum import Enum
 from ai.src.handle_packets import *
@@ -44,6 +45,9 @@ class Player:
         self.nbr_ai = 0
         self.level = 1
         self.slot = 0
+        self.uuid = str(uuid.uuid1())
+        self.array_uuid = []
+        print("UUID: " + self.uuid)
         self.args = args
         self.key = hashlib.sha256(self.args.name.encode()).digest()
         self.pos_bossitionned = False
@@ -69,6 +73,8 @@ class Player:
             self.nbr_ai += 1
             self.pos_boss = 0
         if x[0][1] == EnumHeader.IMHERE.value and self.boss == 1:
+            self.array_uuid.append(x[0][2])
+            print("array_uuid: ", self.array_uuid)
             self.nbr_ai -= 1
         if x[0][1] == EnumHeader.IMBOSS.value and self.boss == -1:
             self.boss = 0
@@ -91,18 +97,17 @@ class Player:
 
     def handle_broadcast(self, donnees: str):
         for i in donnees:
-            x = re.findall("^message ([0-8]), (\$[0-9]\$) (\w+)$", i)
+            x = re.findall("^message ([0-8]), (\$[0-9]\$) (.*)$", i)
             if len(x):
                 donnees = self.handle_header(x, donnees)
         return self.clear_data(donnees)
 
     def decrypt_donnees(self, donnees):
         array_decrypt = []
-
         for i in donnees:
             if i.find("message") != -1:
                 array = i.split(", ")
-                if len(array[1]) != 64:
+                if (len(array[1]) % 64) != 0:
                     return array_decrypt.append(array[0] + ", " + array[1])
                 msg_decode = self.decrypt_message(bytes.fromhex(array[1]))
                 msg_decode = msg_decode.replace("\n", "")

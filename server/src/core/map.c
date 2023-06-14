@@ -16,6 +16,19 @@
 #include "server.h"
 #include "types.h"
 
+static bool init_map_utils(server_t *server)
+{
+    size_t area = server->options->width * server->options->height;
+
+    server->zappy->densities = malloc(sizeof(double) * area);
+    server->zappy->empty = malloc(sizeof(tile_t *) * area);
+    if (server->zappy->densities == NULL || server->zappy->empty == NULL) {
+        perror("malloc failed");
+        return false;
+    }
+    return true;
+}
+
 static bool populate_map(server_t *server)
 {
     double density = 0.0;
@@ -59,6 +72,8 @@ bool init_map(server_t *server)
 {
     size_t array_size = sizeof(tile_t) * (server->options->height);
 
+    if (!init_map_utils(server))
+        return false;
     server->zappy->map = malloc(sizeof(tile_t *) * (server->options->height));
     if (server->zappy->map == NULL) {
         perror("malloc failed");

@@ -19,7 +19,7 @@ clean:
 	${RM} -r tests/__pycache__/
 
 fclean: clean
-	${RM} ../${NAME}
+	${RM} ${NAME}
 
 re:		fclean all
 

@@ -15,10 +15,10 @@
     #include <memory>
 
 enum Directions {
-    RIGHT_DIR = 0,
-    DOWN_DIR = -90,
-    LEFT_DIR = 180,
-    TOP_DIR = 90
+    EAST = 90,
+    SOUTH = 0,
+    WEST = -90,
+    NORTH = 180
 };
 
 enum Animations {
@@ -43,7 +43,7 @@ class Character {
         void setAnimFrameCounter(int animFrameCounter);
         Animations getCurrentlyAnimation() const;
         void setCurrentlyAnimation(Animations currentlyAnimation);
-        void setPos(int x, int z, int orientation);
+        void setPos(float x, float z, int orientation);
         void handleEvent();
         void run();
         void checkLevel();

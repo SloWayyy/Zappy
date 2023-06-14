@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <sys/param.h>
+#include <sys/queue.h>
 
 #include "constants.h"
 #include "server.h"
@@ -21,7 +22,7 @@ static double calculate_density(server_t *server, tile_t *tile)
     for (size_t i = 0; i < RESOURCES_TYPES_QUANTITY; i++) {
         density += tile->resources[i] * (1 - resources_density[i]);
     }
-    if (density == 0.0) {
+    if (density == 0.0 && SLIST_EMPTY(&tile->players)) {
         while (server->zappy->empty[index] != NULL) {
             index++;
         }
