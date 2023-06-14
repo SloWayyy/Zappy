@@ -1,6 +1,6 @@
-from asyncio import sleep
-from ai.src.player import Player, EnumDirection, EnumObject, EnumHeader
+from ai.src.player import Player, EnumDirection
 from ai.src.players.routine_boss import look_item
+from ai.src.ordre.dump_item import dump_item
 
 def first_pattern_ai(list_item: list, player: Player):
     player.move()
@@ -79,4 +79,5 @@ def square_collect(player: Player, orientation: int):
     second_pattern_ai(list_item[2:], player)
     if (return_to_boss(player) == False):
         return False
-    print("(AI) je suis arrivé au boss avec dans mon inventory: ", player.inventory())
+    dump_item(player)
+    print("(AI) je suis arrivé au boss et j'ai déposé mes items")
