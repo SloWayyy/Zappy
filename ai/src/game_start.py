@@ -23,7 +23,8 @@ def locate_boss(player: Player):
         player.wait_broadcast()
 
     if (player.pos_boss == 0):
-        player.broadcast(EnumHeader.IMHERE.value + " IMHERE\n")
+        print(player.uuid + " is the boss\n")
+        player.broadcast(EnumHeader.IMHERE.value + " " + player.uuid + "\n")
         print("je suis arrivé")
         return True
     if (player.pos_boss == 1 or player.pos_boss == 2 or player.pos_boss == 8):
