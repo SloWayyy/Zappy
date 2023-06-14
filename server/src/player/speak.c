@@ -23,24 +23,27 @@ static vector_t get_shortest(tile_t *sender_pos, tile_t *receiver_pos, \
     int width, int height)
 {
     int x_norm = (int) receiver_pos->x - (int) sender_pos->x;
-    int x_alter = (int) (receiver_pos->x) - (int) sender_pos->x - width;
+    int x_alter = x_norm + width * (x_norm < 0 ? 1 : -1);
     int y_norm = (int) receiver_pos->y - (int) sender_pos->y;
-    int y_alter = (int) receiver_pos->y - (int) sender_pos->y - height;
-    bool invert_x = x_norm > abs(x_alter);
-    bool invert_y = y_norm > abs(y_alter);
+    int y_alter = y_norm + height * (y_norm < 0 ? 1 : -1);
+    bool invert_x = abs(x_norm) > abs(x_alter);
+    bool invert_y = abs(y_norm) > abs(y_alter);
     vector_t shortest = {
             invert_x ? x_alter : x_norm,
-            invert_y ? y_alter : y_norm
+            invert_y ? y_alter : y_norm,
     };
 
     return shortest;
 }
 
-static int get_angle(server_t *server, tile_t *sender_pos, player_t *receiver)
+static double get_angle(server_t *server, tile_t *sender_pos, \
+    player_t *receiver)
 {
     vector_t target = get_direction(receiver->direction);
     vector_t shortest = get_shortest(sender_pos, receiver->pos, \
         server->options->width, server->options->height);
+    shortest.x *= -1;
+    shortest.y *= -1;
     int dot = target.x * shortest.x + target.y * shortest.y;
     int det = target.x * shortest.y - target.y * shortest.x;
     double angle = atan2(det, dot);
@@ -57,7 +60,6 @@ static int get_source(server_t *server, tile_t *sender_pos, player_t *target)
         return 0;
     }
     degrees = get_angle(server, sender_pos, target);
-    printf("Angle: %f\n", degrees);
     for (size_t i = 0; i < DIRECTIONS_COUNT; i++) {
         if (degrees >= DIRECTIONS[i].min && degrees < DIRECTIONS[i].max) {
             return DIRECTIONS[i].num;
