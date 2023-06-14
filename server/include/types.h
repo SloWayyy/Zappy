@@ -95,6 +95,17 @@ typedef struct egg {
     SLIST_ENTRY(egg) next_tile;
 } egg_t;
 
+typedef struct incantation_requirement {
+    size_t level;
+    size_t players_nb;
+    size_t resources[RESOURCES_TYPES_QUANTITY];
+} incantation_requirements_t;
+
+typedef struct incantation {
+    player_list_t players;
+    const incantation_requirements_t *requirements;
+} incantation_t;
+
 typedef struct player {
     size_t id;
     bool dead;
@@ -106,8 +117,10 @@ typedef struct player {
     direction_type_t direction;
     struct task *action_task;
     command_queue_t *commands;
+    incantation_t *incantation;
     SLIST_ENTRY(player) next_team;
     SLIST_ENTRY(player) next_tile;
+    SLIST_ENTRY(player) next_incantation;
 } player_t;
 
 typedef struct client {

@@ -33,6 +33,8 @@
     #define GRAPHICAL_PLAYER_EGG_DEATH "edi"
     #define GRAPHICAL_PLAYER_TAKE "pgt"
     #define GRAPHICAL_PLAYER_SET "pdr"
+    #define GRAPHICAL_PLAYER_INCANTATION_START "pic"
+    #define GRAPHICAL_PLAYER_INCANTATION_END "pie"
 
     #define GRAPHICAL_UNKNOWN "suc"
     #define GRAPHICAL_COMMAND_PARAMETER "sbp"
