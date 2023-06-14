@@ -108,7 +108,7 @@ bool init_server(server_t *server)
     if (!init_socket_options(fd) || !setup_socket(fd, server->options->port)) {
         return false;
     }
-    if (!init_signalfd(server) ||!init_zappy(server)) {
+    if (!init_signalfd(server) || !init_zappy(server)) {
         return false;
     }
     return true;
