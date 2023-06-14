@@ -25,6 +25,14 @@ enum CameraType {
 
 class Gameplay {
     public:
+        class Error : public std::exception {
+            public:
+                Error(std::string const &message) : _message(message) {};
+                ~Error() = default;
+                const char *what() const noexcept override { return _message.c_str(); }
+            private:
+                std::string _message;
+        };
         Gameplay(std::shared_ptr<Window> _window);
         ~Gameplay() = default;
         void run(void);

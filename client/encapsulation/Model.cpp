@@ -14,12 +14,20 @@ void Raylibcpp::RayModel::drawModel(Model mod, Vector3 pos, float scale, Color c
 
 ModelAnimation *Raylibcpp::RayModel::loadModelAnimations(const char *fileName, unsigned int *animCount)
 {
-    return LoadModelAnimations(fileName, animCount);
+    ModelAnimation * anim = LoadModelAnimations(fileName, animCount);
+
+    if (anim == NULL)
+        throw Error("Error: Cannot load model animations");
+    return anim;
 }
 
 Model Raylibcpp::RayModel::loadModel(const char *fileName)
 {
-    return LoadModel(fileName);
+    Model model = LoadModel(fileName);
+    
+    if (model.meshCount == 0)
+        throw Error("Error: Cannot load model");
+    return model;
 }
 
 void Raylibcpp::RayModel::unloadModel(Model model)
@@ -29,7 +37,11 @@ void Raylibcpp::RayModel::unloadModel(Model model)
 
 Texture2D Raylibcpp::RayModel::loadTexture(const char *fileName)
 {
-    return LoadTexture(fileName);
+    Texture2D texture = LoadTexture(fileName);
+
+    if (texture.id == 0)
+        throw Error("Error: Cannot load texture");
+    return texture;
 }
 
 void Raylibcpp::RayModel::unloadTexture(Texture2D texture)
@@ -64,7 +76,11 @@ Matrix Raylibcpp::RayModel::matrixRotateXYZ(Vector3 angle)
 
 Image Raylibcpp::RayModel::loadImage(const char *fileName)
 {
-    return LoadImage(fileName);
+    Image image = LoadImage(fileName);
+
+    if (image.data == NULL)
+        throw Error("Error: Cannot load image");
+    return image;
 }
 
 void Raylibcpp::RayModel::unloadImage(Image image)

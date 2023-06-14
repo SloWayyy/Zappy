@@ -29,14 +29,19 @@ Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window), _current
 
 void Gameplay::setTextures()
 {
-    this->_textures.insert(std::pair<std::size_t, Texture2D>(1, this->_rayModel.loadTexture("assets/monster/textures/monsterBLUE.png")));
-    this->_textures.insert(std::pair<std::size_t, Texture2D>(2, this->_rayModel.loadTexture("assets/monster/textures/monsterGREEN.png")));
-    this->_textures.insert(std::pair<std::size_t, Texture2D>(3, this->_rayModel.loadTexture("assets/monster/textures/monsterRED.png")));
-    this->_textures.insert(std::pair<std::size_t, Texture2D>(4, this->_rayModel.loadTexture("assets/monster/textures/monsterPINK.png")));
-    this->_textures.insert(std::pair<std::size_t, Texture2D>(5, this->_rayModel.loadTexture("assets/monster/textures/monsterYELLOW.png")));
-    this->_textures.insert(std::pair<std::size_t, Texture2D>(6, this->_rayModel.loadTexture("assets/monster/textures/monsterORANGE.png")));
-    this->_textures.insert(std::pair<std::size_t, Texture2D>(7, this->_rayModel.loadTexture("assets/monster/textures/monsterWHITE.png")));
-    this->_textures.insert(std::pair<std::size_t, Texture2D>(8, this->_rayModel.loadTexture("assets/monster/textures/monsterGOLD.png")));
+    try {
+        this->_textures.insert(std::pair<std::size_t, Texture2D>(1, this->_rayModel.loadTexture("client/assets/monster/textures/monsterBLUE.png")));
+        this->_textures.insert(std::pair<std::size_t, Texture2D>(2, this->_rayModel.loadTexture("client/assets/monster/textures/monsterGREEN.png")));
+        this->_textures.insert(std::pair<std::size_t, Texture2D>(3, this->_rayModel.loadTexture("client/assets/monster/textures/monsterRED.png")));
+        this->_textures.insert(std::pair<std::size_t, Texture2D>(4, this->_rayModel.loadTexture("client/assets/monster/textures/monsterPINK.png")));
+        this->_textures.insert(std::pair<std::size_t, Texture2D>(5, this->_rayModel.loadTexture("client/assets/monster/textures/monsterYELLOW.png")));
+        this->_textures.insert(std::pair<std::size_t, Texture2D>(6, this->_rayModel.loadTexture("client/assets/monster/textures/monsterORANGE.png")));
+        this->_textures.insert(std::pair<std::size_t, Texture2D>(7, this->_rayModel.loadTexture("client/assets/monster/textures/monsterWHITE.png")));
+        this->_textures.insert(std::pair<std::size_t, Texture2D>(8, this->_rayModel.loadTexture("client/assets/monster/textures/monsterGOLD.png")));
+    } catch (const Raylibcpp::Error &e) {
+        std::cerr << e.what() << std::endl;
+        throw Error("Error: Gameplay constructor failed");
+    }
 }
 
 std::map<std::size_t, Texture2D> Gameplay::getTextures() const
