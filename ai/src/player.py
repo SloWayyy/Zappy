@@ -1,5 +1,11 @@
 import re
 import socket
+from Crypto.Cipher import AES
+from Crypto.Util.Padding import pad
+from Crypto.Util.Padding import unpad
+from Crypto.Random import get_random_bytes
+import hashlib
+import uuid
 
 from enum import Enum
 from ai.src.handle_packets import *
@@ -37,11 +43,29 @@ class Player:
         self.boss = -1
         self.pos_boss = -1
         self.nbr_ai = 0
-        self.space = False
+        self.level = 1
+        self.slot = 0
+        self.uuid = str(uuid.uuid1())
+        self.array_uuid = []
+        print("UUID: " + self.uuid)
         self.args = args
+        self.key = hashlib.sha256(self.args.name.encode()).digest()
         self.pos_bossitionned = False
         if (self.connection(args) == False):
             ErrorConnection("Error: connection failed")
+
+    def encrypt_message(self, message):
+        rand = get_random_bytes(AES.block_size)
+        cipher = AES.new(self.key, AES.MODE_CBC, rand)
+        padded_message = pad(message.encode(), AES.block_size)
+        encrypted_message = cipher.encrypt(padded_message)
+        return rand + encrypted_message
+
+    def decrypt_message(self, encrypted_message):
+        rand = encrypted_message[:AES.block_size]
+        cipher = AES.new(self.key, AES.MODE_CBC, rand)
+        decrypted_message = cipher.decrypt(encrypted_message[AES.block_size:])
+        return unpad(decrypted_message, AES.block_size).decode()
 
     def handle_header(self, x, donnees):
         if x[0][1] == EnumHeader.ASKBOSS.value and self.boss == 1:
@@ -49,6 +73,8 @@ class Player:
             self.nbr_ai += 1
             self.pos_boss = 0
         if x[0][1] == EnumHeader.IMHERE.value and self.boss == 1:
+            self.array_uuid.append(x[0][2])
+            print("array_uuid: ", self.array_uuid)
             self.nbr_ai -= 1
         if x[0][1] == EnumHeader.IMBOSS.value and self.boss == -1:
             self.boss = 0
@@ -60,7 +86,8 @@ class Player:
     def clear_data(self, donnees):
         i = 0
         while i < len(donnees):
-            x = re.findall("^message ([0-8]), (\$[0-9]\$) (\w+)$", donnees[i])
+            pattern = r'message \d+'
+            x = re.findall(pattern, donnees[i])
             if len(x):
                 donnees.remove(donnees[i])
                 i = 0
@@ -70,19 +97,36 @@ class Player:
 
     def handle_broadcast(self, donnees: str):
         for i in donnees:
-            x = re.findall("^message ([0-8]), (\$[0-9]\$) (\w+)$", i)
+            x = re.findall("^message ([0-8]), (\$[0-9]\$) (.*)$", i)
             if len(x):
                 donnees = self.handle_header(x, donnees)
         return self.clear_data(donnees)
 
+    def decrypt_donnees(self, donnees):
+        array_decrypt = []
+        for i in donnees:
+            if i.find("message") != -1:
+                array = i.split(", ")
+                if (len(array[1]) % 64) != 0:
+                    return array_decrypt.append(array[0] + ", " + array[1])
+                msg_decode = self.decrypt_message(bytes.fromhex(array[1]))
+                msg_decode = msg_decode.replace("\n", "")
+                array_decrypt.append(array[0] + ", " + msg_decode)
+            else:
+                array_decrypt.append(i)
+        return array_decrypt
+
     def wait_answer(self):
         donnees = receive_packet(self.sock)
-        self.handle_broadcast(donnees)
-        if len(donnees) <= 1:
+        array_decrypt = self.decrypt_donnees(donnees)
+        if (array_decrypt == None):
             return self.wait_answer()
-        if (donnees[0] == "dead"):
+        self.handle_broadcast(array_decrypt)
+        if len(array_decrypt) <= 1:
+            return self.wait_answer()
+        if (array_decrypt[0] == "dead"):
             raise ErrorConnection("Error: player dead")
-        return donnees
+        return array_decrypt
 
     def wait_return(self):
         donnees = receive_packet(self.sock)
@@ -95,8 +139,11 @@ class Player:
 
     def wait_broadcast(self):
         donnees = receive_packet(self.sock)
-        self.handle_broadcast(donnees)
-        if (donnees[0] == "dead"):
+        array_decrypt = self.decrypt_donnees(donnees)
+        if (array_decrypt == None):
+            return self.wait_answer()
+        self.handle_broadcast(array_decrypt)
+        if (array_decrypt[0] == "dead"):
             raise ErrorConnection("Error: player dead")
         return
 
@@ -110,7 +157,7 @@ class Player:
             raise ErrorConnection("Error: connection failed")
         print(donnees[0])
         if (int(donnees[0]) > 0):
-            self.space = True
+            self.slot = int(donnees[0])
         return False
 
     def move(self, return_only: bool = True):
@@ -154,7 +201,8 @@ class Player:
         return [int(num) for num in number]
 
     def broadcast(self, message: str, return_only: bool = False):
-        self.sock.send(("Broadcast " + message + "\n").encode())
+        message_encrypt = self.encrypt_message(message)
+        self.sock.send(("Broadcast " + message_encrypt.hex() + "\n").encode())
         if (return_only == True):
             if (self.wait_return()[0] == "ko"):
                 return False

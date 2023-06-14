@@ -1,4 +1,18 @@
-from ai.src.player import Player, EnumDirection, EnumObject, look_item
+from ai.src.player import Player, EnumDirection, EnumObject, EnumHeader
+
+def look_item(player : Player):
+    str: str = player.look()
+    str = str.replace("[ ", "")
+    str = str.replace(", ]", ", V,")
+    str = str.replace(" ]", "")
+    for i in range(0, 10):
+        str = str.replace(",,", ", V,")
+    list : list = str.split(", ")
+    list_tmp = []
+    for i in list:
+        list_tmp.append(i.split(" "))
+    foot_case = list_tmp.pop(0)
+    return list_tmp[:3], foot_case
 
 def first_pattern(list_item : list, player: Player, direction: EnumDirection):
     player.move()
@@ -41,3 +55,18 @@ def routine_boss(player: Player):
     first_pattern(list_item, player, EnumDirection.RIGHT)
     second_pattern(list_item[2:], player)
     player.take(EnumObject.FOOD.value)
+    print("inventory boss: ", player.inventory())
+    if player.level == 1:
+        player.take(EnumObject.FOOD.value)
+        player.take(EnumObject.LINEMATE.value)
+        player.take(EnumObject.DERAUMERE.value)
+        player.take(EnumObject.SIBUR.value)
+        player.take(EnumObject.MENDIANE.value)
+        player.take(EnumObject.PHIRAS.value)
+        player.take(EnumObject.THYSTAME.value)
+        player.set(EnumObject.LINEMATE, 1)
+        print("boss: ", player.look())
+        print("boss: ", player.incantation())
+        player.level += 1
+    while(1):
+        pass
