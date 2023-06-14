@@ -23,7 +23,9 @@ static void execute_task(server_t *server, task_t *task)
             task->running = false;
         }
     }
-    task->callback(server, task->client, task->arg);
+    if (task->callback != NULL) {
+        task->callback(server, task->client, task->arg);
+    }
 }
 
 void execute_tasks(server_t *server)

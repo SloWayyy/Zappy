@@ -11,6 +11,7 @@
     #include <string>
     #include <iostream>
     #include <vector>
+    #include <map>
     #include <unordered_map>
     #include "encapsulation/Raylibcpp.hpp"
 
@@ -28,14 +29,12 @@ class Map {
         Map() = default;
         Map(std::size_t height , std::size_t width);
         ~Map() = default;
-        void fillMineralPositionArray();
         void drawMineral(modelType type);
         void setHeight(std::size_t height);
         void setWidth(std::size_t width);
-        void openMap(std::string path);
         std::size_t getheight() const;
         std::size_t getwidth() const;
-        std::vector<std::string> getMap() const {return map;};
+        std::vector<std::string> &getMap() {return map;};
         modelType getmodelBanana() const {return BANANA;};
         Vector3 getcubePosition() const;
         void setcubePosition(Vector3 position);
@@ -44,6 +43,7 @@ class Map {
         void draw(Model model, Vector3 _position, float scale);
         Texture2D getLevel() const {return _level;};
         Texture2D getTeam() const {return _team;};
+        std::map<std::pair<std::size_t, std::size_t>, std::array<int, 7>> &getMapInventory() {return _mapInventory;};
         void run();
     private:
         Model _model;
@@ -59,6 +59,7 @@ class Map {
         Raylibcpp::RayCube _rayCube;
         Texture2D _level;
         Texture2D _team;
+        std::map<std::pair<std::size_t, std::size_t>, std::array<int, 7>> _mapInventory;
 };
 
 #endif /* !MAP_HPP_ */

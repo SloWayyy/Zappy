@@ -57,7 +57,7 @@ static int get_source(server_t *server, tile_t *sender_pos, player_t *target)
         return 0;
     }
     degrees = get_angle(server, sender_pos, target);
-    printf("Angle: %f\n", degrees);
+    // printf("Angle: %f\n", degrees);
     for (size_t i = 0; i < DIRECTIONS_COUNT; i++) {
         if (degrees >= DIRECTIONS[i].min && degrees < DIRECTIONS[i].max) {
             return DIRECTIONS[i].num;

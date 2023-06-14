@@ -27,7 +27,7 @@ void Window::setMusic(const std::string &musicPath)
 
 void Window::setDefaultCamera(void)
 {
-    this->setCamera({ -12.0f, 24.0f, 18.0f }, { 0.15f, 8.0f, 17.0f }, { 0.8f, 1.0f, 0.0f }, 80.0f, CAMERA_PERSPECTIVE);
+    this->setCamera({ 8.35f, 23.63f, 44.7f }, {8.51f, 10.38f, 31.53f }, { -0.006f, 1.12f, -0.57f }, 80.0f, CAMERA_PERSPECTIVE);
 }
 
 void Window::setCamera(Vector3 pos, Vector3 target, Vector3 up, float fovy, int projection)
