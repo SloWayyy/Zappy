@@ -224,7 +224,7 @@ Test(check_arguments, freq_too_big, .init=cr_redirect_stderr)
 
     memset(&options, 0, sizeof(options_t));
     cr_assert_eq(check_arguments(6, argv, &options), false);
-    cr_assert_stderr_eq_str("Error: Frequency cannot be greater than 100\n");
+    cr_assert_stderr_eq_str("Error: Frequency cannot be greater than 10000\n");
 }
 
 Test(check_arguments, invalid_names_argument, .init=cr_redirect_stderr)
