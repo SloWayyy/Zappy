@@ -101,7 +101,7 @@ void Gameplay::run(void)
         this->DisplayInformations();
     if (this->_isDisplay)  {
         this->_window->setDefaultCamera();
-        this->_display.run(std::map<std::size_t, std::shared_ptr<Character>>(this->_characters));
+        this->_display.run(std::map<std::size_t, std::shared_ptr<Character>>(this->_characters), _map);
     }
 }
 
