@@ -173,7 +173,7 @@ void Gameplay::setDisplayMode(void)
 
 void Gameplay::handleInput(void)
 {
-    if (this->_rayWindow.isKeyDown(KEY_ESCAPE))
+    if (this->_rayWindow.isKeyDown(KEY_ESCAPE) || _rayWindow.windowShouldClose())
         this->_window->setExit(true);
     if (this->_rayWindow.isKeyReleased(KEY_F1)) {
         this->setCurrentCharacter();
