@@ -66,6 +66,5 @@ def routine_ai(player: Player):
         player.set(EnumObject.LINEMATE, 1)
         print("ai: ", player.look())
         print("ai: ", player.incantation())
-        player.level += 1
     while(1):
         pass
