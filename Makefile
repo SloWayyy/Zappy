@@ -9,6 +9,8 @@ NAME_AI		=	zappy_ai
 NAME_CLIENT	=	zappy_gui
 NAME_SERVER	=	zappy_server
 
+all: $(NAME_AI) $(NAME_CLIENT) $(NAME_SERVER)
+
 $(NAME_AI):
 	$(MAKE) -C ai/
 	cp ai/$(NAME_AI) .
@@ -22,8 +24,6 @@ $(NAME_SERVER):
 	cp server/$(NAME_SERVER) .
 
 ai: $(NAME_AI)
-
-all: $(NAME_AI) $(NAME_CLIENT) $(NAME_SERVER)
 
 ci:
 	$(MAKE) $(NAME_AI)
