@@ -22,7 +22,6 @@ Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window), _current
     // this->initPlayer({7 * 4.0f, 1.38f, 8 * 4.0f}, 7, 2, 9, "Team1", _textures);
     // this->initPlayer({8 * 4.0f, 1.38f, 8 * 4.0f}, 8, 2, 10, "Team2", _textures);
     // this->initEgg(3, 2 * 3 * 4.0f, 8 * 4.0f);
-    this->_currentCharacterIndex = _characters.begin()->first;
     this->_map = std::make_shared<Map>(10, 10);
 }
 
@@ -105,26 +104,37 @@ void Gameplay::run(void)
     }
 }
 
-void Gameplay::setCurrentCharacter()
+bool Gameplay::setCurrentCharacter()
 {
     bool isSet = false;
     std::size_t i = 0;
+    std::size_t size = this->_characters.size();
+    int index = -1;
 
     for (auto &character : this->_characters)
-        i = character.first;
-    for (auto &character : this->_characters) {
-        if (isSet == true) {
-            this->_currentCharacterIndex = character.first;
-            return;
-        }
-        if (character.first == this->_currentCharacterIndex) {
+        if (character.first == this->_currentCharacterIndex)
+            index = i;
+    if (size == 0)
+        return false;
+    if (index == -1) {
+        for (auto &character : this->_characters) {
             this->_currentCharacter = character.second;
             this->_currentCharacterIndex = character.first;
-            isSet = true;
+            return true;
         }
     }
-    if (this->_currentCharacterIndex == i)
-        this->_currentCharacterIndex = _characters.begin()->first;
+    for (auto &character : this->_characters) {
+        if (isSet == true) {
+            this->_currentCharacter = character.second;
+            this->_currentCharacterIndex = character.first;
+            return true;
+        }
+        if (character.first == this->_currentCharacterIndex)
+            isSet = true;
+    }
+    this->_currentCharacterIndex = _characters.begin()->first;
+    this->_currentCharacter = _characters.begin()->second;
+    return true;
 }
 
 void Gameplay::DisplayInformations(void)
@@ -181,9 +191,12 @@ void Gameplay::handleInput(void)
         this->setCameraType(CAMERA_FIRST);
     }
     if (this->_rayWindow.isKeyReleased(KEY_F2)) {
-        this->setCurrentCharacter();
-        this->_window->setCamera({_currentCharacter->getPosition().x, _currentCharacter->getPosition().y + (float)4.0, _currentCharacter->getPosition().z - (float)4.0}, { 0.6f, -4.5f, 60.0f }, { 0.0f, 1.0f, 0.0f }, 45.0f, CAMERA_PERSPECTIVE);
-        this->setCameraType(CAMERA_SECOND);
+        if (!_characters.empty()) {
+            if (this->setCurrentCharacter() == false)
+                return;
+            this->_window->setCamera({_currentCharacter->getPosition().x, _currentCharacter->getPosition().y + (float)4.0, _currentCharacter->getPosition().z - (float)4.0}, { 0.6f, -4.5f, 60.0f }, { 0.0f, 1.0f, 0.0f }, 45.0f, CAMERA_PERSPECTIVE);
+            this->setCameraType(CAMERA_SECOND);
+        }
     }
     if (this->_rayWindow.isKeyReleased(KEY_F3)) {
         this->_window->setDefaultCamera();
