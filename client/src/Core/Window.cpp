@@ -17,6 +17,8 @@ Window::Window(std::size_t height, std::size_t width, std::size_t fps) : _window
         this->setMusic("client/assets/song/gameSong.mp3");
         this->_colorBackground = SKYBLUE;
         this->_clock = 0;
+        _coefx = 1.0f;
+        _coefy = 1.0f;
     } catch (const Raylibcpp::Error &e) {
         std::cerr << e.what() << std::endl;
         exit (84);
@@ -32,7 +34,7 @@ void Window::setMusic(const std::string &musicPath)
 
 void Window::setDefaultCamera(void)
 {
-    this->setCamera({ 8.35f, 23.63f, 44.7f }, {8.51f, 10.38f, 31.53f }, { -0.006f, 1.12f, -0.57f }, 80.0f, CAMERA_PERSPECTIVE);
+    this->setCamera({ 16.55f /  _coefx, 23.63f / _coefx, 44.7f / _coefy}, {16.71f / _coefx, 10.38f / _coefx, 31.53f / _coefy}, { -0.006f, 1.12f, -0.57f }, 80.0f, CAMERA_PERSPECTIVE);
 }
 
 void Window::setCamera(Vector3 pos, Vector3 target, Vector3 up, float fovy, int projection)
@@ -47,6 +49,10 @@ void Window::setCamera(Vector3 pos, Vector3 target, Vector3 up, float fovy, int 
 void Window::updateCamera()
 {
     this->_rayWindow.updateCamera(&this->_camera, 1);
+    std::cout << "Camera position: " << this->_camera.position.x << ", " << this->_camera.position.y << ", " << this->_camera.position.z << std::endl;
+    std::cout << "Camera target: " << this->_camera.target.x << ", " << this->_camera.target.y << ", " << this->_camera.target.z << std::endl;
+    std::cout << "Camera up: " << this->_camera.up.x << ", " << this->_camera.up.y << ", " << this->_camera.up.z << std::endl;
+    std::cout << std::endl << std::endl;
 }
 
 void Window::handleInput()
@@ -170,4 +176,14 @@ void Window::setClock(double clock)
 double Window::getClock(void) const
 {
     return (this->_clock);
+}
+
+void Window::setCoefx(int coefx)
+{
+    _coefx = 10.0f / coefx * 1.0f;
+}
+
+void Window::setCoefy(int coefy)
+{
+    _coefy = 10.0f / coefy * 1.0f;
 }

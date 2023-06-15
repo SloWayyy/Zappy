@@ -53,6 +53,8 @@ class Window {
         Music getMusic(void) const;
         double getClock(void) const;
         void setClock(double clock);
+        void setCoefx(int coefx);
+        void setCoefy(int coefy);
     private:
         windowParams _windowParam;
         double _clock;
@@ -64,6 +66,8 @@ class Window {
         Raylibcpp::RayClock _rayClock;
         Color _colorBackground;
         Music _music;
+        float _coefx;
+        float _coefy;
 };
 
 #endif /* !WINDOW_HPP_ */
