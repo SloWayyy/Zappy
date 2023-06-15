@@ -125,11 +125,11 @@ void Core::setMapSize(std::vector<std::string> &args)
 
 void Core::setTileContent(std::vector<std::string> &args)
 {
-    try {
-        std::array <int, 7> inventory = {std::stoi(args[3]), std::stoi(args[4]), std::stoi(args[5]), std::stoi(args[6]), std::stoi(args[7]), std::stoi(args[8]), std::stoi(args[9])};
+    std::array <int, 7> inventory = {std::stoi(args[3]), std::stoi(args[4]), std::stoi(args[5]), std::stoi(args[6]), std::stoi(args[7]), std::stoi(args[8]), std::stoi(args[9])};
+
+    if (this->_gameplay->getMap()->getMapInventory().find({std::stoi(args[1]), std::stoi(args[2])}) != this->_gameplay->getMap()->getMapInventory().end()) {
         this->_gameplay->getMap()->getMapInventory()[{std::stoi(args[1]), std::stoi(args[2])}] = inventory;
-    } catch (const std::exception &e) {
-        std::array <int, 7> inventory = {std::stoi(args[3]), std::stoi(args[4]), std::stoi(args[5]), std::stoi(args[6]), std::stoi(args[7]), std::stoi(args[8]), std::stoi(args[9])};
+    } else {
         this->_gameplay->getMap()->getMapInventory().insert({{std::stoi(args[1]), std::stoi(args[2])}, inventory});
     }
 }
@@ -146,44 +146,36 @@ void Core::createNewPosition(std::vector<std::string> &args)
 
 void Core::setPlayerPosition(std::vector<std::string> &args)
 {
-    try {
-        this->_gameplay->getCharacters()[std::stoi(args[1])]->setPos(std::stof(args[2]) * 4.0f, std::stof(args[3]) * 4.0f, std::stof(args[4]));
-    } catch (const std::exception &e) {
-        std::cerr << e.what() << std::endl;
-    }
+    if (this->_gameplay->getCharacters().find(std::stoi(args[1])) == this->_gameplay->getCharacters().end())
+        return; 
+    this->_gameplay->getCharacters()[std::stoi(args[1])]->setPos(std::stof(args[2]) * 4.0f, std::stof(args[3]) * 4.0f, std::stof(args[4]));
 }
 
 void Core::setPlayerLevel(std::vector<std::string> &args)
 {
-    try {
-        this->_gameplay->getCharacters()[std::stoi(args[1])]->setLevel(std::stoi(args[2]));
-    } catch (const std::exception &e) {
-        std::cerr << e.what() << std::endl;
-    }
+    if (this->_gameplay->getCharacters().find(std::stoi(args[1])) == this->_gameplay->getCharacters().end())
+        return;
+    this->_gameplay->getCharacters()[std::stoi(args[1])]->setLevel(std::stoi(args[2]));
 }
 
 void Core::setPlayerInventory(std::vector<std::string> &args)
 {
-    try {
-        this->_gameplay->getCharacters()[std::stoi(args[1])]->getInventory()->setFood(std::stoi(args[4]));
-        this->_gameplay->getCharacters()[std::stoi(args[1])]->getInventory()->setLinemate(std::stoi(args[5]));
-        this->_gameplay->getCharacters()[std::stoi(args[1])]->getInventory()->setDeraumere(std::stoi(args[6]));
-        this->_gameplay->getCharacters()[std::stoi(args[1])]->getInventory()->setSibur(std::stoi(args[7]));
-        this->_gameplay->getCharacters()[std::stoi(args[1])]->getInventory()->setMendiane(std::stoi(args[8]));
-        this->_gameplay->getCharacters()[std::stoi(args[1])]->getInventory()->setPhiras(std::stoi(args[9]));
-        this->_gameplay->getCharacters()[std::stoi(args[1])]->getInventory()->setThystame(std::stoi(args[10]));
-    } catch (const std::exception &e) {
-        std::cerr << e.what() << std::endl;
-    }
+    if (this->_gameplay->getCharacters().find(std::stoi(args[1])) == this->_gameplay->getCharacters().end())
+        return;
+    this->_gameplay->getCharacters()[std::stoi(args[1])]->getInventory()->setFood(std::stoi(args[4]));
+    this->_gameplay->getCharacters()[std::stoi(args[1])]->getInventory()->setLinemate(std::stoi(args[5]));
+    this->_gameplay->getCharacters()[std::stoi(args[1])]->getInventory()->setDeraumere(std::stoi(args[6]));
+    this->_gameplay->getCharacters()[std::stoi(args[1])]->getInventory()->setSibur(std::stoi(args[7]));
+    this->_gameplay->getCharacters()[std::stoi(args[1])]->getInventory()->setMendiane(std::stoi(args[8]));
+    this->_gameplay->getCharacters()[std::stoi(args[1])]->getInventory()->setPhiras(std::stoi(args[9]));
+    this->_gameplay->getCharacters()[std::stoi(args[1])]->getInventory()->setThystame(std::stoi(args[10]));
 }
 
 void Core::setPlayerDeath(std::vector<std::string> &args)
 {
-    try {
-        this->_gameplay->getCharacters().erase(std::stoi(args[1]));
-    } catch (const std::exception &e) {
-        std::cerr << e.what() << std::endl;
-    }
+    if (this->_gameplay->getCharacters().find(std::stoi(args[1])) == this->_gameplay->getCharacters().end())
+        return;
+    this->_gameplay->getCharacters().erase(std::stoi(args[1]));
 }
 
 void Core::setWinner(std::vector<std::string> &args)
@@ -199,9 +191,7 @@ void Core::createNewEgg(std::vector<std::string> &args)
 
 void Core::destroyEgg(std::vector<std::string> &args)
 {
-    try {
-        this->_gameplay->getEggs().erase(std::stoi(args[1]));
-    } catch (const std::exception &e) {
-        std::cerr << e.what() << std::endl;
-    }
+    if (this->_gameplay->getEggs().find(std::stoi(args[1])) == this->_gameplay->getEggs().end())
+        return;
+    this->_gameplay->getEggs().erase(std::stoi(args[1]));
 }

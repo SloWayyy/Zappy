@@ -1,6 +1,6 @@
-from asyncio import sleep
-from ai.src.player import Player, EnumDirection, EnumObject, EnumHeader
+from ai.src.player import Player, EnumDirection
 from ai.src.players.routine_boss import look_item
+from ai.src.ordre.dump_item import dump_item
 
 def first_pattern_ai(list_item: list, player: Player):
     player.move()
@@ -47,24 +47,37 @@ def look_aroud_ai(player: Player):
     return list_item, foot_case
 
 def return_to_boss(player: Player):
-    player.turn(EnumDirection.LEFT)
-    player.move()
-    player.turn(EnumDirection.RIGHT)
-    player.move()
-    player.move()
+    if (player.turn(EnumDirection.LEFT) == False):
+        return False
+    if (player.move() == False):
+        return False
+    if (player.turn(EnumDirection.RIGHT) == False):
+        return False
+    if (player.move() == False):
+        return False
+    if (player.move() == False):
+        return False
 
-def routine_ai(player: Player):
-    list_item, foot_case = look_aroud_ai(player)
-    for i in foot_case:
-        player.take(i)
+def look_this_orientation(player: Player, orientation: int):
+    if orientation == 3:
+        return (player.turn(EnumDirection.LEFT))
+    elif orientation == 5:
+        if (player.turn(EnumDirection.LEFT) == False):
+            return False
+        return (player.turn(EnumDirection.LEFT))
+    elif orientation == 7:
+        return (player.turn(EnumDirection.RIGHT))
+    else:
+        return True
+
+def square_collect(player: Player, orientation: int):
+    list_item, _ = look_aroud_ai(player)
+    if (look_this_orientation(player, orientation) == False):
+        return False
     list_item.reverse()
     first_pattern_ai(list_item, player)
     second_pattern_ai(list_item[2:], player)
-    return_to_boss(player)
-    print("inventory ai: ", player.inventory())
-    if player.level == 1:
-        player.set(EnumObject.LINEMATE, 1)
-        print("ai: ", player.look())
-        print("ai: ", player.incantation())
-    while(1):
-        pass
+    if (return_to_boss(player) == False):
+        return False
+    dump_item(player)
+    print("(AI) je suis arrivé au boss et j'ai déposé mes items")
