@@ -1,20 +1,21 @@
 import socket
 
-from ai.src.player import Player
+from ai.src.player import Player, EnumBoss, EnumHeader, EnumOrder
 from ai.src.game_start import find_boss
-from ai.src.order.square_collect import square_collect
-from ai.src.order.take_around import take_around
-from ai.src.order.join_boss import join_boss
+from ai.src.player import ALL
+
+def boss_routine(player: Player):
+    for i in range(0, len(player.array_uuid)):
+        player.broadcast(player.uuid + " " + EnumHeader.ORDER.value + " " + player.array_uuid[i] + " " + EnumOrder.JOIN_BOSS.value, False)
+    while True:
+        player.broadcast(player.uuid + " " + EnumHeader.IMBOSS.value + " " + ALL + " " + "JAJAJA", False)
 
 def game_loop(sock: socket.socket, args):
     player = Player(sock, args)
     find_boss(player)
-    join_boss(player)
-    if player.boss == 1:
-        take_around(player)
-        pass
-    else:
-        square_collect(player, 0)
-        pass
-    print("j'ai fait une incantation :", player.incantation())
+    if player.boss == EnumBoss.IMNOT.value:
+        while True:
+            player.wait_broadcast()
+    if player.boss == EnumBoss.IM.value:
+        boss_routine(player)
     sock.close()

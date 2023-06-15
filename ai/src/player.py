@@ -1,17 +1,23 @@
 import re
 import socket
 from Crypto.Cipher import AES
-from Crypto.Util.Padding import pad
-from Crypto.Util.Padding import unpad
+from Crypto.Util.Padding import pad, unpad
 from Crypto.Random import get_random_bytes
 import hashlib
 import uuid
 
 from enum import Enum
 from ai.src.handle_packets import *
+from ai.src.order.dump_item import *
+from ai.src.order.join_boss import *
+from ai.src.order.square_collect import *
+from ai.src.order.take_around import *
 
 class ErrorConnection(Exception):
     pass
+
+ALL = "00000000-0000-0000-0000-000000000000"
+UUID_REGEX = "([0-9a-fA-F]{8}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{12})"
 
 class EnumObject (Enum):
     FOOD = "food"
@@ -23,7 +29,7 @@ class EnumObject (Enum):
     THYSTAME = "thystame"
 
 class EnumBoss (Enum):
-    IAM = 1
+    IM = 1
     IMNOT = 0
     IDK = -1
 
@@ -31,10 +37,20 @@ class EnumHeader (Enum):
     ASKBOSS = "$1$"
     IMBOSS = "$2$"
     IMHERE = "$3$"
+    ORDER = "$4$"
+
 
 class EnumDirection(Enum):
     RIGHT = 0
     LEFT = 1
+
+class EnumOrder(Enum):
+    DUMP_ITEM = "0"
+    JOIN_BOSS = "1"
+    SQUARE_COLLECT = "2"
+    TAKE_AROUND = "3"
+
+ORDER_FUNC = [dump_item, join_boss, square_collect, take_around]
 
 class Player:
 
@@ -42,10 +58,10 @@ class Player:
         self.sock = sock
         self.boss = -1
         self.pos_boss = -1
-        self.nbr_ai = 0
         self.level = 1
         self.slot = 0
         self.uuid = str(uuid.uuid1())
+        self.boss_uuid = None
         self.array_uuid = []
         print("UUID: " + self.uuid)
         self.args = args
@@ -67,23 +83,29 @@ class Player:
         decrypted_message = cipher.decrypt(encrypted_message[AES.block_size:])
         return unpad(decrypted_message, AES.block_size).decode()
 
-    def handle_header(self, x, donnees):
-        if x[0][1] == EnumHeader.ASKBOSS.value and self.boss == 1:
-            self.broadcast(EnumHeader.IMBOSS.value + " IMBOSS")
-            self.nbr_ai += 1
+    # x[0][0] = pos, x[0][1] = sender uuid, x[0][2] = header, x[0][3] = receiver uuid, x[0][4] = message
+
+    def execute_order(self, x):
+        ORDER_FUNC[int(x[0][4])](self)
+        
+
+    def handle_header(self, x):
+        if x[0][2] == EnumHeader.ASKBOSS.value and self.boss == EnumBoss.IM.value:
+            self.broadcast(self.uuid + " " + EnumHeader.IMBOSS.value + " " + ALL + " IMBOSS")
+            self.array_uuid.append(x[0][1])
             self.pos_boss = 0
-        if x[0][1] == EnumHeader.IMHERE.value and self.boss == 1:
-            self.array_uuid.append(x[0][2])
-            print("array_uuid: ", self.array_uuid)
-            self.nbr_ai -= 1
-        if x[0][1] == EnumHeader.IMBOSS.value and self.boss == -1:
-            self.boss = 0
+        if x[0][2] == EnumHeader.IMBOSS.value and self.boss == EnumBoss.IDK.value:
+            self.boss = EnumBoss.IMNOT.value
+            self.boss_uuid = x[0][1]
             self.pos_boss = int(x[0][0])
-        if x[0][1] == EnumHeader.IMBOSS.value and self.boss == 0:
+        if x[0][2] == EnumHeader.IMBOSS.value and self.boss == EnumBoss.IMNOT.value:
             self.pos_boss = int(x[0][0])
-        return donnees
+        if x[0][2] == EnumHeader.ORDER.value and self.boss == EnumBoss.IMNOT.value:
+            self.execute_order(x)
 
     def clear_data(self, donnees):
+        if donnees == None:
+            return donnees
         i = 0
         while i < len(donnees):
             pattern = r'message \d+'
@@ -97,9 +119,9 @@ class Player:
 
     def handle_broadcast(self, donnees: str):
         for i in donnees:
-            x = re.findall("^message ([0-8]), (\$[0-9]\$) (.*)$", i)
-            if len(x):
-                donnees = self.handle_header(x, donnees)
+            x = re.findall("^message ([0-8]), " + UUID_REGEX + " (\$[0-9]\$) " + UUID_REGEX + " (.*)$", i)
+            if len(x) and (x[0][3] == self.uuid or x[0][3] == ALL):
+                donnees = self.handle_header(x)
         return self.clear_data(donnees)
 
     def decrypt_donnees(self, donnees):
@@ -107,7 +129,7 @@ class Player:
         for i in donnees:
             if i.find("message") != -1:
                 array = i.split(", ")
-                if (len(array[1]) % 64) != 0:
+                if (len(array[1]) % 16) != 0:
                     return array_decrypt.append(array[0] + ", " + array[1])
                 msg_decode = self.decrypt_message(bytes.fromhex(array[1]))
                 msg_decode = msg_decode.replace("\n", "")
@@ -119,6 +141,7 @@ class Player:
     def wait_answer(self):
         donnees = receive_packet(self.sock)
         array_decrypt = self.decrypt_donnees(donnees)
+        # print ("receive", array_decrypt)
         if (array_decrypt == None):
             return self.wait_answer()
         self.handle_broadcast(array_decrypt)
@@ -148,11 +171,11 @@ class Player:
         return
 
     def connection(self, args):
-        donnees = self.wait_answer()
+        donnees = self.wait_return()
         if (donnees[0] == "WELCOME"):
             self.sock.send((args.name + "\n").encode())
             print("Envoi du nom de l'équipe... ({})".format(args.name))
-        donnees = self.wait_answer()
+        donnees = self.wait_return()
         if (donnees[0] == "ko"):
             raise ErrorConnection("Error: connection failed")
         print(donnees[0])
