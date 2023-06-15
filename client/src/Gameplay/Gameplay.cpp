@@ -84,7 +84,6 @@ void Gameplay::drawTextOnScreen(std::string text, int fontSize, int posX, int po
 
 void Gameplay::run(void)
 {
-    this->_map->run();
     this->drawMap();
     this->setDisplayMode();
     if (!this->_isDisplay) {
@@ -186,9 +185,12 @@ void Gameplay::handleInput(void)
     if (this->_rayWindow.isKeyDown(KEY_ESCAPE))
         this->_window->setExit(true);
     if (this->_rayWindow.isKeyReleased(KEY_F1)) {
-        this->setCurrentCharacter();
-        this->_window->setCamera({_currentCharacter->getPosition().x, _currentCharacter->getPosition().y + (float)2.0, _currentCharacter->getPosition().z - (float)0.5}, { 10.0f, 2.0f, 10.0f }, { 0.0f, 1.0f, 0.0f }, 45.0f, CAMERA_PERSPECTIVE);
-        this->setCameraType(CAMERA_FIRST);
+        if (!_characters.empty()) {
+            if (this->setCurrentCharacter() == false)
+                return;
+            this->_window->setCamera({_currentCharacter->getPosition().x, _currentCharacter->getPosition().y + (float)2.0, _currentCharacter->getPosition().z - (float)0.5}, { 10.0f, 2.0f, 10.0f }, { 0.0f, 1.0f, 0.0f }, 45.0f, CAMERA_PERSPECTIVE);
+            this->setCameraType(CAMERA_FIRST);
+        }
     }
     if (this->_rayWindow.isKeyReleased(KEY_F2)) {
         if (!_characters.empty()) {
@@ -211,12 +213,20 @@ void Gameplay::drawMap(void)
     std::size_t height = this->_map->getheight();
     std::size_t width = this->_map->getwidth();
 
+    if (this->_window->getIsChanged() == true) {
+        this->_window->setIsChanged(false);
+        if (this->_window->getIsNight() == true)
+            this->_map->setNight();
+        else
+            this->_map->setMorning();
+    }
+    this->_map->draw(this->_map->getmodelSkybox(), {60.0f, -0.5f, 60.0f}, 150.0f);
     for (std::size_t y = 0; y < height; y++) {
         for (std::size_t x = 0; x < width; x++) {
             this->_map->setcubePosition({ _x, -0.45f, _y });
             this->_map->draw(this->_map->getmodel(), this->_map->getcubePosition(), 2.0f);
             this->_map->draw(this->_map->getmodelPlatform(), {this->_map->getcubePosition().x, this->_map->getcubePosition().y + (float)1.6, this->_map->getcubePosition().z}, 0.02f);
-        _x += 4.0f;
+            _x += 4.0f;
         }
         _x = 0.0f;
         _y += 4.0f;
