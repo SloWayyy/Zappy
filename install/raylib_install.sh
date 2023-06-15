@@ -6,7 +6,7 @@ fi
 echo "Installing RAYLIB for Fedora..."
 
 # Install dependencies
-sudo pip install pycryptodome
+pip install pycryptodome
 dnf install -y cmake make gcc g++ libX11-devel libXrandr-devel libXcursor-devel libatomic libXi-devel mesa-libGL-devel mesa-libGLU-devel
 
 # Download RAYLIB and unzip
@@ -19,8 +19,8 @@ cd raylib-master/src
 # Install RAYLIB
 make PLATFORM=PLATFORM_DESKTOP
 make PLATFORM=PLATFORM_DESKTOP RAYLIB_LIBTYPE=SHARED
-sudo make install
-sudo make install RAYLIB_LIBTYPE=SHARED
+make install
+make install RAYLIB_LIBTYPE=SHARED
 
 # Remove temp files
 cd ../../
