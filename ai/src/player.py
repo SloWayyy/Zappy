@@ -274,10 +274,14 @@ class Player:
             if (tmp == "ko"):
                 return False
             else:
+                array = tmp.split(": ")
+                self.level = array[1]
                 return tmp
         else:
             tmp = self.wait_answer()[0]
             if (tmp == "ko"):
                 return False
             else:
+                array = tmp.split(": ")
+                self.level = array[1]
                 return tmp
