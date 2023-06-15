@@ -42,6 +42,7 @@ std::vector<std::string> zappy::sdk::ACommunicationModule::readBuffer() {
     this->_tmp.clear();
     std::vector<std::string> queuecommand;
     std::string tempo;
+    int i = 0;
 
     FD_ZERO(&this->reads_set);
     FD_SET(this->_socketFd, &this->reads_set);
@@ -51,15 +52,14 @@ std::vector<std::string> zappy::sdk::ACommunicationModule::readBuffer() {
         throw CommunicationException("select failed");
     }
     if (FD_ISSET(this->_socketFd, &this->reads_set)) {
-        if (read(this->_socketFd, buffer, MAX_BUFFER_SIZE) <= 0) {
+        i = read(this->_socketFd, buffer, MAX_BUFFER_SIZE);
+        if (i <= 0) {
             return queuecommand;
         }
+        buffer[i] = '\0';
         this->_readBuffer = this->_saveNextBuffer + buffer;
         this->_tmp = this->_readBuffer.substr(0, this->_readBuffer.find_last_of('\n') + 1);
         this->_saveNextBuffer = this->_readBuffer.substr(this->_readBuffer.find_last_of('\n') + 1);
-        if (this->_saveNextBuffer.empty()) {
-            this->_readBuffer.clear();
-        }
     }
     if (!this->_writeBuffer.empty()) {
         write(this->_socketFd, this->_writeBuffer.c_str(), this->_writeBuffer.size());
