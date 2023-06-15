@@ -40,7 +40,7 @@ Core::Core(int port, std::string ip)
 void Core::run(void)
 {
     while (!this->_window->getExit()) {
-        this->_rayWindow.clearBackground(this->_window->getColorBackground());
+        this->_rayWindow.clearBackground(BLACK);
         this->_rayWindow.beginDrawing();
         auto i = this->network->readBuffer();
         for (auto &command : i) {

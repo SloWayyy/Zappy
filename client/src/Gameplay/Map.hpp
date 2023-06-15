@@ -40,7 +40,7 @@ class Map {
         void setWidth(std::size_t width);
         std::size_t getheight() const;
         std::size_t getwidth() const;
-        std::vector<std::string> &getMap() {return map;};
+        std::vector<std::string> &getMap();
         modelType getmodelBanana() const {return BANANA;};
         modelType getmodelLinemate() const {return LINEMATE;};
         modelType getmodelDeraumere() const {return DERAUMERE;};
@@ -50,18 +50,23 @@ class Map {
         modelType getmodelThystame() const {return THYSTAME;};
         Vector3 getcubePosition() const;
         void setcubePosition(Vector3 position);
-        Model getmodel() const {return _model;};
-        Model getmodelPlatform() const {return _modelPlatform;};
+        Model getmodel() const;
+        Model getmodelPlatform() const;
+        Model getmodelSkybox() const;
         void draw(Model model, Vector3 _position, float scale);
-        Texture2D getLevel() const {return _level;};
-        Texture2D getTeam() const {return _team;};
-        std::map<std::pair<std::size_t, std::size_t>, std::array<int, 7>> &getMapInventory() {return _mapInventory;};
-        void run();
+        Texture2D getLevel() const;
+        Texture2D getTeam() const;
+        void setNight();
+        void setMorning();
+        std::map<std::pair<std::size_t, std::size_t>, std::array<int, 7>> &getMapInventory();
     private:
         Model _model;
         Texture2D _texture;
         Model _modelPlatform;
         Texture2D _texturePlatform;
+        Model _modelSkybox;
+        Texture2D _textureSkyboxMorning;
+        Texture2D _textureSkyboxNight;
         std::vector<std::string> map;
         mapSize _mapSize;
         Vector3 _cubePosition;

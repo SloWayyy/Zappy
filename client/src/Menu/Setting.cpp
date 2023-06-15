@@ -70,19 +70,23 @@ void Setting::handleInput()
         if (x >= this->_buttonsScreen[5].getCoord().x && x <= this->_buttonsScreen[5].getCoord().x + this->_buttonsScreen[5].getRectButton().width && y >= this->_buttonsScreen[5].getCoord().y && y <= this->_buttonsScreen[5].getCoord().y + this->_buttonsScreen[5].getRectButton().height) {
             if (this->_text[6]._string == "Jour") {
                 this->_text[6]._string = "Nuit";
-                this->_window->setColorBackground(BLACK);
+                this->_window->setIsNight(true);
+                this->_window->setIsChanged(true);
             } else {
                 this->_text[6]._string = "Jour";
-                this->_window->setColorBackground(SKYBLUE);
+                this->_window->setIsNight(false);
+                this->_window->setIsChanged(true);
             }
         }
         if (x >= this->_buttonsScreen[6].getCoord().x && x <= this->_buttonsScreen[6].getCoord().x + this->_buttonsScreen[6].getRectButton().width && y >= this->_buttonsScreen[6].getCoord().y && y <= this->_buttonsScreen[6].getCoord().y + this->_buttonsScreen[6].getRectButton().height) {
             if (this->_text[6]._string == "Jour") {
                 this->_text[6]._string = "Nuit";
-                this->_window->setColorBackground(BLACK);
+                this->_window->setIsNight(true);
+                this->_window->setIsChanged(true);
             } else {
                 this->_text[6]._string = "Jour";
-                this->_window->setColorBackground(SKYBLUE);
+                this->_window->setIsNight(false);
+                this->_window->setIsChanged(true);
             }
         }
     }
