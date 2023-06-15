@@ -11,11 +11,11 @@
 #include <sys/select.h>
 #include <unistd.h>
 
+#include "buffer.h"
 #include "constants.h"
 #include "graphical.h"
 #include "player.h"
 #include "types.h"
-#include "util.h"
 
 static void handle_unknown(server_t *server, client_t *client, char *line)
 {

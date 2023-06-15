@@ -12,7 +12,9 @@
 #include <sys/queue.h>
 
 #include "player.h"
+#include "resources.h"
 #include "types.h"
+#include "constants.h"
 
 static bool init_command_queue(player_t *new)
 {

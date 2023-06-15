@@ -8,11 +8,12 @@
 #include <stddef.h>
 #include <string.h>
 
+#include "buffer.h"
 #include "constants.h"
 #include "graphical.h"
+#include "resources.h"
 #include "server.h"
 #include "types.h"
-#include "util.h"
 
 static void send_inventory(client_t *client, player_t *player)
 {

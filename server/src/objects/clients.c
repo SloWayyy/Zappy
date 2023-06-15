@@ -10,10 +10,11 @@
 #include <stdlib.h>
 #include <sys/queue.h>
 
+#include "buffer.h"
 #include "constants.h"
 #include "graphical.h"
 #include "objects.h"
-#include "server.h"
+#include "tasks.h"
 #include "types.h"
 
 static bool init_buffers(client_t *client)

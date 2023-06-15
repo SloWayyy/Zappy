@@ -30,13 +30,6 @@ void refresh_timeout(server_t *server);
 void init_tick(server_t *server, long frequence);
 bool tick(server_t *server);
 
-task_t *register_task(server_t *server, client_t *client, \
-    task_function_t *callback);
-void setup_task(task_t *task, task_function_t *callback, void *arg);
-void schedule_task(task_t *task, server_t *server, size_t delay, int exec);
-void cancel_client_tasks(server_t *server, client_t *client);
-void execute_tasks(server_t *server);
-
 void refill_callback(server_t *server, client_t *client, void *arg);
 void refill_resources(server_t *server, double total);
 

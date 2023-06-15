@@ -9,11 +9,13 @@
 #include <stddef.h>
 #include <sys/queue.h>
 
+#include "buffer.h"
 #include "constants.h"
 #include "player.h"
-#include "server.h"
+#include "tasks.h"
 #include "types.h"
 #include "util.h"
+#include "resources.h"
 
 static void dump_tile(tile_t *tile, client_t *client)
 {
@@ -27,7 +29,7 @@ static void dump_tile(tile_t *tile, client_t *client)
     for (size_t i = 0; i < RESOURCES_TYPES_QUANTITY; i++) {
         for (size_t j = 0; j < tile->resources[i]; j++) {
             append_buffer(client->buffer_out, "%s%s", \
-                separator, resources_map[i]);
+                separator, RESOURCES[i].name);
             separator = " ";
         }
     }

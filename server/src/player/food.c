@@ -9,10 +9,12 @@
 #include <stddef.h>
 #include <sys/queue.h>
 
+#include "buffer.h"
 #include "constants.h"
 #include "player.h"
+#include "resources.h"
+#include "tasks.h"
 #include "types.h"
-#include "util.h"
 
 void food_callback(UNUSED server_t *server, client_t *client, UNUSED void *arg)
 {

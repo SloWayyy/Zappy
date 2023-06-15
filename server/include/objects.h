@@ -22,7 +22,4 @@ void free_teams(server_t *server);
 player_t *new_player(void);
 void free_player(player_t *player);
 
-buffer_t *new_buffer(void);
-void free_buffer(buffer_t *buffer);
-
 #endif

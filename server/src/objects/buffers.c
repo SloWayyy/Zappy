@@ -9,8 +9,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "buffer.h"
 #include "constants.h"
-#include "types.h"
 
 buffer_t *new_buffer(void)
 {

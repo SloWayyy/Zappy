@@ -9,22 +9,23 @@
 #include <stddef.h>
 #include <sys/queue.h>
 
+#include "buffer.h"
 #include "constants.h"
 #include "player.h"
-#include "server.h"
+#include "resources.h"
+#include "tasks.h"
 #include "types.h"
-#include "util.h"
 
 static void inventory_callback(UNUSED server_t *server, client_t *client, \
     UNUSED void *arg)
 {
     append_buffer(client->buffer_out, "[");
-    for (int i = 0; i < RESOURCES_TYPES_QUANTITY; i++) {
+    for (size_t i = 0; i < RESOURCES_TYPES_QUANTITY; i++) {
         if (i > 0) {
             append_buffer(client->buffer_out, ", ");
         }
         append_buffer(client->buffer_out, "%s %d", \
-            resources_map[i], client->player->inventory[i]);
+            RESOURCES[i].name, client->player->inventory[i]);
     }
     append_buffer(client->buffer_out, "]%s", LINE_BREAK);
     flush_command(server, client);

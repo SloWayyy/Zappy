@@ -7,10 +7,10 @@
 
 #include <string.h>
 
+#include "buffer.h"
 #include "constants.h"
 #include "graphical.h"
 #include "types.h"
-#include "util.h"
 
 void send_team_names(server_t *server, client_t *client)
 {

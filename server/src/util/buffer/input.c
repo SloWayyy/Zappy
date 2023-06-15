@@ -10,9 +10,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "buffer.h"
 #include "constants.h"
-#include "types.h"
-#include "util.h"
 
 static bool remove_line(buffer_t *buffer, size_t size)
 {
