@@ -49,10 +49,6 @@ void Window::setCamera(Vector3 pos, Vector3 target, Vector3 up, float fovy, int 
 void Window::updateCamera()
 {
     this->_rayWindow.updateCamera(&this->_camera, 1);
-    std::cout << "Camera position: " << this->_camera.position.x << ", " << this->_camera.position.y << ", " << this->_camera.position.z << std::endl;
-    std::cout << "Camera target: " << this->_camera.target.x << ", " << this->_camera.target.y << ", " << this->_camera.target.z << std::endl;
-    std::cout << "Camera up: " << this->_camera.up.x << ", " << this->_camera.up.y << ", " << this->_camera.up.z << std::endl;
-    std::cout << std::endl << std::endl;
 }
 
 void Window::handleInput()
@@ -76,7 +72,7 @@ void Window::handleInput()
                 break;
         }
     }
-    if (this->_rayWindow.isKeyPressed(KEY_ESCAPE))
+    if (this->_rayWindow.isKeyPressed(KEY_ESCAPE) || this->_rayWindow.windowShouldClose())
         this->_gameEvent = GameEvent::EXIT;
 }
 
