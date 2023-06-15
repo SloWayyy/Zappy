@@ -1,4 +1,5 @@
-from ai.src.player import Player, EnumDirection, EnumObject, EnumHeader
+from ai.src.player import Player, EnumDirection, EnumObject
+from ai.src.order.dump_item import dump_item
 
 def look_item(player : Player):
     str: str = player.look()
@@ -39,14 +40,15 @@ def second_pattern(list_item : list, player: Player):
         player.turn(EnumDirection.RIGHT)
         player.move()
 
-def routine_boss(player: Player):
+def take_around(player: Player):
     list_item = []
     player.take(EnumObject.FOOD.value)
     for i in range(0, 4):
         tmp, _ = look_item(player)
         for j in tmp:
             list_item.append(j)
-        player.turn(EnumDirection.RIGHT)
+        if (player.turn(EnumDirection.RIGHT) == False):
+            return False
     i = 0
     while i < len(list_item):
         list_item.pop(i)
@@ -54,19 +56,6 @@ def routine_boss(player: Player):
 
     first_pattern(list_item, player, EnumDirection.RIGHT)
     second_pattern(list_item[2:], player)
-    player.take(EnumObject.FOOD.value)
-    print("inventory boss: ", player.inventory())
-    if player.level == 1:
-        player.take(EnumObject.FOOD.value)
-        player.take(EnumObject.LINEMATE.value)
-        player.take(EnumObject.DERAUMERE.value)
-        player.take(EnumObject.SIBUR.value)
-        player.take(EnumObject.MENDIANE.value)
-        player.take(EnumObject.PHIRAS.value)
-        player.take(EnumObject.THYSTAME.value)
-        player.set(EnumObject.LINEMATE, 1)
-        print("boss: ", player.look())
-        print("boss: ", player.incantation())
-        player.level += 1
-    while(1):
-        pass
+    if (dump_item(player) == False):
+        return False
+    print("je suis le boss et j'ai fini mon tour j'ai tout jeté au sol")
