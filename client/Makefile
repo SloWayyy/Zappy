@@ -36,9 +36,11 @@ $(NAME): build/$(NAME)
 
 clean: build/Makefile
 	$(MAKE) -C build/ clean
+	$(MAKE) -C $(SDK_COMM_PATH) clean
 
 fclean: clean
 	$(RM) $(NAME)
+	$(MAKE) -C $(SDK_COMM_PATH) fclean
 
 re:
 	$(MAKE) fclean
