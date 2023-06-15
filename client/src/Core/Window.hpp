@@ -55,6 +55,8 @@ class Window {
         bool getIsNight(void) const;
         void setIsChanged(bool isChanged);
         bool getIsChanged(void) const;
+        void setCoefx(int coefx);
+        void setCoefy(int coefy);
     private:
         windowParams _windowParam;
         double _clock;
@@ -67,6 +69,8 @@ class Window {
         Music _music;
         bool _isNight;
         bool _isChanged;
+        float _coefx;
+        float _coefy;
 };
 
 #endif /* !WINDOW_HPP_ */

@@ -61,3 +61,8 @@ void Raylibcpp::RayWindow::endMode3D()
 {
     EndMode3D();
 }
+
+bool Raylibcpp::RayWindow::windowShouldClose()
+{
+    return WindowShouldClose();
+}

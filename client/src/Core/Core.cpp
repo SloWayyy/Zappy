@@ -121,6 +121,8 @@ void Core::setMapSize(std::vector<std::string> &args)
 {
     this->_gameplay->getMap()->setWidth(std::stoi(args[1]));
     this->_gameplay->getMap()->setHeight(std::stoi(args[2]));
+    this->_window->setCoefx(std::stoi(args[1]));
+    this->_window->setCoefy(std::stoi(args[2]));
 }
 
 void Core::setTileContent(std::vector<std::string> &args)

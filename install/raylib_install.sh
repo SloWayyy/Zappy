@@ -13,12 +13,13 @@ mkdir -p raylib
 cd raylib/
 wget https://github.com/raysan5/raylib/archive/refs/heads/master.zip
 unzip master.zip
-cd raylib-master
+cd raylib-master/src
 
 # Install RAYLIB
-cmake .
-make
-sudo make install
+make PLATFORM=PLATFORM_DESKTOP
+make PLATFORM=PLATFORM_DESKTOP RAYLIB_LIBTYPE=SHARED
+make install
+make install RAYLIB_LIBTYPE=SHARED
 
 # Remove temp files
 cd ../../
