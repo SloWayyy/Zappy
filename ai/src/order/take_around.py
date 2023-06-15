@@ -3,6 +3,7 @@ from ai.src.order.dump_item import dump_item
 
 def look_item(player : Player):
     str: str = player.look()
+    print("str: %s\n", str)
     str = str.replace(",]", ",V")
     for i in range(0, 10):
         str = str.replace(",,", ",V,")
@@ -11,6 +12,7 @@ def look_item(player : Player):
     for i in list:
         list_tmp.append(i.split(" "))
     foot_case = list_tmp.pop(0)
+    print("foot_case ", foot_case)
     return list_tmp[:3], foot_case
 
 def first_pattern(list_item : list, player: Player, direction: EnumDirection):

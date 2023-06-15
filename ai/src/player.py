@@ -36,6 +36,11 @@ class EnumDirection(Enum):
     RIGHT = 0
     LEFT = 1
 
+class SizeMap ():
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
 class Player:
 
     def __init__(self, sock: socket.socket, args):
@@ -48,6 +53,7 @@ class Player:
         self.uuid = str(uuid.uuid1())
         self.array_uuid = []
         print("UUID: " + self.uuid)
+        self.map_size = SizeMap(0, 0)
         self.args = args
         self.key = hashlib.sha256(self.args.name.encode()).digest()
         self.pos_bossitionned = False
@@ -155,7 +161,8 @@ class Player:
         donnees = self.wait_answer()
         if (donnees[0] == "ko"):
             raise ErrorConnection("Error: connection failed")
-        print(donnees[0])
+        self.map_size.x = int(donnees[1].split(" ")[0])
+        self.map_size.y = int(donnees[1].split(" ")[1])
         if (int(donnees[0]) > 0):
             self.slot = int(donnees[0])
         return False
