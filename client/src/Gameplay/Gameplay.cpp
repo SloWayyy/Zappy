@@ -222,7 +222,7 @@ void Gameplay::drawMap(void)
         else
             this->_map->setMorning();
     }
-    this->_map->draw(this->_map->getmodelSkybox(), {60.0f, -0.5f, 60.0f}, 150.0f);
+    this->_map->draw(this->_map->getmodelSkybox(), {60.0f, -0.5f, 60.0f}, 300.0f);
     for (std::size_t y = 0; y < height; y++) {
         for (std::size_t x = 0; x < width; x++) {
             this->_map->setcubePosition({ _x, -0.45f, _y });
