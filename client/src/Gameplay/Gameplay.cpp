@@ -13,6 +13,7 @@ Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window), _current
     this->_display = Display(this->_window);
     this->_cameraType = CAMERA_THIRD;
     this->setTextures();
+    this->setAnimations();
     // this->initPlayer({1 * 4.0f, 1.38f, 8 * 4.0f}, 1, 2, 3, "Team1", _textures);
     // this->initPlayer({2 * 4.0f, 1.38f, 8 * 4.0f}, 2, 2, 4, "Team2", _textures);
     // this->initPlayer({3 * 4.0f, 1.38f, 8 * 4.0f}, 3, 2, 5, "Team1", _textures);
@@ -47,9 +48,30 @@ std::map<std::size_t, Texture2D> Gameplay::getTextures() const
     return this->_textures;
 }
 
-void Gameplay::initPlayer(Vector3 pos, std::size_t level, std::size_t orientation, std::size_t id, std::string teamname, std::map<std::size_t, Texture2D> textures)
+void Gameplay::setAnimations()
 {
-    std::shared_ptr<Character> player = std::make_shared<Character>(5, 0, pos, level, orientation, teamname, id, textures);
+    unsigned int animCount = 0;
+
+    try {
+        this->_animations.push_back(this->_rayModel.loadModelAnimations("client/assets/monster/animations/monsterSpawn.iqm", &animCount));
+        this->_animations.push_back(this->_rayModel.loadModelAnimations("client/assets/monster/animations/monsterDying.iqm", &animCount));
+        this->_animations.push_back(this->_rayModel.loadModelAnimations("client/assets/monster/animations/monsterWalking.iqm", &animCount));
+        this->_animations.push_back(this->_rayModel.loadModelAnimations("client/assets/monster/animations/monsterRightTurn.iqm", &animCount));
+        this->_animations.push_back(this->_rayModel.loadModelAnimations("client/assets/monster/animations/monsterLeftTurn.iqm", &animCount));
+    } catch (const Raylibcpp::Error &e) {
+        std::cerr << e.what() << std::endl;
+        throw Error("Error: Gameplay constructor failed");
+    }
+}
+
+std::vector<ModelAnimation *> Gameplay::getAnimations() const
+{
+    return this->_animations;
+}
+
+void Gameplay::initPlayer(Vector3 pos, std::size_t level, std::size_t orientation, std::size_t id, std::string teamname, std::map<std::size_t, Texture2D> textures, std::vector<ModelAnimation *> animations)
+{
+    std::shared_ptr<Character> player = std::make_shared<Character>(5, 0, pos, level, orientation, teamname, id, textures, animations);
 
     this->_characters.insert(std::pair<std::size_t, std::shared_ptr<Character>>(id, player));
 }
@@ -222,7 +244,7 @@ void Gameplay::drawMap(void)
         else
             this->_map->setMorning();
     }
-    this->_map->draw(this->_map->getmodelSkybox(), {60.0f, -0.5f, 60.0f}, 300.0f);
+    this->_map->draw(this->_map->getmodelSkybox(), {60.0f, -0.5f, 60.0f}, 500.0f);
     for (std::size_t y = 0; y < height; y++) {
         for (std::size_t x = 0; x < width; x++) {
             this->_map->setcubePosition({ _x, -0.45f, _y });

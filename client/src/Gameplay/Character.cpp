@@ -10,7 +10,7 @@
 
 #include <stdio.h>
 
-Character::Character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos, std::size_t level, std::size_t orientation, std::string name, std::size_t id, std::map<std::size_t, Texture2D> textures) : _position(pos), _animsCount(animsCount), _animFrameCounter(animFrameCounter), _currentlyAnimation(NONE), _level(level), _teamname(name)
+Character::Character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos, std::size_t level, std::size_t orientation, std::string name, std::size_t id, std::map<std::size_t, Texture2D> textures, std::vector<ModelAnimation *> _animations) : _position(pos), _animsCount(animsCount), _animFrameCounter(animFrameCounter), _currentlyAnimation(NONE), _level(level), _teamname(name)
 {
     try {
         this->_id = id;
@@ -18,11 +18,7 @@ Character::Character(std::size_t animsCount, std::size_t animFrameCounter, Vecto
         this->_inventory = std::make_shared<Inventory>();
         this->_model = this->_rayModel.loadModel("client/assets/monster/animations/monsterWalking.iqm");
         this->_textures = textures;
-        this->_animations.push_back(this->_rayModel.loadModelAnimations("client/assets/monster/animations/monsterSpawn.iqm", &this->_animsCount));
-        this->_animations.push_back(this->_rayModel.loadModelAnimations("client/assets/monster/animations/monsterDying.iqm", &this->_animsCount));
-        this->_animations.push_back(this->_rayModel.loadModelAnimations("client/assets/monster/animations/monsterWalking.iqm", &this->_animsCount));
-        this->_animations.push_back(this->_rayModel.loadModelAnimations("client/assets/monster/animations/monsterRightTurn.iqm", &this->_animsCount));
-        this->_animations.push_back(this->_rayModel.loadModelAnimations("client/assets/monster/animations/monsterLeftTurn.iqm", &this->_animsCount));
+        this->_animations = _animations;
         this->_model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = this->_textures[this->_level];
         if (orientation == 1)
             this->_currentDirection = NORTH;
