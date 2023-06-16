@@ -74,7 +74,12 @@ def look_this_orientation(player, orientation: int):
     else:
         return True
 
+def init_square_collect(player):
+    from ai.src.player import EnumOrder
+    player.job = int(EnumOrder.SQUARE_COLLECT.value)
+
 def square_collect(player, orientation: int):
+    init_square_collect(player)
     list_item, _ = look_aroud_ai(player)
     if (look_this_orientation(player, orientation) == False):
         return False

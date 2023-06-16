@@ -1,6 +1,4 @@
-import socket
-
-from ai.src.player import Player, EnumObject, EnumHeader, EnumDirection, ALL
+from ai.src.player import Player, EnumObject, EnumHeader, ALL
 from ai.src.handle_packets import duplicate
 
 def find_boss(player: Player):

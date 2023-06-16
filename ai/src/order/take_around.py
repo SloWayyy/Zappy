@@ -40,7 +40,12 @@ def second_pattern(list_item : list, player):
         player.turn(EnumDirection.RIGHT)
         player.move()
 
+def init_take_around(player):
+    from ai.src.player import EnumOrder
+    player.job = int(EnumOrder.TAKE_AROUND.value)
+
 def take_around(player):
+    init_take_around(player)
     from ai.src.player import EnumDirection, EnumObject
     list_item = []
     player.take(EnumObject.FOOD.value)

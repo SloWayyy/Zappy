@@ -1,14 +1,18 @@
 
 from ai.src.order.take_around import look_item
 
+def init_join_boss(player):
+    from ai.src.player import EnumOrder
+    player.job = int(EnumOrder.JOIN_BOSS.value)
+
 def locate_boss(player):
-    from ai.src.player import EnumHeader, EnumDirection
+    from ai.src.player import EnumDirection
+    init_join_boss(player)
     while (player.pos_boss == -1):
         player.wait_broadcast()
 
     if (player.pos_boss == 0):
         print(player.boss_uuid + " is the boss\n")
-        player.broadcast(EnumHeader.IMHERE.value + " " + player.uuid + "\n")
         print("je suis arrivé")
         return True
     if (player.pos_boss == 1 or player.pos_boss == 2 or player.pos_boss == 8):
