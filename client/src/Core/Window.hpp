@@ -48,11 +48,15 @@ class Window {
         bool getExit(void) const;
         void setDefaultCamera(void);
         Raylibcpp::RayWindow getRayWindow(void) const;
-        void setColorBackground(Color color);
-        Color getColorBackground(void) const;
         Music getMusic(void) const;
         double getClock(void) const;
         void setClock(double clock);
+        void setIsNight(bool isNight);
+        bool getIsNight(void) const;
+        void setIsChanged(bool isChanged);
+        bool getIsChanged(void) const;
+        void setCoefx(int coefx);
+        void setCoefy(int coefy);
     private:
         windowParams _windowParam;
         double _clock;
@@ -62,8 +66,11 @@ class Window {
         Raylibcpp::RayWindow _rayWindow;
         Raylibcpp::RayMusic _rayMusic;
         Raylibcpp::RayClock _rayClock;
-        Color _colorBackground;
         Music _music;
+        bool _isNight;
+        bool _isChanged;
+        float _coefx;
+        float _coefy;
 };
 
 #endif /* !WINDOW_HPP_ */
