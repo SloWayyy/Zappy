@@ -13,7 +13,7 @@
 class Gameover : public AScreen {
     public:
         Gameover(std::shared_ptr<Window> window);
-        ~Gameover() = default;
+        ~Gameover();
     private:
         void handleInput() override;
 };

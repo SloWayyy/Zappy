@@ -52,6 +52,33 @@ Map::Map(std::size_t height, std::size_t width) : _mapSize{ height, width }, _cu
     }
 }
 
+Map::~Map()
+{
+    this->_rayModel.unloadTexture(this->_level);
+    this->_rayModel.unloadTexture(this->_team);
+    this->_rayModel.unloadModel(this->_model);
+    this->_rayModel.unloadTexture(this->_texture);
+    this->_rayModel.unloadModel(this->_modelPlatform);
+    this->_rayModel.unloadTexture(this->_texturePlatform);
+    this->_rayModel.unloadModel(this->_modelSkybox);
+    this->_rayModel.unloadTexture(this->_textureSkyboxMorning);
+    this->_rayModel.unloadTexture(this->_textureSkyboxNight);
+    this->_rayModel.unloadModel(this->_modelMap[this->BANANA].first);
+    this->_rayModel.unloadTexture(this->_modelMap[this->BANANA].second);
+    this->_rayModel.unloadModel(this->_modelMap[this->LINEMATE].first);
+    this->_rayModel.unloadTexture(this->_modelMap[this->LINEMATE].second);
+    this->_rayModel.unloadModel(this->_modelMap[this->DERAUMERE].first);
+    this->_rayModel.unloadTexture(this->_modelMap[this->DERAUMERE].second);
+    this->_rayModel.unloadModel(this->_modelMap[this->SIBUR].first);
+    this->_rayModel.unloadTexture(this->_modelMap[this->SIBUR].second);
+    this->_rayModel.unloadModel(this->_modelMap[this->MENDIANE].first);
+    this->_rayModel.unloadTexture(this->_modelMap[this->MENDIANE].second);
+    this->_rayModel.unloadModel(this->_modelMap[this->PHIRAS].first);
+    this->_rayModel.unloadTexture(this->_modelMap[this->PHIRAS].second);
+    this->_rayModel.unloadModel(this->_modelMap[this->THYSTAME].first);
+    this->_rayModel.unloadTexture(this->_modelMap[this->THYSTAME].second);
+}
+
 void Map::drawMineral(modelType type, Vector3 position, float scale)
 {
     this->_rayModel.drawModel(this->_modelMap[type].first, position, scale, WHITE);
