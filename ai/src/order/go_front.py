@@ -1,9 +1,8 @@
-from ai.src.player import Player
-from ai.src.order.square_collect import look_this_orientation
-from ai.src.order.take_around import look_item
-from ai.src.order.join_boss import locate_boss
+from ai.src.order.square_collect import *
+from ai.src.order.take_around import *
+from ai.src.order.join_boss import *
 
-def go_front(player: Player, orientation: int):
+def go_front(player, orientation: int):
     map_size = 0
     cpt = 0
     if (look_this_orientation(player, orientation) == False):

@@ -1,5 +1,4 @@
-
-from ai.src.order.take_around import look_item
+from ai.src.order.take_around import *
 
 def init_join_boss(player):
     from ai.src.player import EnumOrder
