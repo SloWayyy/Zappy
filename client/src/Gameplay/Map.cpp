@@ -63,8 +63,8 @@ Map::~Map()
     this->_rayModel.unloadModel(this->_modelSkybox);
     this->_rayModel.unloadTexture(this->_textureSkyboxMorning);
     this->_rayModel.unloadTexture(this->_textureSkyboxNight);
-    this->_rayModel.unloadModel(this->_modelMap[this->BANANA].first);
-    this->_rayModel.unloadTexture(this->_modelMap[this->BANANA].second);
+    this->_rayModel.unloadModel(this->_modelMap[this->FOOD].first);
+    this->_rayModel.unloadTexture(this->_modelMap[this->FOOD].second);
     this->_rayModel.unloadModel(this->_modelMap[this->LINEMATE].first);
     this->_rayModel.unloadTexture(this->_modelMap[this->LINEMATE].second);
     this->_rayModel.unloadModel(this->_modelMap[this->DERAUMERE].first);
