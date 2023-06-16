@@ -54,10 +54,12 @@ class Map {
         Model getmodelPlatform() const;
         Model getmodelSkybox() const;
         void draw(Model model, Vector3 _position, float scale);
+        void drawColor(Model model, Vector3 _position, float scale, Color color);
         Texture2D getLevel() const;
         Texture2D getTeam() const;
         void setNight();
         void setMorning();
+        void run();
         std::map<std::pair<std::size_t, std::size_t>, std::array<int, 7>> &getMapInventory();
     private:
         Model _model;
