@@ -22,7 +22,6 @@ Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window), _current
     // this->initPlayer({7 * 4.0f, 1.38f, 8 * 4.0f}, 7, 2, 9, "Team1", _textures);
     // this->initPlayer({8 * 4.0f, 1.38f, 8 * 4.0f}, 8, 2, 10, "Team2", _textures);
     // this->initEgg(3, 2 * 3 * 4.0f, 8 * 4.0f);
-    this->_currentCharacterIndex = _characters.begin()->first;
     this->_map = std::make_shared<Map>(10, 10);
 }
 
@@ -85,7 +84,6 @@ void Gameplay::drawTextOnScreen(std::string text, int fontSize, int posX, int po
 
 void Gameplay::run(void)
 {
-    this->_map->run();
     this->drawMap();
     this->setDisplayMode();
     if (!this->_isDisplay) {
@@ -105,26 +103,37 @@ void Gameplay::run(void)
     }
 }
 
-void Gameplay::setCurrentCharacter()
+bool Gameplay::setCurrentCharacter()
 {
     bool isSet = false;
     std::size_t i = 0;
+    std::size_t size = this->_characters.size();
+    int index = -1;
 
     for (auto &character : this->_characters)
-        i = character.first;
-    for (auto &character : this->_characters) {
-        if (isSet == true) {
-            this->_currentCharacterIndex = character.first;
-            return;
-        }
-        if (character.first == this->_currentCharacterIndex) {
+        if (character.first == this->_currentCharacterIndex)
+            index = i;
+    if (size == 0)
+        return false;
+    if (index == -1) {
+        for (auto &character : this->_characters) {
             this->_currentCharacter = character.second;
             this->_currentCharacterIndex = character.first;
-            isSet = true;
+            return true;
         }
     }
-    if (this->_currentCharacterIndex == i)
-        this->_currentCharacterIndex = _characters.begin()->first;
+    for (auto &character : this->_characters) {
+        if (isSet == true) {
+            this->_currentCharacter = character.second;
+            this->_currentCharacterIndex = character.first;
+            return true;
+        }
+        if (character.first == this->_currentCharacterIndex)
+            isSet = true;
+    }
+    this->_currentCharacterIndex = _characters.begin()->first;
+    this->_currentCharacter = _characters.begin()->second;
+    return true;
 }
 
 void Gameplay::DisplayInformations(void)
@@ -176,14 +185,20 @@ void Gameplay::handleInput(void)
     if (this->_rayWindow.isKeyDown(KEY_ESCAPE) || _rayWindow.windowShouldClose())
         this->_window->setExit(true);
     if (this->_rayWindow.isKeyReleased(KEY_F1)) {
-        this->setCurrentCharacter();
-        this->_window->setCamera({_currentCharacter->getPosition().x, _currentCharacter->getPosition().y + (float)2.0, _currentCharacter->getPosition().z - (float)0.5}, { 10.0f, 2.0f, 10.0f }, { 0.0f, 1.0f, 0.0f }, 45.0f, CAMERA_PERSPECTIVE);
-        this->setCameraType(CAMERA_FIRST);
+        if (!_characters.empty()) {
+            if (this->setCurrentCharacter() == false)
+                return;
+            this->_window->setCamera({_currentCharacter->getPosition().x, _currentCharacter->getPosition().y + (float)2.0, _currentCharacter->getPosition().z - (float)0.5}, { 10.0f, 2.0f, 10.0f }, { 0.0f, 1.0f, 0.0f }, 45.0f, CAMERA_PERSPECTIVE);
+            this->setCameraType(CAMERA_FIRST);
+        }
     }
     if (this->_rayWindow.isKeyReleased(KEY_F2)) {
-        this->setCurrentCharacter();
-        this->_window->setCamera({_currentCharacter->getPosition().x, _currentCharacter->getPosition().y + (float)4.0, _currentCharacter->getPosition().z - (float)4.0}, { 0.6f, -4.5f, 60.0f }, { 0.0f, 1.0f, 0.0f }, 45.0f, CAMERA_PERSPECTIVE);
-        this->setCameraType(CAMERA_SECOND);
+        if (!_characters.empty()) {
+            if (this->setCurrentCharacter() == false)
+                return;
+            this->_window->setCamera({_currentCharacter->getPosition().x, _currentCharacter->getPosition().y + (float)4.0, _currentCharacter->getPosition().z - (float)4.0}, { 0.6f, -4.5f, 60.0f }, { 0.0f, 1.0f, 0.0f }, 45.0f, CAMERA_PERSPECTIVE);
+            this->setCameraType(CAMERA_SECOND);
+        }
     }
     if (this->_rayWindow.isKeyReleased(KEY_F3)) {
         this->_window->setDefaultCamera();
@@ -200,12 +215,20 @@ void Gameplay::drawMap(void)
     std::size_t tileX = this->_display.getTileX();
     std::size_t tileY = this->_display.getTileY();
 
+    if (this->_window->getIsChanged() == true) {
+        this->_window->setIsChanged(false);
+        if (this->_window->getIsNight() == true)
+            this->_map->setNight();
+        else
+            this->_map->setMorning();
+    }
+    this->_map->draw(this->_map->getmodelSkybox(), {60.0f, -0.5f, 60.0f}, 150.0f);
     for (std::size_t y = 0; y < height; y++) {
         for (std::size_t x = 0; x < width; x++) {
             this->_map->setcubePosition({ _x, -0.45f, _y });
             this->_map->draw(this->_map->getmodel(), this->_map->getcubePosition(), 2.0f);
             this->_map->draw(this->_map->getmodelPlatform(), {this->_map->getcubePosition().x, this->_map->getcubePosition().y + (float)1.6, this->_map->getcubePosition().z}, 0.02f);
-            _x += 4.0f;
+                _x += 4.0f;
             if (this->_isDisplay == true && (tileX == x && tileY == y))
                 this->_rayCube.drawCube({this->_map->getcubePosition().x, this->_map->getcubePosition().y + 1.5f, this->_map->getcubePosition().z}, 4.0f, 0.6f, 4.0f, {255, 255, 255, 200});
         }

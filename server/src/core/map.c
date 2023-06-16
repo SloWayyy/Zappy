@@ -70,7 +70,7 @@ void free_map(server_t *server)
 
 bool init_map(server_t *server)
 {
-    size_t array_size = sizeof(tile_t) * (server->options->height);
+    size_t array_size = sizeof(tile_t) * (server->options->width);
 
     if (!init_map_utils(server))
         return false;
