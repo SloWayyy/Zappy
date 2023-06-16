@@ -7,7 +7,7 @@
 
 #include "src/Core/Window.hpp"
 
-Window::Window(std::size_t height, std::size_t width, std::size_t fps) : _windowParam{ height, width, fps }, _isExit(false), _gameEvent(GameEvent::MENU)
+Window::Window(std::size_t height, std::size_t width, std::size_t fps) : _windowParam{ height, width, fps }, _isExit(false), _gameEvent(GameEvent::MENU), _isNight(false), _isChanged(false)
 {
     try {
         this->_rayWindow.initWindow(this->_windowParam._screenHeight, this->_windowParam._screenWidth, "Zappy");
@@ -15,8 +15,9 @@ Window::Window(std::size_t height, std::size_t width, std::size_t fps) : _window
         this->_rayMusic.initAudioDevice();
         this->setDefaultCamera();
         this->setMusic("client/assets/song/gameSong.mp3");
-        this->_colorBackground = SKYBLUE;
         this->_clock = 0;
+        _coefx = 1.0f;
+        _coefy = 1.0f;
     } catch (const Raylibcpp::Error &e) {
         std::cerr << e.what() << std::endl;
         exit (84);
@@ -32,7 +33,7 @@ void Window::setMusic(const std::string &musicPath)
 
 void Window::setDefaultCamera(void)
 {
-    this->setCamera({ 8.35f, 23.63f, 44.7f }, {8.51f, 10.38f, 31.53f }, { -0.006f, 1.12f, -0.57f }, 80.0f, CAMERA_PERSPECTIVE);
+    this->setCamera({ 16.55f /  _coefx, 23.63f / _coefx, 44.7f / _coefy}, {16.71f / _coefx, 10.38f / _coefx, 31.53f / _coefy}, { -0.006f, 1.12f, -0.57f }, 80.0f, CAMERA_PERSPECTIVE);
 }
 
 void Window::setCamera(Vector3 pos, Vector3 target, Vector3 up, float fovy, int projection)
@@ -70,7 +71,7 @@ void Window::handleInput()
                 break;
         }
     }
-    if (this->_rayWindow.isKeyPressed(KEY_ESCAPE))
+    if (this->_rayWindow.isKeyPressed(KEY_ESCAPE) || this->_rayWindow.windowShouldClose())
         this->_gameEvent = GameEvent::EXIT;
 }
 
@@ -152,16 +153,6 @@ void Window::setFps(std::size_t fps)
     this->_windowParam._fps = fps;
 }
 
-void Window::setColorBackground(Color color)
-{
-    this->_colorBackground = color;
-}
-
-Color Window::getColorBackground(void) const
-{
-    return (this->_colorBackground);
-}
-
 void Window::setClock(double clock)
 {
     this->_clock = clock;
@@ -170,4 +161,33 @@ void Window::setClock(double clock)
 double Window::getClock(void) const
 {
     return (this->_clock);
+}
+
+void Window::setIsNight(bool isNight)
+{
+    this->_isNight = isNight;
+}
+
+bool Window::getIsNight(void) const
+{
+    return (this->_isNight);
+}
+
+void Window::setIsChanged(bool isChanged)
+{
+    this->_isChanged = isChanged;
+}
+
+bool Window::getIsChanged(void) const
+{
+    return (this->_isChanged);
+}
+void Window::setCoefx(int coefx)
+{
+    _coefx = 10.0f / coefx * 1.0f;
+}
+
+void Window::setCoefy(int coefy)
+{
+    _coefy = 10.0f / coefy * 1.0f;
 }

@@ -36,6 +36,7 @@ namespace Raylibcpp {
             void clearBackground(Color color);
             void beginMode3D(Camera3D camera);
             void endMode3D();
+            bool windowShouldClose();
     };
     class RayModel {
         public:

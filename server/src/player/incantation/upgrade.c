@@ -42,6 +42,8 @@ static void end_incantation_success(server_t *server, \
     SLIST_FOREACH(node, &incantation->players, next_incantation) {
         target = get_client_by_player_id(server, node->id);
         node->level += 1;
+        send_graphical_event(server, "%s %zu %zu%s", \
+            GRAPHICAL_PLAYER_LEVEL, node->id, node->level, LINE_BREAK);
         if (target != NULL) {
             append_buffer(target->buffer_out, "%s %zu%s", \
                 PLAYER_ELEVATION_END, node->level, LINE_BREAK);
