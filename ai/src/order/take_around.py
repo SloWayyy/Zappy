@@ -3,11 +3,9 @@ from ai.src.order.dump_item import dump_item
 
 def look_item(player : Player):
     str: str = player.look()
-    # print("str avant: ", str)
     str = str.replace("[", "")
     str = str.replace(",]", ",V")
     str = str.replace("]", "")
-    # print("str after: ", str)
     for i in range(0, 10):
         str = str.replace(",,", ",V,")
     list : list = str.split(",")
