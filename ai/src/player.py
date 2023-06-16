@@ -44,6 +44,7 @@ class EnumDirection(Enum):
     RIGHT = 0
     LEFT = 1
 
+
 class SizeMap ():
     def __init__(self, x, y):
         self.x = x
