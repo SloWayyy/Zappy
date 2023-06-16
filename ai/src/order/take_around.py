@@ -1,7 +1,7 @@
-from ai.src.player import Player, EnumDirection, EnumObject
-from ai.src.order.dump_item import dump_item
+from ai.src.order.dump_item import *
+from ai.src.player import *
 
-def look_item(player : Player):
+def look_item(player):
     str: str = player.look()
     str = str.replace("[ ", "")
     str = str.replace(", ]", ", V,")
@@ -15,7 +15,7 @@ def look_item(player : Player):
     foot_case = list_tmp.pop(0)
     return list_tmp[:3], foot_case
 
-def first_pattern(list_item : list, player: Player, direction: EnumDirection):
+def first_pattern(list_item : list, player, direction):
     player.move()
     if (list_item == []):
         return
@@ -26,9 +26,9 @@ def first_pattern(list_item : list, player: Player, direction: EnumDirection):
     for i in list_item[1]:
         player.take(i)
 
-def second_pattern(list_item : list, player: Player):
+def second_pattern(list_item : list, player):
+    from ai.src.player import EnumDirection
     counter = 0
-
     for _ in range(0, 3):
         player.turn(EnumDirection.RIGHT)
         for _ in range(0, 2):
@@ -40,7 +40,13 @@ def second_pattern(list_item : list, player: Player):
         player.turn(EnumDirection.RIGHT)
         player.move()
 
-def take_around(player: Player):
+def init_take_around(player):
+    from ai.src.player import EnumOrder
+    player.job = int(EnumOrder.TAKE_AROUND.value)
+
+def take_around(player):
+    init_take_around(player)
+    from ai.src.player import EnumDirection, EnumObject
     list_item = []
     player.take(EnumObject.FOOD.value)
     for i in range(0, 4):

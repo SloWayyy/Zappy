@@ -1,10 +1,8 @@
-import socket
-
-from ai.src.player import Player, EnumObject, EnumHeader, EnumDirection
+from ai.src.player import Player, EnumObject, EnumHeader, ALL
 from ai.src.handle_packets import duplicate
 
 def find_boss(player: Player):
-    player.broadcast(EnumHeader.ASKBOSS.value + " Who\n", False)
+    player.broadcast(player.uuid + " " + EnumHeader.ASKBOSS.value + " " + ALL + " Who", False)
     player.take(EnumObject.LINEMATE.value, False)
     player.take(EnumObject.FOOD.value, False)
 
@@ -15,3 +13,5 @@ def find_boss(player: Player):
             for _ in range(0, player.slot):
                 duplicate(player.args)
                 player.wait_broadcast()
+    else:
+        print("YES SIR", flush=True)
