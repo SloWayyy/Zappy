@@ -20,6 +20,7 @@
     #define COMMAND_ENW "enw"
     #define COMMAND_EBO "ebo"
     #define COMMAND_EDI "edi"
+    #define COMMAND_PBC "pbc"
 
     #include "src/Core/Window.hpp"
     #include "src/Gameplay/Map.hpp"
@@ -57,6 +58,7 @@ class Core {
         void setWinner(std::vector<std::string> &input);
         void createNewEgg(std::vector<std::string> &input);
         void destroyEgg(std::vector<std::string> &input);
+        void setBroadcast(std::vector<std::string> &input);
     private:
         std::shared_ptr<Window> _window;
         std::shared_ptr<Menu> _menu;

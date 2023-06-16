@@ -56,6 +56,8 @@ class Character {
         std::size_t getId() const;
         std::map<std::size_t, Texture2D> getTextures() const;
         std::shared_ptr<Inventory> &getInventory();
+        void setBroadMessage(std::string message);
+        std::string getBroadMessage() const;
     private:
         Model _model;
         std::vector<ModelAnimation *> _animations;
@@ -71,6 +73,7 @@ class Character {
         std::size_t _levelTmp;
         std::size_t _id;
         std::string _teamname;
+        std::string _broadmessage;
 };
 
 #endif /* !CHARACTER_HPP_ */

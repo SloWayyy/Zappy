@@ -166,3 +166,13 @@ std::size_t Character::getId() const
 {
     return this->_id;
 }
+
+void Character::setBroadMessage(std::string message)
+{
+    this->_broadmessage = message;
+}
+
+std::string Character::getBroadMessage() const
+{
+    return this->_broadmessage;
+}
