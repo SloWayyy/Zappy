@@ -40,7 +40,7 @@ Core::Core(int port, std::string ip)
 void Core::run(void)
 {
     while (!this->_window->getExit()) {
-        this->_rayWindow.clearBackground(BLACK);
+        this->_rayWindow.clearBackground(SKYBLUE);
         this->_rayWindow.beginDrawing();
         auto i = this->network->readBuffer();
         for (auto &command : i) {
@@ -104,6 +104,7 @@ void Core::handleInput(const std::string &command)
         {COMMAND_ENW, &Core::createNewEgg},
         {COMMAND_EBO, &Core::destroyEgg},
         {COMMAND_EDI, &Core::destroyEgg},
+        {COMMAND_PBC, &Core::setBroadcast},
         {COMMAND_SEG, &Core::setWinner}
     };
 
@@ -143,7 +144,7 @@ void Core::setTeamNames(std::vector<std::string> &args)
 
 void Core::createNewPosition(std::vector<std::string> &args)
 {
-    this->_gameplay->initPlayer({std::stof(args[2]) * 4.0f, (float)1.1, std::stof(args[3]) * 4.0f}, std::stoi(args[5]), std::stoi(args[4]), std::stoi(args[1]), args[6], this->_gameplay->getTextures());
+    this->_gameplay->initPlayer({std::stof(args[2]) * 4.0f, (float)1.1, std::stof(args[3]) * 4.0f}, std::stoi(args[5]), std::stoi(args[4]), std::stoi(args[1]), args[6], this->_gameplay->getTextures(), this->_gameplay->getAnimations());
 }
 
 void Core::setPlayerPosition(std::vector<std::string> &args)
@@ -196,4 +197,11 @@ void Core::destroyEgg(std::vector<std::string> &args)
     if (this->_gameplay->getEggs().find(std::stoi(args[1])) == this->_gameplay->getEggs().end())
         return;
     this->_gameplay->getEggs().erase(std::stoi(args[1]));
+}
+
+void Core::setBroadcast(std::vector<std::string> &args)
+{
+    if (this->_gameplay->getCharacters().find(std::stoi(args[1])) == this->_gameplay->getCharacters().end())
+        return;
+    this->_gameplay->getCharacters()[std::stoi(args[1])]->setBroadMessage(args[2]);
 }

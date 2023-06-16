@@ -35,9 +35,9 @@ class Gameplay {
                 std::string _message;
         };
         Gameplay(std::shared_ptr<Window> _window);
-        ~Gameplay() = default;
+        ~Gameplay();
         void run(void);
-        void initPlayer(Vector3 pos, std::size_t level, std::size_t orientation, std::size_t id, std::string teamname, std::map<std::size_t, Texture2D>);
+        void initPlayer(Vector3 pos, std::size_t level, std::size_t orientation, std::size_t id, std::string teamname, std::map<std::size_t, Texture2D> textures, std::vector<ModelAnimation *> animations);
         void initEgg(std::size_t id, float x, float y);
         void runPlayers(void);
         void runEggs(void);
@@ -54,6 +54,8 @@ class Gameplay {
         std::shared_ptr<Map> getMap() const;
         std::map<std::size_t, Texture2D> getTextures() const;
         void setTextures();
+        std::vector<ModelAnimation *> getAnimations() const;
+        void setAnimations();
         std::map<std::size_t, std::shared_ptr<Character>> &getCharacters();
         std::map<std::size_t, std::shared_ptr<Egg>> &getEggs();
     private:
@@ -72,6 +74,7 @@ class Gameplay {
         bool _isDisplay;
         CameraType _cameraType;
         std::map<std::size_t, Texture2D> _textures;
+        std::vector<ModelAnimation *> _animations;
 };
 
 #endif /* !GAMEPLAY_HPP_ */
