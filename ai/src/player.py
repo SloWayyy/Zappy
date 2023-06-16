@@ -98,7 +98,7 @@ class Player:
     def boss_reaction(self, x):
         if x[0][2] == EnumHeader.ASKBOSS.value:
             self.broadcast(self.uuid + " " + EnumHeader.IMBOSS.value + " " + ALL + " IMBOSS")
-            self.array_uuid.append(dict(uuid = x[0][1], level = 1, job = None))
+            self.array_uuid.append(dict(uuid = x[0][1], level = 1, job = None, pos = -1))
             self.pos_boss = 0
         if x[0][2] == EnumHeader.ANSWER.value:
             self.update_info(x)
@@ -162,6 +162,7 @@ class Player:
 
     def wait_answer(self):
         donnees = receive_packet(self.sock)
+        print(donnees)
         array_decrypt = self.decrypt_donnees(donnees)
         if (array_decrypt == None):
             return self.wait_answer()
@@ -228,7 +229,8 @@ class Player:
                 return False
         return True
 
-    def look(self, return_only: bool = False):
+    def look(self, return_only: bool = True):
+        print("------------------look-------------")
         self.sock.send("Look\n".encode())
         if (return_only == True):
             return self.wait_return()[0]

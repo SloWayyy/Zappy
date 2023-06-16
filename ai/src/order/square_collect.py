@@ -8,6 +8,7 @@ def first_pattern_ai(list_item: list, player):
         player.take(i)
     player.turn(EnumDirection.LEFT)
     player.move()
+    # print("list_item", list_item, flush=True)
     for i in list_item[1]:
         player.take(i)
 
@@ -78,11 +79,13 @@ def init_square_collect(player):
     from ai.src.player import EnumOrder
     player.job = int(EnumOrder.SQUARE_COLLECT.value)
 
-def square_collect(player, orientation: int):
+def square_collect(player, orientation = 1):
     init_square_collect(player)
-    list_item, _ = look_aroud_ai(player)
+    # print
     if (look_this_orientation(player, orientation) == False):
         return False
+    list_item, _ = look_aroud_ai(player)
+    print("list item no reverse:         ", list_item, flush=True)
     list_item.reverse()
     first_pattern_ai(list_item, player)
     second_pattern_ai(list_item[2:], player)
