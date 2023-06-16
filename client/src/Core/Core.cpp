@@ -104,6 +104,7 @@ void Core::handleInput(const std::string &command)
         {COMMAND_ENW, &Core::createNewEgg},
         {COMMAND_EBO, &Core::destroyEgg},
         {COMMAND_EDI, &Core::destroyEgg},
+        {COMMAND_PBC, &Core::setBroadcast},
         {COMMAND_SEG, &Core::setWinner}
     };
 
@@ -196,4 +197,11 @@ void Core::destroyEgg(std::vector<std::string> &args)
     if (this->_gameplay->getEggs().find(std::stoi(args[1])) == this->_gameplay->getEggs().end())
         return;
     this->_gameplay->getEggs().erase(std::stoi(args[1]));
+}
+
+void Core::setBroadcast(std::vector<std::string> &args)
+{
+    if (this->_gameplay->getCharacters().find(std::stoi(args[1])) == this->_gameplay->getCharacters().end())
+        return;
+    this->_gameplay->getCharacters()[std::stoi(args[1])]->setBroadMessage(args[2]);
 }
