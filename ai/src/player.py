@@ -86,7 +86,7 @@ class Player:
     def execute_order(self, x):
         ORDER_FUNC[int(x[0][4])](self)
         self.job = 0
-        self.broadcast("{} {} {} {} {} {}".format(self.uuid, EnumHeader.ANSWER.value, self.boss_uuid, EnumPriorityOrder.PING.value, str(self.level), self.job))
+        ping(self)
     
     def boss_reaction(self, x):
         if x[0][2] == EnumHeader.ASKBOSS.value:
