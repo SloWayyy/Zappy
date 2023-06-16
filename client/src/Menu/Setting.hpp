@@ -13,7 +13,7 @@
 class Setting : public AScreen {
     public:
         Setting(std::shared_ptr<Window> window);
-        ~Setting() = default;
+        ~Setting();
     private:    
         void handleInput() override;
         size_t _volume;

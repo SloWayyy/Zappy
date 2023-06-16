@@ -22,6 +22,11 @@ Menu::Menu(std::shared_ptr<Window> window)
     }
 }
 
+Menu::~Menu()
+{
+    this->_rayModel.unloadTexture(this->_background);
+}
+
 void Menu::handleInput()
 {
 }

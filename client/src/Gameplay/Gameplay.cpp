@@ -26,6 +26,24 @@ Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window), _current
     this->_map = std::make_shared<Map>(10, 10);
 }
 
+Gameplay::~Gameplay()
+{
+    for (auto &textures : this->_textures) {
+        try {
+            this->_rayModel.unloadTexture(textures.second);
+        } catch (const Raylibcpp::Error &e) {
+            std::cerr << e.what() << std::endl;
+        }
+    }
+    for (auto &animations : this->_animations) {
+        try {
+            this->_rayModel.unloadModelAnimations(animations, 0);
+        } catch (const Raylibcpp::Error &e) {
+            std::cerr << e.what() << std::endl;
+        }
+    }
+}
+
 void Gameplay::setTextures()
 {
     try {

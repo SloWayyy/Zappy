@@ -11,7 +11,7 @@ Tuto::Tuto(std::shared_ptr<Window> window)
 {
     try {
         this->_window = window;
-        this->_background = LoadTexture("client/assets/menu/background_menu.png");
+        this->_background = this->_rayModel.loadTexture("client/assets/menu/background_menu.png");
         createButtons("BACK", {(float)this->_window->getScreenWidth() / 50.0f, this->_window->getScreenHeight() / 30.0f}, GOLD, 50, MENU);
         createText("HOW TO PLAY", {(float)this->_window->getScreenWidth() / 2.0f, this->_window->getScreenHeight() / 30.0f}, RED, 100);
         createText("This is a monitor of the game", {(float)this->_window->getScreenWidth() / 50.0f, this->_window->getScreenHeight() / 10.0f}, RAYWHITE, 50);
@@ -28,6 +28,11 @@ Tuto::Tuto(std::shared_ptr<Window> window)
         std::cerr << e.what() << std::endl;
         throw Error("Error: Tuto constructor failed");
     }
+}
+
+Tuto::~Tuto()
+{
+    this->_rayModel.unloadTexture(this->_background);
 }
 
 void Tuto::handleInput()
