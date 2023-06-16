@@ -57,6 +57,11 @@ void Map::draw(Model model, Vector3 _position, float scale)
     this->_rayModel.drawModel(model, _position, scale, WHITE);
 }
 
+void Map::drawColor(Model model, Vector3 _position, float scale, Color color)
+{
+    this->_rayModel.drawModel(model, _position, scale, color);
+}
+
 void Map::run()
 {
 }

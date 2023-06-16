@@ -53,6 +53,7 @@ class Map {
         Model getmodel() const {return _model;};
         Model getmodelPlatform() const {return _modelPlatform;};
         void draw(Model model, Vector3 _position, float scale);
+        void drawColor(Model model, Vector3 _position, float scale, Color color);
         Texture2D getLevel() const {return _level;};
         Texture2D getTeam() const {return _team;};
         std::map<std::pair<std::size_t, std::size_t>, std::array<int, 7>> &getMapInventory() {return _mapInventory;};

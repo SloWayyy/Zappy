@@ -24,6 +24,8 @@ class Display {
         void run(std::map<std::size_t, std::shared_ptr<Character>>(_characters), std::shared_ptr<Map>);
         void drawTextOnScreen(std::string text, int fontSize, int posX, int posY, Color color);
         void handleInput(void);
+        std::size_t getTileX(void) const;
+        std::size_t getTileY(void) const;
     private:
         std::shared_ptr<Window> _window;
         Raylibcpp::RayText _rayText;

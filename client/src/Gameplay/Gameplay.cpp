@@ -197,13 +197,17 @@ void Gameplay::drawMap(void)
     float _y = 0.0f;
     std::size_t height = this->_map->getheight();
     std::size_t width = this->_map->getwidth();
+    std::size_t tileX = this->_display.getTileX();
+    std::size_t tileY = this->_display.getTileY();
 
     for (std::size_t y = 0; y < height; y++) {
         for (std::size_t x = 0; x < width; x++) {
             this->_map->setcubePosition({ _x, -0.45f, _y });
             this->_map->draw(this->_map->getmodel(), this->_map->getcubePosition(), 2.0f);
             this->_map->draw(this->_map->getmodelPlatform(), {this->_map->getcubePosition().x, this->_map->getcubePosition().y + (float)1.6, this->_map->getcubePosition().z}, 0.02f);
-        _x += 4.0f;
+            _x += 4.0f;
+            if (this->_isDisplay == true && (tileX == x && tileY == y))
+                this->_rayCube.drawCube({this->_map->getcubePosition().x, this->_map->getcubePosition().y + 1.5f, this->_map->getcubePosition().z}, 4.0f, 0.6f, 4.0f, {255, 255, 255, 200});
         }
         _x = 0.0f;
         _y += 4.0f;

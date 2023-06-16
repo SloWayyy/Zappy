@@ -33,7 +33,7 @@ void Display::displayInformations(void)
     this->_rayText.drawText("Level 6: " + std::to_string(this->_levelNbr[6]), height - (height / 8), (width - 400), 40, BLACK);
     this->_rayText.drawText("Level 7: " + std::to_string(this->_levelNbr[7]), height - (height / 8), (width - 280), 40, BLACK);
     this->_rayText.drawText("Level 8: " + std::to_string(this->_levelNbr[8]), height - (height / 8), (width - 160), 40, BLACK);
-    this->_rayText.drawText("Tile " + std::to_string(this->_x) + " " + std::to_string(this->_y), height - (height) + 50, (width - 1000), 40, BLACK);
+    this->_rayText.drawText("Tile: " + std::to_string(this->_x) + " - " + std::to_string(this->_y), height - (height) + 50, (width - 1000), 40, BLACK);
     this->_rayText.drawText("Food: " + std::to_string(this->_tile[std::make_pair(this->_x, this->_y)][0]), height - (height) + 50, (width - 880), 40, BLACK);
     this->_rayText.drawText("Linemate: " + std::to_string(this->_tile[std::make_pair(this->_x, this->_y)][1]), height - (height) + 50, (width - 760), 40, BLACK);
     this->_rayText.drawText("Deraumere: " + std::to_string(this->_tile[std::make_pair(this->_x, this->_y)][2]), height - (height) + 50, (width - 640), 40, BLACK);
@@ -78,4 +78,14 @@ void Display::handleInput(void)
     if (IsKeyPressed(KEY_DOWN)) {
         this->_y = (this->_y + 1 > this->_height - 1) ? 0 : this->_y + 1;
     }
+}
+
+std::size_t Display::getTileX(void) const
+{
+    return (this->_x);
+}
+
+std::size_t Display::getTileY(void) const
+{
+    return (this->_y);
 }
