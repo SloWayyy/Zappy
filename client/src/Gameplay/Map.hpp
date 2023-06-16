@@ -23,7 +23,7 @@ struct mapSize {
 
 class Map {
     enum modelType {
-        BANANA,
+        FOOD,
         LINEMATE,
         DERAUMERE,
         SIBUR,
@@ -41,7 +41,7 @@ class Map {
         std::size_t getheight() const;
         std::size_t getwidth() const;
         std::vector<std::string> &getMap();
-        modelType getmodelBanana() const {return BANANA;};
+        modelType getmodelFood() const {return FOOD;};
         modelType getmodelLinemate() const {return LINEMATE;};
         modelType getmodelDeraumere() const {return DERAUMERE;};
         modelType getmodelSibur() const {return SIBUR;};

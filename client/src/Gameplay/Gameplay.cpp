@@ -259,7 +259,7 @@ void Gameplay::drawMap(void)
     }
     for (auto &tile : this->_map->getMapInventory()) {
         if (tile.second[0] > 0)
-            this->_map->drawMineral(this->_map->getmodelBanana(), {tile.first.first * 4.0f, 1.38f, tile.first.second * 4.0f}, 0.5f);
+            this->_map->drawMineral(this->_map->getmodelFood(), {tile.first.first * 4.0f, 1.38f, tile.first.second * 4.0f}, 0.04f);
         if (tile.second[1] > 0)
             this->_map->drawMineral(this->_map->getmodelLinemate(), {tile.first.first * 4.0f - 1.0f, 1.38f, tile.first.second * 4.0f - 1.0f}, 0.2f);
         if (tile.second[2] > 0)
