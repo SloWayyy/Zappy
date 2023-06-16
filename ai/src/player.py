@@ -44,6 +44,12 @@ class EnumDirection(Enum):
     RIGHT = 0
     LEFT = 1
 
+
+class SizeMap ():
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
 class EnumOrder(Enum):
     NOTHING = "0"
     DUMP_ITEM = "1"
@@ -72,6 +78,7 @@ class Player:
         self.job = 0
         self.array_uuid = []
         print("UUID: " + self.uuid)
+        self.map_size = SizeMap(0, 0)
         self.args = args
         self.key = hashlib.sha256(self.args.name.encode()).digest()
         if (self.connection(args) == False):
@@ -192,7 +199,8 @@ class Player:
         donnees = self.wait_return()
         if (donnees[0] == "ko"):
             raise ErrorConnection("Error: connection failed")
-        print(donnees[0])
+        self.map_size.x = int(donnees[1].split(" ")[0])
+        self.map_size.y = int(donnees[1].split(" ")[1])
         if (int(donnees[0]) > 0):
             self.slot = int(donnees[0])
         return False

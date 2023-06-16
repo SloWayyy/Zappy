@@ -3,16 +3,17 @@ from ai.src.player import *
 
 def look_item(player):
     str: str = player.look()
-    str = str.replace("[ ", "")
-    str = str.replace(", ]", ", V,")
-    str = str.replace(" ]", "")
+    str = str.replace("[", "")
+    str = str.replace(",]", ",V")
+    str = str.replace("]", "")
     for i in range(0, 10):
-        str = str.replace(",,", ", V,")
-    list : list = str.split(", ")
+        str = str.replace(",,", ",V,")
+    list : list = str.split(",")
     list_tmp = []
     for i in list:
         list_tmp.append(i.split(" "))
     foot_case = list_tmp.pop(0)
+    print("foot_case ", foot_case)
     return list_tmp[:3], foot_case
 
 def first_pattern(list_item : list, player, direction):
