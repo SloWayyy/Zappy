@@ -20,6 +20,7 @@ def locate_boss(player):
         return True
     if (player.pos_boss == 1 or player.pos_boss == 2 or player.pos_boss == 8):
         player.move()
+        print("je bouge")
         tmp, foot_case = look_item(player)
         for i in range (len(foot_case)):
             if (foot_case[i] != "player"):
@@ -27,11 +28,15 @@ def locate_boss(player):
         player.wait_broadcast()
         player.pos_boss = -1
     elif (player.pos_boss == 4 or player.pos_boss == 5 or player.pos_boss == 3):
+        print("pos: ", player.pos_boss)
         player.turn(EnumDirection.LEFT)
+        print("je tourne left")
         player.wait_broadcast()
         player.pos_boss = -1
     elif (player.pos_boss == 6 or player.pos_boss == 7):
+        print("pos: ", player.pos_boss)
         player.turn(EnumDirection.RIGHT)
+        print("je tourne right")
         player.wait_broadcast()
         player.pos_boss = -1
     return False

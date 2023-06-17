@@ -17,7 +17,7 @@ def boss_routine(player: Player):
         #         player.broadcast(player.uuid + " " + EnumHeader.ORDER.value + " " + player_array["uuid"] + " " + EnumOrder.SQUARE_COLLECT.value, False)
         #         while (1):
         #             pass
-            
+
 def game_loop(sock, args):
     player = Player(sock, args)
     find_boss(player)

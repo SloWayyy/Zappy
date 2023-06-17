@@ -3,7 +3,6 @@ from ai.src.player import *
 
 def look_item(player):
     str: str = player.look()
-    print("LOOK     ", str)
     str = str.replace("[", "")
     str = str.replace(",]", ",V")
     str = str.replace("]", "")
