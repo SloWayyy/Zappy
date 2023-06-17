@@ -46,4 +46,4 @@ class Parser {
         std::string _usage;
 };
 
-#endif
+#endif /* !PARSER_HPP_ */

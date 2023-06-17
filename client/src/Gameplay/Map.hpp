@@ -23,7 +23,7 @@ struct mapSize {
 
 class Map {
     enum modelType {
-        BANANA,
+        FOOD,
         LINEMATE,
         DERAUMERE,
         SIBUR,
@@ -34,14 +34,14 @@ class Map {
     public:
         Map() = default;
         Map(std::size_t height , std::size_t width);
-        ~Map() = default;
+        ~Map();
         void drawMineral(modelType type, Vector3 position, float scale);
         void setHeight(std::size_t height);
         void setWidth(std::size_t width);
         std::size_t getheight() const;
         std::size_t getwidth() const;
         std::vector<std::string> &getMap();
-        modelType getmodelBanana() const {return BANANA;};
+        modelType getmodelFood() const {return FOOD;};
         modelType getmodelLinemate() const {return LINEMATE;};
         modelType getmodelDeraumere() const {return DERAUMERE;};
         modelType getmodelSibur() const {return SIBUR;};
@@ -54,10 +54,12 @@ class Map {
         Model getmodelPlatform() const;
         Model getmodelSkybox() const;
         void draw(Model model, Vector3 _position, float scale);
+        void drawColor(Model model, Vector3 _position, float scale, Color color);
         Texture2D getLevel() const;
         Texture2D getTeam() const;
         void setNight();
         void setMorning();
+        void run();
         std::map<std::pair<std::size_t, std::size_t>, std::array<int, 7>> &getMapInventory();
     private:
         Model _model;

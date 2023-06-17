@@ -11,7 +11,7 @@ Setting::Setting(std::shared_ptr<Window> window) : _volume(50), _fps(60)
 {
     try {
         this->_window = window;
-        this->_background = LoadTexture("client/assets/menu/background_menu.png");
+        this->_background = this->_rayModel.loadTexture("client/assets/menu/background_menu.png");
         createButtons("BACK", {(float)this->_window->getScreenWidth() / 50.0f, this->_window->getScreenHeight() / 30.0f}, GOLD, 50, MENU);
         createText("SETTINGS", {(float)this->_window->getScreenWidth() / 1.5f, this->_window->getScreenHeight() / 30.0f}, RED, 100);
         createText("Volumes :", {(float)this->_window->getScreenWidth() / 50.0f, this->_window->getScreenHeight() / 10.0f}, RAYWHITE, 50);
@@ -30,6 +30,11 @@ Setting::Setting(std::shared_ptr<Window> window) : _volume(50), _fps(60)
         std::cerr << e.what() << std::endl;
         throw Error("Error: Setting constructor failed");
     }
+}
+
+Setting::~Setting()
+{
+    this->_rayModel.unloadTexture(this->_background);
 }
 
 void Setting::handleInput()
