@@ -32,6 +32,3 @@ def go_front(player, orientation = 1):
                 for j in range (0, len(foot_case)):
                     if (foot_case[j] != "player"):
                         player.take(foot_case[j])
-    
-
-    

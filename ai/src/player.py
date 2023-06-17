@@ -83,7 +83,7 @@ class Player:
         self.key = hashlib.sha256(self.args.name.encode()).digest()
         if (self.connection(args) == False):
             ErrorConnection("Error: connection failed")
- 
+
     # x[0][0] = pos, x[0][1] = sender uuid, x[0][2] = header, x[0][3] = receiver uuid, x[0][4] = message
 
     def update_info(self, x):
@@ -94,21 +94,21 @@ class Player:
         ORDER_FUNC[int(x[0][4])](self)
         self.job = 0
         ping(self)
-    
+
     def boss_reaction(self, x):
         if x[0][2] == EnumHeader.ASKBOSS.value:
             self.broadcast(self.uuid + " " + EnumHeader.IMBOSS.value + " " + ALL + " IMBOSS")
-            self.array_uuid.append(dict(uuid = x[0][1], level = 1, job = None, pos = -1))
+            self.array_uuid.append(dict(uuid = x[0][1], level = 1, job = None, pos = int(x[0][0])))
             self.pos_boss = 0
         if x[0][2] == EnumHeader.ANSWER.value:
             self.update_info(x)
-    
+
     def anonymous_reaction(self, x):
         if x[0][2] == EnumHeader.IMBOSS.value:
             self.boss = EnumBoss.IMNOT.value
             self.boss_uuid = x[0][1]
             self.pos_boss = int(x[0][0])
-    
+
     def normal_reaction(self, x):
         if x[0][2] == EnumHeader.IMBOSS.value:
             self.pos_boss = int(x[0][0])
@@ -162,7 +162,6 @@ class Player:
 
     def wait_answer(self):
         donnees = receive_packet(self.sock)
-        print(donnees)
         array_decrypt = self.decrypt_donnees(donnees)
         if (array_decrypt == None):
             return self.wait_answer()
@@ -230,7 +229,6 @@ class Player:
         return True
 
     def look(self, return_only: bool = True):
-        print("------------------look-------------")
         self.sock.send("Look\n".encode())
         if (return_only == True):
             return self.wait_return()[0]
