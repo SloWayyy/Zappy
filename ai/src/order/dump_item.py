@@ -8,10 +8,11 @@ def dump_item(player):
     from ai.src.player import EnumObject
     init_dump_item(player)
     inventory = player.inventory()
+    print("inventory: ", inventory, flush=True)
     if (inventory == False or len(inventory) == 0):
         return False
     # pk on start a 1 ici a voir
-    for i in range(1, len(inventory)): 
+    for i in range(len(inventory)): 
         for _ in range(0, inventory[i]):
             if i == 1:
                 if (player.set(EnumObject.LINEMATE) == False):

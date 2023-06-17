@@ -11,6 +11,7 @@ from ai.src.order.join_boss import *
 from ai.src.order.square_collect import *
 from ai.src.order.take_around import *
 from ai.src.priority_order.ping import *
+from ai.src.order.check_ressources import *
 
 class ErrorConnection(Exception):
     pass
@@ -56,6 +57,7 @@ class EnumOrder(Enum):
     JOIN_BOSS = "2"
     SQUARE_COLLECT = "3"
     TAKE_AROUND = "4"
+    CHECK_RESSOURCES = "5"
 
 class EnumPriorityOrder(Enum):
     PING = "0"
@@ -63,7 +65,7 @@ class EnumPriorityOrder(Enum):
 
 ANSWER_FUNC = [ping_answer]
 PRIORITY_ORDER_FUNC = [ping]
-ORDER_FUNC = [None, dump_item, join_boss, square_collect, take_around]
+ORDER_FUNC = [None, dump_item, join_boss, square_collect, take_around, check_ressources]
 
 class Player:
 
