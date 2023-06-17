@@ -12,6 +12,7 @@ from ai.src.order.square_collect import *
 from ai.src.order.take_around import *
 from ai.src.priority_order.ping import *
 from ai.src.order.check_ressources import *
+from ai.src.order.level_up import *
 
 class ErrorConnection(Exception):
     pass
@@ -58,14 +59,24 @@ class EnumOrder(Enum):
     SQUARE_COLLECT = "3"
     TAKE_AROUND = "4"
     CHECK_RESSOURCES = "5"
+    INCANTATION = "6"
 
 class EnumPriorityOrder(Enum):
     PING = "0"
 
+levelUpArray = [
+                [1, 0, 1, 0, 0, 0, 0, 0],
+                [2, 0, 1, 1, 1, 0, 0, 0],
+                [2, 0, 2, 0, 1, 0, 2, 0],
+                [4, 0, 1, 1, 2, 0, 1, 0],
+                [4, 0, 1, 2, 1, 3, 0, 0],
+                [6, 0, 1, 2, 3, 0, 1, 0],
+                [6, 0, 2, 2, 2, 2, 2, 1]
+               ]
 
 ANSWER_FUNC = [ping_answer]
 PRIORITY_ORDER_FUNC = [ping]
-ORDER_FUNC = [None, dump_item, join_boss, square_collect, take_around, check_ressources]
+ORDER_FUNC = [None, dump_item, join_boss, square_collect, take_around, check_ressources, level_up]
 
 class Player:
 
@@ -168,6 +179,7 @@ class Player:
         if (array_decrypt == None):
             return self.wait_answer()
         self.handle_broadcast(array_decrypt)
+        self.clear_data(array_decrypt)
         if len(array_decrypt) <= 1:
             return self.wait_answer()
         if (array_decrypt[0] == "dead"):
