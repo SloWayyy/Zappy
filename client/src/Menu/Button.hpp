@@ -38,6 +38,7 @@ class Button {
         Color getColorRect() const;
         bool getIsClicked() const;
         void setIsClicked(bool isClicked);
+        bool MouseClickedOnButton(int x, int y);
     private:
         std::shared_ptr<Window> _window;
         std::string _string;

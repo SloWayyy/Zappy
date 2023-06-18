@@ -117,3 +117,10 @@ void Button::setIsClicked(bool isClicked)
 {
     this->_isClicked = isClicked;
 }
+
+bool Button::MouseClickedOnButton(int x, int y)
+{
+    if (x >= this->_coord.x && x <= this->_coord.x + this->_rectButton.width && y >= this->_coord.y && y <= this->_coord.y + this->_rectButton.height)
+        return true;
+    return false;
+}

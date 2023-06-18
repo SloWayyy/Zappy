@@ -42,19 +42,19 @@ void Setting::handleInput()
     int x = this->_rayMouse.getMouseX();
     int y = this->_rayMouse.getMouseY();
     if (this->_rayMouse.isMouseButtonPressed(0) == true) {
-        if (x >= this->_buttonsScreen[1].getCoord().x && x <= this->_buttonsScreen[1].getCoord().x + this->_buttonsScreen[1].getRectButton().width && y >= this->_buttonsScreen[1].getCoord().y && y <= this->_buttonsScreen[1].getCoord().y + this->_buttonsScreen[1].getRectButton().height) {
+        if (this->_buttonsScreen[1].MouseClickedOnButton(x, y) == true) {
             if (this->_volume > 0)
                 this->_volume -= 5;
             this->_text[2]._string = std::to_string(_volume);
             this->_Raymusic.setMusicVolume(this->_window->getMusic(), (this->_volume / 100.0));
         }
-        if (x >= this->_buttonsScreen[2].getCoord().x && x <= this->_buttonsScreen[2].getCoord().x + this->_buttonsScreen[2].getRectButton().width && y >= this->_buttonsScreen[2].getCoord().y && y <= this->_buttonsScreen[2].getCoord().y + this->_buttonsScreen[2].getRectButton().height) {
+        if (this->_buttonsScreen[2].MouseClickedOnButton(x, y) == true) {
             if (this->_volume < 100)
                 this->_volume += 5;
             this->_text[2]._string = std::to_string(_volume);
             this->_Raymusic.setMusicVolume(this->_window->getMusic(), (this->_volume / 100.0));
         }
-        if (x >= this->_buttonsScreen[3].getCoord().x && x <= this->_buttonsScreen[3].getCoord().x + this->_buttonsScreen[3].getRectButton().width && y >= this->_buttonsScreen[3].getCoord().y && y <= this->_buttonsScreen[3].getCoord().y + this->_buttonsScreen[3].getRectButton().height) {
+        if (this->_buttonsScreen[3].MouseClickedOnButton(x, y) == true) {
             if (this->_fps > 30)
                 this->_fps /= 2;
             else
@@ -63,7 +63,7 @@ void Setting::handleInput()
             this->_window->setFps(_fps);
             this->_rayWindow.setTargetFPS(_fps);
         }
-        if (x >= this->_buttonsScreen[4].getCoord().x && x <= this->_buttonsScreen[4].getCoord().x + this->_buttonsScreen[4].getRectButton().width && y >= this->_buttonsScreen[4].getCoord().y && y <= this->_buttonsScreen[4].getCoord().y + this->_buttonsScreen[4].getRectButton().height) {
+        if (this->_buttonsScreen[4].MouseClickedOnButton(x, y) == true) {
             if (this->_fps < 120)
                 this->_fps *= 2;
             else
@@ -72,7 +72,7 @@ void Setting::handleInput()
             this->_window->setFps(_fps);
             this->_rayWindow.setTargetFPS(_fps);
         }
-        if (x >= this->_buttonsScreen[5].getCoord().x && x <= this->_buttonsScreen[5].getCoord().x + this->_buttonsScreen[5].getRectButton().width && y >= this->_buttonsScreen[5].getCoord().y && y <= this->_buttonsScreen[5].getCoord().y + this->_buttonsScreen[5].getRectButton().height) {
+        if (this->_buttonsScreen[5].MouseClickedOnButton(x, y) == true) {
             if (this->_text[6]._string == "Jour") {
                 this->_text[6]._string = "Nuit";
                 this->_window->setIsNight(true);
@@ -83,7 +83,7 @@ void Setting::handleInput()
                 this->_window->setIsChanged(true);
             }
         }
-        if (x >= this->_buttonsScreen[6].getCoord().x && x <= this->_buttonsScreen[6].getCoord().x + this->_buttonsScreen[6].getRectButton().width && y >= this->_buttonsScreen[6].getCoord().y && y <= this->_buttonsScreen[6].getCoord().y + this->_buttonsScreen[6].getRectButton().height) {
+        if (this->_buttonsScreen[6].MouseClickedOnButton(x, y) == true) {
             if (this->_text[6]._string == "Jour") {
                 this->_text[6]._string = "Nuit";
                 this->_window->setIsNight(true);
