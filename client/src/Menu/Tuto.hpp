@@ -13,7 +13,7 @@
 class Tuto : public AScreen {
     public:
         Tuto(std::shared_ptr<Window> window);
-        ~Tuto() = default;
+        ~Tuto();
     private:
         void handleInput() override;
 };

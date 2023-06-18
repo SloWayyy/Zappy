@@ -33,7 +33,7 @@ enum Animations {
 class Character {
     public:
         Character() = default;
-        Character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos, std::size_t level, std::size_t orientation, std::string name, std::size_t id, std::map<std::size_t, Texture2D> textures);
+        Character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos, std::size_t level, std::size_t orientation, std::string name, std::size_t id, std::map<std::size_t, Texture2D> textures, std::vector<ModelAnimation *> _animations);
         ~Character() = default;
         Vector3 getPosition() const;
         Model getModel() const;
@@ -56,6 +56,8 @@ class Character {
         std::size_t getId() const;
         std::map<std::size_t, Texture2D> getTextures() const;
         std::shared_ptr<Inventory> &getInventory();
+        void setBroadMessage(std::string message);
+        std::string getBroadMessage() const;
     private:
         Model _model;
         std::vector<ModelAnimation *> _animations;
@@ -71,6 +73,7 @@ class Character {
         std::size_t _levelTmp;
         std::size_t _id;
         std::string _teamname;
+        std::string _broadmessage;
 };
 
 #endif /* !CHARACTER_HPP_ */

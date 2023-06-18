@@ -1,8 +1,8 @@
-from ai.src.player import Player, EnumDirection
-from ai.src.order.take_around import look_item
-from ai.src.order.dump_item import dump_item
+from ai.src.order.take_around import *
+from ai.src.order.dump_item import *
 
-def first_pattern_ai(list_item: list, player: Player):
+def first_pattern_ai(list_item: list, player):
+    from ai.src.player import EnumDirection
     player.move()
     for i in list_item[0]:
         player.take(i)
@@ -11,7 +11,8 @@ def first_pattern_ai(list_item: list, player: Player):
     for i in list_item[1]:
         player.take(i)
 
-def second_pattern_ai(list_item: list, player: Player):
+def second_pattern_ai(list_item: list, player):
+    from ai.src.player import EnumDirection
     player.turn(EnumDirection.LEFT)
     player.move()
     player.move()
@@ -30,7 +31,8 @@ def second_pattern_ai(list_item: list, player: Player):
     for i in list_item[3]:
         player.take(i)
 
-def look_aroud_ai(player: Player):
+def look_aroud_ai(player):
+    from ai.src.player import EnumDirection
     list_item = []
     for _ in range(0, 3):
         player.move()
@@ -46,7 +48,8 @@ def look_aroud_ai(player: Player):
         list_item.insert(0, list_item.pop())
     return list_item, foot_case
 
-def return_to_boss(player: Player):
+def return_to_boss(player):
+    from ai.src.player import EnumDirection
     if (player.turn(EnumDirection.LEFT) == False):
         return False
     if (player.move() == False):
@@ -58,7 +61,8 @@ def return_to_boss(player: Player):
     if (player.move() == False):
         return False
 
-def look_this_orientation(player: Player, orientation: int):
+def look_this_orientation(player, orientation: int):
+    from ai.src.player import EnumDirection
     if orientation == 3:
         return (player.turn(EnumDirection.LEFT))
     elif orientation == 5:
@@ -70,7 +74,12 @@ def look_this_orientation(player: Player, orientation: int):
     else:
         return True
 
-def square_collect(player: Player, orientation: int):
+def init_square_collect(player):
+    from ai.src.player import EnumOrder
+    player.job = int(EnumOrder.SQUARE_COLLECT.value)
+
+def square_collect(player, orientation: int):
+    init_square_collect(player)
     list_item, _ = look_aroud_ai(player)
     if (look_this_orientation(player, orientation) == False):
         return False

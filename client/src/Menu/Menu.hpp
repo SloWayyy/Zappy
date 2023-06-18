@@ -13,7 +13,7 @@
 class Menu : public AScreen {
     public:
         Menu(std::shared_ptr<Window> window);
-        ~Menu() = default;
+        ~Menu();
     private:
         void handleInput() override;
 };

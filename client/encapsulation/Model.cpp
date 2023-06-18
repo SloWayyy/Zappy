@@ -21,6 +21,13 @@ ModelAnimation *Raylibcpp::RayModel::loadModelAnimations(const char *fileName, u
     return anim;
 }
 
+void Raylibcpp::RayModel::unloadModelAnimations(ModelAnimation *anim, unsigned int animCount)
+{
+    if (anim == NULL)
+        throw Error("Error: Cannot unload model animations");
+    UnloadModelAnimations(anim, animCount);
+}
+
 Model Raylibcpp::RayModel::loadModel(const char *fileName)
 {
     Model model = LoadModel(fileName);
@@ -46,6 +53,8 @@ Texture2D Raylibcpp::RayModel::loadTexture(const char *fileName)
 
 void Raylibcpp::RayModel::unloadTexture(Texture2D texture)
 {
+    if (texture.id == 0)
+        throw Error("Error: Cannot unload texture");
     UnloadTexture(texture);
 }
 

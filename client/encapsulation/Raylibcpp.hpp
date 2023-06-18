@@ -50,6 +50,7 @@ namespace Raylibcpp {
             void unloadTexture(Texture2D texture);
             void setMaterialTexture(Material *material, int mapType, Texture2D texture);
             ModelAnimation *loadModelAnimations(const char *fileName, unsigned int *animCount);
+            void unloadModelAnimations(ModelAnimation *anim, unsigned int animCount);
             void updateModelAnimation(Model model, ModelAnimation anim, int frame);
             void drawModel(Model mod, Vector3 pos, float scale, Color color);
             void drawRectangle(int posX, int posY, int width, int height, Color color);
