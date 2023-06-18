@@ -32,23 +32,19 @@ def get_ressources(player):
     print("boss_case", boss_case)
     return boss_case
 
-def can_level_up(player, boss_case):
+def handle_level_up(array_minus_level, minus_level, boss_case):
     from ai.src.player import levelUpArray
-
     count = 0
-    nbr_player = boss_case[0] - 1
 
-    for i in levelUpArray[player.level - 1]:
+    for i in levelUpArray[minus_level - 1]:
         if count == 0:
             if i >= boss_case[count]:
                 return -1
-        elif count == 1:
-            if (i * nbr_player) > (boss_case[count]):
-                return 0
         else:
             if i > (boss_case[count]):
                 return 0
         count += 1
+    return 1
 
 def check_minus_level(available_ia):
     minus_level = 10
@@ -70,18 +66,33 @@ def check_same_level(available_ia, minus_level):
 
 def send_them_in_routine(player, array_bigger_level):
     from ai.src.game import msg_create
+    count = 0
+    # call look at me here
     for player in array_bigger_level:
+        if count <= 4:
+            msg_create(player, player["uuid"], EnumHeader.ORDER.value, EnumOrder.SQUARE_COLLECT.value)
+        elif count == 5:
+            msg_create(player, player["uuid"], EnumHeader.ORDER.value, EnumOrder.TAKE_AROUND.value)
+        else:
+            msg_create(player, player["uuid"], EnumHeader.ORDER.value, EnumOrder.GO_FRONT.value)
+
+def handle_result_level_up(player, result):
+    from ai.src.game import msg_create
+    from ai.src.player import EnumOrder
+    if result == -1:
+        msg_create(player, player["uuid"], EnumHeader.ORDER.value, EnumOrder.FORK.value)
+    elif result == 0:
         msg_create(player, player["uuid"], EnumHeader.ORDER.value, EnumOrder.SQUARE_COLLECT.value)
+    else:
+        msg_create(player, player["uuid"], EnumHeader.ORDER.value, EnumOrder.INCANTATION.value)
 
 def handle_incantation(player):
     available_ai = get_available_ia(player)
     boss_case = get_ressources(player)
     minus_level = check_minus_level(available_ai)
     array_bigger_level, array_minus_level = check_same_level(available_ai, minus_level)
-
-
-
-
-    can_level_up(player, boss_case)
+    send_them_in_routine(player, array_bigger_level)
+    result = handle_level_up(array_minus_level, minus_level, boss_case)
+    handle_result_level_up(player, result)
     print("ressources ok")
     return 1
