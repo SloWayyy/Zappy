@@ -32,6 +32,6 @@ def locate_boss(player):
         player.pos_boss = -1
     return False
 
-def join_boss(player):
+def join_boss(player, _):
     while (locate_boss(player) == False):
         pass

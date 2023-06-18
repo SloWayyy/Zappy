@@ -91,7 +91,8 @@ class Player:
         ANSWER_FUNC[int(order[0][0])](self, x[0][1], order[0][1])
 
     def execute_order(self, x):
-        ORDER_FUNC[int(x[0][4])](self)
+        order = re.findall("(\d+) (.*)", x[0][4])
+        ORDER_FUNC[int(order[0][0])](self, order[0][1])
         self.job = 0
         ping(self)
     
@@ -115,7 +116,8 @@ class Player:
         if x[0][2] == EnumHeader.ORDER.value and self.job == 0:
             self.execute_order(x)
         if x[0][2] == EnumHeader.PRIORITY_ORDER.value:
-            PRIORITY_ORDER_FUNC[int(x[0][4])](self)
+            order = re.findall("(\d+) (.*)", x[0][4])
+            PRIORITY_ORDER_FUNC[int(order[0][0])](self)
 
     def handle_header(self, x):
         if self.boss == EnumBoss.IM.value:

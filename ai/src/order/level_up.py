@@ -1,6 +1,6 @@
 from ai.src.order.dump_item import *
 
-def level_up(player):
+def level_up(player, _):
     if (dump_item(player) == False):
         return False
     print("lvl up :", player.incantation())

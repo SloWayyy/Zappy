@@ -4,8 +4,8 @@ from ai.src.player import ALL
 
 def boss_routine(player: Player):
     for i in player.array_uuid:
-        player.broadcast(player.uuid + " " + EnumHeader.ORDER.value + " " + i["uuid"] + " " + EnumOrder.JOIN_BOSS.value, False)
-        player.broadcast(player.uuid + " " + EnumHeader.PRIORITY_ORDER.value + " " + i["uuid"] + " " + EnumPriorityOrder.PING.value, False)
+        player.broadcast(player.uuid + " " + EnumHeader.ORDER.value + " " + i["uuid"] + " " + EnumOrder.JOIN_BOSS.value + " Nothing", False)
+        player.broadcast(player.uuid + " " + EnumHeader.PRIORITY_ORDER.value + " " + i["uuid"] + " " + EnumPriorityOrder.PING.value + " Nothing", False)
     while True:
         player.broadcast(player.uuid + " " + EnumHeader.IMBOSS.value + " " + ALL + " " + "JAJAJA", False)
 
