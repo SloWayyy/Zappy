@@ -76,13 +76,14 @@ def look_this_orientation(player, orientation: int):
         return True
 
 def square_collect(player, data):
-    print("data: ", data)
+    from ai.src.priority_order.ping import ping
+    ping(player)
+    print("-------------------------------------(AI) je suis dans square_collect------------------------------------")
     orientation = int(data[0])
     list_item, _ = look_aroud_ai(player)
     if (look_this_orientation(player, orientation) == False):
         return False
     list_item, _ = look_aroud_ai(player)
-    print("list item no reverse:         ", list_item, flush=True)
     list_item.reverse()
     first_pattern_ai(list_item, player)
     second_pattern_ai(list_item[2:], player)

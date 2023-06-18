@@ -29,8 +29,6 @@ def get_ressources(player):
     boss_case.append(foot_case.count("player"))
     for i in EnumObject:
         boss_case.append(foot_case.count(i.value))
-    if (boss_case[0] != 1):
-        print("boss_case", boss_case)
     return boss_case
 
 def check_minus_level(available_ia):
@@ -97,7 +95,7 @@ class Answer(Enum):
 def handle_level_up(actual_lvl, boss_case, nbr_player):
     from ai.src.player import levelUpArray
 
-    print("boss_case", boss_case, "levelUpArray", levelUpArray[actual_lvl - 1], "nbr_player", nbr_player)
+    # print("boss_case", boss_case, "levelUpArray", levelUpArray[actual_lvl - 1], "nbr_player", nbr_player)
     if (nbr_player == 0):
         return Answer.NOTHING.value, 0
     if (actual_lvl == 1):
@@ -128,10 +126,17 @@ def handle_incantation(boss):
     if (len(array_minus_level) == 0):
         return 0
     result, nbr_fork = handle_level_up(array_minus_level[0]["level"], boss_case, len(array_minus_level))
-    # print("result", result, "nbr_fork", nbr_fork)
+    print("result", result, "nbr_fork", nbr_fork)
+    print("boss_case", boss_case)
     if (len(array_bigger_level) == 0 and result == Answer.INCANTATION.value):
+
         for player in array_minus_level:
             boss.broadcast(msg_create(boss, player["uuid"], EnumHeader.ORDER.value, EnumOrder.LEVEL_UP.value))
+            print("JE leur demande de lvl up")
+            for player_bis in boss.array_uuid:
+                if (player_bis["uuid"] == player["uuid"]):
+                    player_bis["job"] = 6
+            # print(boss.array_uuid)
     elif (len(array_bigger_level) == 0 and result == Answer.FORK.value):
         for player in range(len(array_minus_level)):
             if (player < nbr_fork):

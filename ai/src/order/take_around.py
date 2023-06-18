@@ -43,6 +43,8 @@ def second_pattern(list_item : list, player):
 
 def take_around(player, _):
     from ai.src.player import EnumDirection, EnumObject
+    from ai.src.priority_order.ping import ping
+    ping(player)
     list_item = []
     player.take(EnumObject.FOOD.value)
     for i in range(0, 4):

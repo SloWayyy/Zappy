@@ -19,7 +19,6 @@ def boss_routine(player: Player):
     while True:
             player.broadcast(msg_create(player, ALL, EnumHeader.IMBOSS.value))
             handle_incantation(player)
-            print(player.array_uuid)
             # msg_create(player, ALL, EnumHeader.IMBOSS.value)
             # print("je suis la")
         # ressources_boss_case = -2

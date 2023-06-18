@@ -3,7 +3,6 @@ from ai.src.player import *
 def dump_item(player, _):
     from ai.src.player import EnumObject
     inventory = player.inventory()
-    print("inventory: ", inventory, flush=True)
     if (inventory == False or len(inventory) == 0):
         return False
     # pk on start a 1 ici a voir
