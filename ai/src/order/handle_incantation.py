@@ -29,22 +29,9 @@ def get_ressources(player):
     boss_case.append(foot_case.count("player"))
     for i in EnumObject:
         boss_case.append(foot_case.count(i.value))
-    print("boss_case", boss_case)
+    if (boss_case[0] != 1):
+        print("boss_case", boss_case)
     return boss_case
-
-def handle_level_up(array_minus_level, minus_level, boss_case):
-    from ai.src.player import levelUpArray
-    count = 0
-
-    for i in levelUpArray[minus_level - 1]:
-        if count == 0:
-            if i >= boss_case[count]:
-                return -1
-        else:
-            if i > (boss_case[count]):
-                return 0
-        count += 1
-    return 1
 
 def check_minus_level(available_ia):
     minus_level = 10
@@ -64,35 +51,98 @@ def check_same_level(available_ia, minus_level):
             array_minus_level.append(player)
     return array_bigger_level, array_minus_level
 
-def send_them_in_routine(player, array_bigger_level):
+
+
+def send_them_in_routine(boss, array_player):
+    from ai.src.player import EnumOrder, EnumHeader
     from ai.src.game import msg_create
     count = 0
+    order = EnumHeader.ORDER.value
     # call look at me here
-    for player in array_bigger_level:
-        if count <= 4:
-            msg_create(player, player["uuid"], EnumHeader.ORDER.value, EnumOrder.SQUARE_COLLECT.value)
+    for player in array_player:
+        if count == 0:
+            boss.broadcast(msg_create(boss, player["uuid"], order, EnumOrder.SQUARE_COLLECT.value, "1"))
+        elif count == 1:
+            boss.broadcast(msg_create(boss, player["uuid"], order, EnumOrder.SQUARE_COLLECT.value, "3"))
+        elif count == 2:
+            boss.broadcast(msg_create(boss, player["uuid"], order, EnumOrder.SQUARE_COLLECT.value, "7"))
+        elif count == 3:
+            boss.broadcast(msg_create(boss, player["uuid"], order, EnumOrder.SQUARE_COLLECT.value, "5"))
+        elif count == 4:
+            boss.broadcast(msg_create(boss, player["uuid"], order, EnumOrder.TAKE_AROUND.value))
         elif count == 5:
-            msg_create(player, player["uuid"], EnumHeader.ORDER.value, EnumOrder.TAKE_AROUND.value)
+            boss.broadcast(msg_create(boss, player["uuid"], order, EnumOrder.GO_FRONT.value, "1"))
+        elif count == 6:
+            boss.broadcast(msg_create(boss, player["uuid"], order, EnumOrder.GO_FRONT.value, "7"))
         else:
-            msg_create(player, player["uuid"], EnumHeader.ORDER.value, EnumOrder.GO_FRONT.value)
+            boss.broadcast(msg_create(boss, player["uuid"], order, EnumOrder.TAKE_AROUND.value))
+        count += 1
 
 def handle_result_level_up(player, result):
     from ai.src.game import msg_create
-    from ai.src.player import EnumOrder
+    from ai.src.player import EnumOrder, EnumHeader
     if result == -1:
         msg_create(player, player["uuid"], EnumHeader.ORDER.value, EnumOrder.FORK.value)
     elif result == 0:
         msg_create(player, player["uuid"], EnumHeader.ORDER.value, EnumOrder.SQUARE_COLLECT.value)
     else:
-        msg_create(player, player["uuid"], EnumHeader.ORDER.value, EnumOrder.INCANTATION.value)
+        msg_create(player, player["uuid"], EnumHeader.ORDER.value, EnumOrder.LEVEL_UP.value)
 
-def handle_incantation(player):
-    available_ai = get_available_ia(player)
-    boss_case = get_ressources(player)
+class Answer(Enum):
+    INCANTATION = 1
+    ROUTINE = 2
+    FORK = 3
+    NOTHING = 4
+
+def handle_level_up(actual_lvl, boss_case, nbr_player):
+    from ai.src.player import levelUpArray
+
+    print("boss_case", boss_case, "levelUpArray", levelUpArray[actual_lvl - 1], "nbr_player", nbr_player)
+    if (nbr_player == 0):
+        return Answer.NOTHING.value, 0
+    if (actual_lvl == 1):
+        if (boss_case[2] < levelUpArray[0][2] * nbr_player):
+            return Answer.ROUTINE.value, 0
+        else:
+            return Answer.INCANTATION.value, 0
+    if (nbr_player < levelUpArray[actual_lvl - 1][0]):
+        return Answer.FORK.value, levelUpArray[actual_lvl - 1][0] % nbr_player
+    # il lui dit de fork et de combien de personne on doit fork comme ca les autres vont en routine
+    for i in range(len(levelUpArray[0])):
+        if (boss_case[i] < levelUpArray[actual_lvl - 1][i]):
+            return Answer.ROUTINE.value, 0
+        else:
+            return Answer.INCANTATION.value, 0
+    return Answer.NOTHING.value, 0
+
+def handle_incantation(boss):
+    from ai.src.game import msg_create
+    from ai.src.player import EnumOrder, EnumHeader
+    available_ai = get_available_ia(boss)
+    if (len(available_ai) != len(boss.array_uuid)):
+        return 0
+    boss_case = get_ressources(boss)
+    # print("boss_case", boss_case, "available_ai", available_ai)
     minus_level = check_minus_level(available_ai)
     array_bigger_level, array_minus_level = check_same_level(available_ai, minus_level)
-    send_them_in_routine(player, array_bigger_level)
-    result = handle_level_up(array_minus_level, minus_level, boss_case)
-    handle_result_level_up(player, result)
-    print("ressources ok")
+    if (len(array_minus_level) == 0):
+        return 0
+    result, nbr_fork = handle_level_up(array_minus_level[0]["level"], boss_case, len(array_minus_level))
+    # print("result", result, "nbr_fork", nbr_fork)
+    if (len(array_bigger_level) == 0 and result == Answer.INCANTATION.value):
+        for player in array_minus_level:
+            boss.broadcast(msg_create(boss, player["uuid"], EnumHeader.ORDER.value, EnumOrder.LEVEL_UP.value))
+    elif (len(array_bigger_level) == 0 and result == Answer.FORK.value):
+        for player in range(len(array_minus_level)):
+            if (player < nbr_fork):
+                boss.broadcast(msg_create(boss, array_minus_level[player]["uuid"], EnumHeader.ORDER.value, EnumOrder.FORK.value))
+            else:
+                boss.broadcast(msg_create(boss, array_minus_level[player]["uuid"], EnumHeader.ORDER.value, EnumOrder.SQUARE_COLLECT.value))
+    elif (len(array_bigger_level) == 0 and result == Answer.ROUTINE.value):
+        send_them_in_routine(boss, array_minus_level)
+    else:
+        send_them_in_routine(boss, array_minus_level)
+    # send_them_in_routine(player, array_bigger_level)
+    # handle_result_level_up(player, result)
+    # print("ressources ok"))
     return 1

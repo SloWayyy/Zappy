@@ -76,7 +76,8 @@ def look_this_orientation(player, orientation: int):
         return True
 
 def square_collect(player, data):
-    orientation = int(data)
+    print("data: ", data)
+    orientation = int(data[0])
     list_item, _ = look_aroud_ai(player)
     if (look_this_orientation(player, orientation) == False):
         return False
@@ -87,6 +88,6 @@ def square_collect(player, data):
     second_pattern_ai(list_item[2:], player)
     if (return_to_boss(player) == False):
         return False
-    if (dump_item(player) == False):
+    if (dump_item(player, []) == False):
         return False
     print("==================(AI) je suis arrivé au boss et j'ai déposé mes items====================")

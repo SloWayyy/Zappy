@@ -27,5 +27,9 @@ def locate_boss(player):
     return False
 
 def join_boss(player, _):
+    from ai.src.priority_order.ping import ping
+    from ai.src.order.dump_item import dump_item
     while (locate_boss(player) == False):
         pass
+    dump_item(player, None)
+    # ping(player)

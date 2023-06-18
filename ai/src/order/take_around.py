@@ -3,6 +3,7 @@ from ai.src.player import *
 
 def look_item(player):
     str: str = player.look()
+    # print("RETOUR DU BUG DE RAYAN OMG ?", str, flush=True)
     str = str.replace("[", "")
     str = str.replace(",]", ",V")
     str = str.replace("]", "")
