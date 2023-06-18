@@ -1,12 +1,7 @@
 from ai.src.order.take_around import *
 
-def init_join_boss(player):
-    from ai.src.player import EnumOrder
-    player.job = int(EnumOrder.JOIN_BOSS.value)
-
 def locate_boss(player):
     from ai.src.player import EnumDirection
-    init_join_boss(player)
     while (player.pos_boss == -1):
         player.wait_broadcast()
 

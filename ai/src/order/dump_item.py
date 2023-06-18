@@ -1,12 +1,7 @@
 from ai.src.player import * 
 
-def init_dump_item(player):
-    from ai.src.player import EnumOrder
-    player.job = int(EnumOrder.DUMP_ITEM.value)
-
 def dump_item(player, _):
     from ai.src.player import EnumObject
-    init_dump_item(player)
     inventory = player.inventory()
     if (inventory == False or len(inventory) == 0):
         return False

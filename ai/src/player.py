@@ -92,6 +92,7 @@ class Player:
 
     def execute_order(self, x):
         order = re.findall("(\d+) (.*)", x[0][4])
+        self.job = int(order[0][0])
         ORDER_FUNC[int(order[0][0])](self, order[0][1])
         self.job = 0
         ping(self)
