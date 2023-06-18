@@ -100,7 +100,7 @@ class Player:
     def boss_reaction(self, x):
         if x[0][2] == EnumHeader.ASKBOSS.value:
             self.broadcast(self.uuid + " " + EnumHeader.IMBOSS.value + " " + ALL + " IMBOSS")
-            self.array_uuid.append(dict(uuid = x[0][1], level = 1, job = None))
+            self.array_uuid.append(dict(uuid = x[0][1], level = 1, job = 0))
             self.pos_boss = 0
         if x[0][2] == EnumHeader.ANSWER.value:
             self.update_info(x)
