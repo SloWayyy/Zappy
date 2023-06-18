@@ -57,6 +57,13 @@ class Window {
         bool getIsChanged(void) const;
         void setCoefx(int coefx);
         void setCoefy(int coefy);
+        void setKeyCam1(std::size_t key);
+        void setKeyCam2(std::size_t key);
+        void setKeyCam3(std::size_t key);
+        std::size_t getKeyCam1(void) const;
+        std::size_t getKeyCam2(void) const;
+        std::size_t getKeyCam3(void) const;
+        std::string keyToString(std::size_t const &key);
     private:
         windowParams _windowParam;
         double _clock;
@@ -71,6 +78,9 @@ class Window {
         bool _isChanged;
         float _coefx;
         float _coefy;
+        std::size_t key_cam1 = KEY_F1;
+        std::size_t key_cam2 = KEY_F2;
+        std::size_t key_cam3 = KEY_F3;
 };
 
 #endif /* !WINDOW_HPP_ */
