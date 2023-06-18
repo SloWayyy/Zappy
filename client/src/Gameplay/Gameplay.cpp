@@ -127,9 +127,9 @@ void Gameplay::run(void)
     this->drawMap();
     this->setDisplayMode();
     if (!this->_isDisplay) {
-        this->drawTextOnScreen("F1:  Camera 1", 20, this->_window->getScreenHeight() - 150, 10, BLACK);
-        this->drawTextOnScreen("F2: Camera 2", 20, this->_window->getScreenHeight() - 150, 60, BLACK);
-        this->drawTextOnScreen("F3: Camera 3", 20, this->_window->getScreenHeight() - 150, 110, BLACK);
+        this->drawTextOnScreen(this->_window->keyToString(this->_window->getKeyCam1()) + " : Camera 1", 20, this->_window->getScreenHeight() - 150, 10, BLACK);
+        this->drawTextOnScreen(this->_window->keyToString(this->_window->getKeyCam2()) + " : Camera 2", 20, this->_window->getScreenHeight() - 150, 60, BLACK);
+        this->drawTextOnScreen(this->_window->keyToString(this->_window->getKeyCam3()) + " : Camera 3", 20, this->_window->getScreenHeight() - 150, 110, BLACK);
         this->handleInput();
     }
     this->startAnimation();
@@ -224,7 +224,7 @@ void Gameplay::handleInput(void)
 {
     if (this->_rayWindow.isKeyDown(KEY_ESCAPE) || _rayWindow.windowShouldClose())
         this->_window->setExit(true);
-    if (this->_rayWindow.isKeyReleased(KEY_F1)) {
+    if (this->_rayWindow.isKeyReleased(this->_window->getKeyCam1())) {
         if (!_characters.empty()) {
             if (this->setCurrentCharacter() == false)
                 return;
@@ -232,7 +232,7 @@ void Gameplay::handleInput(void)
             this->setCameraType(CAMERA_FIRST);
         }
     }
-    if (this->_rayWindow.isKeyReleased(KEY_F2)) {
+    if (this->_rayWindow.isKeyReleased(this->_window->getKeyCam2())) {
         if (!_characters.empty()) {
             if (this->setCurrentCharacter() == false)
                 return;
@@ -240,7 +240,7 @@ void Gameplay::handleInput(void)
             this->setCameraType(CAMERA_SECOND);
         }
     }
-    if (this->_rayWindow.isKeyReleased(KEY_F3)) {
+    if (this->_rayWindow.isKeyReleased(this->_window->getKeyCam3())) {
         this->_window->setDefaultCamera();
         this->setCameraType(CAMERA_THIRD);
     }

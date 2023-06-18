@@ -109,12 +109,12 @@ void Setting::handleInput()
         }
         if (this->_buttonsScreen[11].MouseClickedOnButton(x, y) == true) {
             (this->_window->getKeyCam3() == KEY_F3) ? (this->_window->setKeyCam3(KEY_V), this->_text[13]._string = "V")
-            : (this->_window->getKeyCam3() == KEY_V) ? (this->_window->setKeyCam3(KEY_M), this->_text[13]._string = "M")
+            : (this->_window->getKeyCam3() == KEY_V) ? (this->_window->setKeyCam3(KEY_F), this->_text[13]._string = "F")
             : (this->_window->setKeyCam3(KEY_F3), this->_text[13]._string = "F3");
         }
         if (this->_buttonsScreen[12].MouseClickedOnButton(x, y) == true) {
-            (this->_window->getKeyCam3() == KEY_F3) ? (this->_window->setKeyCam3(KEY_M), this->_text[13]._string = "M")
-            : (this->_window->getKeyCam3() == KEY_M) ? (this->_window->setKeyCam3(KEY_V), this->_text[13]._string = "V")
+            (this->_window->getKeyCam3() == KEY_F3) ? (this->_window->setKeyCam3(KEY_F), this->_text[13]._string = "F")
+            : (this->_window->getKeyCam3() == KEY_F) ? (this->_window->setKeyCam3(KEY_V), this->_text[13]._string = "V")
             : (this->_window->setKeyCam3(KEY_F3), this->_text[13]._string = "F3");
         }
     }

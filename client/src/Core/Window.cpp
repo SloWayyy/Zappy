@@ -242,7 +242,7 @@ std::string Window::keyToString(std::size_t const &key)
         os = "K";
     if (key == KEY_L)
         os = "L";
-    if (key == KEY_M)
-        os = "M";
+    if (key == KEY_F)
+        os = "F";
     return os;
 }
