@@ -58,8 +58,7 @@ class EnumOrder(Enum):
     JOIN_BOSS = "2"
     SQUARE_COLLECT = "3"
     TAKE_AROUND = "4"
-    CHECK_RESSOURCES = "5"
-    INCANTATION = "6"
+    INCANTATION = "5"
 
 class EnumPriorityOrder(Enum):
     PING = "0"
@@ -76,7 +75,7 @@ levelUpArray = [
 
 ANSWER_FUNC = [ping_answer]
 PRIORITY_ORDER_FUNC = [ping]
-ORDER_FUNC = [None, dump_item, join_boss, square_collect, take_around, check_ressources, level_up]
+ORDER_FUNC = [None, dump_item, join_boss, square_collect, take_around, level_up]
 
 class Player:
 

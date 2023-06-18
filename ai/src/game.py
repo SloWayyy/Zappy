@@ -13,7 +13,8 @@ def msg_create(sender: Player, receiver: str, header: str, order: str = None, da
 def boss_routine(player: Player):
     available_ai = []
     for i in player.array_uuid:
-        player.broadcast(player.uuid + " " + EnumHeader.ORDER.value + " " + i["uuid"] + " " + EnumOrder.JOIN_BOSS.value, False)
+        # player.broadcast(player.uuid + " " + EnumHeader.ORDER.value + " " + i["uuid"] + " " + EnumOrder.JOIN_BOSS.value, False)
+        msg_create(player, i["uuid"], EnumHeader.ORDER.value, EnumOrder.JOIN_BOSS.value)
         player.job = EnumOrder.JOIN_BOSS.value
     while True:
         ressources_boss_case = -2
@@ -27,7 +28,8 @@ def boss_routine(player: Player):
             # Préciser, attention a quel IA de lvl up.
             # Revenir sur la case du boss.
             for player_array in available_ai:
-                player.broadcast(player.uuid + " " + EnumHeader.ORDER.value + " " + player_array["uuid"] + " " + EnumOrder.INCANTATION.value, False)
+                # player.broadcast(player.uuid + " " + EnumHeader.ORDER.value + " " + player_array["uuid"] + " " + EnumOrder.INCANTATION.value, False)
+                msg_create(player, player_array["uuid"], EnumHeader.ORDER.value, EnumOrder.INCANTATION.value)
                 available_ai.remove(player_array)
             # player.job = EnumOrder.INCANTATION.value
             # level_up(player)
@@ -39,7 +41,8 @@ def boss_routine(player: Player):
                 # puis envoyer les 4 premieres IA en routine avec une orientation diff
                 # puis envoyer les 2 autres en routine diagonale
                 # envoyer le boss en routine take_around ?
-                player.broadcast(player.uuid + " " + EnumHeader.ORDER.value + " " + player_array["uuid"] + " " + EnumOrder.SQUARE_COLLECT.value, False)
+                # player.broadcast(player.uuid + " " + EnumHeader.ORDER.value + " " + player_array["uuid"] + " " + EnumOrder.SQUARE_COLLECT.value, False)
+                msg_create(player, player_array["uuid"], EnumHeader.ORDER.value, EnumOrder.SQUARE_COLLECT.value)
                 player_array["job"] = EnumOrder.SQUARE_COLLECT.value
                 available_ai.remove(player_array)
         elif len(available_ai) > 0 and ressources_boss_case == -1:
@@ -47,7 +50,8 @@ def boss_routine(player: Player):
             # Leur demander de FORK
             # gerer le fork
         else:
-            player.broadcast(player.uuid + " " + EnumHeader.IMBOSS.value + " " + ALL + " Venez m'aider !", False)
+            # player.broadcast(player.uuid + " " + EnumHeader.IMBOSS.value + " " + ALL + " Venez m'aider !", False)
+            msg_create(player, ALL, EnumHeader.IMBOSS.value, "Venez m'aider !")
 
 def game_loop(sock, args):
     player = Player(sock, args)

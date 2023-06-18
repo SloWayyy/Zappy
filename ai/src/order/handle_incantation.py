@@ -68,15 +68,17 @@ def check_same_level(available_ia, minus_level):
             array_minus_level.append(player)
     return array_bigger_level, array_minus_level
 
-def order_bigger_player(player, array_bigger_level):
-    pass
+def send_them_in_routine(player, array_bigger_level):
+    from ai.src.game import msg_create
+    for player in array_bigger_level:
+        msg_create(player, player["uuid"], EnumHeader.ORDER.value, EnumOrder.SQUARE_COLLECT.value)
 
 def handle_incantation(player):
     available_ai = get_available_ia(player)
     boss_case = get_ressources(player)
     minus_level = check_minus_level(available_ai)
     array_bigger_level, array_minus_level = check_same_level(available_ai, minus_level)
-    
+
 
 
 
