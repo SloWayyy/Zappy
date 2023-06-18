@@ -191,3 +191,58 @@ void Window::setCoefy(int coefy)
 {
     _coefy = 10.0f / coefy * 1.0f;
 }
+
+void Window::setKeyCam1(std::size_t key)
+{
+    this->key_cam1 = key;
+}
+
+void Window::setKeyCam2(std::size_t key)
+{
+    this->key_cam2 = key;
+}
+
+void Window::setKeyCam3(std::size_t key)
+{
+    this->key_cam3 = key;
+}
+
+std::size_t Window::getKeyCam1(void) const
+{
+    return (this->key_cam1);
+}
+
+std::size_t Window::getKeyCam2(void) const
+{
+    return (this->key_cam2);
+}
+
+std::size_t Window::getKeyCam3(void) const
+{
+    return (this->key_cam3);
+}
+
+std::string Window::keyToString(std::size_t const &key)
+{
+    std::string os;
+
+    if (key == KEY_F1)
+        os = "F1";
+    if (key == KEY_F2)
+        os = "F2";
+    if (key == KEY_F3)
+        os = "F3";
+    if (key == KEY_X)
+        os = "X";
+    if (key == KEY_C)
+        os = "C";
+    if (key == KEY_V)
+        os = "V";
+    if (key == KEY_K)
+        os = "K";
+    if (key == KEY_L)
+        os = "L";
+    if (key == KEY_M)
+        os = "M";
+    return os;
+}

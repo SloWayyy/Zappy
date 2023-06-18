@@ -26,6 +26,19 @@ Setting::Setting(std::shared_ptr<Window> window) : _volume(50), _fps(60)
         createText("Jour", {(float)this->_window->getScreenWidth() / 3.0f, this->_window->getScreenHeight() / 2.5f}, RAYWHITE, 50);
         createButtons("<", {(float)this->_window->getScreenWidth() / 5.0f, this->_window->getScreenHeight() / 2.5f}, PINK, 50, SETTINGS);
         createButtons(">", {(float)this->_window->getScreenWidth() / 2.0f, this->_window->getScreenHeight() / 2.5f}, PINK, 50, SETTINGS);
+        createText("Select Key for :", {(float)this->_window->getScreenWidth() / 1.5f, this->_window->getScreenHeight() / 10.0f}, BLACK, 50);
+        createText("Cam 1:", {(float)this->_window->getScreenWidth() / 1.6f, this->_window->getScreenHeight() / 7.5f}, BLACK, 50);
+        createButtons("<", {(float)this->_window->getScreenWidth() / 1.3f, this->_window->getScreenHeight() / 7.5f}, PINK, 50, SETTINGS);
+        createText(this->_window->keyToString(this->_window->getKeyCam1()), {(float)this->_window->getScreenWidth() / 1.15f, this->_window->getScreenHeight() / 7.5f}, BLACK, 50);
+        createButtons(">", {(float)this->_window->getScreenWidth() / 1.0f, this->_window->getScreenHeight() / 7.5f}, PINK, 50, SETTINGS);
+        createText("Cam 2:", {(float)this->_window->getScreenWidth() / 1.6f, this->_window->getScreenHeight() / 5.0f}, BLACK, 50);
+        createButtons("<", {(float)this->_window->getScreenWidth() / 1.3f, this->_window->getScreenHeight() / 5.0f}, PINK, 50, SETTINGS);
+        createText(this->_window->keyToString(this->_window->getKeyCam2()), {(float)this->_window->getScreenWidth() / 1.15f, this->_window->getScreenHeight() / 5.0f}, BLACK, 50);
+        createButtons(">", {(float)this->_window->getScreenWidth() / 1.0f, this->_window->getScreenHeight() / 5.0f}, PINK, 50, SETTINGS);
+        createText("Cam 3:", {(float)this->_window->getScreenWidth() / 1.6f, this->_window->getScreenHeight() / 3.0f}, BLACK, 50);
+        createButtons("<", {(float)this->_window->getScreenWidth() / 1.3f, this->_window->getScreenHeight() / 3.0f}, PINK, 50, SETTINGS);
+        createText(this->_window->keyToString(this->_window->getKeyCam3()), {(float)this->_window->getScreenWidth() / 1.15f, this->_window->getScreenHeight() / 3.0f}, BLACK, 50);
+        createButtons(">", {(float)this->_window->getScreenWidth() / 1.0f, this->_window->getScreenHeight() / 3.0f}, PINK, 50, SETTINGS);
     } catch (const Raylibcpp::Error &e) {
         std::cerr << e.what() << std::endl;
         throw Error("Error: Setting constructor failed");
@@ -55,44 +68,54 @@ void Setting::handleInput()
             this->_Raymusic.setMusicVolume(this->_window->getMusic(), (this->_volume / 100.0));
         }
         if (this->_buttonsScreen[3].MouseClickedOnButton(x, y) == true) {
-            if (this->_fps > 30)
-                this->_fps /= 2;
-            else
-                this->_fps = 120;
+            (this->_fps > 30) ? (this->_fps /= 2) : (this->_fps = 120);
             this->_text[4]._string = std::to_string(_fps);
             this->_window->setFps(_fps);
             this->_rayWindow.setTargetFPS(_fps);
         }
         if (this->_buttonsScreen[4].MouseClickedOnButton(x, y) == true) {
-            if (this->_fps < 120)
-                this->_fps *= 2;
-            else
-                this->_fps = 30;
+            (this->_fps < 120) ? (this->_fps *= 2) : (this->_fps = 30);
             this->_text[4]._string = std::to_string(_fps);
             this->_window->setFps(_fps);
             this->_rayWindow.setTargetFPS(_fps);
         }
         if (this->_buttonsScreen[5].MouseClickedOnButton(x, y) == true) {
-            if (this->_text[6]._string == "Jour") {
-                this->_text[6]._string = "Nuit";
-                this->_window->setIsNight(true);
-                this->_window->setIsChanged(true);
-            } else {
-                this->_text[6]._string = "Jour";
-                this->_window->setIsNight(false);
-                this->_window->setIsChanged(true);
-            }
+            (this->_text[6]._string == "Jour") ? (this->_text[6]._string = "Nuit", this->_window->setIsNight(true), this->_window->setIsChanged(true))
+            : (this->_text[6]._string = "Jour", this->_window->setIsNight(false), this->_window->setIsChanged(true));
         }
         if (this->_buttonsScreen[6].MouseClickedOnButton(x, y) == true) {
-            if (this->_text[6]._string == "Jour") {
-                this->_text[6]._string = "Nuit";
-                this->_window->setIsNight(true);
-                this->_window->setIsChanged(true);
-            } else {
-                this->_text[6]._string = "Jour";
-                this->_window->setIsNight(false);
-                this->_window->setIsChanged(true);
-            }
+            (this->_text[6]._string == "Jour") ? (this->_text[6]._string = "Nuit", this->_window->setIsNight(true), this->_window->setIsChanged(true))
+            : (this->_text[6]._string = "Jour", this->_window->setIsNight(false), this->_window->setIsChanged(true));
+        }
+        if (this->_buttonsScreen[7].MouseClickedOnButton(x, y) == true) {
+            (this->_window->getKeyCam1() == KEY_F1) ? (this->_window->setKeyCam1(KEY_X), this->_text[9]._string = "X")
+            : (this->_window->getKeyCam1() == KEY_X) ? (this->_window->setKeyCam1(KEY_K), this->_text[9]._string = "K")
+            : (this->_window->setKeyCam1(KEY_F1), this->_text[9]._string = "F1");
+        }
+        if (this->_buttonsScreen[8].MouseClickedOnButton(x, y) == true) {
+            (this->_window->getKeyCam1() == KEY_F1) ? (this->_window->setKeyCam1(KEY_K), this->_text[9]._string = "K")
+            : (this->_window->getKeyCam1() == KEY_K) ? (this->_window->setKeyCam1(KEY_X), this->_text[9]._string = "X")
+            : (this->_window->setKeyCam1(KEY_F1), this->_text[9]._string = "F1");
+        }
+        if (this->_buttonsScreen[9].MouseClickedOnButton(x, y) == true) {
+            (this->_window->getKeyCam2() == KEY_F2) ? (this->_window->setKeyCam2(KEY_C), this->_text[11]._string = "C")
+            : (this->_window->getKeyCam2() == KEY_C) ? (this->_window->setKeyCam2(KEY_L), this->_text[11]._string = "L")
+            : (this->_window->setKeyCam2(KEY_F2), this->_text[11]._string = "F2");
+        }
+        if (this->_buttonsScreen[10].MouseClickedOnButton(x, y) == true) {
+            (this->_window->getKeyCam2() == KEY_F2) ? (this->_window->setKeyCam2(KEY_L), this->_text[11]._string = "L")
+            : (this->_window->getKeyCam2() == KEY_L) ? (this->_window->setKeyCam2(KEY_C), this->_text[11]._string = "C")
+            : (this->_window->setKeyCam2(KEY_F2), this->_text[11]._string = "F2");
+        }
+        if (this->_buttonsScreen[11].MouseClickedOnButton(x, y) == true) {
+            (this->_window->getKeyCam3() == KEY_F3) ? (this->_window->setKeyCam3(KEY_V), this->_text[13]._string = "V")
+            : (this->_window->getKeyCam3() == KEY_V) ? (this->_window->setKeyCam3(KEY_M), this->_text[13]._string = "M")
+            : (this->_window->setKeyCam3(KEY_F3), this->_text[13]._string = "F3");
+        }
+        if (this->_buttonsScreen[12].MouseClickedOnButton(x, y) == true) {
+            (this->_window->getKeyCam3() == KEY_F3) ? (this->_window->setKeyCam3(KEY_M), this->_text[13]._string = "M")
+            : (this->_window->getKeyCam3() == KEY_M) ? (this->_window->setKeyCam3(KEY_V), this->_text[13]._string = "V")
+            : (this->_window->setKeyCam3(KEY_F3), this->_text[13]._string = "F3");
         }
     }
 }
