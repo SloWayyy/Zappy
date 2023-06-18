@@ -1,21 +1,12 @@
 from ai.src.order.take_around import *
 
-def init_join_boss(player):
-    from ai.src.player import EnumOrder
-    player.job = int(EnumOrder.JOIN_BOSS.value)
-
 def locate_boss(player):
-    from ai.src.player import EnumDirection, EnumHeader, EnumOrder
-    from ai.src.priority_order.ping import ping
-    from ai.src.order.square_collect import square_collect
-    init_join_boss(player)
+    from ai.src.player import EnumDirection
     while (player.pos_boss == -1):
         player.wait_broadcast()
 
     if (player.pos_boss == 0):
         print("je suis arrivé")
-        ping(player)
-        # player.broadcast(player.uuid + " " + EnumHeader.ANSWER.value + " " + player.boss_uuid + " " + EnumOrder.NOTHING.value, False)
         return True
     if (player.pos_boss == 1 or player.pos_boss == 2 or player.pos_boss == 8):
         player.move()
@@ -35,6 +26,6 @@ def locate_boss(player):
         player.pos_boss = -1
     return False
 
-def join_boss(player):
+def join_boss(player, _):
     while (locate_boss(player) == False):
         pass

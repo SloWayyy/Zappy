@@ -1,6 +1,5 @@
 from ai.src.order.take_around import *
 from ai.src.order.dump_item import *
-from ai.src.priority_order.ping import *
 
 def first_pattern_ai(list_item: list, player):
     from ai.src.player import EnumDirection
@@ -76,12 +75,9 @@ def look_this_orientation(player, orientation: int):
     else:
         return True
 
-def init_square_collect(player):
-    from ai.src.player import EnumOrder
-    player.job = int(EnumOrder.SQUARE_COLLECT.value)
-
-def square_collect(player, orientation = 1):
-    init_square_collect(player)
+def square_collect(player, data):
+    orientation = int(data)
+    list_item, _ = look_aroud_ai(player)
     if (look_this_orientation(player, orientation) == False):
         return False
     list_item, _ = look_aroud_ai(player)
@@ -93,5 +89,4 @@ def square_collect(player, orientation = 1):
         return False
     if (dump_item(player) == False):
         return False
-    ping(player)
     print("==================(AI) je suis arrivé au boss et j'ai déposé mes items====================")

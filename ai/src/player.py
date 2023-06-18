@@ -104,14 +104,16 @@ class Player:
         ANSWER_FUNC[int(order[0][0])](self, x[0][1], order[0][1])
 
     def execute_order(self, x):
-        ORDER_FUNC[int(x[0][4])](self)
+        order = re.findall("(\d+) (.*)", x[0][4])
+        self.job = int(order[0][0])
+        ORDER_FUNC[int(order[0][0])](self, order[0][1])
         self.job = 0
         ping(self)
 
     def boss_reaction(self, x):
         if x[0][2] == EnumHeader.ASKBOSS.value:
             self.broadcast(self.uuid + " " + EnumHeader.IMBOSS.value + " " + ALL + " IMBOSS")
-            self.array_uuid.append(dict(uuid = x[0][1], level = 1, job = None, pos = int(x[0][0])))
+            self.array_uuid.append(dict(uuid = x[0][1], level = 1, job = 0, pos = int(x[0][0])))
             self.pos_boss = 0
         if x[0][2] == EnumHeader.ANSWER.value:
             self.update_info(x)
@@ -128,7 +130,8 @@ class Player:
         if x[0][2] == EnumHeader.ORDER.value and self.job == 0:
             self.execute_order(x)
         if x[0][2] == EnumHeader.PRIORITY_ORDER.value:
-            PRIORITY_ORDER_FUNC[int(x[0][4])](self)
+            order = re.findall("(\d+) (.*)", x[0][4])
+            PRIORITY_ORDER_FUNC[int(order[0][0])](self)
 
     def handle_header(self, x):
         if self.boss == EnumBoss.IM.value:

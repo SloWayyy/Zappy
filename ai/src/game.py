@@ -4,9 +4,11 @@ from ai.src.group_init import find_boss
 from ai.src.player import ALL
 from ai.src.order.level_up import level_up
 
-
-
-
+def msg_create(sender: Player, receiver: str, header: str, order: str = None, data: str = "Nothing") -> str:
+    if (order != None):
+        return (sender.uuid + " " + header + " " + receiver + " " + order + " " + data)
+    else:
+        return (sender.uuid + " " + header + " " + receiver + " " + data)
 
 def boss_routine(player: Player):
     available_ai = []
@@ -48,16 +50,6 @@ def boss_routine(player: Player):
             # gerer le fork
         else:
             player.broadcast(player.uuid + " " + EnumHeader.IMBOSS.value + " " + ALL + " Venez m'aider !", False)
-
-
-
-
-
-
-
-
-
-
 
 def game_loop(sock, args):
     player = Player(sock, args)
