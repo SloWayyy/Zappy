@@ -6,13 +6,12 @@ def locate_boss(player):
         player.wait_broadcast()
 
     if (player.pos_boss == 0):
-        print(player.boss_uuid + " is the boss\n")
         print("je suis arrivé")
         return True
     if (player.pos_boss == 1 or player.pos_boss == 2 or player.pos_boss == 8):
         player.move()
         tmp, foot_case = look_item(player)
-        for i in range (1, len(foot_case)):
+        for i in range (len(foot_case)):
             if (foot_case[i] != "player"):
                 player.take(foot_case[i])
         player.wait_broadcast()

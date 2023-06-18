@@ -13,7 +13,6 @@ def look_item(player):
     for i in list:
         list_tmp.append(i.split(" "))
     foot_case = list_tmp.pop(0)
-    print("foot_case ", foot_case)
     return list_tmp[:3], foot_case
 
 def first_pattern(list_item : list, player, direction):

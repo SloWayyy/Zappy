@@ -11,6 +11,8 @@ from ai.src.order.join_boss import *
 from ai.src.order.square_collect import *
 from ai.src.order.take_around import *
 from ai.src.priority_order.ping import *
+from ai.src.order.check_ressources import *
+from ai.src.order.level_up import *
 
 class ErrorConnection(Exception):
     pass
@@ -56,14 +58,25 @@ class EnumOrder(Enum):
     JOIN_BOSS = "2"
     SQUARE_COLLECT = "3"
     TAKE_AROUND = "4"
+    CHECK_RESSOURCES = "5"
+    INCANTATION = "6"
 
 class EnumPriorityOrder(Enum):
     PING = "0"
 
+levelUpArray = [
+                [1, 0, 1, 0, 0, 0, 0, 0],
+                [2, 0, 1, 1, 1, 0, 0, 0],
+                [2, 0, 2, 0, 1, 0, 2, 0],
+                [4, 0, 1, 1, 2, 0, 1, 0],
+                [4, 0, 1, 2, 1, 3, 0, 0],
+                [6, 0, 1, 2, 3, 0, 1, 0],
+                [6, 0, 2, 2, 2, 2, 2, 1]
+               ]
 
 ANSWER_FUNC = [ping_answer]
 PRIORITY_ORDER_FUNC = [ping]
-ORDER_FUNC = [None, dump_item, join_boss, square_collect, take_around]
+ORDER_FUNC = [None, dump_item, join_boss, square_collect, take_around, check_ressources, level_up]
 
 class Player:
 
@@ -83,7 +96,7 @@ class Player:
         self.key = hashlib.sha256(self.args.name.encode()).digest()
         if (self.connection(args) == False):
             ErrorConnection("Error: connection failed")
- 
+
     # x[0][0] = pos, x[0][1] = sender uuid, x[0][2] = header, x[0][3] = receiver uuid, x[0][4] = message
 
     def update_info(self, x):
@@ -96,21 +109,21 @@ class Player:
         ORDER_FUNC[int(order[0][0])](self, order[0][1])
         self.job = 0
         ping(self)
-    
+
     def boss_reaction(self, x):
         if x[0][2] == EnumHeader.ASKBOSS.value:
             self.broadcast(self.uuid + " " + EnumHeader.IMBOSS.value + " " + ALL + " IMBOSS")
-            self.array_uuid.append(dict(uuid = x[0][1], level = 1, job = 0))
+            self.array_uuid.append(dict(uuid = x[0][1], level = 1, job = 0, pos = int(x[0][0])))
             self.pos_boss = 0
         if x[0][2] == EnumHeader.ANSWER.value:
             self.update_info(x)
-    
+
     def anonymous_reaction(self, x):
         if x[0][2] == EnumHeader.IMBOSS.value:
             self.boss = EnumBoss.IMNOT.value
             self.boss_uuid = x[0][1]
             self.pos_boss = int(x[0][0])
-    
+
     def normal_reaction(self, x):
         if x[0][2] == EnumHeader.IMBOSS.value:
             self.pos_boss = int(x[0][0])
@@ -169,6 +182,7 @@ class Player:
         if (array_decrypt == None):
             return self.wait_answer()
         self.handle_broadcast(array_decrypt)
+        self.clear_data(array_decrypt)
         if len(array_decrypt) <= 1:
             return self.wait_answer()
         if (array_decrypt[0] == "dead"):
@@ -231,7 +245,7 @@ class Player:
                 return False
         return True
 
-    def look(self, return_only: bool = False):
+    def look(self, return_only: bool = True):
         self.sock.send("Look\n".encode())
         if (return_only == True):
             return self.wait_return()[0]
