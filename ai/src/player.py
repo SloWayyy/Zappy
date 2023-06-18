@@ -11,7 +11,7 @@ from ai.src.order.join_boss import *
 from ai.src.order.square_collect import *
 from ai.src.order.take_around import *
 from ai.src.priority_order.ping import *
-from ai.src.order.check_ressources import *
+from ai.src.order.handle_incantation import *
 from ai.src.order.level_up import *
 
 class ErrorConnection(Exception):

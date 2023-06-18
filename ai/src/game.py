@@ -1,5 +1,5 @@
 from ai.src.player import Player, EnumBoss, EnumHeader, EnumOrder, EnumPriorityOrder
-from ai.src.order.check_ressources import check_ressources
+from ai.src.order.handle_incantation import handle_incantation
 from ai.src.group_init import find_boss
 from ai.src.player import ALL
 from ai.src.order.level_up import level_up
@@ -17,17 +17,15 @@ def boss_routine(player: Player):
         player.job = EnumOrder.JOIN_BOSS.value
     while True:
         ressources_boss_case = -2
-        for player_array in player.array_uuid:
-            if str(player_array["job"]) == EnumOrder.NOTHING.value and player_array["pos"] == 0:
-                available_ai.append(player_array)
+
         if (len(available_ai) > 0):
-            ressources_boss_case = check_ressources(player, player.level, available_ai)
+            ressources_boss_case = handle_incantation(player)
         print("check ressources :", ressources_boss_case, "len available ai :", len(available_ai))
         if len(available_ai) > 0  and ressources_boss_case == 1:
             print("--------------BOSS ORDER LVLUP----------------")
-            # tout le temps faire avancer le boss (pour pas qu'il lvl up sinon il est bloque pendant trop de temps)
-            # Preciser attention a quel IA de lvl up 
-            # revenir sur la case du boss
+            # tout le temps faire avancer le boss (pour pas qu'il lvl up, sinon il est bloque pendant trop de temps).
+            # Préciser, attention a quel IA de lvl up.
+            # Revenir sur la case du boss.
             for player_array in available_ai:
                 player.broadcast(player.uuid + " " + EnumHeader.ORDER.value + " " + player_array["uuid"] + " " + EnumOrder.INCANTATION.value, False)
                 available_ai.remove(player_array)
