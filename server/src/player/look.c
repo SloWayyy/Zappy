@@ -44,7 +44,7 @@ static void dump_line(server_t *server, client_t *client, size_t line, \
     int x = ((int) client->player->pos->x + server->options->width + \
         velocity->x * line + left.x * line) % server->options->width;
     int y = ((int) client->player->pos->y + server->options->height + \
-        velocity->y * line + left.y * line) % server->options->width;
+        velocity->y * line + left.y * line) % server->options->height;
 
     for (size_t i = 0; i < tiles; i++) {
         if (i > 0) {
