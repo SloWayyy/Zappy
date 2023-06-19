@@ -5,8 +5,7 @@
 ## Makefile
 ##
 
-SRC			=	src/core/config.c \
-				src/core/fdsets.c \
+SRC			=	src/core/fdsets.c \
 				src/core/init.c \
 				src/core/input.c \
 				src/core/loop.c \
@@ -48,9 +47,8 @@ SRC			=	src/core/config.c \
 				src/util/arguments/check.c \
 				src/util/arguments/handlers.c \
 				src/util/arguments/names.c \
-				src/util/arrays.c \
-				src/util/buffer_in.c \
-				src/util/buffer_out.c \
+				src/util/buffer/input.c \
+				src/util/buffer/output.c \
 				src/util/util.c \
 				src/server.c
 

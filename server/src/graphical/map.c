@@ -8,11 +8,12 @@
 #include <stdbool.h>
 #include <string.h>
 
+#include "buffer.h"
 #include "constants.h"
 #include "graphical.h"
+#include "resources.h"
 #include "server.h"
 #include "types.h"
-#include "util.h"
 
 static bool check_map_coord(server_t *server, int x, int y, client_t *client)
 {

@@ -10,12 +10,12 @@
 #include <stdlib.h>
 #include <sys/queue.h>
 
+#include "buffer.h"
 #include "constants.h"
 #include "graphical.h"
 #include "player.h"
-#include "server.h"
+#include "tasks.h"
 #include "types.h"
-#include "util.h"
 
 static egg_t *new_egg(team_t *team, tile_t *tile)
 {

@@ -15,7 +15,7 @@
 #include "graphical.h"
 #include "objects.h"
 #include "player.h"
-#include "server.h"
+#include "tasks.h"
 #include "types.h"
 
 static tile_t *get_spawn_from_egg(server_t *server, team_t *team, size_t size)

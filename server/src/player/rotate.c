@@ -9,12 +9,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "buffer.h"
 #include "constants.h"
 #include "graphical.h"
 #include "player.h"
-#include "server.h"
+#include "tasks.h"
 #include "types.h"
-#include "util.h"
 
 static void rotate_callback(server_t *server, client_t *client, void *arg)
 {

@@ -12,8 +12,8 @@
 #include <string.h>
 #include <unistd.h>
 
+#include "buffer.h"
 #include "constants.h"
-#include "types.h"
 
 bool resize_buffer(buffer_t *buffer)
 {

@@ -10,9 +10,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "graphical.h"
 #include "args.h"
 #include "types.h"
+#include "constants.h"
 
 static bool is_valid(const char **teams, int size, char const *name)
 {

@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <sys/queue.h>
 
+#include "tasks.h"
 #include "types.h"
 
 task_t *register_task(server_t *server, client_t *client, \

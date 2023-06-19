@@ -8,6 +8,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 
+#include "tasks.h"
 #include "types.h"
 
 static void execute_task(server_t *server, task_t *task)

@@ -14,11 +14,11 @@
 #include <sys/queue.h>
 #include <unistd.h>
 
+#include "buffer.h"
 #include "constants.h"
 #include "objects.h"
 #include "server.h"
 #include "types.h"
-#include "util.h"
 
 static bool handle_stdin(void)
 {

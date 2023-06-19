@@ -11,34 +11,7 @@
     #define GRAPHICAL_COMMANDS_COUNT \
         (sizeof(GRAPHICAL_COMMANDS) / sizeof(graphical_command_t))
 
-    #define GRAPHICAL_IDENTIFIER "GRAPHIC"
-
-    #define GRAPHICAL_MAP_SIZE "msz"
-    #define GRAPHICAL_TILE_CONTENT "bct"
-    #define GRAPHICAL_ALL_TILE_CONTENT "mct"
-    #define GRAPHICAL_TEAMS_NAMES "tna"
-    #define GRAPHICAL_PLAYER_POSITION "ppo"
-    #define GRAPHICAL_PLAYER_LEVEL "plv"
-    #define GRAPHICAL_PLAYER_INVENTORY "pin"
-    #define GRAPHICAL_FREQUENCY "sgt"
-    #define GRAPHICAL_CHANGE_FREQ "sst"
-
-    #define GRAPHICAL_PLAYER_JOIN "pnw"
-    #define GRAPHICAL_PLAYER_DEATH "pdi"
-    #define GRAPHICAL_PLAYER_BROADCAST "pbc"
-    #define GRAPHICAL_PLAYER_FORK "pfk"
-    #define GRAPHICAL_PLAYER_EJECT "pex"
-    #define GRAPHICAL_PLAYER_EGG "enw"
-    #define GRAPHICAL_PLAYER_EGG_JOIN "ebo"
-    #define GRAPHICAL_PLAYER_EGG_DEATH "edi"
-    #define GRAPHICAL_PLAYER_TAKE "pgt"
-    #define GRAPHICAL_PLAYER_SET "pdr"
-    #define GRAPHICAL_PLAYER_INCANTATION_START "pic"
-    #define GRAPHICAL_PLAYER_INCANTATION_END "pie"
-
-    #define GRAPHICAL_UNKNOWN "suc"
-    #define GRAPHICAL_COMMAND_PARAMETER "sbp"
-
+    #include "constants.h"
     #include "types.h"
 
 void handle_graphical_command(server_t *server, client_t *client, char *line);
@@ -65,7 +38,7 @@ void pin_handler(server_t *server, client_t *client);
 void sgt_handler(server_t *server, client_t *client);
 void sst_handler(server_t *server, client_t *client);
 
-typedef void (graphical_handler_t) (server_t *server, client_t *client);
+typedef void graphical_handler_t (server_t *server, client_t *client);
 
 typedef struct graphical_command {
     char const *command;
