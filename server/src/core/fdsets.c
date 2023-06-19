@@ -20,17 +20,18 @@
 #include "server.h"
 #include "types.h"
 
-static bool handle_stdin(void)
+static bool handle_stdin(server_t *server)
 {
-    bool exit = false;
     size_t len = 0;
+    ssize_t ret = 0;
     char *line = NULL;
 
-    if (getline(&line, &len, stdin) == -1) {
-        exit = true;
+    ret = getline(&line, &len, stdin);
+    if (ret != -1) {
+        append_buffer(server->data->stdin_buffer, line);
     }
     free(line);
-    return exit;
+    return ret == -1;
 }
 
 static void handle_incoming(server_t *server)
@@ -76,6 +77,9 @@ int refresh_fdsets(server_t *server)
     FD_ZERO(&server->data->reads);
     FD_ZERO(&server->data->writes);
     FD_SET(STDIN_FILENO, &server->data->reads);
+    if (server->data->stdout_buffer->size > 0) {
+        FD_SET(STDOUT_FILENO, &server->data->writes);
+    }
     FD_SET(server->data->socket_fd, &server->data->reads);
     FD_SET(server->data->signal_fd, &server->data->reads);
     SLIST_FOREACH(node, server->clients, next) {
@@ -93,7 +97,10 @@ bool handle_fdsets(server_t *server)
     bool exit = false;
 
     if (FD_ISSET(STDIN_FILENO, &server->data->reads)) {
-        exit = handle_stdin();
+        exit = handle_stdin(server);
+    }
+    if (FD_ISSET(STDOUT_FILENO, &server->data->writes)) {
+        dump_buffer(server->data->stdout_buffer, STDOUT_FILENO);
     }
     if (FD_ISSET(server->data->signal_fd, &server->data->reads)) {
         exit = true;
