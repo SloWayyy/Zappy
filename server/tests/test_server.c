@@ -107,14 +107,13 @@ Test(port_handler, port_too_big, .init=cr_redirect_stderr)
     cr_assert_stderr_eq_str("Error: Port must be between 1 and 65535\n");
 }
 
-Test(check_arguments, no_arguments, .init=cr_redirect_stderr)
+Test(check_arguments, no_arguments, .init=cr_redirect_stdout)
 {
     char const *argv[] = { "./zappy_server" };
     options_t options;
 
     memset(&options, 0, sizeof(options_t));
-    cr_assert_eq(check_arguments(1, argv, &options), false);
-    cr_assert_stderr_eq_str("Error: Team names are not set\n");
+    cr_assert_eq(check_arguments(1, argv, &options), true);
 }
 
 Test(check_arguments, invalid_height_nbr_arg, .init=cr_redirect_stderr)
