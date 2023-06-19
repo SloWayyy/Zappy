@@ -65,6 +65,7 @@ class Character {
         std::vector<ModelAnimation *> _animations;
         std::map<std::size_t, Texture2D> _textures;
         Vector3 _position;
+        Vector3 _pos_temp;
         unsigned int _animsCount;
         int _animFrameCounter;
         Raylibcpp::RayModel _rayModel;
