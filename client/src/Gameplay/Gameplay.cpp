@@ -92,6 +92,7 @@ void Gameplay::initPlayer(Vector3 pos, std::size_t level, std::size_t orientatio
     std::shared_ptr<Character> player = std::make_shared<Character>(5, 0, pos, level, orientation, teamname, id, textures, animations);
 
     this->_characters.insert(std::pair<std::size_t, std::shared_ptr<Character>>(id, player));
+    this->_characters[id]->setCurrentlyAnimation(SPAWN);
 }
 
 void Gameplay::initEgg(std::size_t id, float x, float y)

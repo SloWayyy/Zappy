@@ -58,6 +58,8 @@ class Character {
         std::shared_ptr<Inventory> &getInventory();
         void setBroadMessage(std::string message);
         std::string getBroadMessage() const;
+        void setAlive(bool alive);
+        bool getAlive() const;
     private:
         Model _model;
         std::vector<ModelAnimation *> _animations;
@@ -74,6 +76,7 @@ class Character {
         std::size_t _id;
         std::string _teamname;
         std::string _broadmessage;
+        bool alive;
 };
 
 #endif /* !CHARACTER_HPP_ */

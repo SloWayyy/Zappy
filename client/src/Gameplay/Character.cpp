@@ -126,7 +126,7 @@ void Character::setPos(float x, float z, int orientation)
     if (this->_position.x != x || this->_position.z != z) {
         this->_position.x = x;
         this->_position.z = z;
-        this->setCurrentlyAnimation(SPAWN);
+        this->setCurrentlyAnimation(WALKING);
     }
     this->_currentDirection = (orientation == 1) ? NORTH : (orientation == 2) ? EAST : (orientation == 3) ? SOUTH : WEST;
     this->_model.transform = this->_rayModel.matrixRotateXYZ({-90 * DEG2RAD, 0, (float)_currentDirection * DEG2RAD});
@@ -175,4 +175,14 @@ void Character::setBroadMessage(std::string message)
 std::string Character::getBroadMessage() const
 {
     return this->_broadmessage;
+}
+
+bool Character::getAlive() const
+{
+    return this->alive;
+}
+
+void Character::setAlive(bool alive)
+{
+    this->alive = alive;
 }
