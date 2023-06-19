@@ -144,7 +144,7 @@ void Core::setTeamNames(std::vector<std::string> &args)
 
 void Core::createNewPosition(std::vector<std::string> &args)
 {
-    this->_gameplay->initPlayer({std::stof(args[2]) * 4.0f, (float)1.1, std::stof(args[3]) * 4.0f}, std::stoi(args[5]), std::stoi(args[4]), std::stoi(args[1]), args[6], this->_gameplay->getTextures(), this->_gameplay->getAnimations());
+    this->_gameplay->initPlayer({std::stof(args[2]) * 4.0f, 1.1f, std::stof(args[3]) * 4.0f}, std::stoi(args[5]), std::stoi(args[4]), std::stoi(args[1]), args[6], this->_gameplay->getTextures(), this->_gameplay->getAnimations());
 }
 
 void Core::setPlayerPosition(std::vector<std::string> &args)
