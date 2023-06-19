@@ -57,9 +57,11 @@ static void end_incantation_success(server_t *server, \
 void incantation_callback(server_t *server, UNUSED client_t *client, void *arg)
 {
     incantation_t *incantation = (incantation_t *) arg;
-    bool done = meet_requirements(incantation);
+    bool done = false;
     player_t *node = NULL;
 
+    debug(server, "Starting post incantation verification");
+    done = meet_requirements(server, incantation);
     if (SLIST_EMPTY(&incantation->players)) {
         return;
     }
@@ -67,11 +69,10 @@ void incantation_callback(server_t *server, UNUSED client_t *client, void *arg)
     send_graphical_event(server, "%s %zu %zu %d%s", \
         GRAPHICAL_PLAYER_INCANTATION_END, node->pos->x, node->pos->y, \
             done, LINE_BREAK);
-    if (!done) {
+    if (!done)
         end_incantation_error(server, incantation);
-    } else {
+    else
         end_incantation_success(server, incantation, node->pos);
-    }
     SLIST_FOREACH(node, &incantation->players, next_incantation) {
         node->incantation = NULL;
     }
