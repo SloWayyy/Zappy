@@ -16,6 +16,7 @@
 
 #include "objects.h"
 #include "server.h"
+#include "tasks.h"
 #include "types.h"
 
 static void end_server(server_t *server)

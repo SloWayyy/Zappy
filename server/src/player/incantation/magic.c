@@ -11,6 +11,8 @@
 #include <sys/queue.h>
 
 #include "player.h"
+#include "resources.h"
+#include "tasks.h"
 #include "types.h"
 
 static void select_players(incantation_t *incantation, size_t size)

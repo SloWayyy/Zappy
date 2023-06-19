@@ -12,8 +12,8 @@
 #include <string.h>
 #include <unistd.h>
 
+#include "buffer.h"
 #include "constants.h"
-#include "types.h"
 
 bool resize_buffer(buffer_t *buffer)
 {
@@ -57,7 +57,12 @@ void append_buffer(buffer_t *buffer, char const *format, ...)
 
 bool dump_buffer(buffer_t *buffer, int fd)
 {
-    write(fd, buffer->buffer, buffer->size);
+    ssize_t ret = write(fd, buffer->buffer, buffer->size);
+
+    if (ret == -1) {
+        perror("write failed");
+        return false;
+    }
     buffer->size = 0;
     if (buffer->capacity > BUFFER_SIZE) {
         buffer->capacity = BUFFER_SIZE;

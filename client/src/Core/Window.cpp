@@ -28,7 +28,7 @@ void Window::setMusic(const std::string &musicPath)
 {
     this->_music = this->_rayMusic.loadMusicStream(musicPath);
     this->_rayMusic.playMusicStream(this->_music);
-    this->_rayMusic.setMusicVolume(this->_music, 0.5f);
+    this->_rayMusic.setMusicVolume(this->_music, 0.05f);
 }
 
 void Window::setDefaultCamera(void)

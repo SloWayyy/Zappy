@@ -9,10 +9,10 @@
 #include <stddef.h>
 #include <sys/queue.h>
 
+#include "buffer.h"
 #include "constants.h"
 #include "graphical.h"
 #include "types.h"
-#include "util.h"
 
 void send_graphical_event(server_t *server, const char *format, ...)
 {

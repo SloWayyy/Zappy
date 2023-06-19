@@ -5,8 +5,7 @@
 ## Makefile
 ##
 
-SRC			=	src/core/config.c \
-				src/core/fdsets.c \
+SRC			=	src/core/fdsets.c \
 				src/core/init.c \
 				src/core/input.c \
 				src/core/loop.c \
@@ -33,6 +32,7 @@ SRC			=	src/core/config.c \
 				src/player/incantation/magic.c \
 				src/player/incantation/start.c \
 				src/player/incantation/upgrade.c \
+				src/player/incantation/victory.c \
 				src/player/eggs.c \
 				src/player/eject.c \
 				src/player/food.c \
@@ -48,9 +48,8 @@ SRC			=	src/core/config.c \
 				src/util/arguments/check.c \
 				src/util/arguments/handlers.c \
 				src/util/arguments/names.c \
-				src/util/arrays.c \
-				src/util/buffer_in.c \
-				src/util/buffer_out.c \
+				src/util/buffer/input.c \
+				src/util/buffer/output.c \
 				src/util/util.c \
 				src/server.c
 

@@ -11,10 +11,11 @@
 #include <string.h>
 #include <sys/queue.h>
 
+#include "buffer.h"
 #include "constants.h"
 #include "player.h"
+#include "tasks.h"
 #include "types.h"
-#include "util.h"
 
 static void execute_command(server_t *server, client_t *client, \
     char *line, const player_command_t *command)

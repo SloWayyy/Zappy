@@ -8,10 +8,10 @@
 #include <stddef.h>
 #include <sys/queue.h>
 
+#include "buffer.h"
 #include "constants.h"
 #include "graphical.h"
 #include "types.h"
-#include "util.h"
 
 static void send_players(server_t *server, client_t *client)
 {

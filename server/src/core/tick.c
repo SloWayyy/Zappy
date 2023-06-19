@@ -11,6 +11,7 @@
 
 #include "constants.h"
 #include "server.h"
+#include "tasks.h"
 #include "types.h"
 #include "util.h"
 

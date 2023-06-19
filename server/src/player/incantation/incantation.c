@@ -11,6 +11,7 @@
 
 #include "constants.h"
 #include "graphical.h"
+#include "resources.h"
 #include "player.h"
 #include "types.h"
 

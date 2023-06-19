@@ -8,6 +8,7 @@
 #include <stdlib.h>
 
 #include "constants.h"
+#include "resources.h"
 #include "types.h"
 
 static tile_t *choose_empty(tile_t **empty, size_t area)
@@ -87,8 +88,8 @@ void refill_resources(server_t *server, double total)
             tile = choose_tile(server, total);
             tile->resources[index] += 1;
             coords = tile->y * server->options->width + tile->x;
-            server->zappy->densities[coords] += 1 - resources_density[index];
-            total += 1 - resources_density[index];
+            server->zappy->densities[coords] += 1 - RESOURCES[index].density;
+            total += 1 - RESOURCES[index].density;
         }
     }
 }

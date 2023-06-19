@@ -9,11 +9,12 @@
 #include <stddef.h>
 #include <sys/queue.h>
 
+#include "buffer.h"
 #include "constants.h"
 #include "graphical.h"
 #include "player.h"
+#include "resources.h"
 #include "types.h"
-#include "util.h"
 
 static void end_incantation_error(server_t *server, incantation_t *incantation)
 {
@@ -50,6 +51,7 @@ static void end_incantation_success(server_t *server, \
             flush_command(server, target);
         }
     }
+    check_victory(server, incantation);
 }
 
 void incantation_callback(server_t *server, UNUSED client_t *client, void *arg)

@@ -13,7 +13,9 @@
 #include <sys/queue.h>
 
 #include "constants.h"
+#include "resources.h"
 #include "server.h"
+#include "tasks.h"
 #include "types.h"
 
 static bool init_map_utils(server_t *server)
@@ -38,7 +40,7 @@ static bool populate_map(server_t *server)
         return false;
     }
     for (size_t i = 0; i < RESOURCES_TYPES_QUANTITY; i++) {
-        density = resources_density[i] * \
+        density = RESOURCES[i].density * \
             server->options->width * server->options->height;
         server->zappy->total[i] = MAX(1, density);
         server->zappy->current[i] = 0;

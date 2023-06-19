@@ -7,11 +7,10 @@
 
 #include <string.h>
 
+#include "buffer.h"
 #include "constants.h"
 #include "graphical.h"
 #include "types.h"
-#include "util.h"
-
 #include "server.h"
 
 void send_time(server_t *server, client_t *client)
