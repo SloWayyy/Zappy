@@ -122,6 +122,18 @@ void Gameplay::drawTextOnScreen(std::string text, int fontSize, int posX, int po
     this->_rayWindow.beginMode3D(this->_window->getCamera());
 }
 
+void Gameplay::displayBroadcast()
+{
+    this->_rayWindow.endMode3D();
+    for (auto &character : this->_characters) {
+        if (character.second->getBroadMessage().empty() == false) {
+            this->_rayModel.drawRectangle(0, this->_window->getScreenWidth() - 80, 1350, 30, {130, 130, 130, 255});
+            this->_rayText.drawText(character.second->getBroadMessage(), 10, this->_window->getScreenWidth() - 75, 10, BLACK);
+        }
+    }
+    this->_rayWindow.beginMode3D(this->_window->getCamera());
+}
+
 void Gameplay::run(void)
 {
     this->drawMap();
@@ -135,9 +147,10 @@ void Gameplay::run(void)
     this->startAnimation();
     this->runPlayers();
     this->runEggs();
+    this->displayBroadcast();
     if ((this->_cameraType == CAMERA_FIRST || this->_cameraType == CAMERA_SECOND) && this->_isDisplay == false)
         this->DisplayInformations();
-    if (this->_isDisplay)  {
+    if (this->_isDisplay) {
         this->_window->setDefaultCamera();
         this->_display.run(std::map<std::size_t, std::shared_ptr<Character>>(this->_characters), _map);
     }

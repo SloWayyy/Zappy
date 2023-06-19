@@ -48,6 +48,7 @@ class Gameplay {
         void startAnimation();
         void DisplayInformations();
         void setDisplayMode();
+        void displayBroadcast();
         void setIsDisplay(bool isDisplay);
         void setCameraType(CameraType cameraType);
         CameraType getCameraType(void) const;
