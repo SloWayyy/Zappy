@@ -60,6 +60,6 @@ def take_around(player, _):
 
     first_pattern(list_item, player, EnumDirection.RIGHT)
     second_pattern(list_item[2:], player)
-    if (dump_item(player) == False):
+    if (dump_item(player, 4) == False):
         return False
     print("je suis le boss et j'ai fini mon tour j'ai tout jeté au sol")

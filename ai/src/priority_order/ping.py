@@ -14,6 +14,6 @@ def ping_answer(player, uuid, info):
             i["level"] = int(data[0][0])
             i["job"] = int(data[0][1])
             i["pos"] = int(data[0][2])
-            print("i receive: from {}, He is level {}, Do job {}, he his there {}".format(uuid, data[0][0], data[0][1], data[0][2]))
+            # print("i receive: from {}, He is level {}, Do job {}, he his there {}".format(uuid, data[0][0], data[0][1], data[0][2]))
             return True
     return False

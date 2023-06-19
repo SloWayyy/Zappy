@@ -58,21 +58,30 @@ def send_them_in_routine(boss, array_player):
     order = EnumHeader.ORDER.value
     # call look at me here
     for player in array_player:
+        print("len: ", len(array_player))
         if count == 0:
+            print("order 0")
             boss.broadcast(msg_create(boss, player["uuid"], order, EnumOrder.SQUARE_COLLECT.value, "1"))
         elif count == 1:
+            print("order 1")
             boss.broadcast(msg_create(boss, player["uuid"], order, EnumOrder.SQUARE_COLLECT.value, "3"))
         elif count == 2:
+            print("order 2")
             boss.broadcast(msg_create(boss, player["uuid"], order, EnumOrder.SQUARE_COLLECT.value, "7"))
         elif count == 3:
+            print("order 3")
             boss.broadcast(msg_create(boss, player["uuid"], order, EnumOrder.SQUARE_COLLECT.value, "5"))
         elif count == 4:
+            print("order 4")
             boss.broadcast(msg_create(boss, player["uuid"], order, EnumOrder.TAKE_AROUND.value))
         elif count == 5:
+            print("order 5")
             boss.broadcast(msg_create(boss, player["uuid"], order, EnumOrder.GO_FRONT.value, "1"))
         elif count == 6:
+            print("order 6")
             boss.broadcast(msg_create(boss, player["uuid"], order, EnumOrder.GO_FRONT.value, "7"))
         else:
+            print("order 7")
             boss.broadcast(msg_create(boss, player["uuid"], order, EnumOrder.TAKE_AROUND.value))
         count += 1
 
@@ -95,7 +104,6 @@ class Answer(Enum):
 def handle_level_up(actual_lvl, boss_case, nbr_player):
     from ai.src.player import levelUpArray
 
-    print("je rentre avec comme lvl_actual", actual_lvl, "et comme boss_case", boss_case, "et comme nbr_player", nbr_player)
     if (nbr_player == 0):
         return Answer.NOTHING.value, 0
     if (actual_lvl == 1):
@@ -115,33 +123,40 @@ def handle_level_up(actual_lvl, boss_case, nbr_player):
 
 def handle_incantation(boss):
     from ai.src.game import msg_create
-    from ai.src.player import EnumOrder, EnumHeader
+    from ai.src.player import EnumOrder, EnumHeader, EnumObject
+
     available_ai = get_available_ia(boss)
     if (len(available_ai) != len(boss.array_uuid)):
         return 0
     boss_case = get_ressources(boss)
-    # print("boss_case", boss_case, "available_ai", available_ai)
     minus_level = check_minus_level(available_ai)
     array_bigger_level, array_minus_level = check_same_level(available_ai, minus_level)
     if (len(array_minus_level) == 0):
         return 0
     result, nbr_fork = handle_level_up(minus_level, boss_case, len(array_minus_level))
-    print("result", result, "nbr_fork", nbr_fork)
-    print("inventaire du boss", boss.inventory(), "boss_case", boss_case)
+    if boss_case[1] != 0:
+        boss.take(EnumObject.FOOD.value)
+
     if (len(array_bigger_level) == 0 and result == Answer.INCANTATION.value):
-        for player in array_minus_level:
-            boss.broadcast(msg_create(boss, player["uuid"], EnumHeader.ORDER.value, EnumOrder.LEVEL_UP.value))
-            print("JE leur demande de lvl up")
+        if (array_minus_level[0]["level"] == 1):
+            for player in array_minus_level:
+                boss.broadcast(msg_create(boss, player["uuid"], EnumHeader.ORDER.value, EnumOrder.LEVEL_UP.value))
+        else:
+            boss.broadcast(msg_create(boss, array_minus_level[0]["uuid"], EnumHeader.ORDER.value, EnumOrder.LEVEL_UP.value))
+
     elif (len(array_bigger_level) == 0 and result == Answer.FORK.value):
         for player in range(len(array_minus_level)):
             if (player < nbr_fork):
                 boss.broadcast(msg_create(boss, array_minus_level[player]["uuid"], EnumHeader.ORDER.value, EnumOrder.FORK.value))
             else:
-                boss.broadcast(msg_create(boss, array_minus_level[player]["uuid"], EnumHeader.ORDER.value, EnumOrder.SQUARE_COLLECT.value))
+                boss.broadcast(msg_create(boss, array_minus_level[player]["uuid"], EnumHeader.ORDER.value, EnumOrder.SQUARE_COLLECT.value, "1"))
     elif (len(array_bigger_level) == 0 and result == Answer.ROUTINE.value):
         send_them_in_routine(boss, array_minus_level)
     else:
+        print("je suis dans le else 4")
         send_them_in_routine(boss, array_minus_level)
-    
+
     # Ramasser la bouffe au sol (le boss)
+    take_around(boss, 4)
+    print("\n")
     return 1

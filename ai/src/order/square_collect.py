@@ -8,7 +8,6 @@ def first_pattern_ai(list_item: list, player):
         player.take(i)
     player.turn(EnumDirection.LEFT)
     player.move()
-    # print("list_item", list_item, flush=True)
     for i in list_item[1]:
         player.take(i)
 
@@ -77,8 +76,7 @@ def look_this_orientation(player, orientation: int):
 
 def square_collect(player, data):
     from ai.src.priority_order.ping import ping
-    print("-------------------------------------(AI) je suis dans square_collect------------------------------------")
-    print("dans square collect ma pos", player.pos_boss)
+    from ai.src.player import EnumObject
     orientation = int(data[0])
     ping(player)
     if (look_this_orientation(player, orientation) == False):
@@ -92,4 +90,3 @@ def square_collect(player, data):
     if (dump_item(player, []) == False):
         return False
     print("==================(AI) je suis arrivé au boss et j'ai déposé mes items====================")
-    # ping(player)
