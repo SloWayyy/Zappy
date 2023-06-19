@@ -3,6 +3,7 @@ from ai.src.player import *
 
 def look_item(player):
     str: str = player.look()
+    # print("RETOUR DU BUG DE RAYAN OMG ?", str, flush=True)
     str = str.replace("[", "")
     str = str.replace(",]", ",V")
     str = str.replace("]", "")
@@ -13,7 +14,6 @@ def look_item(player):
     for i in list:
         list_tmp.append(i.split(" "))
     foot_case = list_tmp.pop(0)
-    print("foot_case ", foot_case)
     return list_tmp[:3], foot_case
 
 def first_pattern(list_item : list, player, direction):
@@ -41,13 +41,10 @@ def second_pattern(list_item : list, player):
         player.turn(EnumDirection.RIGHT)
         player.move()
 
-def init_take_around(player):
-    from ai.src.player import EnumOrder
-    player.job = int(EnumOrder.TAKE_AROUND.value)
-
-def take_around(player):
-    init_take_around(player)
+def take_around(player, _):
     from ai.src.player import EnumDirection, EnumObject
+    from ai.src.priority_order.ping import ping
+    ping(player)
     list_item = []
     player.take(EnumObject.FOOD.value)
     for i in range(0, 4):

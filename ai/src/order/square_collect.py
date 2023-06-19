@@ -8,6 +8,7 @@ def first_pattern_ai(list_item: list, player):
         player.take(i)
     player.turn(EnumDirection.LEFT)
     player.move()
+    # print("list_item", list_item, flush=True)
     for i in list_item[1]:
         player.take(i)
 
@@ -74,20 +75,21 @@ def look_this_orientation(player, orientation: int):
     else:
         return True
 
-def init_square_collect(player):
-    from ai.src.player import EnumOrder
-    player.job = int(EnumOrder.SQUARE_COLLECT.value)
-
-def square_collect(player, orientation: int):
-    init_square_collect(player)
-    list_item, _ = look_aroud_ai(player)
+def square_collect(player, data):
+    from ai.src.priority_order.ping import ping
+    print("-------------------------------------(AI) je suis dans square_collect------------------------------------")
+    print("dans square collect ma pos", player.pos_boss)
+    orientation = int(data[0])
+    ping(player)
     if (look_this_orientation(player, orientation) == False):
         return False
+    list_item, _ = look_aroud_ai(player)
     list_item.reverse()
     first_pattern_ai(list_item, player)
     second_pattern_ai(list_item[2:], player)
     if (return_to_boss(player) == False):
         return False
-    if (dump_item(player) == False):
+    if (dump_item(player, []) == False):
         return False
-    print("(AI) je suis arrivé au boss et j'ai déposé mes items")
+    print("==================(AI) je suis arrivé au boss et j'ai déposé mes items====================")
+    # ping(player)
