@@ -101,10 +101,15 @@ static bool meet_player_requirements(server_t *server, \
 
 bool meet_requirements(server_t *server, incantation_t *incantation)
 {
-    player_t *leader = NULL;
+    player_t *leader = SLIST_FIRST(&incantation->players);
     size_t required = 0;
 
-    leader = SLIST_FIRST(&incantation->players);
+    if (SLIST_EMPTY(&incantation->players)) {
+        debug(server, "Incantation requirements failed: All players died");
+        return false;
+    }
+    if (!meet_player_requirements(server, incantation, leader))
+        return false;
     for (size_t i = 0; i < RESOURCES_TYPES_QUANTITY; i++) {
         required = incantation->requirements->resources[i];
         if (leader->pos->resources[i] < required) {
@@ -113,9 +118,6 @@ bool meet_requirements(server_t *server, incantation_t *incantation)
                 required, RESOURCES[i].name);
             return false;
         }
-    }
-    if (!meet_player_requirements(server, incantation, leader)) {
-        return false;
     }
     debug(server, "Incantation requirements success");
     return true;
