@@ -45,7 +45,6 @@ class Gameplay {
         void drawMap(void);
         void drawTextOnScreen(std::string text, int fontSize, int posX, int posY, Color color);
         bool setCurrentCharacter();
-        void startAnimation();
         void DisplayInformations();
         void setDisplayMode();
         void setIsDisplay(bool isDisplay);

@@ -9,20 +9,11 @@
 
 Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window), _currentCharacterId(0), _currentCharacterIndex(0)
 {
-    this->_isDisplay = false;
+    this->_isDisplay = true;
     this->_display = Display(this->_window);
     this->_cameraType = CAMERA_THIRD;
     this->setTextures();
     this->setAnimations();
-    // this->initPlayer({1 * 4.0f, 1.38f, 8 * 4.0f}, 1, 2, 3, "Team1", _textures);
-    // this->initPlayer({2 * 4.0f, 1.38f, 8 * 4.0f}, 2, 2, 4, "Team2", _textures);
-    // this->initPlayer({3 * 4.0f, 1.38f, 8 * 4.0f}, 3, 2, 5, "Team1", _textures);
-    // this->initPlayer({4 * 4.0f, 1.38f, 8 * 4.0f}, 4, 2, 6, "Team2", _textures);
-    // this->initPlayer({5 * 4.0f, 1.38f, 8 * 4.0f}, 5, 2, 7, "Team1", _textures);
-    // this->initPlayer({6 * 4.0f, 1.38f, 8 * 4.0f}, 6, 2, 8, "Team2", _textures);
-    // this->initPlayer({7 * 4.0f, 1.38f, 8 * 4.0f}, 7, 2, 9, "Team1", _textures);
-    // this->initPlayer({8 * 4.0f, 1.38f, 8 * 4.0f}, 8, 2, 10, "Team2", _textures);
-    // this->initEgg(3, 2 * 3 * 4.0f, 8 * 4.0f);
     this->_map = std::make_shared<Map>(10, 10);
 }
 
@@ -133,7 +124,6 @@ void Gameplay::run(void)
         this->drawTextOnScreen(this->_window->keyToString(this->_window->getKeyCam3()) + " : Camera 3", 20, this->_window->getScreenHeight() - 150, 110, BLACK);
         this->handleInput();
     }
-    this->startAnimation();
     this->runPlayers();
     this->runEggs();
     if ((this->_cameraType == CAMERA_FIRST || this->_cameraType == CAMERA_SECOND) && this->_isDisplay == false)
@@ -292,20 +282,6 @@ void Gameplay::drawMap(void)
         if (tile.second[6] > 0)
             this->_map->drawMineral(this->_map->getmodelThystame(), {tile.first.first * 4.0f, 1.38f, tile.first.second * 4.0f + 1.0f}, 0.2f);
     }
-}
-
-void Gameplay::startAnimation(void)
-{
-    if (this->_rayWindow.isKeyReleased(KEY_KP_1))
-        this->_characters[3]->setCurrentlyAnimation(SPAWN);
-    if (this->_rayWindow.isKeyReleased(KEY_KP_2))
-        this->_characters[3]->setCurrentlyAnimation(DYING);
-    if (this->_rayWindow.isKeyReleased(KEY_KP_3))
-        this->_characters[3]->setCurrentlyAnimation(WALKING);
-    if (this->_rayWindow.isKeyReleased(KEY_KP_4))
-        this->_characters[3]->setCurrentlyAnimation(RIGHT_TURN);
-    if (this->_rayWindow.isKeyReleased(KEY_KP_5))
-        this->_characters[3]->setCurrentlyAnimation(LEFT_TURN);
 }
 
 void Gameplay::setIsDisplay(bool isDisplay)

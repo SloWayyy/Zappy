@@ -77,8 +77,6 @@ class Character {
         std::size_t _id;
         std::string _teamname;
         std::string _broadmessage;
-        bool alive;
-        std::size_t _loop;
 };
 
 #endif /* !CHARACTER_HPP_ */
