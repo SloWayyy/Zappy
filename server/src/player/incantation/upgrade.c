@@ -51,6 +51,7 @@ static void end_incantation_success(server_t *server, \
             flush_command(server, target);
         }
     }
+    check_victory(server, incantation);
 }
 
 void incantation_callback(server_t *server, UNUSED client_t *client, void *arg)

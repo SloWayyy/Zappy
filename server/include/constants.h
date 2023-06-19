@@ -33,6 +33,8 @@
     #define FOOD_CONSUME_TICKS 126
     #define FOOD_DEFAULT 10
     #define MAX_ACTIONS 10
+    #define VICTORY_LEVEL 8
+    #define VICTORY_PLAYERS 6
 
     #define GRAPHICAL_IDENTIFIER "GRAPHIC"
 
@@ -59,6 +61,7 @@
     #define GRAPHICAL_PLAYER_INCANTATION_START "pic"
     #define GRAPHICAL_PLAYER_INCANTATION_END "pie"
 
+    #define GRAPHICAL_VICTORY "seg"
     #define GRAPHICAL_UNKNOWN "suc"
     #define GRAPHICAL_COMMAND_PARAMETER "sbp"
 

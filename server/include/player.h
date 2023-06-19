@@ -75,5 +75,6 @@ incantation_t *setup_incantation(player_t *player, \
     const incantation_requirements_t *requirements);
 bool start_incantation(server_t *server, client_t *client, \
     incantation_t *incantation);
+void check_victory(server_t *server, incantation_t *incantation);
 
 #endif
