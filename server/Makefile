@@ -55,7 +55,11 @@ SRC			=	src/core/fdsets.c \
 
 MAIN		=	src/main.c
 
-TESTS		=	tests/test_server.c
+TESTS		=	tests/test_args.c \
+				tests/test_server.c \
+				tests/util/client.c \
+				tests/util/routine.c \
+				tests/util/server.c
 
 INC			=	include/
 
@@ -96,7 +100,8 @@ fclean:	clean
 re:	fclean all
 
 tests_run: CFLAGS += --coverage
-tests_run: LDLIBS += -lcriterion
+tests_run: CPPFLAGS += -iquote tests/include
+tests_run: LDLIBS += -lcriterion -lpthread
 tests_run: clean $(OBJ) $(OBJ_T)
 	$(CC) -o $(TEST) $(OBJ) $(OBJ_T) $(LDLIBS) --coverage
 	$(RM) $(OBJ)
