@@ -49,6 +49,7 @@ typedef struct options {
     char const **names;
     int clients;
     int freq;
+    bool debug;
 } options_t;
 
 typedef struct team {
@@ -114,6 +115,8 @@ typedef struct data {
     fd_set reads;
     fd_set writes;
     struct timeval timeout;
+    struct buffer *stdin_buffer;
+    struct buffer *stdout_buffer;
 } data_t;
 
 typedef struct tick {

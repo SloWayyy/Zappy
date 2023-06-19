@@ -64,3 +64,14 @@ int names_handler(int argc, char const *argv[], options_t *options, int idx)
     }
     return fill_names(argv, idx + 1, args, options->names);
 }
+
+int debug_handler(UNUSED int argc, UNUSED char const *argv[], \
+    options_t *options, UNUSED int idx)
+{
+    if (options->debug) {
+        fprintf(stderr, "Error: Debug mode is already set\n");
+        return -1;
+    }
+    options->debug = true;
+    return 0;
+}

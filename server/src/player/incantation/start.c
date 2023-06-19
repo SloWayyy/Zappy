@@ -69,7 +69,8 @@ static void delay_incantation(server_t *server, incantation_t *incantation)
 bool start_incantation(server_t *server, client_t *client, \
     incantation_t *incantation)
 {
-    if (!meet_requirements(incantation)) {
+    debug(server, "Starting pre incantation verification");
+    if (!meet_requirements(server, incantation)) {
         start_error_incantation(server, client, incantation);
         return true;
     }

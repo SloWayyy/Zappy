@@ -28,6 +28,8 @@
 
     #define LINE_BREAK "\n"
     #define WELCOME_MESSAGE "WELCOME"
+    #define DEBUG_PREFIX "[Debug] "
+    #define GRAPHICAL_IDENTIFIER "GRAPHIC"
 
     #define REFILL_DELAY 20
     #define REFILL_COEFFICIENT 100
@@ -36,8 +38,6 @@
     #define MAX_ACTIONS 10
     #define VICTORY_LEVEL 8
     #define VICTORY_PLAYERS 6
-
-    #define GRAPHICAL_IDENTIFIER "GRAPHIC"
 
     #define GRAPHICAL_MAP_SIZE "msz"
     #define GRAPHICAL_TILE_CONTENT "bct"

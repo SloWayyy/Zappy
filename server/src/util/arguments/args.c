@@ -81,8 +81,8 @@ static int handle_argument(int argc, char const *argv[], options_t *options, \
     int longOpt = 0;
 
     for (size_t i = 0; i < OPTIONS_COUNT; i++) {
-        shortOpt = 0;
-        longOpt = 0;
+        shortOpt = -1;
+        longOpt = -1;
         if (HANDLERS[i].shortOpt != NULL) {
             shortOpt = strcmp(argv[index], HANDLERS[i].shortOpt);
         }

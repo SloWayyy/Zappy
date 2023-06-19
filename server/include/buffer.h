@@ -12,6 +12,8 @@
     #include <stdbool.h>
     #include <stddef.h>
 
+    #include "types.h"
+
 typedef struct buffer {
     char *buffer;
     size_t size;
@@ -25,6 +27,7 @@ char *extract_line(buffer_t *buffer);
 
 void append_buffer(buffer_t *buffer, char const *format, ...);
 void vappend_buffer(buffer_t *buffer, char const *format, va_list list);
+void debug(server_t *server, char const *format, ...);
 bool dump_buffer(buffer_t *buffer, int fd);
 
 bool resize_buffer(buffer_t *buffer);

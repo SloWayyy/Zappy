@@ -14,6 +14,7 @@
 #include <unistd.h>
 #include <time.h>
 
+#include "buffer.h"
 #include "objects.h"
 #include "server.h"
 #include "tasks.h"
@@ -35,6 +36,12 @@ static void end_server(server_t *server)
     }
     free(server->zappy->densities);
     free(server->zappy->empty);
+    if (server->data->stdin_buffer != NULL) {
+        free_buffer(server->data->stdin_buffer);
+    }
+    if (server->data->stdout_buffer != NULL) {
+        free_buffer(server->data->stdout_buffer);
+    }
 }
 
 static bool server_loop(server_t *server)
@@ -55,6 +62,20 @@ static bool server_loop(server_t *server)
         }
         exit = res > 0 ? handle_fdsets(server) : tick(server);
     }
+    return true;
+}
+
+static bool init_standard_buffers(server_t *server)
+{
+    buffer_t *in = new_buffer();
+    buffer_t *out = new_buffer();
+
+    if (in == NULL || out == NULL) {
+        perror("malloc failed");
+        return false;
+    }
+    server->data->stdin_buffer = in;
+    server->data->stdout_buffer = out;
     return true;
 }
 
@@ -84,7 +105,7 @@ bool start_server(options_t *options)
 
     srand(time(NULL) + (unsigned long)&server);
     init_values(&server, &tick, &teams);
-    run = init_server(&server);
+    run = init_server(&server) && init_standard_buffers(&server);
     if (run) {
         run = server_loop(&server);
     }

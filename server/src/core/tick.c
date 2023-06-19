@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <sys/time.h>
 
+#include "buffer.h"
 #include "constants.h"
 #include "server.h"
 #include "tasks.h"
@@ -28,6 +29,7 @@ void start_game(server_t *server)
 {
     gettimeofday(&server->zappy->tick->game_start, NULL);
     gettimeofday(&server->zappy->tick->last_tick, NULL);
+    debug(server, "Game started");
 }
 
 void refresh_timeout(server_t *server)
