@@ -49,8 +49,6 @@ void Character::chooseAnimation(Animations anim)
     }
     if (this->_animFrameCounter >= this->_animations[anim][0].frameCount) {
         this->_animFrameCounter = 0;
-        this->_position.x = this->_pos_temp.x;
-        this->_position.z = this->_pos_temp.z;
         this->_currentlyAnimation = NONE;
     }
 }
@@ -126,10 +124,14 @@ void Character::handleEvent()
 
 void Character::setPos(float x, float z, int orientation)
 {
-    if (this->_position.x != x || this->_position.z != z) {
+    if (this->_pos_temp.x != x || this->_pos_temp.z != z) {
+        this->_position = this->_pos_temp;
         this->_pos_temp.x = x;
         this->_pos_temp.z = z;
         this->setCurrentlyAnimation(WALKING);
+    } else {
+        this->_position.x = x;
+        this->_position.z = z;
     }
     this->_currentDirection = (orientation == 1) ? NORTH : (orientation == 2) ? EAST : (orientation == 3) ? SOUTH : WEST;
     this->_model.transform = this->_rayModel.matrixRotateXYZ({-90 * DEG2RAD, 0, (float)_currentDirection * DEG2RAD});
