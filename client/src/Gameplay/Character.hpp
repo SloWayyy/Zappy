@@ -58,11 +58,14 @@ class Character {
         std::shared_ptr<Inventory> &getInventory();
         void setBroadMessage(std::string message);
         std::string getBroadMessage() const;
+        void setAlive(bool alive);
+        bool getAlive() const;
     private:
         Model _model;
         std::vector<ModelAnimation *> _animations;
         std::map<std::size_t, Texture2D> _textures;
         Vector3 _position;
+        Vector3 _pos_temp;
         unsigned int _animsCount;
         int _animFrameCounter;
         Raylibcpp::RayModel _rayModel;
