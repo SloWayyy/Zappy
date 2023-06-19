@@ -92,6 +92,7 @@ void Gameplay::initPlayer(Vector3 pos, std::size_t level, std::size_t orientatio
     std::shared_ptr<Character> player = std::make_shared<Character>(5, 0, pos, level, orientation, teamname, id, textures, animations);
 
     this->_characters.insert(std::pair<std::size_t, std::shared_ptr<Character>>(id, player));
+    this->_characters[id]->setCurrentlyAnimation(SPAWN);
 }
 
 void Gameplay::initEgg(std::size_t id, float x, float y)
@@ -228,7 +229,7 @@ void Gameplay::handleInput(void)
         if (!_characters.empty()) {
             if (this->setCurrentCharacter() == false)
                 return;
-            this->_window->setCamera({_currentCharacter->getPosition().x, _currentCharacter->getPosition().y + (float)2.0, _currentCharacter->getPosition().z - (float)0.5}, { 10.0f, 2.0f, 10.0f }, { 0.0f, 1.0f, 0.0f }, 45.0f, CAMERA_PERSPECTIVE);
+            this->_window->setCamera({_currentCharacter->getPosition().x, _currentCharacter->getPosition().y + 2.0f, _currentCharacter->getPosition().z - 0.5f}, { 10.0f, 2.0f, 10.0f }, { 0.0f, 1.0f, 0.0f }, 45.0f, CAMERA_PERSPECTIVE);
             this->setCameraType(CAMERA_FIRST);
         }
     }
@@ -236,7 +237,7 @@ void Gameplay::handleInput(void)
         if (!_characters.empty()) {
             if (this->setCurrentCharacter() == false)
                 return;
-            this->_window->setCamera({_currentCharacter->getPosition().x, _currentCharacter->getPosition().y + (float)4.0, _currentCharacter->getPosition().z - (float)4.0}, { 0.6f, -4.5f, 60.0f }, { 0.0f, 1.0f, 0.0f }, 45.0f, CAMERA_PERSPECTIVE);
+            this->_window->setCamera({_currentCharacter->getPosition().x, _currentCharacter->getPosition().y + 4.0f, _currentCharacter->getPosition().z - 4.0f}, { 0.6f, -4.5f, 60.0f }, { 0.0f, 1.0f, 0.0f }, 45.0f, CAMERA_PERSPECTIVE);
             this->setCameraType(CAMERA_SECOND);
         }
     }
@@ -267,7 +268,7 @@ void Gameplay::drawMap(void)
         for (std::size_t x = 0; x < width; x++) {
             this->_map->setcubePosition({ _x, -0.45f, _y });
             this->_map->draw(this->_map->getmodel(), this->_map->getcubePosition(), 2.0f);
-            this->_map->draw(this->_map->getmodelPlatform(), {this->_map->getcubePosition().x, this->_map->getcubePosition().y + (float)1.6, this->_map->getcubePosition().z}, 0.02f);
+            this->_map->draw(this->_map->getmodelPlatform(), {this->_map->getcubePosition().x, this->_map->getcubePosition().y + 1.6f, this->_map->getcubePosition().z}, 0.02f);
                 _x += 4.0f;
             if (this->_isDisplay == true && (tileX == x && tileY == y))
                 this->_rayCube.drawCube({this->_map->getcubePosition().x, this->_map->getcubePosition().y + 1.5f, this->_map->getcubePosition().z}, 4.0f, 0.6f, 4.0f, {255, 255, 255, 200});
