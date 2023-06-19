@@ -16,6 +16,7 @@
     #define DEFAULT_HEIGHT 10
     #define DEFAULT_CLIENTS 4
     #define DEFAULT_FREQ 100
+    #define DEFAULT_TEAM_SIZE sizeof(DEFAULT_TEAM_NAMES) / sizeof(char *)
 
     #define MAX_CONNECTIONS 1024
     #define MAX_PORT 65536
@@ -101,5 +102,12 @@
     #define PLAYER_UNKNOWN PLAYER_KO
 
     #define UNUSED __attribute__((unused))
+
+static const char * const DEFAULT_TEAM_NAMES[] = {
+        "Team1",
+        "Team2",
+        "Team3",
+        "Team4",
+};
 
 #endif
