@@ -134,7 +134,7 @@ void Character::setPos(float x, float z, int orientation)
         this->_position.z = z;
     }
     this->_currentDirection = (orientation == 1) ? NORTH : (orientation == 2) ? EAST : (orientation == 3) ? SOUTH : WEST;
-    this->_model.transform = this->_rayModel.matrixRotateXYZ({-90 * DEG2RAD, 0, (float)_currentDirection * DEG2RAD});
+    this->_model.transform = this->_rayModel.matrixRotateXYZ({-90 * DEG2RAD, 0, _currentDirection * DEG2RAD});
 }
 
 size_t Character::getLevel() const
