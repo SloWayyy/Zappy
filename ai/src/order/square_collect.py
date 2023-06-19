@@ -77,10 +77,10 @@ def look_this_orientation(player, orientation: int):
 
 def square_collect(player, data):
     from ai.src.priority_order.ping import ping
-    ping(player)
     print("-------------------------------------(AI) je suis dans square_collect------------------------------------")
+    print("dans square collect ma pos", player.pos_boss)
     orientation = int(data[0])
-    list_item, _ = look_aroud_ai(player)
+    ping(player)
     if (look_this_orientation(player, orientation) == False):
         return False
     list_item, _ = look_aroud_ai(player)
@@ -92,3 +92,4 @@ def square_collect(player, data):
     if (dump_item(player, []) == False):
         return False
     print("==================(AI) je suis arrivé au boss et j'ai déposé mes items====================")
+    # ping(player)
