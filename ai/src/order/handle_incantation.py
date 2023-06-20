@@ -117,7 +117,7 @@ def handle_level_up(actual_lvl, boss_case, nbr_player):
     # print("CASE A COMPARER:", levelUpArray[actual_lvl - 1])
     for i in range(len(levelUpArray[0])):
         # print("je compare", boss_case[i], "avec", levelUpArray[actual_lvl - 1][i])
-        if (boss_case[i] * (nbr_player // levelUpArray[actual_lvl - 1][0]) < levelUpArray[actual_lvl - 1][i] * (nbr_player // levelUpArray[actual_lvl - 1][0])):
+        if (boss_case[i] < levelUpArray[actual_lvl - 1][i] * (nbr_player // levelUpArray[actual_lvl - 1][0])):
             print("j'ai PAS ASSEZ DE RESSOURCES POUR PASSER LVL", actual_lvl + 1, "boss cass", boss_case)
             return Answer.ROUTINE.value, 0
     print("je LEU DIT DE LVL UP VOICI l'inventaire", boss_case, "et le lvl", actual_lvl + 1)
