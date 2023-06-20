@@ -44,9 +44,8 @@ std::map<std::size_t, Texture2D> Character::getTextures() const
 void Character::chooseAnimation(Animations anim)
 {
     if (anim == WALKING) {
-        if (this->_animFrameCounter == 86) {
+        if (this->_animFrameCounter == 86)
             this->_position = this->_pos_temp;
-        }
         if (this->_animFrameCounter < this->_animations[anim][0].frameCount) {
             this->_rayModel.updateModelAnimation(this->_model, this->_animations[anim][0], this->_animFrameCounter);
             this->_animFrameCounter++;
@@ -139,7 +138,6 @@ void Character::handleEvent()
 void Character::setPos(float x, float z, int orientation)
 {
     if (this->_pos_temp.x != x || this->_pos_temp.z != z) {
-        // this->_position = this->_pos_temp;
         this->_pos_temp.x = x;
         this->_pos_temp.z = z;
         this->setCurrentlyAnimation(WALKING);

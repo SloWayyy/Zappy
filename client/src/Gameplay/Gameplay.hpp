@@ -58,6 +58,7 @@ class Gameplay {
         void setAnimations();
         std::map<std::size_t, std::shared_ptr<Character>> &getCharacters();
         std::map<std::size_t, std::shared_ptr<Egg>> &getEggs();
+        void displayMinerals();
         std::map<std::pair<std::size_t, std::size_t>, std::string> &getIncantation();
         void addIncantation(std::size_t x, std::size_t y, std::string string);
     private:

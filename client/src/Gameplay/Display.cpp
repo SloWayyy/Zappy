@@ -66,18 +66,14 @@ void Display::run(std::map<std::size_t, std::shared_ptr<Character>>(_characters)
 
 void Display::handleInput(void)
 {
-    if (IsKeyPressed(KEY_RIGHT)) {
+    if (IsKeyPressed(KEY_RIGHT))
         this->_x = (this->_x + 1 > this->_width - 1) ? 0 : this->_x + 1;
-    }
-    if (IsKeyPressed(KEY_LEFT)) {
+    if (IsKeyPressed(KEY_LEFT))
         this->_x = (this->_x == 0) ? this->_width - 1 : this->_x - 1;
-    }
-    if (IsKeyPressed(KEY_UP)) {
+    if (IsKeyPressed(KEY_UP))
         this->_y = (this->_y == 0) ? this->_height - 1 : this->_y - 1;
-    }
-    if (IsKeyPressed(KEY_DOWN)) {
+    if (IsKeyPressed(KEY_DOWN))
         this->_y = (this->_y + 1 > this->_height - 1) ? 0 : this->_y + 1;
-    }
 }
 
 std::size_t Display::getTileX(void) const
