@@ -95,32 +95,30 @@ void Gameplay::initEgg(std::size_t id, float x, float y)
 
 void Gameplay::runPlayers(void)
 {
-    for (auto &character : this->_characters) {
+    for (auto &character : this->_characters)
         character.second->run();
-    }
 }
 
 void Gameplay::runEggs(void)
 {
-    for (auto &egg : this->_eggs) {
+    for (auto &egg : this->_eggs)
         egg.second->run();
-    }
 }
 
 void Gameplay::drawTextOnScreen(std::string text, int fontSize, int posX, int posY, Color color)
 {
-    this->_rayWindow.endMode3D();
     this->_rayText.drawText(text, posX, posY, fontSize, color);
-    this->_rayWindow.beginMode3D(this->_window->getCamera());
 }
 
 void Gameplay::displayBroadcast()
 {
+    std::size_t width = this->_window->getScreenWidth();
+
     this->_rayWindow.endMode3D();
     for (auto &character : this->_characters) {
         if (character.second->getBroadMessage().empty() == false) {
-            this->_rayModel.drawRectangle(0, this->_window->getScreenWidth() - 80, 1350, 30, {130, 130, 130, 255});
-            this->_rayText.drawText(character.second->getBroadMessage(), 10, this->_window->getScreenWidth() - 75, 10, BLACK);
+            this->_rayModel.drawRectangle(0, width - 80, 1350, 30, {130, 130, 130, 255});
+            this->_rayText.drawText(character.second->getBroadMessage(), 10, width - 75, 10, BLACK);
         }
     }
     this->_rayWindow.beginMode3D(this->_window->getCamera());
@@ -131,15 +129,17 @@ void Gameplay::run(void)
     this->drawMap();
     this->setDisplayMode();
     if (!this->_isDisplay) {
+        this->_rayWindow.endMode3D();
         this->drawTextOnScreen(this->_window->keyToString(this->_window->getKeyCam1()) + " : Camera 1", 20, this->_window->getScreenHeight() - 150, 10, BLACK);
         this->drawTextOnScreen(this->_window->keyToString(this->_window->getKeyCam2()) + " : Camera 2", 20, this->_window->getScreenHeight() - 150, 60, BLACK);
         this->drawTextOnScreen(this->_window->keyToString(this->_window->getKeyCam3()) + " : Camera 3", 20, this->_window->getScreenHeight() - 150, 110, BLACK);
+        this->_rayWindow.beginMode3D(this->_window->getCamera());
         this->handleInput();
     }
     this->runPlayers();
     this->runEggs();
     this->displayBroadcast();
-    if ((this->_cameraType == CAMERA_FIRST || this->_cameraType == CAMERA_SECOND) && this->_isDisplay == false)
+    if (this->_isDisplay == false && (this->_cameraType == CAMERA_FIRST || this->_cameraType == CAMERA_SECOND))
         this->DisplayInformations();
     if (this->_isDisplay) {
         this->_window->setDefaultCamera();
@@ -184,30 +184,21 @@ void Gameplay::DisplayInformations(void)
 {
     std::size_t height = this->_window->getScreenHeight();
     std::size_t width = this->_window->getScreenWidth();
-    std::string id = "ID " + std::to_string(this->_currentCharacter->getId());
-    std::string level = "Level: " + std::to_string(this->_currentCharacter->getLevel());
-    std::string food = "Food: " + std::to_string(this->_currentCharacter->getInventory()->getFood());
-    std::string linemate = "Linemate: " + std::to_string(this->_currentCharacter->getInventory()->getLinemate());
-    std::string deraumere = "Deraumere: " + std::to_string(this->_currentCharacter->getInventory()->getDeraumere());
-    std::string sibur = "Sibur: " + std::to_string(this->_currentCharacter->getInventory()->getSibur());
-    std::string mendiane = "Mendiane: " + std::to_string(this->_currentCharacter->getInventory()->getMendiane());
-    std::string phiras = "Phiras: " + std::to_string(this->_currentCharacter->getInventory()->getPhiras());
-    std::string thystame = "Thystame: " + std::to_string(this->_currentCharacter->getInventory()->getThystame());
 
     this->_rayWindow.endMode3D();
     this->_rayModel.drawRectangle(height - (height / 4), width / 3, height / 4, width / 1.5, {130, 130, 130, 200});
     this->_rayModel.drawTextureEx(this->_map->getLevel(), {height - 450.0f, (width / 3) + 80.0f}, 0.0f, 0.2f, WHITE);
     this->_rayModel.drawTextureEx(this->_map->getTeam(), {height - 440.0f, (width / 3) + 200.0f}, 0.0f, 0.2f, WHITE);
-    this->_rayText.drawText(id, height - 300, (width / 3) + 20, 80, RED);
-    this->_rayText.drawText(level, height - 320, (width / 3) + 150, 30, BLACK);
+    this->_rayText.drawText(("ID " + std::to_string(this->_currentCharacter->getId())), height - 300, (width / 3) + 20, 80, RED);
+    this->_rayText.drawText(("Level: " + std::to_string(this->_currentCharacter->getLevel())), height - 320, (width / 3) + 150, 30, BLACK);
     this->_rayText.drawText(this->_currentCharacter->getTeamName(), height - 320, (width / 3) + 230, 30, BLACK);
-    this->_rayText.drawText(food, height - 300, (width / 3) + 300, 30, BLACK);
-    this->_rayText.drawText(linemate, height - 450, (width / 3) + 350, 30, BLACK);
-    this->_rayText.drawText(deraumere, height - 220, (width / 3) + 350, 30, BLACK);
-    this->_rayText.drawText(sibur, height - 450, (width / 3) + 400, 30, BLACK);
-    this->_rayText.drawText(mendiane, height - 220, (width / 3) + 400, 30, BLACK);
-    this->_rayText.drawText(phiras, height - 450, (width / 3) + 450, 30, BLACK);
-    this->_rayText.drawText(thystame, height - 220, (width / 3) + 450, 30, BLACK);
+    this->_rayText.drawText(("Food: " + std::to_string(this->_currentCharacter->getInventory()->getFood())), height - 300, (width / 3) + 300, 30, BLACK);
+    this->_rayText.drawText(("Linemate: " + std::to_string(this->_currentCharacter->getInventory()->getLinemate())), height - 450, (width / 3) + 350, 30, BLACK);
+    this->_rayText.drawText(("Deraumere: " + std::to_string(this->_currentCharacter->getInventory()->getDeraumere())), height - 220, (width / 3) + 350, 30, BLACK);
+    this->_rayText.drawText(("Sibur: " + std::to_string(this->_currentCharacter->getInventory()->getSibur())), height - 450, (width / 3) + 400, 30, BLACK);
+    this->_rayText.drawText(("Mendiane: " + std::to_string(this->_currentCharacter->getInventory()->getMendiane())), height - 220, (width / 3) + 400, 30, BLACK);
+    this->_rayText.drawText(("Phiras: " + std::to_string(this->_currentCharacter->getInventory()->getPhiras())), height - 450, (width / 3) + 450, 30, BLACK);
+    this->_rayText.drawText(("Thystame: " + std::to_string(this->_currentCharacter->getInventory()->getThystame())), height - 220, (width / 3) + 450, 30, BLACK);
     this->_rayWindow.beginMode3D(this->_window->getCamera());
 }
 
@@ -250,6 +241,26 @@ void Gameplay::handleInput(void)
     }
 }
 
+void Gameplay::displayMinerals()
+{
+    for (auto &tile : this->_map->getMapInventory()) {
+        if (tile.second[0] > 0)
+            this->_map->drawMineral(this->_map->getmodelFood(), {tile.first.first * 4.0f, 1.38f, tile.first.second * 4.0f}, 0.04f);
+        if (tile.second[1] > 0)
+            this->_map->drawMineral(this->_map->getmodelLinemate(), {tile.first.first * 4.0f - 1.0f, 1.38f, tile.first.second * 4.0f - 1.0f}, 0.2f);
+        if (tile.second[2] > 0)
+            this->_map->drawMineral(this->_map->getmodelDeraumere(), {tile.first.first * 4.0f, 1.38f, tile.first.second * 4.0f - 1.0f}, 0.2f);
+        if (tile.second[3] > 0)
+            this->_map->drawMineral(this->_map->getmodelSibur(), {tile.first.first * 4.0f + 1.0f, 1.38f, tile.first.second * 4.0f - 1.0f}, 0.2f);
+        if (tile.second[4] > 0)
+            this->_map->drawMineral(this->_map->getmodelMendiane(), {tile.first.first * 4.0f - 1.0f, 1.38f, tile.first.second * 4.0f}, 0.2f);
+        if (tile.second[5] > 0)
+            this->_map->drawMineral(this->_map->getmodelPhiras(), {tile.first.first * 4.0f + 1.0f, 1.38f, tile.first.second * 4.0f}, 0.2f);
+        if (tile.second[6] > 0)
+            this->_map->drawMineral(this->_map->getmodelThystame(), {tile.first.first * 4.0f, 1.38f, tile.first.second * 4.0f + 1.0f}, 0.2f);
+    }
+}
+
 void Gameplay::drawMap(void)
 {
     float _x = 0.0f;
@@ -279,22 +290,7 @@ void Gameplay::drawMap(void)
         _x = 0.0f;
         _y += 4.0f;
     }
-    for (auto &tile : this->_map->getMapInventory()) {
-        if (tile.second[0] > 0)
-            this->_map->drawMineral(this->_map->getmodelFood(), {tile.first.first * 4.0f, 1.38f, tile.first.second * 4.0f}, 0.04f);
-        if (tile.second[1] > 0)
-            this->_map->drawMineral(this->_map->getmodelLinemate(), {tile.first.first * 4.0f - 1.0f, 1.38f, tile.first.second * 4.0f - 1.0f}, 0.2f);
-        if (tile.second[2] > 0)
-            this->_map->drawMineral(this->_map->getmodelDeraumere(), {tile.first.first * 4.0f, 1.38f, tile.first.second * 4.0f - 1.0f}, 0.2f);
-        if (tile.second[3] > 0)
-            this->_map->drawMineral(this->_map->getmodelSibur(), {tile.first.first * 4.0f + 1.0f, 1.38f, tile.first.second * 4.0f - 1.0f}, 0.2f);
-        if (tile.second[4] > 0)
-            this->_map->drawMineral(this->_map->getmodelMendiane(), {tile.first.first * 4.0f - 1.0f, 1.38f, tile.first.second * 4.0f}, 0.2f);
-        if (tile.second[5] > 0)
-            this->_map->drawMineral(this->_map->getmodelPhiras(), {tile.first.first * 4.0f + 1.0f, 1.38f, tile.first.second * 4.0f}, 0.2f);
-        if (tile.second[6] > 0)
-            this->_map->drawMineral(this->_map->getmodelThystame(), {tile.first.first * 4.0f, 1.38f, tile.first.second * 4.0f + 1.0f}, 0.2f);
-    }
+    this->displayMinerals();
 }
 
 void Gameplay::setIsDisplay(bool isDisplay)

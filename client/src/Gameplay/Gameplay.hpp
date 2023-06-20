@@ -58,6 +58,7 @@ class Gameplay {
         void setAnimations();
         std::map<std::size_t, std::shared_ptr<Character>> &getCharacters();
         std::map<std::size_t, std::shared_ptr<Egg>> &getEggs();
+        void displayMinerals();
     private:
         std::shared_ptr<Window> _window;
         Display _display;
