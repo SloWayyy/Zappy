@@ -8,9 +8,12 @@
 #ifndef RESOURCES_H_
     #define RESOURCES_H_
 
-    #include <stdbool.h>
 
+    #define INCANTATIONS_COUNT \
+        (sizeof(INCANTATIONS) / sizeof(incantation_requirements_t))
     #define RESOURCES_TYPES_QUANTITY (sizeof(RESOURCES) / sizeof(resource_t))
+
+    #include <stdbool.h>
 
 typedef enum resource_type {
     FOOD,
