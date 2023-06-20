@@ -45,3 +45,14 @@ void send_graphical_join_event(server_t *server, client_t *client)
         client->player->pos->y, client->player->direction + 1, \
         client->player->level, client->player->team->name, LINE_BREAK);
 }
+
+void send_graphical_tile_event(server_t *server, tile_t *tile)
+{
+    client_t *node = NULL;
+
+    SLIST_FOREACH(node, server->clients, next) {
+        if (node->type == GRAPHIC) {
+            send_tile(server, node, tile->x, tile->y);
+        }
+    }
+}
