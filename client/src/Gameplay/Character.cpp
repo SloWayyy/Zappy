@@ -140,10 +140,10 @@ void Character::handleEvent()
 
 void Character::setPos(float x, float z, int orientation)
 {
-    if (this->_pos_temp.x != x || this->_pos_temp.z != z) {
-        this->_pos_temp.x = x;
-        this->_pos_temp.z = z;
-        this->setCurrentlyAnimation(WALKING);
+    if (this->_position.x != x || this->_position.z != z) {
+        this->setCurrentlyAnimation(SPAWN);
+        this->_position.x = x;
+        this->_position.z = z;
     }
     this->_currentDirection = (orientation == 1) ? NORTH : (orientation == 2) ? EAST : (orientation == 3) ? SOUTH : WEST;
     this->_model.transform = this->_rayModel.matrixRotateXYZ({-90 * DEG2RAD, 0, _currentDirection * DEG2RAD});
