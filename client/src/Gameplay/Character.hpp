@@ -24,7 +24,6 @@ enum Directions {
 enum Animations {
     SPAWN,
     DYING,
-    WALKING,
     RIGHT_TURN,
     LEFT_TURN,
     TAKING,

@@ -64,7 +64,6 @@ void Gameplay::setAnimations()
     try {
         this->_animations.push_back(this->_rayModel.loadModelAnimations("client/assets/monster/animations/monsterSpawn.iqm", &animCount));
         this->_animations.push_back(this->_rayModel.loadModelAnimations("client/assets/monster/animations/monsterDying.iqm", &animCount));
-        this->_animations.push_back(this->_rayModel.loadModelAnimations("client/assets/monster/animations/monsterWalking.iqm", &animCount));
         this->_animations.push_back(this->_rayModel.loadModelAnimations("client/assets/monster/animations/monsterRightTurn.iqm", &animCount));
         this->_animations.push_back(this->_rayModel.loadModelAnimations("client/assets/monster/animations/monsterLeftTurn.iqm", &animCount));
         this->_animations.push_back(this->_rayModel.loadModelAnimations("client/assets/monster/animations/monsterTaking.iqm", &animCount));

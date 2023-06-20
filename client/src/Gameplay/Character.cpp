@@ -120,8 +120,6 @@ void Character::handleEvent()
         this->chooseAnimation(SPAWN);
     if (this->_currentlyAnimation == DYING)
         this->chooseAnimation(DYING);
-    if (this->_currentlyAnimation == WALKING)
-        this->chooseAnimation(WALKING);
     if (this->_currentlyAnimation == RIGHT_TURN)
         this->chooseAnimation(RIGHT_TURN);
     if (this->_currentlyAnimation == LEFT_TURN)
