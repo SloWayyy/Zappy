@@ -27,6 +27,7 @@ vector_t get_direction(direction_type_t direction);
 struct sockaddr *generate_address(int port, char *address);
 void get_elapsed_time(struct timeval *start, struct timeval *end, \
     struct timeval *ptr);
+void free_all(size_t count, ...);
 
 typedef struct direction {
     int min;

@@ -26,7 +26,7 @@ static void select_players(server_t *server, incantation_t *incantation, \
         nb = rand() % size;
         node = SLIST_FIRST(&incantation->players);
         for (int i = 0; i < nb; i++) {
-            node = node->next_incantation.sle_next;
+            node = SLIST_NEXT(node, next_incantation);
         }
         SLIST_REMOVE(&incantation->players, node, player, next_incantation);
         size--;

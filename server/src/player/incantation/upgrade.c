@@ -40,6 +40,7 @@ static void end_incantation_success(server_t *server, \
         tile->resources[i] -= incantation->requirements->resources[i];
         server->zappy->current[i] -= incantation->requirements->resources[i];
     }
+    send_graphical_tile_event(server, tile);
     SLIST_FOREACH(node, &incantation->players, next_incantation) {
         target = get_client_by_player_id(server, node->id);
         node->level += 1;

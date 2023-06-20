@@ -17,7 +17,7 @@
 #include "tasks.h"
 #include "types.h"
 
-static egg_t *new_egg(team_t *team, tile_t *tile)
+egg_t *new_egg(team_t *team, tile_t *tile)
 {
     static size_t next_id = 0;
     egg_t *new = malloc(sizeof(egg_t));
@@ -27,6 +27,8 @@ static egg_t *new_egg(team_t *team, tile_t *tile)
         return NULL;
     }
     new->id = next_id++;
+    new->player_id = 0;
+    new->immortal = false;
     new->team = team;
     new->pos = tile;
     return new;

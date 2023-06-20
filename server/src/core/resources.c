@@ -5,12 +5,15 @@
 ** resources.c
 */
 
+#include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
 #include <sys/param.h>
 #include <sys/queue.h>
 
+#include "buffer.h"
 #include "constants.h"
+#include "graphical.h"
 #include "resources.h"
 #include "server.h"
 #include "types.h"
@@ -47,18 +50,40 @@ static double calculate_densities(server_t *server)
     return total;
 }
 
-void refill_callback(server_t *server, UNUSED client_t *client, \
-    UNUSED void *arg)
+void refill_callback(server_t *server, UNUSED client_t *client, void *arg)
 {
+    bool *first = (bool *) arg;
     size_t area = server->options->width * server->options->height;
     double total = 0.0;
 
     memset(server->zappy->densities, 0, sizeof(double) * area);
     memset(server->zappy->empty, 0, sizeof(tile_t *) * area);
+    memset(server->zappy->updated, 0, sizeof(tile_t *) * area);
     total = calculate_densities(server);
     refill_resources(server, total);
     for (size_t i = 0; i < RESOURCES_TYPES_QUANTITY; i++) {
         server->zappy->current[i] = MAX(server->zappy->current[i], \
             server->zappy->total[i]);
     }
+    if (!(*first)) {
+        for (size_t i = 0; server->zappy->updated[i] != NULL; i++) {
+            send_graphical_tile_event(server, server->zappy->updated[i]);
+        }
+    }
+    *first = false;
+}
+
+void update_tile(server_t *server, tile_t *tile, size_t index)
+{
+    size_t i = 0;
+
+    tile->resources[index] += 1;
+    debug(server, "Adding 1 %s to (%zu, %zu)", \
+        RESOURCES[index].name, tile->x, tile->y);
+    for (i = 0; server->zappy->updated[i] != NULL; i++) {
+        if (server->zappy->updated[i] == tile) {
+            return;
+        }
+    }
+    server->zappy->updated[i] = tile;
 }

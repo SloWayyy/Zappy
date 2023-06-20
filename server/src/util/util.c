@@ -7,6 +7,7 @@
 
 #include <arpa/inet.h>
 #include <netinet/in.h>
+#include <stdarg.h>
 #include <stdlib.h>
 #include <sys/socket.h>
 #include <sys/time.h>
@@ -41,4 +42,15 @@ void get_elapsed_time(struct timeval *start, struct timeval *end, \
         ptr->tv_sec = 0;
         ptr->tv_usec = 0;
     }
+}
+
+void free_all(size_t count, ...)
+{
+    va_list list;
+
+    va_start(list, count);
+    for (size_t i = 0; i < count; i++) {
+        free(va_arg(list, void *));
+    }
+    va_end(list);
 }

@@ -13,19 +13,13 @@ Map::Map(std::size_t height, std::size_t width) : _mapSize{ height, width }, _cu
     try {
         this->_level = this->_rayModel.loadTexture("client/assets/map/levelIcone.png");
         this->_team = this->_rayModel.loadTexture("client/assets/map/teamIcone.png");
-        this->_model = this->_rayModel.loadModel("client/assets/map/floor.iqm");
         this->_texture = this->_rayModel.loadTexture("client/assets/map/floorTexture3.png");
-        this->_model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = this->_texture;
-        this->_modelPlatform = this->_rayModel.loadModel("client/assets/map/platform.iqm");
         this->_texturePlatform = this->_rayModel.loadTexture("client/assets/map/platformTexture.png");
-        this->_modelPlatform.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = this->_texturePlatform;
-        this->_model.transform = this->_rayModel.matrixRotateXYZ({-90 * DEG2RAD, 0, 0});
-        this->_modelPlatform.transform = this->_rayModel.matrixRotateXYZ({-90 * DEG2RAD, 0, 0});
-        this->_modelSkybox = this->_rayModel.loadModel("client/assets/map/skybox.iqm");
         this->_textureSkyboxMorning = this->_rayModel.loadTexture("client/assets/map/skyboxTexture2.png");
-        this->_modelSkybox.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = this->_textureSkyboxMorning;
         this->_textureSkyboxNight = this->_rayModel.loadTexture("client/assets/map/skyboxTexture.png");
-        this->_modelSkybox.transform = this->_rayModel.matrixRotateXYZ({-90 * DEG2RAD, 0, 0});
+        this->_model = this->_rayModel.loadModel("client/assets/map/floor.iqm");
+        this->_modelPlatform = this->_rayModel.loadModel("client/assets/map/platform.iqm");
+        this->_modelSkybox = this->_rayModel.loadModel("client/assets/map/skybox.iqm");
         this->_modelMap.insert({this->FOOD, std::make_pair(this->_rayModel.loadModel("client/assets/food/food.iqm"), this->_rayModel.loadTexture("client/assets/food/foodTexture.png"))});
         this->_modelMap.insert({this->LINEMATE, std::make_pair(this->_rayModel.loadModel("client/assets/Mineral/crystal.iqm"), this->_rayModel.loadTexture("client/assets/Mineral/Linemate.png"))});
         this->_modelMap.insert({this->DERAUMERE, std::make_pair(this->_rayModel.loadModel("client/assets/Mineral/crystal.iqm"), this->_rayModel.loadTexture("client/assets/Mineral/Deraumere.png"))});
@@ -33,6 +27,12 @@ Map::Map(std::size_t height, std::size_t width) : _mapSize{ height, width }, _cu
         this->_modelMap.insert({this->MENDIANE, std::make_pair(this->_rayModel.loadModel("client/assets/Mineral/crystal.iqm"), this->_rayModel.loadTexture("client/assets/Mineral/Mendiane.png"))});
         this->_modelMap.insert({this->PHIRAS, std::make_pair(this->_rayModel.loadModel("client/assets/Mineral/crystal.iqm"), this->_rayModel.loadTexture("client/assets/Mineral/Phiras.png"))});
         this->_modelMap.insert({this->THYSTAME, std::make_pair(this->_rayModel.loadModel("client/assets/Mineral/crystal.iqm"), this->_rayModel.loadTexture("client/assets/Mineral/Thystame.png"))});
+        this->_model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = this->_texture;
+        this->_modelPlatform.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = this->_texturePlatform;
+        this->_modelSkybox.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = this->_textureSkyboxMorning;
+        this->_model.transform = this->_rayModel.matrixRotateXYZ({-90 * DEG2RAD, 0, 0});
+        this->_modelPlatform.transform = this->_rayModel.matrixRotateXYZ({-90 * DEG2RAD, 0, 0});
+        this->_modelSkybox.transform = this->_rayModel.matrixRotateXYZ({-90 * DEG2RAD, 0, 0});
         this->_modelMap[this->LINEMATE].first.transform = this->_rayModel.matrixRotateXYZ({-90 * DEG2RAD, 0, 0});
         this->_modelMap[this->DERAUMERE].first.transform = this->_rayModel.matrixRotateXYZ({-90 * DEG2RAD, 0, 0});
         this->_modelMap[this->SIBUR].first.transform = this->_rayModel.matrixRotateXYZ({-90 * DEG2RAD, 0, 0});
@@ -56,27 +56,27 @@ Map::~Map()
 {
     this->_rayModel.unloadTexture(this->_level);
     this->_rayModel.unloadTexture(this->_team);
-    this->_rayModel.unloadModel(this->_model);
     this->_rayModel.unloadTexture(this->_texture);
-    this->_rayModel.unloadModel(this->_modelPlatform);
     this->_rayModel.unloadTexture(this->_texturePlatform);
-    this->_rayModel.unloadModel(this->_modelSkybox);
     this->_rayModel.unloadTexture(this->_textureSkyboxMorning);
     this->_rayModel.unloadTexture(this->_textureSkyboxNight);
-    this->_rayModel.unloadModel(this->_modelMap[this->FOOD].first);
     this->_rayModel.unloadTexture(this->_modelMap[this->FOOD].second);
-    this->_rayModel.unloadModel(this->_modelMap[this->LINEMATE].first);
     this->_rayModel.unloadTexture(this->_modelMap[this->LINEMATE].second);
-    this->_rayModel.unloadModel(this->_modelMap[this->DERAUMERE].first);
     this->_rayModel.unloadTexture(this->_modelMap[this->DERAUMERE].second);
-    this->_rayModel.unloadModel(this->_modelMap[this->SIBUR].first);
     this->_rayModel.unloadTexture(this->_modelMap[this->SIBUR].second);
-    this->_rayModel.unloadModel(this->_modelMap[this->MENDIANE].first);
     this->_rayModel.unloadTexture(this->_modelMap[this->MENDIANE].second);
-    this->_rayModel.unloadModel(this->_modelMap[this->PHIRAS].first);
     this->_rayModel.unloadTexture(this->_modelMap[this->PHIRAS].second);
-    this->_rayModel.unloadModel(this->_modelMap[this->THYSTAME].first);
     this->_rayModel.unloadTexture(this->_modelMap[this->THYSTAME].second);
+    this->_rayModel.unloadModel(this->_model);
+    this->_rayModel.unloadModel(this->_modelPlatform);
+    this->_rayModel.unloadModel(this->_modelSkybox);
+    this->_rayModel.unloadModel(this->_modelMap[this->FOOD].first);
+    this->_rayModel.unloadModel(this->_modelMap[this->LINEMATE].first);
+    this->_rayModel.unloadModel(this->_modelMap[this->DERAUMERE].first);
+    this->_rayModel.unloadModel(this->_modelMap[this->SIBUR].first);
+    this->_rayModel.unloadModel(this->_modelMap[this->MENDIANE].first);
+    this->_rayModel.unloadModel(this->_modelMap[this->PHIRAS].first);
+    this->_rayModel.unloadModel(this->_modelMap[this->THYSTAME].first);
 }
 
 void Map::drawMineral(modelType type, Vector3 position, float scale)

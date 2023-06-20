@@ -56,11 +56,11 @@ static void handle_incoming(server_t *server)
 
 static void handle_clients(server_t *server)
 {
-    client_t *node = server->clients->slh_first;
+    client_t *node = SLIST_FIRST(server->clients);
     client_t *tmp = NULL;
 
     while (node != NULL) {
-        tmp = node->next.sle_next;
+        tmp = SLIST_NEXT(node, next);
         if (!handle_client(server, node)) {
             SLIST_REMOVE(server->clients, node, client, next);
             free_client(server, node);

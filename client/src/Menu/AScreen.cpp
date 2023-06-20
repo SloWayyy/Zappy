@@ -9,8 +9,7 @@
 
 void AScreen::draw()
 {
-    Raylibcpp::RayModel model;
-    model.drawTexture(this->_background, 0, 0, RAYWHITE);
+    _rayModel.drawTexture(this->_background, 0, 0, RAYWHITE);
     this->drawText();
     this->drawButton();
 }
@@ -34,11 +33,9 @@ void AScreen::createText(std::string string, coord coord, Color color, int size)
 void AScreen::drawButton(void)
 {
     for (auto &button : this->_buttonsScreen) {
-        Raylibcpp::RayModel model;
-        Raylibcpp::RayText text;
         button.update();
-        model.drawRectangle(button.getCoord().x - 10, button.getCoord().y, button.getRectButton().width, button.getRectButton().height, button.getColorRect());
-        text.drawText(button.getString().c_str(), button.getCoord().x, button.getCoord().y, button.getSize(), button.getColor());
+        this->_rayModel.drawRectangle(button.getCoord().x - 10, button.getCoord().y, button.getRectButton().width, button.getRectButton().height, button.getColorRect());
+        _rayText.drawText(button.getString().c_str(), button.getCoord().x, button.getCoord().y, button.getSize(), button.getColor());
     }
 }
 

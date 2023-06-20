@@ -32,6 +32,7 @@ bool tick(server_t *server);
 
 void refill_callback(server_t *server, client_t *client, void *arg);
 void refill_resources(server_t *server, double total);
+void update_tile(server_t *server, tile_t *tile, size_t resource_index);
 
 bool check_arguments(int argc, char const *argv[], options_t *options);
 bool check_number(char const *str, int *storage);

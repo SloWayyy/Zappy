@@ -50,15 +50,8 @@ typedef struct options {
     int clients;
     int freq;
     bool debug;
+    bool immortal;
 } options_t;
-
-typedef struct team {
-    const char *name;
-    size_t slots;
-    player_list_t *players;
-    egg_list_t *eggs;
-    SLIST_ENTRY(team) next;
-} team_t;
 
 typedef struct tile {
     size_t x;
@@ -68,6 +61,14 @@ typedef struct tile {
     egg_list_t eggs;
 } tile_t;
 
+typedef struct team {
+    const char *name;
+    size_t slots;
+    player_list_t *players;
+    egg_list_t *eggs;
+    SLIST_ENTRY(team) next;
+} team_t;
+
 typedef struct command {
     char *command;
     STAILQ_ENTRY(command) next;
@@ -75,6 +76,7 @@ typedef struct command {
 
 typedef struct egg {
     size_t id;
+    bool immortal;
     size_t player_id;
     team_t *team;
     tile_t *pos;
@@ -134,6 +136,7 @@ typedef struct zappy {
     size_t current[RESOURCES_TYPES_QUANTITY];
     double *densities;
     tile_t **empty;
+    tile_t **updated;
     team_list_t *teams;
 } zappy_t;
 

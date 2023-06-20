@@ -8,6 +8,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/queue.h>
 #include <sys/select.h>
 #include <unistd.h>
 
@@ -33,8 +34,27 @@ static void handle_unknown(server_t *server, client_t *client, char *line)
     }
 }
 
+static void handle_empty(server_t *server, client_t *client)
+{
+    team_t *team = NULL;
+
+    if (client->type != UNKNOWN) {
+        return;
+    }
+    SLIST_FOREACH(team, server->zappy->teams, next) {
+        if (strcmp(team->name, "") == 0) {
+            handle_unknown(server, client, "");
+            return;
+        }
+    }
+}
+
 static void handle_client_input(server_t *server, client_t *client, char *line)
 {
+    if (strlen(line) == 0) {
+        handle_empty(server, client);
+        return;
+    }
     if (client->type == PLAYER) {
         register_command(server, client, line);
     } else if (client->type == GRAPHIC) {

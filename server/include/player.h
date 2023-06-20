@@ -10,8 +10,6 @@
 
     #define PLAYER_COMMANDS_COUNT \
         (sizeof(PLAYER_COMMANDS) / sizeof(player_command_t))
-    #define INCANTATIONS_COUNT \
-        (sizeof(INCANTATIONS) / sizeof(incantation_requirements_t))
 
     #include <stdbool.h>
 
