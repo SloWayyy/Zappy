@@ -25,6 +25,7 @@
     #define COMMAND_PIE "pie"
     #define COMMAND_SMG "smg"
     #define COMMAND_ENI "eni"
+    #define COMMAND_PDR "pdr"
 
     #include "src/Core/Window.hpp"
     #include "src/Gameplay/Map.hpp"
@@ -66,6 +67,7 @@ class Core {
         void addIncantation(std::vector<std::string> &input);
         void endIncantation(std::vector<std::string> &input);
         void personnalMessage(std::vector<std::string> &input);
+        void dropResource(std::vector<std::string> &input);
     private:
         std::shared_ptr<Window> _window;
         std::shared_ptr<Menu> _menu;

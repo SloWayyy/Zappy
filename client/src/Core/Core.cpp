@@ -108,6 +108,7 @@ void Core::handleInput(const std::string &command)
         {COMMAND_PIC, &Core::addIncantation},
         {COMMAND_PIE, &Core::endIncantation},
         {COMMAND_SMG, &Core::personnalMessage},
+        {COMMAND_PDR, &Core::dropResource},
         {COMMAND_SEG, &Core::setWinner}
     };
 
@@ -224,4 +225,11 @@ void Core::personnalMessage(std::vector<std::string> &args)
 {
     if (args[1] == COMMAND_ENI)
         this->_gameplay->initEgg(std::stoi(args[2]), std::stof(args[3]) * 4.0f, std::stof(args[4]) * 4.0f);
+}
+
+void Core::dropResource(std::vector<std::string> &args)
+{
+    if (this->_gameplay->getCharacters().find(std::stoi(args[1])) == this->_gameplay->getCharacters().end())
+        return;
+    this->_gameplay->getCharacters()[std::stoi(args[1])]->setCurrentlyAnimation(TAKING);
 }

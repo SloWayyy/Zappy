@@ -24,9 +24,9 @@ enum Directions {
 enum Animations {
     SPAWN,
     DYING,
-    WALKING,
     RIGHT_TURN,
     LEFT_TURN,
+    TAKING,
     NONE
 };
 
@@ -34,7 +34,7 @@ class Character {
     public:
         Character() = default;
         Character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos, std::size_t level, std::size_t orientation, std::string name, std::size_t id, std::map<std::size_t, Texture2D> textures, std::vector<ModelAnimation *> _animations);
-        ~Character() = default;
+        ~Character();
         Vector3 getPosition() const;
         Model getModel() const;
         void chooseAnimation(Animations anim);
