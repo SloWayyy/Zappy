@@ -15,6 +15,7 @@ def second_pattern_ai(list_item: list, player):
     from ai.src.player import EnumDirection
     player.turn(EnumDirection.LEFT)
     player.move()
+    player.take("food")
     player.move()
     for i in list_item[0]:
         player.take(i)
@@ -27,6 +28,7 @@ def second_pattern_ai(list_item: list, player):
         player.take(i)
     player.turn(EnumDirection.LEFT)
     player.move()
+    player.take("food")
     player.move()
     for i in list_item[3]:
         player.take(i)
@@ -74,15 +76,21 @@ def look_this_orientation(player, orientation: int):
     else:
         return True
 
+def get_foot_case(player, foot_case):
+    foot_case.reverse()
+    foot_case.pop()
+    for i in foot_case:
+        player.take(i)
+
 def square_collect(player, data):
     from ai.src.priority_order.ping import ping
-    from ai.src.player import EnumObject
     orientation = int(data[0])
     ping(player)
     if (look_this_orientation(player, orientation) == False):
         return False
-    list_item, _ = look_aroud_ai(player)
+    list_item, foot_case = look_aroud_ai(player)
     list_item.reverse()
+    get_foot_case(player, foot_case)
     first_pattern_ai(list_item, player)
     second_pattern_ai(list_item[2:], player)
     if (return_to_boss(player) == False):
