@@ -105,6 +105,8 @@ void Core::handleInput(const std::string &command)
         {COMMAND_EBO, &Core::destroyEgg},
         {COMMAND_EDI, &Core::destroyEgg},
         {COMMAND_PBC, &Core::setBroadcast},
+        {COMMAND_PIC, &Core::addIncantation},
+        {COMMAND_PIE, &Core::endIncantation},
         {COMMAND_SEG, &Core::setWinner}
     };
 
@@ -203,4 +205,16 @@ void Core::setBroadcast(std::vector<std::string> &args)
     if (this->_gameplay->getCharacters().find(std::stoi(args[1])) == this->_gameplay->getCharacters().end())
         return;
     this->_gameplay->getCharacters()[std::stoi(args[1])]->setBroadMessage(args[2]);
+}
+
+void Core::addIncantation(std::vector<std::string> &args)
+{
+    this->_gameplay->addIncantation(std::stoi(args[1]), std::stoi(args[2]), args[3]);
+}
+
+void Core::endIncantation(std::vector<std::string> &args)
+{
+    if (this->_gameplay->getIncantation().find({std::stoi(args[1]), std::stoi(args[2])}) == this->_gameplay->getIncantation().end())
+        return;
+    this->_gameplay->getIncantation().erase({std::stoi(args[1]), std::stoi(args[2])});
 }
