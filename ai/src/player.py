@@ -12,8 +12,10 @@ from ai.src.order.square_collect import *
 from ai.src.order.take_around import *
 from ai.src.priority_order.ping import *
 from ai.src.order.manage_order import *
+from ai.src.priority_order.seppuku import *
 from ai.src.order.level_up import *
 from ai.src.order.go_front import *
+from ai.src.order.fork import *
 
 class ErrorConnection(Exception):
     pass
@@ -61,9 +63,11 @@ class EnumOrder(Enum):
     TAKE_AROUND = "4"
     GO_FRONT = "5"
     LEVEL_UP = "6"
+    FORK = "7"
 
 class EnumPriorityOrder(Enum):
     PING = "0"
+    SEPPUKU = "1"
 
 levelUpArray = [
                 [1, 0, 1, 0, 0, 0, 0, 0],
@@ -75,9 +79,9 @@ levelUpArray = [
                 [6, 0, 2, 2, 2, 2, 2, 1]
                ]
 
-ANSWER_FUNC = [ping_answer]
-PRIORITY_ORDER_FUNC = [ping]
-ORDER_FUNC = [None, dump_item, join_boss, square_collect, take_around, go_front, level_up]
+ANSWER_FUNC = [ping_answer, seppuku_answer]
+PRIORITY_ORDER_FUNC = [ping, seppuku]
+ORDER_FUNC = [None, dump_item, join_boss, square_collect, take_around, go_front, level_up, fork]
 
 class Player:
 
