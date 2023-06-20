@@ -20,7 +20,7 @@ pid_t launch_server(char **argv)
     cr_assert_neq(pid, -1, "Error: Could not fork");
     if (pid == 0) {
         execve(argv[0], argv, env);
-        _exit(84);
+        _exit(42);
     } else {
         return pid;
     }
@@ -29,8 +29,11 @@ pid_t launch_server(char **argv)
 void exit_server(pid_t pid)
 {
     int res = kill(pid, SIGINT);
+    int status = 0;
 
     cr_assert_neq(res, -1, "Error: Could not kill server");
-    waitpid(pid, &res, 0);
-    cr_assert_eq(WEXITSTATUS(res), 0, "Server did not exit properly");
+    waitpid(pid, &status, 0);
+    res = WEXITSTATUS(status);
+    cr_assert_neq(res, 42, "Error: Server did not start");
+    cr_assert_eq(res, 0, "Server did not exit properly (%d)", res);
 }

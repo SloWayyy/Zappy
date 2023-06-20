@@ -103,9 +103,11 @@ re:	fclean all
 tests_run: CFLAGS += --coverage
 tests_run: CPPFLAGS += -iquote tests/include
 tests_run: LDLIBS += -lcriterion -lpthread
-tests_run: clean $(OBJ) $(OBJ_T)
+tests_run: clean $(OBJ) $(OBJ_M) $(OBJ_T)
+	$(CC) -o $(NAME) $(OBJ) $(OBJ_M) $(LDLIBS) --coverage
 	$(CC) -o $(TEST) $(OBJ) $(OBJ_T) $(LDLIBS) --coverage
 	$(RM) $(OBJ)
+	$(RM) $(OBJ_M)
 	./$(TEST)
 
 .PHONY: all ci clean fclean re tests_run
