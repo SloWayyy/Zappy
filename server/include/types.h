@@ -50,6 +50,7 @@ typedef struct options {
     int clients;
     int freq;
     bool debug;
+    bool immortal;
 } options_t;
 
 typedef struct team {
@@ -134,6 +135,7 @@ typedef struct zappy {
     size_t current[RESOURCES_TYPES_QUANTITY];
     double *densities;
     tile_t **empty;
+    tile_t **updated;
     team_list_t *teams;
 } zappy_t;
 

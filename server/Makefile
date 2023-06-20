@@ -47,6 +47,7 @@ SRC			=	src/core/fdsets.c \
 				src/util/arguments/args.c \
 				src/util/arguments/check.c \
 				src/util/arguments/handlers.c \
+				src/util/arguments/modifiers.c \
 				src/util/arguments/names.c \
 				src/util/buffer/input.c \
 				src/util/buffer/output.c \
