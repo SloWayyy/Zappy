@@ -125,24 +125,54 @@ def handle_incantation(boss):
     from ai.src.game import msg_create
     from ai.src.player import EnumOrder, EnumHeader, EnumObject
 
+    # if (boss.incanteur_uuid != []):
+    #     for player in boss.array_uuid:
+    #         # print("je rentre ici", boss.incanteur_uuid, flush=True)
+    #         # print("boss.array_uuid", boss.array_uuid, flush=True)
+    #         if (player["uuid"] == boss.incanteur_uuid[0][0] and int(player["level"]) - 1 == int(boss.incanteur_uuid[0][1])):
+    #             print("JE RENTRE LA-------------------------------------------")
+    #             for player_new_lvl in boss.array_uuid:
+    #                 # print("comparaison :  ", player_new_lvl["level"], player["level"])
+    #                 if (player_new_lvl["level"] == player["level"] - 1 and player_new_lvl["uuid"] != player["uuid"]):
+    #                     print("je lui monte le lvl")
+    #                     player_new_lvl["level"] = player["level"]
+    #             boss.incanteur_uuid = []
+    #             # print("quand je sors ", boss.array_uuid, flush=True)
+    #             break
     available_ai = get_available_ia(boss)
+    for player in boss.array_uuid:
+        # print("player: ", player["uuid"], "lvl", player["level"])
+        if (str(player["job"]) == EnumOrder.LEVEL_UP.value):
+            # print("je rentre la ?")
+            return 0
     if (len(available_ai) != len(boss.array_uuid)):
         return 0
     boss_case = get_ressources(boss)
     minus_level = check_minus_level(available_ai)
     array_bigger_level, array_minus_level = check_same_level(available_ai, minus_level)
+    print("available ia", available_ai, flush=True)
     if (len(array_minus_level) == 0):
         return 0
     result, nbr_fork = handle_level_up(minus_level, boss_case, len(array_minus_level))
     if boss_case[1] != 0:
         boss.take(EnumObject.FOOD.value)
 
+    print("boss.array:", boss.array_uuid, flush=True)
     if (len(array_bigger_level) == 0 and result == Answer.INCANTATION.value):
         if (array_minus_level[0]["level"] == 1):
             for player in array_minus_level:
                 boss.broadcast(msg_create(boss, player["uuid"], EnumHeader.ORDER.value, EnumOrder.LEVEL_UP.value))
-        else:
-            boss.broadcast(msg_create(boss, array_minus_level[0]["uuid"], EnumHeader.ORDER.value, EnumOrder.LEVEL_UP.value))
+        elif array_minus_level[0]["level"] == 2 or array_minus_level[0]["level"] == 3:
+            print("je lui dit de lvl up", flush=True)
+
+            # ICI APPLER NBR DE JOEUR / 2
+            for i in range (len(array_minus_level) // 2):
+                boss.broadcast(msg_create(boss, array_minus_level[i]["uuid"], EnumHeader.ORDER.value, EnumOrder.LEVEL_UP.value))
+                boss.incanteur_uuid.append((array_minus_level[i]["uuid"], array_minus_level[i]["level"]))
+            # for player in array_minus_level:
+            # boss.incanteur_uuid.append((array_minus_level[0]["uuid"], array_minus_level[0]["level"]))
+            # boss.broadcast(msg_create(boss, array_minus_level[0]["uuid"], EnumHeader.ORDER.value, EnumOrder.LEVEL_UP.value))
+            # print("array ", boss.array_uuid, flush=True)
 
     elif (len(array_bigger_level) == 0 and result == Answer.FORK.value):
         for player in range(len(array_minus_level)):
@@ -157,6 +187,7 @@ def handle_incantation(boss):
         send_them_in_routine(boss, array_minus_level)
 
     # Ramasser la bouffe au sol (le boss)
-    take_around(boss, 4)
+    if ((array_minus_level[0]["level"] + 1) % 2 == 0):
+        take_around(boss, 4)
     print("\n")
     return 1

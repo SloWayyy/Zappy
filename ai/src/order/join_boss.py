@@ -9,11 +9,11 @@ def locate_boss(player):
         print("je suis arrivé")
         return True
     if (player.pos_boss == 1 or player.pos_boss == 2 or player.pos_boss == 8):
-        player.move()
         tmp, foot_case = look_item(player)
         for i in range (len(foot_case)):
             if (foot_case[i] != "player"):
                 player.take(foot_case[i])
+        player.move()
         player.wait_broadcast()
         player.pos_boss = -1
     elif (player.pos_boss == 4 or player.pos_boss == 5 or player.pos_boss == 3):

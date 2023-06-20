@@ -91,6 +91,7 @@ class Player:
         self.boss_uuid = None
         self.job = 0
         self.array_uuid = []
+        self.incanteur_uuid = []
         print("UUID: " + self.uuid)
         self.map_size = SizeMap(0, 0)
         self.args = args
@@ -325,6 +326,7 @@ class Player:
         return True
 
     def incantation(self, return_only: bool = False):
+        from ai.src.priority_order.ping import ping
         self.sock.send("Incantation\n".encode())
         if (return_only == True):
             if (self.wait_return()[0] == "ko"):
@@ -339,6 +341,8 @@ class Player:
             else:
                 array = tmp.split(": ")
                 self.level = array[1]
+                print("JAI RECU LVL ", array[1])
+                ping(self)
                 return tmp
         else:
             tmp = self.wait_answer()[0]
@@ -347,4 +351,6 @@ class Player:
             else:
                 array = tmp.split(": ")
                 self.level = array[1]
+                print("JAI RECU LVL ", array[1])
+                ping(self)
                 return tmp

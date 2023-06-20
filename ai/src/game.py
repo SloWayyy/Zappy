@@ -15,7 +15,7 @@ def boss_routine(player: Player):
         player.broadcast(msg_create(player, i["uuid"], EnumHeader.ORDER.value, EnumOrder.JOIN_BOSS.value))
     while True:
         # for i in player.array_uuid:
-            # if str(i["job"]) == EnumOrder.JOIN_BOSS.value:
+        #     if str(i["pos"]) != EnumOrder.JOIN_BOSS.value:
                 # print("I'm the boss")
         player.broadcast(msg_create(player, ALL, EnumHeader.IMBOSS.value))
         handle_incantation(player)
