@@ -36,6 +36,11 @@ Character::Character(std::size_t animsCount, std::size_t animFrameCounter, Vecto
     }
 }
 
+Character::~Character()
+{
+    this->_rayModel.unloadModel(this->_model);
+}
+
 std::map<std::size_t, Texture2D> Character::getTextures() const
 {
     return this->_textures;
