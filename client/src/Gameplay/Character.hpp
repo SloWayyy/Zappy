@@ -27,6 +27,7 @@ enum Animations {
     WALKING,
     RIGHT_TURN,
     LEFT_TURN,
+    TAKING,
     NONE
 };
 

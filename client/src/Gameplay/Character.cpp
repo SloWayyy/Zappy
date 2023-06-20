@@ -59,6 +59,7 @@ void Character::chooseAnimation(Animations anim)
             this->_rayModel.updateModelAnimation(this->_model, this->_animations[anim][0], this->_animFrameCounter);
             this->_animFrameCounter++;
         }
+        std::cout << this->_animFrameCounter << std::endl;
         if (this->_animFrameCounter >= this->_animations[anim][0].frameCount) {
             this->_animFrameCounter = 0;
             this->_currentlyAnimation = NONE;
@@ -133,6 +134,8 @@ void Character::handleEvent()
         this->chooseAnimation(RIGHT_TURN);
     if (this->_currentlyAnimation == LEFT_TURN)
         this->chooseAnimation(LEFT_TURN);
+    if (this->_currentlyAnimation == TAKING)
+        this->chooseAnimation(TAKING);
 }
 
 void Character::setPos(float x, float z, int orientation)
