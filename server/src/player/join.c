@@ -18,10 +18,11 @@
 #include "tasks.h"
 #include "types.h"
 
-static tile_t *get_spawn_from_egg(server_t *server, team_t *team, size_t size)
+static tile_t *get_spawn_from_egg(server_t *server, team_t *team, \
+    size_t size, size_t immortal)
 {
     size_t i = 0;
-    size_t num = rand() % size;
+    size_t num = rand() % (immortal < size ? size - immortal : size);
     egg_t *node = NULL;
     tile_t *tile = NULL;
 
@@ -35,7 +36,9 @@ static tile_t *get_spawn_from_egg(server_t *server, team_t *team, size_t size)
             free(node);
             return tile;
         }
-        i++;
+        if (immortal == size || !node->immortal) {
+            i++;
+        }
     }
     return NULL;
 }
@@ -43,18 +46,23 @@ static tile_t *get_spawn_from_egg(server_t *server, team_t *team, size_t size)
 static tile_t *get_spawn(server_t *server, team_t *team, player_t *player)
 {
     size_t eggs = 0;
+    size_t immortal = 0;
     egg_t *node = NULL;
+    tile_t *spawn = NULL;
     int x = rand() % server->options->width;
     int y = rand() % server->options->height;
 
     SLIST_FOREACH(node, team->eggs, next_team) {
         eggs++;
+        if (node->immortal) {
+            immortal++;
+        }
     }
-    player->from_egg = eggs > 0;
+    player->from_egg = eggs > 0 && immortal == 0;
     if (eggs > 0) {
-        return get_spawn_from_egg(server, team, eggs);
+        spawn = get_spawn_from_egg(server, team, eggs, immortal);
     }
-    return &server->zappy->map[y][x];
+    return spawn == NULL ? &server->zappy->map[y][x] : spawn;
 }
 
 static bool init_player_tasks(server_t *server, client_t *client)
@@ -105,7 +113,7 @@ bool try_join_team(server_t *server, client_t *client, char *line)
     team_t *node = NULL;
 
     SLIST_FOREACH(node, server->zappy->teams, next) {
-        joinable = node->eggs->slh_first != NULL || node->slots > 0;
+        joinable = !SLIST_EMPTY(node->eggs) || node->slots > 0;
         if (strcmp(line, node->name) == 0 && joinable) {
             return join_team(server, client, node);
         }

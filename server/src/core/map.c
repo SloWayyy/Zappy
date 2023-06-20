@@ -17,6 +17,7 @@
 #include "server.h"
 #include "tasks.h"
 #include "types.h"
+#include "util.h"
 
 static bool init_map_utils(server_t *server)
 {
@@ -42,8 +43,7 @@ static bool populate_map(server_t *server)
     task_t *task = register_task(server, NULL, &refill_callback);
 
     if (task == NULL || arg == NULL) {
-        free(task);
-        free(arg);
+        free_all(2, task, arg);
         return false;
     }
     *arg = true;

@@ -29,6 +29,19 @@ static void send_players(server_t *server, client_t *client)
     }
 }
 
+static void send_egg(client_t *client, egg_t *egg)
+{
+    if (egg->immortal) {
+        append_buffer(client->buffer_out, "%s %s %zu %zu %zu%s", \
+            GRAPHICAL_CUSTOM, GRAPHICAL_CUSTOM_EGG, egg->id, \
+            egg->pos->x, egg->pos->y, LINE_BREAK);
+    } else {
+        append_buffer(client->buffer_out, "%s %zu %zu %zu %zu%s", \
+            GRAPHICAL_PLAYER_EGG, egg->id, egg->player_id, \
+            egg->pos->x, egg->pos->y, LINE_BREAK);
+    }
+}
+
 static void send_eggs(server_t *server, client_t *client)
 {
     egg_t *node = NULL;
@@ -36,9 +49,7 @@ static void send_eggs(server_t *server, client_t *client)
 
     SLIST_FOREACH(team, server->zappy->teams, next) {
         SLIST_FOREACH(node, team->eggs, next_team) {
-            append_buffer(client->buffer_out, "%s %zu %zu %zu %zu%s", \
-                GRAPHICAL_PLAYER_EGG, node->id, node->player_id, \
-                node->pos->x, node->pos->y, LINE_BREAK);
+            send_egg(client, node);
         }
     }
 }

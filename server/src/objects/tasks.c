@@ -63,11 +63,11 @@ void schedule_task(task_t *task, server_t *server, size_t delay, int exec)
 
 void cancel_client_tasks(server_t *server, client_t *client)
 {
-    task_t *node = server->tasks->slh_first;
+    task_t *node = SLIST_FIRST(server->tasks);
     task_t *tmp = NULL;
 
     while (node != NULL) {
-        tmp = node->next.sle_next;
+        tmp = SLIST_NEXT(node, next);
         if (node->client == client) {
             SLIST_REMOVE(server->tasks, node, task, next);
             free(node->arg);
