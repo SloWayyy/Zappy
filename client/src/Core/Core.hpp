@@ -23,6 +23,8 @@
     #define COMMAND_PBC "pbc"
     #define COMMAND_PIC "pic"
     #define COMMAND_PIE "pie"
+    #define COMMAND_SMG "smg"
+    #define COMMAND_ENI "eni"
 
     #include "src/Core/Window.hpp"
     #include "src/Gameplay/Map.hpp"
@@ -63,6 +65,7 @@ class Core {
         void setBroadcast(std::vector<std::string> &input);
         void addIncantation(std::vector<std::string> &input);
         void endIncantation(std::vector<std::string> &input);
+        void personnalMessage(std::vector<std::string> &input);
     private:
         std::shared_ptr<Window> _window;
         std::shared_ptr<Menu> _menu;

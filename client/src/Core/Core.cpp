@@ -107,6 +107,7 @@ void Core::handleInput(const std::string &command)
         {COMMAND_PBC, &Core::setBroadcast},
         {COMMAND_PIC, &Core::addIncantation},
         {COMMAND_PIE, &Core::endIncantation},
+        {COMMAND_SMG, &Core::personnalMessage},
         {COMMAND_SEG, &Core::setWinner}
     };
 
@@ -217,4 +218,10 @@ void Core::endIncantation(std::vector<std::string> &args)
     if (this->_gameplay->getIncantation().find({std::stoi(args[1]), std::stoi(args[2])}) == this->_gameplay->getIncantation().end())
         return;
     this->_gameplay->getIncantation().erase({std::stoi(args[1]), std::stoi(args[2])});
+}
+
+void Core::personnalMessage(std::vector<std::string> &args)
+{
+    if (args[1] == COMMAND_ENI)
+        this->_gameplay->initEgg(std::stoi(args[2]), std::stof(args[3]) * 4.0f, std::stof(args[4]) * 4.0f);
 }
