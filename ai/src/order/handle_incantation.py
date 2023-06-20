@@ -117,8 +117,10 @@ def handle_level_up(actual_lvl, boss_case, nbr_player):
     # print("CASE A COMPARER:", levelUpArray[actual_lvl - 1])
     for i in range(len(levelUpArray[0])):
         # print("je compare", boss_case[i], "avec", levelUpArray[actual_lvl - 1][i])
-        if (boss_case[i] < levelUpArray[actual_lvl - 1][i]):
+        if (boss_case[i] * (nbr_player // levelUpArray[actual_lvl - 1][0]) < levelUpArray[actual_lvl - 1][i] * (nbr_player // levelUpArray[actual_lvl - 1][0])):
+            print("j'ai PAS ASSEZ DE RESSOURCES POUR PASSER LVL", actual_lvl + 1, "boss cass", boss_case)
             return Answer.ROUTINE.value, 0
+    print("je LEU DIT DE LVL UP VOICI l'inventaire", boss_case, "et le lvl", actual_lvl + 1)
     return Answer.INCANTATION.value, 0
 
 def handle_incantation(boss):
@@ -164,15 +166,13 @@ def handle_incantation(boss):
                 boss.broadcast(msg_create(boss, player["uuid"], EnumHeader.ORDER.value, EnumOrder.LEVEL_UP.value))
         elif array_minus_level[0]["level"] == 2 or array_minus_level[0]["level"] == 3:
             print("je lui dit de lvl up", flush=True)
-
-            # ICI APPLER NBR DE JOEUR / 2
             for i in range (len(array_minus_level) // 2):
                 boss.broadcast(msg_create(boss, array_minus_level[i]["uuid"], EnumHeader.ORDER.value, EnumOrder.LEVEL_UP.value))
                 boss.incanteur_uuid.append((array_minus_level[i]["uuid"], array_minus_level[i]["level"]))
-            # for player in array_minus_level:
-            # boss.incanteur_uuid.append((array_minus_level[0]["uuid"], array_minus_level[0]["level"]))
-            # boss.broadcast(msg_create(boss, array_minus_level[0]["uuid"], EnumHeader.ORDER.value, EnumOrder.LEVEL_UP.value))
-            # print("array ", boss.array_uuid, flush=True)
+        elif array_minus_level[0]["level"] == 4 or array_minus_level[0]["level"] == 5:
+            for i in range (len(array_minus_level) // 4):
+                boss.broadcast(msg_create(boss, array_minus_level[i]["uuid"], EnumHeader.ORDER.value, EnumOrder.LEVEL_UP.value))
+                boss.incanteur_uuid.append((array_minus_level[i]["uuid"], array_minus_level[i]["level"]))
 
     elif (len(array_bigger_level) == 0 and result == Answer.FORK.value):
         for player in range(len(array_minus_level)):
@@ -187,7 +187,7 @@ def handle_incantation(boss):
         send_them_in_routine(boss, array_minus_level)
 
     # Ramasser la bouffe au sol (le boss)
-    if ((array_minus_level[0]["level"] + 1) % 2 == 0):
+    if ((array_minus_level[0]["level"]) == 1):
         take_around(boss, 4)
     print("\n")
     return 1

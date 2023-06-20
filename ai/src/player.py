@@ -159,9 +159,15 @@ class Player:
 
     def handle_broadcast(self, donnees: str):
         for i in donnees:
-            x = re.findall("^message ([0-8]), " + UUID_REGEX + " (\$[0-9]\$) " + UUID_REGEX + " (.*)$", i)
-            if len(x) and (x[0][3] == self.uuid or x[0][3] == ALL):
-                donnees = self.handle_header(x)
+            if i.find("Current level") != -1:
+                print("laval: ", self.level)
+                self.level = int(i.split(" ")[2])
+                ping(self)
+                print("laval: ", self.level)
+            else:
+                x = re.findall("^message ([0-8]), " + UUID_REGEX + " (\$[0-9]\$) " + UUID_REGEX + " (.*)$", i)
+                if len(x) and (x[0][3] == self.uuid or x[0][3] == ALL):
+                    donnees = self.handle_header(x)
         return self.clear_data(donnees)
 
     def decrypt_donnees(self, donnees):
@@ -339,18 +345,14 @@ class Player:
             if (tmp == "ko"):
                 return False
             else:
-                array = tmp.split(": ")
-                self.level = array[1]
-                print("JAI RECU LVL ", array[1])
-                ping(self)
+                # array = tmp.split(": ")
+                # self.level = array[1]
                 return tmp
         else:
             tmp = self.wait_answer()[0]
             if (tmp == "ko"):
                 return False
             else:
-                array = tmp.split(": ")
-                self.level = array[1]
-                print("JAI RECU LVL ", array[1])
-                ping(self)
+                # array = tmp.split(": ")
+                # self.level = array[1]
                 return tmp

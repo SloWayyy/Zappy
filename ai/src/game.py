@@ -3,6 +3,7 @@ from ai.src.order.handle_incantation import handle_incantation
 from ai.src.group_init import find_boss
 from ai.src.player import ALL
 from ai.src.order.level_up import level_up
+from ai.src.order.take_around import take_around
 
 def msg_create(sender: Player, receiver: str, header: str, order: str = None, data: str = "Nothing") -> str:
     if (order != None):
@@ -11,6 +12,7 @@ def msg_create(sender: Player, receiver: str, header: str, order: str = None, da
         return (sender.uuid + " " + header + " " + receiver + " " + data)
 
 def boss_routine(player: Player):
+    # take_around(player, [])
     for i in player.array_uuid:
         player.broadcast(msg_create(player, i["uuid"], EnumHeader.ORDER.value, EnumOrder.JOIN_BOSS.value))
     while True:
