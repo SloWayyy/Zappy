@@ -11,7 +11,7 @@ from ai.src.order.join_boss import *
 from ai.src.order.square_collect import *
 from ai.src.order.take_around import *
 from ai.src.priority_order.ping import *
-from ai.src.order.handle_incantation import *
+from ai.src.order.manage_order import *
 from ai.src.order.level_up import *
 from ai.src.order.go_front import *
 
@@ -91,7 +91,7 @@ class Player:
         self.boss_uuid = None
         self.job = 0
         self.array_uuid = []
-        self.incanteur_uuid = []
+        self.last_order = "0"
         print("UUID: " + self.uuid)
         self.map_size = SizeMap(0, 0)
         self.args = args

@@ -1,5 +1,5 @@
 from ai.src.player import Player, EnumBoss, EnumHeader, EnumOrder, EnumPriorityOrder
-from ai.src.order.handle_incantation import handle_incantation
+from ai.src.order.manage_order import manage_order
 from ai.src.group_init import find_boss
 from ai.src.player import ALL
 from ai.src.order.level_up import level_up
@@ -20,7 +20,7 @@ def boss_routine(player: Player):
         #     if str(i["pos"]) != EnumOrder.JOIN_BOSS.value:
                 # print("I'm the boss")
         player.broadcast(msg_create(player, ALL, EnumHeader.IMBOSS.value))
-        handle_incantation(player)
+        manage_order(player)
 
 def game_loop(sock, args):
     player = Player(sock, args)

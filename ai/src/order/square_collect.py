@@ -84,6 +84,7 @@ def get_foot_case(player, foot_case):
 
 def square_collect(player, data):
     from ai.src.priority_order.ping import ping
+    from ai.src.player import EnumObject
     orientation = int(data[0])
     ping(player)
     if (look_this_orientation(player, orientation) == False):
@@ -97,4 +98,7 @@ def square_collect(player, data):
         return False
     if (dump_item(player, []) == False):
         return False
+    # ici aussi a enlever le set
+    # je met une bonne demarquation
+    player.set(EnumObject.FOOD)
     print("==================(AI) je suis arrivé au boss et j'ai déposé mes items====================")
