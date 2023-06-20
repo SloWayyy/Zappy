@@ -283,7 +283,12 @@ void Gameplay::drawMap(void)
             this->_map->setcubePosition({ _x, -0.45f, _y });
             this->_map->draw(this->_map->getmodel(), this->_map->getcubePosition(), 2.0f);
             this->_map->draw(this->_map->getmodelPlatform(), {this->_map->getcubePosition().x, this->_map->getcubePosition().y + 1.6f, this->_map->getcubePosition().z}, 0.02f);
-                _x += 4.0f;
+            _x += 4.0f;
+            for (auto &incantation : this->_incantation) {
+                if (incantation.first.first == x && incantation.first.second == y) {
+                    this->_rayCube.drawCube({this->_map->getcubePosition().x, this->_map->getcubePosition().y + 1.5f, this->_map->getcubePosition().z}, 4.0f, 0.6f, 4.0f, RED);
+                }
+            }
             if (this->_isDisplay == true && (tileX == x && tileY == y))
                 this->_rayCube.drawCube({this->_map->getcubePosition().x, this->_map->getcubePosition().y + 1.5f, this->_map->getcubePosition().z}, 4.0f, 0.6f, 4.0f, {255, 255, 255, 200});
         }
@@ -321,4 +326,14 @@ std::map<std::size_t, std::shared_ptr<Character>> &Gameplay::getCharacters()
 std::map<std::size_t, std::shared_ptr<Egg>> &Gameplay::getEggs()
 {
     return this->_eggs;
+}
+
+std::map<std::pair<std::size_t, std::size_t>, std::string> &Gameplay::getIncantation()
+{
+    return this->_incantation;
+}
+
+void Gameplay::addIncantation(std::size_t x, std::size_t y, std::string string)
+{
+    this->_incantation.insert({{x, y}, string});
 }

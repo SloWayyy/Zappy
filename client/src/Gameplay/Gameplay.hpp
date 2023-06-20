@@ -59,6 +59,8 @@ class Gameplay {
         std::map<std::size_t, std::shared_ptr<Character>> &getCharacters();
         std::map<std::size_t, std::shared_ptr<Egg>> &getEggs();
         void displayMinerals();
+        std::map<std::pair<std::size_t, std::size_t>, std::string> &getIncantation();
+        void addIncantation(std::size_t x, std::size_t y, std::string string);
     private:
         std::shared_ptr<Window> _window;
         Display _display;
@@ -76,6 +78,7 @@ class Gameplay {
         CameraType _cameraType;
         std::map<std::size_t, Texture2D> _textures;
         std::vector<ModelAnimation *> _animations;
+        std::map<std::pair<std::size_t, std::size_t>, std::string> _incantation;
 };
 
 #endif /* !GAMEPLAY_HPP_ */
