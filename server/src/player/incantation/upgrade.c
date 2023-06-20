@@ -40,6 +40,7 @@ static void end_incantation_success(server_t *server, \
         tile->resources[i] -= incantation->requirements->resources[i];
         server->zappy->current[i] -= incantation->requirements->resources[i];
     }
+    send_graphical_tile_event(server, tile);
     SLIST_FOREACH(node, &incantation->players, next_incantation) {
         target = get_client_by_player_id(server, node->id);
         node->level += 1;
@@ -51,14 +52,17 @@ static void end_incantation_success(server_t *server, \
             flush_command(server, target);
         }
     }
+    check_victory(server, incantation);
 }
 
 void incantation_callback(server_t *server, UNUSED client_t *client, void *arg)
 {
     incantation_t *incantation = (incantation_t *) arg;
-    bool done = meet_requirements(incantation);
+    bool done = false;
     player_t *node = NULL;
 
+    debug(server, "Starting post incantation verification");
+    done = meet_requirements(server, incantation);
     if (SLIST_EMPTY(&incantation->players)) {
         return;
     }
@@ -66,11 +70,10 @@ void incantation_callback(server_t *server, UNUSED client_t *client, void *arg)
     send_graphical_event(server, "%s %zu %zu %d%s", \
         GRAPHICAL_PLAYER_INCANTATION_END, node->pos->x, node->pos->y, \
             done, LINE_BREAK);
-    if (!done) {
+    if (!done)
         end_incantation_error(server, incantation);
-    } else {
+    else
         end_incantation_success(server, incantation, node->pos);
-    }
     SLIST_FOREACH(node, &incantation->players, next_incantation) {
         node->incantation = NULL;
     }

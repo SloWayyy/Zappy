@@ -7,9 +7,11 @@
 
 #include <stdlib.h>
 
+#include "buffer.h"
 #include "constants.h"
 #include "resources.h"
 #include "types.h"
+#include "server.h"
 
 static tile_t *choose_empty(tile_t **empty, size_t area)
 {
@@ -81,15 +83,16 @@ void refill_resources(server_t *server, double total)
 
     for (size_t index = 0; index < RESOURCES_TYPES_QUANTITY; index++) {
         amount = server->zappy->total[index] - server->zappy->current[index];
-        if (server->zappy->total[index] <= server->zappy->current[index]) {
+        if (server->zappy->total[index] <= server->zappy->current[index])
             continue;
-        }
+        debug(server, "%s: %zu / %zu (refilling %zu)", RESOURCES[index].name, \
+            server->zappy->current[index], server->zappy->total[index], amount);
         for (size_t nb = 0; nb < amount; nb++) {
             tile = choose_tile(server, total);
-            tile->resources[index] += 1;
             coords = tile->y * server->options->width + tile->x;
             server->zappy->densities[coords] += 1 - RESOURCES[index].density;
             total += 1 - RESOURCES[index].density;
+            update_tile(server, tile, index);
         }
     }
 }

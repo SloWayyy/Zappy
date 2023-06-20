@@ -16,6 +16,7 @@
     #define DEFAULT_HEIGHT 10
     #define DEFAULT_CLIENTS 4
     #define DEFAULT_FREQ 100
+    #define DEFAULT_TEAM_SIZE sizeof(DEFAULT_TEAM_NAMES) / sizeof(char *)
 
     #define MAX_CONNECTIONS 1024
     #define MAX_PORT 65536
@@ -27,14 +28,16 @@
 
     #define LINE_BREAK "\n"
     #define WELCOME_MESSAGE "WELCOME"
+    #define DEBUG_PREFIX "[Debug] "
+    #define GRAPHICAL_IDENTIFIER "GRAPHIC"
 
     #define REFILL_DELAY 20
     #define REFILL_COEFFICIENT 100
     #define FOOD_CONSUME_TICKS 126
     #define FOOD_DEFAULT 10
     #define MAX_ACTIONS 10
-
-    #define GRAPHICAL_IDENTIFIER "GRAPHIC"
+    #define VICTORY_LEVEL 8
+    #define VICTORY_PLAYERS 6
 
     #define GRAPHICAL_MAP_SIZE "msz"
     #define GRAPHICAL_TILE_CONTENT "bct"
@@ -59,6 +62,10 @@
     #define GRAPHICAL_PLAYER_INCANTATION_START "pic"
     #define GRAPHICAL_PLAYER_INCANTATION_END "pie"
 
+    #define GRAPHICAL_CUSTOM "smg"
+    #define GRAPHICAL_CUSTOM_EGG "eni"
+
+    #define GRAPHICAL_VICTORY "seg"
     #define GRAPHICAL_UNKNOWN "suc"
     #define GRAPHICAL_COMMAND_PARAMETER "sbp"
 
@@ -98,5 +105,12 @@
     #define PLAYER_UNKNOWN PLAYER_KO
 
     #define UNUSED __attribute__((unused))
+
+static const char * const DEFAULT_TEAM_NAMES[] = {
+        "Team1",
+        "Team2",
+        "Team3",
+        "Team4",
+};
 
 #endif

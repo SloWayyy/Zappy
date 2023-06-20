@@ -43,7 +43,7 @@ bool incantation_handler(server_t *server, client_t *client, UNUSED char *line)
     if (requirements == NULL) {
         return false;
     }
-    incantation = setup_incantation(client->player, requirements);
+    incantation = setup_incantation(server, client->player, requirements);
     if (incantation == NULL) {
         return false;
     }

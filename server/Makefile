@@ -32,6 +32,7 @@ SRC			=	src/core/fdsets.c \
 				src/player/incantation/magic.c \
 				src/player/incantation/start.c \
 				src/player/incantation/upgrade.c \
+				src/player/incantation/victory.c \
 				src/player/eggs.c \
 				src/player/eject.c \
 				src/player/food.c \
@@ -46,6 +47,7 @@ SRC			=	src/core/fdsets.c \
 				src/util/arguments/args.c \
 				src/util/arguments/check.c \
 				src/util/arguments/handlers.c \
+				src/util/arguments/modifiers.c \
 				src/util/arguments/names.c \
 				src/util/buffer/input.c \
 				src/util/buffer/output.c \

@@ -58,7 +58,7 @@ static void delay_incantation(server_t *server, incantation_t *incantation)
         target = get_client_by_player_id(server, node->id);
         if (target != NULL) {
             append_buffer(target->buffer_out, "%s%s", \
-            PLAYER_ELEVATION_START, LINE_BREAK);
+                PLAYER_ELEVATION_START, LINE_BREAK);
             setup_task(target->player->action_task, NULL, NULL);
             schedule_task(target->player->action_task, server, \
             INCANTATION_DELAY, 1);
@@ -69,7 +69,8 @@ static void delay_incantation(server_t *server, incantation_t *incantation)
 bool start_incantation(server_t *server, client_t *client, \
     incantation_t *incantation)
 {
-    if (!meet_requirements(incantation)) {
+    debug(server, "Starting pre incantation verification");
+    if (!meet_requirements(server, incantation)) {
         start_error_incantation(server, client, incantation);
         return true;
     }

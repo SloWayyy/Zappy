@@ -37,12 +37,33 @@ static void auto_fill(options_t *options)
     }
 }
 
+static bool auto_fill_names(options_t *options)
+{
+    const char **names = malloc(sizeof(char *) * (DEFAULT_TEAM_SIZE + 1));
+
+    printf("No team names set, default team names are");
+    if (names == NULL) {
+        perror("malloc failed");
+        return false;
+    }
+    for (size_t i = 0; i < DEFAULT_TEAM_SIZE; i++) {
+        if (i > 0) {
+            printf(",");
+        }
+        printf(" %s", DEFAULT_TEAM_NAMES[i]);
+        names[i] = DEFAULT_TEAM_NAMES[i];
+    }
+    printf("\n");
+    names[DEFAULT_TEAM_SIZE] = NULL;
+    options->names = names;
+    return true;
+}
+
 static bool post_check(options_t *options)
 {
     int map = (options->width != 0) + (options->height != 0);
 
-    if (options->names == NULL) {
-        fprintf(stderr, "Error: Team names are not set\n");
+    if (options->names == NULL && !auto_fill_names(options)) {
         return false;
     }
     if (map == 1) {
@@ -60,8 +81,8 @@ static int handle_argument(int argc, char const *argv[], options_t *options, \
     int longOpt = 0;
 
     for (size_t i = 0; i < OPTIONS_COUNT; i++) {
-        shortOpt = 0;
-        longOpt = 0;
+        shortOpt = -1;
+        longOpt = -1;
         if (HANDLERS[i].shortOpt != NULL) {
             shortOpt = strcmp(argv[index], HANDLERS[i].shortOpt);
         }

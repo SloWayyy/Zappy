@@ -29,7 +29,8 @@ static bool init_zappy(server_t *server)
         return false;
     }
     for (int i = 0; server->options->names[i] != NULL; i++) {
-        team = new_team(server->options->names[i], server->options->clients);
+        team = new_team(server, server->options->names[i], \
+            server->options->clients);
         if (team == NULL) {
             return false;
         }

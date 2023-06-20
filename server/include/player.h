@@ -10,8 +10,6 @@
 
     #define PLAYER_COMMANDS_COUNT \
         (sizeof(PLAYER_COMMANDS) / sizeof(player_command_t))
-    #define INCANTATIONS_COUNT \
-        (sizeof(INCANTATIONS) / sizeof(incantation_requirements_t))
 
     #include <stdbool.h>
 
@@ -70,10 +68,11 @@ static const player_command_t PLAYER_COMMANDS[] = {
         { PLAYER_INCANTATION, &incantation_handler, false },
 };
 
-bool meet_requirements(incantation_t *incantation);
-incantation_t *setup_incantation(player_t *player, \
+bool meet_requirements(server_t *server, incantation_t *incantation);
+incantation_t *setup_incantation(server_t *server, player_t *player, \
     const incantation_requirements_t *requirements);
 bool start_incantation(server_t *server, client_t *client, \
     incantation_t *incantation);
+void check_victory(server_t *server, incantation_t *incantation);
 
 #endif

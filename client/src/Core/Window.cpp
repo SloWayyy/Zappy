@@ -77,12 +77,6 @@ void Window::handleInput()
 
 void Window::run()
 {
-    // this->_rayMusic.updateMusicStream(this->_music);
-    // if ((this->getClock() + 0.005) < this->_rayClock.getTime()) {
-    //     this->setClock(this->_rayClock.getTime());
-    //     this->updateCamera();
-    // }
-    // this->handleInput();
     this->_rayMusic.updateMusicStream(this->_music);
     this->updateCamera();
     this->handleInput();

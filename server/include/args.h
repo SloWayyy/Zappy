@@ -23,6 +23,8 @@ int height_handler(int argc, char const *argv[], options_t *options, int idx);
 int names_handler(int argc, char const *argv[], options_t *options, int idx);
 int clients_handler(int argc, char const *argv[], options_t *options, int idx);
 int freq_handler(int argc, char const *argv[], options_t *options, int idx);
+int debug_handler(int argc, char const *argv[], options_t *options, int idx);
+int immortal_handler(int argc, char const *argv[], options_t *options, int idx);
 
 typedef int (options_handler_t) \
     (int argc, char const *argv[], options_t *options, int index);
@@ -40,6 +42,8 @@ static const option_t HANDLERS[] = {
         { "-n", "--names", &names_handler },
         { "-c", "--clients", &clients_handler },
         { "-f", "--freq", &freq_handler },
+        { NULL, "--debug", &debug_handler },
+        { NULL, "--immortal", &immortal_handler },
 };
 
 #endif
