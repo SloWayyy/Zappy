@@ -47,6 +47,7 @@ class Gameplay {
         bool setCurrentCharacter();
         void DisplayInformations();
         void setDisplayMode();
+        void displayBroadcast();
         void setIsDisplay(bool isDisplay);
         void setCameraType(CameraType cameraType);
         CameraType getCameraType(void) const;

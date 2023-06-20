@@ -115,7 +115,6 @@ void Core::handleInput(const std::string &command)
     args.push_back(tmp);
     if (commands.find(args[0]) != commands.end())
         (this->*commands[args[0]])(args);
-
 }
 
 void Core::setMapSize(std::vector<std::string> &args)
