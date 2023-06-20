@@ -11,6 +11,7 @@ from ai.src.order.join_boss import *
 from ai.src.order.square_collect import *
 from ai.src.order.take_around import *
 from ai.src.priority_order.ping import *
+from ai.src.priority_order.seppuku import *
 from ai.src.order.handle_incantation import *
 from ai.src.order.level_up import *
 from ai.src.order.go_front import *
@@ -64,6 +65,7 @@ class EnumOrder(Enum):
 
 class EnumPriorityOrder(Enum):
     PING = "0"
+    SEPPUKU = "1"
 
 levelUpArray = [
                 [1, 0, 1, 0, 0, 0, 0, 0],
@@ -75,8 +77,8 @@ levelUpArray = [
                 [6, 0, 2, 2, 2, 2, 2, 1]
                ]
 
-ANSWER_FUNC = [ping_answer]
-PRIORITY_ORDER_FUNC = [ping]
+ANSWER_FUNC = [ping_answer, seppuku_answer]
+PRIORITY_ORDER_FUNC = [ping, seppuku]
 ORDER_FUNC = [None, dump_item, join_boss, square_collect, take_around, go_front, level_up]
 
 class Player:

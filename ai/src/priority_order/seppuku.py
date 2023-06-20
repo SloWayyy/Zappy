@@ -1,13 +1,15 @@
-from ai.src.player import * 
-
-def dump_item(player, _ = None):
-    from ai.src.player import EnumObject
+def seppuku(player):
+    from ai.src.player import EnumHeader, EnumPriorityOrder, EnumObject
+    from ai.src.game import msg_create
+    player.broadcast(msg_create(player, player.boss_uuid, EnumHeader.ANSWER.value, EnumPriorityOrder.SEPPUKU.value))
     inventory = player.inventory()
     if (inventory == False or len(inventory) == 0):
         return False
-    # pk on start a 1 ici a voir
     for i in range(len(inventory)): 
         for __ in range(0, inventory[i]):
+            if i == 0:
+               if (player.set(EnumObject.FOOD) == False):
+                    return False 
             if i == 1:
                 if (player.set(EnumObject.LINEMATE) == False):
                     return False
@@ -26,3 +28,12 @@ def dump_item(player, _ = None):
             if i == 6:
                 if (player.set(EnumObject.THYSTAME) == False):
                     return False
+
+
+def seppuku_answer(player, uuid, _):
+    for i in player.array_uuid:
+        if i["uuid"] == uuid:
+            player.array_uuid.remove(i)
+            print("Someone will die for us")
+            return True
+    return False

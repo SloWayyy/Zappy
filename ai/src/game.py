@@ -13,14 +13,16 @@ def msg_create(sender: Player, receiver: str, header: str, order: str = None, da
 
 def boss_routine(player: Player):
     # take_around(player, [])
-    for i in player.array_uuid:
-        player.broadcast(msg_create(player, i["uuid"], EnumHeader.ORDER.value, EnumOrder.JOIN_BOSS.value))
     while True:
-        # for i in player.array_uuid:
-        #     if str(i["pos"]) != EnumOrder.JOIN_BOSS.value:
-                # print("I'm the boss")
-        player.broadcast(msg_create(player, ALL, EnumHeader.IMBOSS.value))
-        handle_incantation(player)
+        for i in player.array_uuid:
+            player.broadcast(msg_create(player, i["uuid"], EnumHeader.PRIORITY_ORDER.value, EnumPriorityOrder.SEPPUKU.value))
+    #     player.broadcast(msg_create(player, i["uuid"], EnumHeader.ORDER.value, EnumOrder.JOIN_BOSS.value))
+    # while True:
+    #     # for i in player.array_uuid:
+    #     #     if str(i["pos"]) != EnumOrder.JOIN_BOSS.value:
+    #             # print("I'm the boss")
+    #     player.broadcast(msg_create(player, ALL, EnumHeader.IMBOSS.value))
+    #     handle_incantation(player)
 
 def game_loop(sock, args):
     player = Player(sock, args)
