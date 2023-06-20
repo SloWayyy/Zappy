@@ -326,3 +326,13 @@ std::map<std::size_t, std::shared_ptr<Egg>> &Gameplay::getEggs()
 {
     return this->_eggs;
 }
+
+std::map<std::pair<std::size_t, std::size_t>, std::string> &Gameplay::getIncantation()
+{
+    return this->_incantation;
+}
+
+void Gameplay::addIncantation(std::size_t x, std::size_t y, std::string string)
+{
+    this->_incantation.insert({{x, y}, string});
+}
