@@ -5,6 +5,7 @@
 ** flags.c
 */
 
+#include <stdbool.h>
 #include <stdio.h>
 
 #include "constants.h"

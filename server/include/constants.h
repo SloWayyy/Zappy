@@ -62,6 +62,9 @@
     #define GRAPHICAL_PLAYER_INCANTATION_START "pic"
     #define GRAPHICAL_PLAYER_INCANTATION_END "pie"
 
+    #define GRAPHICAL_CUSTOM "smg"
+    #define GRAPHICAL_CUSTOM_EGG "eni"
+
     #define GRAPHICAL_VICTORY "seg"
     #define GRAPHICAL_UNKNOWN "suc"
     #define GRAPHICAL_COMMAND_PARAMETER "sbp"

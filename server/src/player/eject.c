@@ -57,20 +57,30 @@ static bool eject_players(server_t *server, client_t *client)
     return eject;
 }
 
+static void eject_eggs(server_t *server, client_t *client)
+{
+    egg_t *node = NULL;
+    egg_t *tmp = NULL;
+
+    SLIST_FOREACH(node, &client->player->pos->eggs, next_tile) {
+        tmp = SLIST_NEXT(node, next_tile);
+        if (!node->immortal) {
+            SLIST_REMOVE(node->team->eggs, node, egg, next_team);
+            SLIST_REMOVE(&client->player->pos->eggs, node, egg, next_tile);
+            send_graphical_event(server, "%s %zu%s", \
+            GRAPHICAL_PLAYER_EGG_DEATH, node->id, LINE_BREAK);
+            free(node);
+        }
+        node = tmp;
+    }
+}
+
 static void eject_callback(server_t *server, client_t *client, UNUSED void *arg)
 {
     bool eject = false;
-    egg_t *egg = NULL;
 
     eject = eject_players(server, client);
-    while (!SLIST_EMPTY(&client->player->pos->eggs)) {
-        egg = SLIST_FIRST(&client->player->pos->eggs);
-        SLIST_REMOVE(egg->team->eggs, egg, egg, next_team);
-        SLIST_REMOVE(&client->player->pos->eggs, egg, egg, next_tile);
-        send_graphical_event(server, "%s %zu%s", \
-            GRAPHICAL_PLAYER_EGG_DEATH, egg->id, LINE_BREAK);
-        free(egg);
-    }
+    eject_eggs(server, client);
     append_buffer(client->buffer_out, "%s%s", \
         (eject ? PLAYER_OK : PLAYER_KO), LINE_BREAK);
     flush_command(server, client);

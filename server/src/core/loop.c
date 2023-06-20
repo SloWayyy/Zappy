@@ -19,15 +19,15 @@
 #include "server.h"
 #include "tasks.h"
 #include "types.h"
+#include "util.h"
 
 static void end_server(server_t *server)
 {
     free_clients(server);
     free_teams(server);
     cancel_client_tasks(server, NULL);
-    free(server->zappy->densities);
-    free(server->zappy->empty);
-    free(server->zappy->updated);
+    free_all(3, server->zappy->densities, server->zappy->empty, \
+        server->zappy->updated);
     if (server->data->stdin_buffer != NULL)
         free_buffer(server->data->stdin_buffer);
     if (server->data->stdout_buffer != NULL)
