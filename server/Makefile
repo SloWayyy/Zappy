@@ -60,7 +60,8 @@ TESTS		=	tests/test_args.c \
 				tests/test_server.c \
 				tests/util/client.c \
 				tests/util/routine.c \
-				tests/util/server.c
+				tests/util/server.c \
+				tests/util/util.c
 
 INC			=	include/
 

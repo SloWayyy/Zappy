@@ -1,0 +1,18 @@
+[Debug] food: 0 / 1 (refilling 1)
+[Debug] Adding 1 food to (0, 0)
+[Debug] linemate: 0 / 1 (refilling 1)
+[Debug] Adding 1 linemate to (0, 0)
+[Debug] deraumere: 0 / 1 (refilling 1)
+[Debug] Adding 1 deraumere to (0, 0)
+[Debug] sibur: 0 / 1 (refilling 1)
+[Debug] Adding 1 sibur to (0, 0)
+[Debug] mendiane: 0 / 1 (refilling 1)
+[Debug] Adding 1 mendiane to (0, 0)
+[Debug] phiras: 0 / 1 (refilling 1)
+[Debug] Adding 1 phiras to (0, 0)
+[Debug] thystame: 0 / 1 (refilling 1)
+[Debug] Adding 1 thystame to (0, 0)
+[Debug] Game started
+No team names set, default team names are Team1, Team2, Team3, Team4
+No client number set, default client number is 4
+No frequency set, default frequency is 100 tps

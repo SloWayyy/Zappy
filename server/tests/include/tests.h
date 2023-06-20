@@ -26,6 +26,8 @@ typedef struct routine {
     pthread_cond_t *cond;
 } routine_t;
 
+char *get_file_content(char *filepath);
+
 routine_t *launch_client(pthread_t *thread, int port);
 void execute_command(routine_t *routine, char *command);
 void get_output(routine_t *routine);
