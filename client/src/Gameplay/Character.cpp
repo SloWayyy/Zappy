@@ -43,27 +43,14 @@ std::map<std::size_t, Texture2D> Character::getTextures() const
 
 void Character::chooseAnimation(Animations anim)
 {
-    if (anim == WALKING) {
-        if (this->_animFrameCounter == 86)
-            this->_position = this->_pos_temp;
-        if (this->_animFrameCounter < this->_animations[anim][0].frameCount) {
-            this->_rayModel.updateModelAnimation(this->_model, this->_animations[anim][0], this->_animFrameCounter);
-            this->_animFrameCounter++;
-        }
-        if (this->_animFrameCounter >= this->_animations[anim][0].frameCount) {
-            this->_animFrameCounter = 0;
-            this->_currentlyAnimation = NONE;
-        }
-    } else {
-        if (this->_animFrameCounter < this->_animations[anim][0].frameCount) {
-            this->_rayModel.updateModelAnimation(this->_model, this->_animations[anim][0], this->_animFrameCounter);
-            this->_animFrameCounter++;
-        }
-        std::cout << this->_animFrameCounter << std::endl;
-        if (this->_animFrameCounter >= this->_animations[anim][0].frameCount) {
-            this->_animFrameCounter = 0;
-            this->_currentlyAnimation = NONE;
-        }
+
+    if (this->_animFrameCounter < this->_animations[anim][0].frameCount) {
+        this->_rayModel.updateModelAnimation(this->_model, this->_animations[anim][0], this->_animFrameCounter);
+        this->_animFrameCounter++;
+    }
+    if (this->_animFrameCounter >= this->_animations[anim][0].frameCount) {
+        this->_animFrameCounter = 0;
+        this->_currentlyAnimation = NONE;
     }
 }
 
