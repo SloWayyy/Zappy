@@ -71,6 +71,7 @@ class Window {
         void setTick(std::size_t tick);
         void setWriteBuffer(std::string const &writeBuffer);
         std::string getWriteBuffer(void) const;
+        Sound getSound(void) const;
     private:
         windowParams _windowParam;
         double _clock;
@@ -91,6 +92,8 @@ class Window {
         std::map<std::size_t, Music> _musics;
         std::size_t _tick = 0;
         std::string _writeBuffer;
+        Raylibcpp::RaySound _raySound;
+        Sound _sound;
 };
 
 #endif /* !WINDOW_HPP_ */

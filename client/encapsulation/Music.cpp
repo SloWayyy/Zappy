@@ -69,3 +69,8 @@ float Raylibcpp::RayMusic::getMusicTimePlayed(Music music)
 {
     return GetMusicTimePlayed(music);
 }
+
+void Raylibcpp::RayMusic::closeAudioDevice() const
+{
+    CloseAudioDevice();
+}

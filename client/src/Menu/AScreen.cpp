@@ -22,7 +22,7 @@ void AScreen::run()
 
 void AScreen::createButtons(std::string string, coord coord, Color color, int size, GameEvent screen)
 {
-    this->_buttonsScreen.emplace_back(string, coord, color, size, screen, this->_window);
+    this->_buttonsScreen.emplace_back(string, coord, color, size, screen, this->_window, this->_window->getSound());
 }
 
 void AScreen::createText(std::string string, coord coord, Color color, int size)

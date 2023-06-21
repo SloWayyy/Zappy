@@ -34,6 +34,7 @@ add_executable(zappy_gui
         encapsulation/Window.cpp
         encapsulation/Music.cpp
         encapsulation/Clock.cpp
+        encapsulation/Sound.cpp
         )
 
 target_link_libraries(zappy_gui raylib)

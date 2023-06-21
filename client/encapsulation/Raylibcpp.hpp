@@ -105,6 +105,18 @@ namespace Raylibcpp {
             void setMusicPitch(Music music, float pitch);
             float getMusicTimeLength(Music music);
             float getMusicTimePlayed(Music music);
+            void closeAudioDevice() const;
+    };
+    class RaySound {
+        public:
+            RaySound() = default;
+            ~RaySound() = default;
+            void initAudioDevice() const;
+            Sound loadSound(const std::string &fileName);
+            void unloadSound(Sound sound);
+            void playSound(Sound sound);
+            void stopSound(Sound sound);
+            void setSoundVolume(Sound sound, float volume);
     };
     class RayClock {
         public:
