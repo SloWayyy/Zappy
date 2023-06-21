@@ -7,12 +7,12 @@
 
 #include "src/Gameplay/Egg.hpp"
 
-Egg::Egg(std::size_t id, float x, float y)
+Egg::Egg(std::size_t id, float x, float y, Model model, Texture texture)
 {
     this->_id = id;
     this->_position = {x, 1.9f, y};
-    this->_model = this->_rayModel.loadModel("client/assets/monster/egg.iqm");
-    this->_texture = this->_rayModel.loadTexture("client/assets/monster/eggTexture.png");
+    this->_model = model;
+    this->_texture = texture;
     this->_model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = this->_texture;
     this->_model.transform = this->_rayModel.matrixRotateXYZ({-90 * DEG2RAD, 0, 0});
 }

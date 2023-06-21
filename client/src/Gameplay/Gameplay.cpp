@@ -14,6 +14,8 @@ Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window),_currentC
     this->_cameraType = CAMERA_THIRD;
     this->setTextures();
     this->setAnimations();
+    this->setModelEgg();
+    this->setTextureEgg();
     this->_map = std::make_shared<Map>(10, 10);
     this->_startTime = std::chrono::steady_clock::now();
 }
@@ -34,6 +36,8 @@ Gameplay::~Gameplay()
             std::cerr << e.what() << std::endl;
         }
     }
+    this->_rayModel.unloadModel(this->_modelEgg);
+    this->_rayModel.unloadTexture(this->_textureEgg);
 }
 
 void Gameplay::setTextures()
@@ -56,6 +60,36 @@ void Gameplay::setTextures()
 std::map<std::size_t, Texture2D> Gameplay::getTextures() const
 {
     return this->_textures;
+}
+
+void Gameplay::setTextureEgg()
+{
+    try {
+        this->_textureEgg = this->_rayModel.loadTexture("client/assets/monster/eggTexture.png");
+    } catch (const Raylibcpp::Error &e) {
+        std::cerr << e.what() << std::endl;
+        throw Error("Error: Gameplay constructor failed");
+    }
+}
+
+void Gameplay::setModelEgg()
+{
+    try {
+        this->_modelEgg = this->_rayModel.loadModel("client/assets/monster/egg.iqm");
+    } catch (const Raylibcpp::Error &e) {
+        std::cerr << e.what() << std::endl;
+        throw Error("Error: Gameplay constructor failed");
+    }
+}
+
+Texture2D Gameplay::getTextureEgg() const
+{
+    return this->_textureEgg;
+}
+
+Model Gameplay::getModelEgg() const
+{
+    return this->_modelEgg;
 }
 
 void Gameplay::setAnimations()
@@ -89,7 +123,7 @@ void Gameplay::initPlayer(Vector3 pos, std::size_t level, std::size_t orientatio
 
 void Gameplay::initEgg(std::size_t id, float x, float y)
 {
-    std::shared_ptr<Egg> egg = std::make_shared<Egg>(id, x, y);
+    std::shared_ptr<Egg> egg = std::make_shared<Egg>(id, x, y, this->_modelEgg, this->_textureEgg);
 
     this->_eggs.insert(std::pair<std::size_t, std::shared_ptr<Egg>>(id, egg));
 }

@@ -61,6 +61,10 @@ class Gameplay {
         std::map<std::size_t, std::shared_ptr<Character>> &getCharacters();
         std::map<std::size_t, std::shared_ptr<Egg>> &getEggs();
         void displayMinerals();
+        Texture2D getTextureEgg() const;
+        Model getModelEgg() const;
+        void setTextureEgg();
+        void setModelEgg();
         std::map<std::pair<std::size_t, std::size_t>, std::string> &getIncantation();
         void addIncantation(std::size_t x, std::size_t y, std::string string);
     private:
@@ -79,6 +83,8 @@ class Gameplay {
         bool _isDisplay;
         CameraType _cameraType;
         std::map<std::size_t, Texture2D> _textures;
+        Texture2D _textureEgg;
+        Model _modelEgg;
         std::vector<ModelAnimation *> _animations;
         std::map<std::pair<std::size_t, std::size_t>, std::string> _incantation;
         std::chrono::steady_clock::time_point _startTime;
