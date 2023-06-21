@@ -29,4 +29,3 @@ def take_far(player, _):
         player.move()
     dump_item(player, "")
     player.job = 0
-    ping(player)

@@ -5,5 +5,4 @@ def fork(player, _):
     player.fork()
     ping(player)
     duplicate(player.args)
-    ping(player)
     return True

@@ -56,13 +56,11 @@ def send_them_in_routine(boss, array_player):
     from ai.src.game import msg_create
     count = 0
     order = EnumHeader.ORDER.value
-    # call look at me here
+
     for player in array_player:
         if count == 0:
-            # boss.broadcast(msg_create(boss, player["uuid"], order, EnumOrder.SQUARE_COLLECT.value, "1"))
             boss.broadcast(msg_create(boss, player["uuid"], order, EnumOrder.TAKE_FAR.value, "1"))
         elif count == 1:
-            # TAKE_FAR ROUTINE
             boss.broadcast(msg_create(boss, player["uuid"], order, EnumOrder.SQUARE_COLLECT.value, "3"))
         elif count == 2:
             boss.broadcast(msg_create(boss, player["uuid"], order, EnumOrder.SQUARE_COLLECT.value, "7"))
@@ -110,8 +108,10 @@ def handle_level_up(actual_lvl, boss_case, nbr_player):
 def call_levelup(boss, level, array_minus_level):
     from ai.src.player import EnumOrder, EnumHeader
     from ai.src.game import msg_create
+
+    
     for i in range (len(array_minus_level) // level):
-                boss.broadcast(msg_create(boss, array_minus_level[i]["uuid"], EnumHeader.ORDER.value, EnumOrder.LEVEL_UP.value))
+        boss.broadcast(msg_create(boss, array_minus_level[i]["uuid"], EnumHeader.ORDER.value, EnumOrder.LEVEL_UP.value))
 
 def ia_all_same_level(boss, array_minus_level, result, nbr_fork):
     from ai.src.game import msg_create
@@ -147,9 +147,9 @@ def ai_not_same_level(boss, boss_case, array_minus_level, array_bigger_level):
     for player in array_bigger_level:
         if player["level"] == 7:
             cpt_ai_lvl_7 += 1
-    if (cpt_ai_lvl_7 >= 1):
+    if (cpt_ai_lvl_7 >= 6):
         boss_case = get_ressources(boss)
-        result, nbr_fork = handle_level_up(7, boss_case, 7)
+        result, nbr_fork = handle_level_up(7, boss_case, len(array_bigger_level))
 
         if (result == Answer.INCANTATION.value):
             boss.broadcast(msg_create(boss, array_bigger_level[0]["uuid"], EnumHeader.ORDER.value, EnumOrder.LEVEL_UP.value))
