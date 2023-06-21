@@ -37,6 +37,7 @@
     #include "src/Menu/Tuto.hpp"
     #include "src/Menu/Gameover.hpp"
     #include "src/Menu/Disconnect.hpp"
+    #include "src/Menu/Credits.hpp"
     #include "src/Menu/Setting.hpp"
     #include "encapsulation/Raylibcpp.hpp"
     #include "DDLoader/DDLoader.hpp"
@@ -85,6 +86,7 @@ class Core {
         std::shared_ptr<Gameover> _gameover;
         std::shared_ptr<Gameplay> _gameplay;
         std::shared_ptr<Disconnect> _disconnect;
+        std::shared_ptr<Credits> _credits;
         Raylibcpp::RayWindow _rayWindow;
         Raylibcpp::RayClock _rayClock;
         std::shared_ptr<DDLoader<zappy::sdk::ICommunicationModule>> loader;
