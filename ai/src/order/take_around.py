@@ -2,7 +2,7 @@ from ai.src.order.dump_item import *
 from ai.src.player import *
 
 def look_item(player):
-    str: str = player.look()
+    str: str = player.look(True)
     print("LOOK: {}".format(str))
     str = str.replace("[", "")
     str = str.replace(",]", ",V")

@@ -15,7 +15,7 @@ def get_socket(port: int, ip = "127.0.0.1"):
         raise BadConnectionException("Erreur lors de la création de la socket : " + str(e))
 
 def receive_packet(sock: socket.socket):
-    donnees = sock.recv(1024)
+    donnees = sock.recv(5000)
     if not donnees:
         return
     donnees = donnees.split(b'\n')
@@ -24,7 +24,7 @@ def receive_packet(sock: socket.socket):
     return donnees
 
 def receive_debug(sock: socket.socket):
-    donnees = sock.recv(1024)
+    donnees = sock.recv(4096)
     if not donnees:
         return
     donnees = donnees.split(b'\n')
