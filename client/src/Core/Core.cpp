@@ -72,6 +72,7 @@ void Core::run(void)
                 break;
             case GAMEOVER:
                 this->_window->run();
+                this->_gameover->getText()[1].setString(this->_window->getWinningTeam());
                 this->_gameover->run();
                 break;
             case DISCONNECT:

@@ -71,6 +71,8 @@ namespace Raylibcpp {
             RayText(std::string string, int posX, int posY, int fontSize, Color color);
             ~RayText() = default;
             void drawText(std::string string, int posX, int posY, int fontSize, Color color);
+            std::string getString() const;
+            void setString(const std::string &string);
             std::string _string;
             int _posX;
             int _posY;

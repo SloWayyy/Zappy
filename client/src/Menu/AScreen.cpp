@@ -45,3 +45,8 @@ void AScreen::drawText(void)
         text.drawText(text._string.c_str(), text._posX, text._posY, text._fontSize, text._color);
     }
 }
+
+std::vector<Raylibcpp::RayText> &AScreen::getText()
+{
+    return this->_text;
+}
