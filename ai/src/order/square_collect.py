@@ -113,6 +113,3 @@ def square_collect(player, data):
             return False
     if (dump_item(player, []) == False):
         return False
-    # ici aussi a enlever le set
-    # je met une bonne demarquation
-    player.set(EnumObject.FOOD)

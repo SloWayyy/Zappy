@@ -29,8 +29,9 @@ def locate_boss(player):
 def join_boss(player, _):
     from ai.src.priority_order.ping import ping
     from ai.src.order.dump_item import dump_item
+    from ai.src.player import EnumObject
     ping(player)
     while (locate_boss(player) == False):
         pass
+    player.set(EnumObject.FOOD)
     dump_item(player, None)
-    # ping(player)

@@ -10,7 +10,7 @@ def take_far(player, _):
         player.move()
     list_item = []
     for i in range(0, 4):
-        tmp, _ = look_item(player)
+        tmp, foot_case = look_item(player)
         for j in tmp:
             list_item.append(j)
         if (player.turn(EnumDirection.RIGHT) == False):
@@ -20,6 +20,9 @@ def take_far(player, _):
         list_item.pop(i)
         i += 2
 
+    for i in foot_case:
+        if (i != "player"):
+            player.take(i)
     first_pattern(list_item, player, EnumDirection.RIGHT)
     second_pattern(list_item[2:], player)
     for i in range(5):

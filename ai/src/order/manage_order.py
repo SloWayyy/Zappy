@@ -97,8 +97,6 @@ def handle_level_up(actual_lvl, boss_case, nbr_player):
         return Answer.NOTHING.value, 0
     if (actual_lvl == 1):
         if (boss_case[2] < levelUpArray[0][2] * nbr_player):
-            print("ROUTINE")
-            print("boss case: ", boss_case)
             return Answer.ROUTINE.value, 0
         else:
             return Answer.INCANTATION.value, 0
@@ -222,10 +220,7 @@ def manage_order(boss):
         pass
 
     if boss_case[1] != 0:
-        for i in range (boss_case[1]):
+        for _ in range (boss_case[1]):
             boss.take(EnumObject.FOOD.value)
-    if ((array_minus_level[0]["level"]) == 1):
-        take_around(boss, 4)
-    print("\n")
-    print("\n")
+    take_around(boss, 4)
     return 1
