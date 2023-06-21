@@ -34,7 +34,7 @@ enum Animations {
 class Character {
     public:
         Character() = default;
-        Character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos, std::size_t level, std::size_t orientation, std::string name, std::size_t id, std::map<std::size_t, Texture2D> textures, std::vector<ModelAnimation *> _animations, Model model);
+        Character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos, std::size_t level, std::size_t orientation, std::string name, std::size_t id, std::map<std::size_t, Texture2D> textures, std::vector<ModelAnimation *> _animations);
         ~Character();
         Vector3 getPosition() const;
         Model getModel() const;
@@ -59,8 +59,6 @@ class Character {
         std::shared_ptr<Inventory> &getInventory();
         void setBroadMessage(std::string message);
         std::string getBroadMessage() const;
-        void setAlive(bool alive);
-        bool getAlive() const;
     private:
         Model _model;
         std::vector<ModelAnimation *> _animations;
