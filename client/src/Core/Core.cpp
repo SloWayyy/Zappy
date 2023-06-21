@@ -9,19 +9,18 @@
 #include <string>
 #include <cstring>
 
-Core::Core(int port, std::string ip)
+Core::Core(int port, std::string ip) : _port(port), _ip(ip)
 {
     try {
         this->loader = std::make_shared<DDLoader<zappy::sdk::ICommunicationModule>>("client/libs/communication_sdk.so");
         this->network = std::shared_ptr<zappy::sdk::ICommunicationModule>(this->loader->getInstance("communicationEntrypoint"));
-        this->network->connect(ip, port);
-        this->network->connectAsGraphical();
         this->_window = std::make_shared<Window>(1920, 1080, 60);
         this->_menu = std::make_shared<Menu>(this->_window);
         this->_tuto = std::make_shared<Tuto>(this->_window);
         this->_setting = std::make_shared<Setting>(this->_window);
         this->_gameover = std::make_shared<Gameover>(this->_window);
         this->_gameplay = std::make_shared<Gameplay>(this->_window);
+        this->_disconnect = std::make_shared<Disconnect>(this->_window);
     } catch (const DDLoader<zappy::sdk::ICommunicationModule>::DDLException &e) {
         std::cerr << e.what() << std::endl;
         throw CoreException("Error: Cannot load communication module");
@@ -56,6 +55,8 @@ void Core::run(void)
                 this->_menu->run();
                 break;
             case GAMEPLAY:
+                if (this->checkConnection() == false)
+                    break;
                 this->_rayWindow.beginMode3D(this->_window->getCamera());
                 this->_window->run();
                 this->_gameplay->run();
@@ -72,6 +73,10 @@ void Core::run(void)
             case GAMEOVER:
                 this->_window->run();
                 this->_gameover->run();
+                break;
+            case DISCONNECT:
+                this->_window->run();
+                this->_disconnect->run();
                 break;
             case EXIT:
                 this->_window->setExit(true);
@@ -115,6 +120,7 @@ void Core::handleInput(const std::string &command)
         {COMMAND_PDR, &Core::dropResource},
         {COMMAND_SGT, &Core::setTimeUnit},
         {COMMAND_SST, &Core::setTimeUnit},
+        {SERVER_DISCONNECT, &Core::setDisconnectEvent},
         {COMMAND_SEG, &Core::setWinner}
     };
 
@@ -243,4 +249,29 @@ void Core::dropResource(std::vector<std::string> &args)
 void Core::setTimeUnit(std::vector<std::string> &args)
 {
     this->_window->setTick(std::stoi(args[1]));
+}
+
+void Core::setDisconnectEvent(std::vector<std::string> &args)
+{
+    (void)args;
+    this->_window->setGameEvent(DISCONNECT);
+    this->_gameplay->getCharacters().clear();
+    this->_gameplay->getEggs().clear();
+    this->_gameplay->getIncantation().clear();
+}
+
+bool Core::checkConnection()
+{
+    if (this->network->isDisconnected()) {
+        try {
+            this->network->connect(_ip, _port);
+            this->network->connectAsGraphical();    
+            this->network->setDisconnected(false);
+            return true;
+        } catch (const zappy::sdk::CommunicationException &e) {
+            this->_window->setGameEvent(MENU);
+            return false;
+        }
+    }
+    return true;
 }
