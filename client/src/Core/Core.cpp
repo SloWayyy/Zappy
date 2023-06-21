@@ -55,7 +55,8 @@ void Core::run(void)
                 this->_menu->run();
                 break;
             case GAMEPLAY:
-                this->checkConnection();
+                if (this->checkConnection() == false)
+                    break;
                 this->_rayWindow.beginMode3D(this->_window->getCamera());
                 this->_window->run();
                 this->_gameplay->run();
@@ -255,15 +256,18 @@ void Core::setDisconnectEvent(std::vector<std::string> &args)
     this->_window->setGameEvent(DISCONNECT);
 }
 
-void Core::checkConnection()
+bool Core::checkConnection()
 {
     if (this->network->isDisconnected()) {
         try {
             this->network->connect(_ip, _port);
             this->network->connectAsGraphical();    
             this->network->setDisconnected(false);
+            return true;
         } catch (const zappy::sdk::CommunicationException &e) {
             this->_window->setGameEvent(MENU);
+            return false;
         }
     }
+    return true;
 }
