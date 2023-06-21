@@ -141,12 +141,12 @@ void Gameplay::run(void)
     }
     this->runPlayers();
     this->runEggs();
-    this->displayBroadcast();
     if (this->_isDisplay == false && (this->_cameraType == CAMERA_FIRST || this->_cameraType == CAMERA_SECOND))
         this->DisplayInformations();
     if (this->_isDisplay) {
         this->_window->setDefaultCamera();
         this->_display.run(std::map<std::size_t, std::shared_ptr<Character>>(this->_characters), _map);
+        this->displayBroadcast();
     }
 }
 
