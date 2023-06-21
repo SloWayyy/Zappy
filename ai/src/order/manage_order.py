@@ -110,7 +110,7 @@ def handle_level_up(actual_lvl, boss_case, nbr_player):
     print("levelUpArray[actual_lvl - 1][0]: ", levelUpArray[actual_lvl - 1][0])
     if (nbr_player < levelUpArray[actual_lvl - 1][0]):
         return Answer.FORK.value, nbr_player % levelUpArray[actual_lvl - 1][0]
-    print("CASE A COMPARER:", boss_case, "et lvliparray :", levelUpArray[actual_lvl - 1], "nbrplayer ", nbr_player)
+    print("CASE A COMPARER:", boss_case, "et lvliparray :", levelUpArray[actual_lvl - 1], "nbrplayer ", nbr_player, "et lvl", actual_lvl)
     for i in range(len(levelUpArray[0])):
         if (boss_case[i] < levelUpArray[actual_lvl - 1][i] * (nbr_player // levelUpArray[actual_lvl - 1][0])):
             print("j'ai PAS ASSEZ DE RESSOURCES POUR PASSER LVL", actual_lvl + 1, "boss cass", boss_case)
@@ -157,7 +157,7 @@ def ai_not_same_level(boss, boss_case, array_minus_level, array_bigger_level):
     from ai.src.game import msg_create
     from ai.src.player import EnumOrder, EnumHeader, EnumObject
 
-    send_them_in_routine(boss, array_bigger_level)
+    print("CE QUE JAI AU SOL LE BOOSSS", boss.look())
     result, nbr_fork = handle_level_up(int(array_minus_level[0]["level"]), boss_case, len(array_minus_level))
     cpt_ai_lvl_7 = 0
     for player in array_bigger_level:
@@ -166,15 +166,18 @@ def ai_not_same_level(boss, boss_case, array_minus_level, array_bigger_level):
     print("nbr ia lvl 7", cpt_ai_lvl_7)
     print("RESULT LOOK DU BOSS", boss.look())
     if (cpt_ai_lvl_7 >= 6):
-        result, nbr_fork = handle_level_up(int(array_bigger_level[0]["level"]), boss_case, len(array_bigger_level))
+        
+        print("j'envoi a handle lvl up la boss case suivante", boss_case)
+        result, nbr_fork = handle_level_up(7, boss_case, len(array_bigger_level))
 
-        if (result == Answer.INCANTATION.INCANTATION):
+        if (result == Answer.INCANTATION.value):
             print("je rentre dans incantation SAME LVL LVL 7")
             boss.broadcast(msg_create(boss, array_bigger_level[0]["uuid"], EnumHeader.ORDER.value, EnumOrder.LEVEL_UP.value))
         else:
             print("JE LES ENVOI EN ROUTINE SAME LVL LVL 7")
             send_them_in_routine(boss, array_bigger_level)
-        return 1 
+        return 1
+    send_them_in_routine(boss, array_bigger_level)
     print("resultat de handle level up NOT SAME LVL", result, "nbr fork", nbr_fork, "pour passer lvl", int(array_minus_level[0]["level"]) + 1)
     if (result == Answer.INCANTATION.value):
         print("je rentre dans incantationNOT SAME LVL")
@@ -231,6 +234,8 @@ def manage_order(boss):
         pass
 
     # Ramasser la bouffe au sol (le boss)
+    # for i in boss.array_uuid:
+    # print(boss.array_uuid)
     if boss_case[1] != 0:
         for i in range (boss_case[1]):
             boss.take(EnumObject.FOOD.value)
