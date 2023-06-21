@@ -10,9 +10,10 @@
 
     #include <vector>
     #include <map>
+    #include <chrono>
+    #include <memory>
     #include "encapsulation/Raylibcpp.hpp"
     #include "Inventory.hpp"
-    #include <memory>
 
 enum Directions {
     EAST = 90,
@@ -58,8 +59,6 @@ class Character {
         std::shared_ptr<Inventory> &getInventory();
         void setBroadMessage(std::string message);
         std::string getBroadMessage() const;
-        void setAlive(bool alive);
-        bool getAlive() const;
     private:
         Model _model;
         std::vector<ModelAnimation *> _animations;
@@ -77,6 +76,9 @@ class Character {
         std::size_t _id;
         std::string _teamname;
         std::string _broadmessage;
+        std::chrono::steady_clock::time_point _startTime;
+        std::chrono::steady_clock::time_point _currentTime;
+        std::chrono::duration<double> _elapsedSeconds;
 };
 
 #endif /* !CHARACTER_HPP_ */
