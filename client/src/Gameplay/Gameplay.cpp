@@ -152,8 +152,8 @@ void Gameplay::displayBroadcast()
     this->_rayWindow.endMode3D();
     for (auto &character : this->_characters) {
         if (character.second->getBroadMessage().empty() == false) {
-            this->_rayModel.drawRectangle(0, width - 80, 1350, 30, {130, 130, 130, 255});
-            this->_rayText.drawText(character.second->getBroadMessage(), 10, width - 75, 10, BLACK);
+            this->_rayModel.drawRectangle(0, width - 80, 1400, 30, {130, 130, 130, 255});
+            this->_rayText.drawText("message reçu: " + character.second->getBroadMessage(), 10, width - 75, 10, BLACK);
         }
     }
     this->_rayWindow.beginMode3D(this->_window->getCamera());
