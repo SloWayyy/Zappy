@@ -17,6 +17,7 @@
     #include "src/Gameplay/Egg.hpp"
     #include "src/Gameplay/Display.hpp"
     #include "encapsulation/Raylibcpp.hpp"
+    #include "ICommunicationModule.hpp"
 
 enum CameraType {
     CAMERA_FIRST,

@@ -253,3 +253,23 @@ std::map<std::size_t, Music> Window::getMusics(void) const
 {
     return (this->_musics);
 }
+
+std::size_t Window::getTick(void) const
+{
+    return (this->_tick);
+}
+
+void Window::setTick(std::size_t tick)
+{
+    this->_tick = tick;
+}
+
+void Window::setWriteBuffer(std::string const &writeBuffer)
+{
+    this->_writeBuffer = writeBuffer;
+}
+
+std::string Window::getWriteBuffer(void) const
+{
+    return (this->_writeBuffer);
+}
