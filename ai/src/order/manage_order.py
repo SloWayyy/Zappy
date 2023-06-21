@@ -25,10 +25,12 @@ def get_available_ia(player):
 def get_ressources(player):
     from ai.src.player import EnumObject
     _, foot_case = look_item(player)
+    print("DANS GET RESSOURCES BEFORE GET RESSOURCE -> ", foot_case, flush=True)
     boss_case = []
     boss_case.append(foot_case.count("player"))
     for i in EnumObject:
         boss_case.append(foot_case.count(i.value))
+    print("DANS GET RESSOURCES AFTER GET RESSOURCE -> ", boss_case, flush=True)
     return boss_case
 
 def check_minus_level(available_ia):
@@ -163,10 +165,11 @@ def ai_not_same_level(boss, boss_case, array_minus_level, array_bigger_level):
     for player in array_bigger_level:
         if player["level"] == 7:
             cpt_ai_lvl_7 += 1
+    print("array bigger level: ", array_bigger_level)
     print("nbr ia lvl 7", cpt_ai_lvl_7)
     print("RESULT LOOK DU BOSS", boss.look())
-    if (cpt_ai_lvl_7 >= 6):
-        
+    if (cpt_ai_lvl_7 >= 1):
+        boss_case = get_ressources(boss)
         print("j'envoi a handle lvl up la boss case suivante", boss_case)
         result, nbr_fork = handle_level_up(7, boss_case, len(array_bigger_level))
 
@@ -217,7 +220,7 @@ def manage_order(boss):
     from ai.src.player import EnumOrder, EnumHeader, EnumObject
 
     available_ai = get_available_ia(boss)
-    print("available ai", available_ai, "boss array uuid", boss.array_uuid)
+    # print("available ai", available_ai, "boss array uuid", boss.array_uuid)
     if (len(available_ai) != len(boss.array_uuid)):
         return 0
     boss_case = get_ressources(boss)
