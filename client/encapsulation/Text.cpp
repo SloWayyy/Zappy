@@ -15,3 +15,13 @@ void Raylibcpp::RayText::drawText(std::string string, int posX, int posY, int fo
 {
     DrawText(const_cast<char*> (string.c_str()), posX, posY, fontSize, color);
 }
+
+void Raylibcpp::RayText::setString(const std::string &string)
+{
+    _string = string;
+}
+
+std::string Raylibcpp::RayText::getString() const
+{
+    return _string;
+}

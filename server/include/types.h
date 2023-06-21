@@ -131,6 +131,7 @@ typedef struct tick {
 } tick_t;
 
 typedef struct zappy {
+    bool paused;
     tick_t *tick;
     tile_t **map;
     size_t total[RESOURCES_TYPES_QUANTITY];

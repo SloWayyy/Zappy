@@ -22,7 +22,7 @@ void AScreen::run()
 
 void AScreen::createButtons(std::string string, coord coord, Color color, int size, GameEvent screen)
 {
-    this->_buttonsScreen.emplace_back(string, coord, color, size, screen, this->_window);
+    this->_buttonsScreen.emplace_back(string, coord, color, size, screen, this->_window, this->_window->getSound());
 }
 
 void AScreen::createText(std::string string, coord coord, Color color, int size)
@@ -44,4 +44,9 @@ void AScreen::drawText(void)
     for (auto &text : this->_text) {
         text.drawText(text._string.c_str(), text._posX, text._posY, text._fontSize, text._color);
     }
+}
+
+std::vector<Raylibcpp::RayText> &AScreen::getText()
+{
+    return this->_text;
 }

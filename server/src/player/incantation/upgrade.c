@@ -12,6 +12,7 @@
 #include "buffer.h"
 #include "constants.h"
 #include "graphical.h"
+#include "objects.h"
 #include "player.h"
 #include "resources.h"
 #include "types.h"

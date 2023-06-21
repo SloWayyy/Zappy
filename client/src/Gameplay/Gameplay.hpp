@@ -11,12 +11,14 @@
     #include <memory>
     #include <map>
     #include <vector>
+    #include <chrono>
     #include "src/Gameplay/Map.hpp"
     #include "src/Core/Window.hpp"
     #include "src/Gameplay/Character.hpp"
     #include "src/Gameplay/Egg.hpp"
     #include "src/Gameplay/Display.hpp"
     #include "encapsulation/Raylibcpp.hpp"
+    #include "ICommunicationModule.hpp"
 
 enum CameraType {
     CAMERA_FIRST,
@@ -59,6 +61,10 @@ class Gameplay {
         std::map<std::size_t, std::shared_ptr<Character>> &getCharacters();
         std::map<std::size_t, std::shared_ptr<Egg>> &getEggs();
         void displayMinerals();
+        Texture2D getTextureEgg() const;
+        Model getModelEgg() const;
+        void setTextureEgg();
+        void setModelEgg();
         std::map<std::pair<std::size_t, std::size_t>, std::string> &getIncantation();
         void addIncantation(std::size_t x, std::size_t y, std::string string);
     private:
@@ -77,8 +83,13 @@ class Gameplay {
         bool _isDisplay;
         CameraType _cameraType;
         std::map<std::size_t, Texture2D> _textures;
+        Texture2D _textureEgg;
+        Model _modelEgg;
         std::vector<ModelAnimation *> _animations;
         std::map<std::pair<std::size_t, std::size_t>, std::string> _incantation;
+        std::chrono::steady_clock::time_point _startTime;
+        std::chrono::steady_clock::time_point _currentTime;
+        std::chrono::duration<double> _elapsedSeconds;
 };
 
 #endif /* !GAMEPLAY_HPP_ */

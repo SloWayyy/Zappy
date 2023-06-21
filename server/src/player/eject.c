@@ -12,6 +12,7 @@
 #include "buffer.h"
 #include "constants.h"
 #include "graphical.h"
+#include "objects.h"
 #include "player.h"
 #include "tasks.h"
 #include "types.h"
@@ -30,7 +31,7 @@ static void eject_player(server_t *server, client_t *client, player_t *target, \
     target->pos = tile;
     append_buffer(node->buffer_out, "%s %zu%s", \
         PLAYER_EJECTION, client->player->direction + 1, LINE_BREAK);
-    send_graphical_position_event(server, node);
+    send_graphical_position_event(server, node->player);
 }
 
 static bool eject_players(server_t *server, client_t *client)
@@ -68,7 +69,7 @@ static void eject_eggs(server_t *server, client_t *client)
             SLIST_REMOVE(node->team->eggs, node, egg, next_team);
             SLIST_REMOVE(&client->player->pos->eggs, node, egg, next_tile);
             send_graphical_event(server, "%s %zu%s", \
-            GRAPHICAL_PLAYER_EGG_DEATH, node->id, LINE_BREAK);
+                GRAPHICAL_PLAYER_EGG_DEATH, node->id, LINE_BREAK);
             free(node);
         }
         node = tmp;

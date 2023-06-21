@@ -7,14 +7,17 @@
 
 #include "src/Gameplay/Gameplay.hpp"
 
-Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window), _currentCharacterId(0), _currentCharacterIndex(0)
+Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window),_currentCharacterId(0), _currentCharacterIndex(0)
 {
     this->_isDisplay = true;
     this->_display = Display(this->_window);
     this->_cameraType = CAMERA_THIRD;
     this->setTextures();
     this->setAnimations();
+    this->setModelEgg();
+    this->setTextureEgg();
     this->_map = std::make_shared<Map>(10, 10);
+    this->_startTime = std::chrono::steady_clock::now();
 }
 
 Gameplay::~Gameplay()
@@ -33,6 +36,8 @@ Gameplay::~Gameplay()
             std::cerr << e.what() << std::endl;
         }
     }
+    this->_rayModel.unloadModel(this->_modelEgg);
+    this->_rayModel.unloadTexture(this->_textureEgg);
 }
 
 void Gameplay::setTextures()
@@ -57,6 +62,36 @@ std::map<std::size_t, Texture2D> Gameplay::getTextures() const
     return this->_textures;
 }
 
+void Gameplay::setTextureEgg()
+{
+    try {
+        this->_textureEgg = this->_rayModel.loadTexture("client/assets/monster/eggTexture.png");
+    } catch (const Raylibcpp::Error &e) {
+        std::cerr << e.what() << std::endl;
+        throw Error("Error: Gameplay constructor failed");
+    }
+}
+
+void Gameplay::setModelEgg()
+{
+    try {
+        this->_modelEgg = this->_rayModel.loadModel("client/assets/monster/egg.iqm");
+    } catch (const Raylibcpp::Error &e) {
+        std::cerr << e.what() << std::endl;
+        throw Error("Error: Gameplay constructor failed");
+    }
+}
+
+Texture2D Gameplay::getTextureEgg() const
+{
+    return this->_textureEgg;
+}
+
+Model Gameplay::getModelEgg() const
+{
+    return this->_modelEgg;
+}
+
 void Gameplay::setAnimations()
 {
     unsigned int animCount = 0;
@@ -64,9 +99,9 @@ void Gameplay::setAnimations()
     try {
         this->_animations.push_back(this->_rayModel.loadModelAnimations("client/assets/monster/animations/monsterSpawn.iqm", &animCount));
         this->_animations.push_back(this->_rayModel.loadModelAnimations("client/assets/monster/animations/monsterDying.iqm", &animCount));
-        this->_animations.push_back(this->_rayModel.loadModelAnimations("client/assets/monster/animations/monsterWalking.iqm", &animCount));
         this->_animations.push_back(this->_rayModel.loadModelAnimations("client/assets/monster/animations/monsterRightTurn.iqm", &animCount));
         this->_animations.push_back(this->_rayModel.loadModelAnimations("client/assets/monster/animations/monsterLeftTurn.iqm", &animCount));
+        this->_animations.push_back(this->_rayModel.loadModelAnimations("client/assets/monster/animations/monsterTaking.iqm", &animCount));
     } catch (const Raylibcpp::Error &e) {
         std::cerr << e.what() << std::endl;
         throw Error("Error: Gameplay constructor failed");
@@ -88,7 +123,7 @@ void Gameplay::initPlayer(Vector3 pos, std::size_t level, std::size_t orientatio
 
 void Gameplay::initEgg(std::size_t id, float x, float y)
 {
-    std::shared_ptr<Egg> egg = std::make_shared<Egg>(id, x, y);
+    std::shared_ptr<Egg> egg = std::make_shared<Egg>(id, x, y, this->_modelEgg, this->_textureEgg);
 
     this->_eggs.insert(std::pair<std::size_t, std::shared_ptr<Egg>>(id, egg));
 }
@@ -117,8 +152,8 @@ void Gameplay::displayBroadcast()
     this->_rayWindow.endMode3D();
     for (auto &character : this->_characters) {
         if (character.second->getBroadMessage().empty() == false) {
-            this->_rayModel.drawRectangle(0, width - 80, 1350, 30, {130, 130, 130, 255});
-            this->_rayText.drawText(character.second->getBroadMessage(), 10, width - 75, 10, BLACK);
+            this->_rayModel.drawRectangle(0, width - 80, 1400, 30, {130, 130, 130, 255});
+            this->_rayText.drawText("message reçu: " + character.second->getBroadMessage(), 10, width - 75, 10, BLACK);
         }
     }
     this->_rayWindow.beginMode3D(this->_window->getCamera());
@@ -133,17 +168,20 @@ void Gameplay::run(void)
         this->drawTextOnScreen(this->_window->keyToString(this->_window->getKeyCam1()) + " : Camera 1", 20, this->_window->getScreenHeight() - 150, 10, BLACK);
         this->drawTextOnScreen(this->_window->keyToString(this->_window->getKeyCam2()) + " : Camera 2", 20, this->_window->getScreenHeight() - 150, 60, BLACK);
         this->drawTextOnScreen(this->_window->keyToString(this->_window->getKeyCam3()) + " : Camera 3", 20, this->_window->getScreenHeight() - 150, 110, BLACK);
+        this->drawTextOnScreen("F4: Decrease", 20, this->_window->getScreenHeight() - 150, 160, BLACK);
+        this->drawTextOnScreen("F5: Increase", 20, this->_window->getScreenHeight() - 150, 210, BLACK);
+        this->drawTextOnScreen("Freq : " + std::to_string(this->_window->getTick()), 20, this->_window->getScreenHeight() - 150, 260, BLACK);
         this->_rayWindow.beginMode3D(this->_window->getCamera());
         this->handleInput();
     }
     this->runPlayers();
     this->runEggs();
-    this->displayBroadcast();
     if (this->_isDisplay == false && (this->_cameraType == CAMERA_FIRST || this->_cameraType == CAMERA_SECOND))
         this->DisplayInformations();
     if (this->_isDisplay) {
         this->_window->setDefaultCamera();
         this->_display.run(std::map<std::size_t, std::shared_ptr<Character>>(this->_characters), _map);
+        this->displayBroadcast();
     }
 }
 
@@ -239,6 +277,14 @@ void Gameplay::handleInput(void)
         this->_window->setDefaultCamera();
         this->setCameraType(CAMERA_THIRD);
     }
+    if (this->_rayWindow.isKeyReleased(KEY_F4)) {
+        this->_window->setTick(this->_window->getTick() - 1);
+        this->_window->setWriteBuffer("sst " + std::to_string(this->_window->getTick()));
+    }
+    if (this->_rayWindow.isKeyReleased(KEY_F5)) {
+        this->_window->setTick(this->_window->getTick() + 1);
+        this->_window->setWriteBuffer("sst " + std::to_string(this->_window->getTick()));
+    }
 }
 
 void Gameplay::displayMinerals()
@@ -284,10 +330,16 @@ void Gameplay::drawMap(void)
             this->_map->draw(this->_map->getmodel(), this->_map->getcubePosition(), 2.0f);
             this->_map->draw(this->_map->getmodelPlatform(), {this->_map->getcubePosition().x, this->_map->getcubePosition().y + 1.6f, this->_map->getcubePosition().z}, 0.02f);
             _x += 4.0f;
-            for (auto &incantation : this->_incantation) {
-                if (incantation.first.first == x && incantation.first.second == y) {
-                    this->_rayCube.drawCube({this->_map->getcubePosition().x, this->_map->getcubePosition().y + 1.5f, this->_map->getcubePosition().z}, 4.0f, 0.6f, 4.0f, RED);
+            this->_currentTime = std::chrono::steady_clock::now();
+            this->_elapsedSeconds = this->_currentTime - this->_startTime;
+            if (_elapsedSeconds.count() >= 0.2) {
+                for (auto &incantation : this->_incantation) {
+                    if (incantation.first.first == x && incantation.first.second == y) {
+                        this->_rayCube.drawCube({this->_map->getcubePosition().x, this->_map->getcubePosition().y + 1.5f, this->_map->getcubePosition().z}, 4.0f, 0.6f, 4.0f, YELLOW);
+                    }
                 }
+                if (_elapsedSeconds.count() >= 0.5)
+                    this->_startTime = this->_currentTime;
             }
             if (this->_isDisplay == true && (tileX == x && tileY == y))
                 this->_rayCube.drawCube({this->_map->getcubePosition().x, this->_map->getcubePosition().y + 1.5f, this->_map->getcubePosition().z}, 4.0f, 0.6f, 4.0f, {255, 255, 255, 200});

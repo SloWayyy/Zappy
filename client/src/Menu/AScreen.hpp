@@ -27,6 +27,7 @@ class AScreen : public IScreen {
         void createText(std::string string, coord coord, Color color, int size);
         void drawButton(void) override;
         void drawText(void);
+        std::vector<Raylibcpp::RayText> &getText();
     private:
         virtual void handleInput(void) = 0;
     protected:

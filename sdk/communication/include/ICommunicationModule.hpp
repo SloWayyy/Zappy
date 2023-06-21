@@ -34,6 +34,9 @@ namespace zappy::sdk {
             virtual void disconnect() = 0;
             virtual bool isConnected() = 0;
             virtual std::vector<std::string> readBuffer() = 0;
+            virtual void writeBuffer(const std::string &command) = 0;
+            virtual void setDisconnected(bool disconnected) = 0;
+            virtual bool isDisconnected() const = 0;
     };
 }
 

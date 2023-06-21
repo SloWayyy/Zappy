@@ -19,7 +19,7 @@ struct coord {
 
 class Button {
     public:
-        Button(std::string string, coord coord, Color color, int size, GameEvent screen, const std::shared_ptr<Window> &ptr);
+        Button(std::string string, coord coord, Color color, int size, GameEvent screen, const std::shared_ptr<Window> &ptr, Sound sound);
         ~Button() = default;
         void update();
         void draw() {};
@@ -53,6 +53,8 @@ class Button {
         Rectangle _rectButton;
         Rectangle _mouse;
         Raylibcpp::RayMouse _rayMouse;
+        Raylibcpp::RaySound _raySound;
+        Sound _sound;
 };
 
 #endif /* !BUTTON_HPP_ */

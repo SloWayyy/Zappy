@@ -103,7 +103,7 @@ static bool join_team(server_t *server, client_t *client, team_t *team)
     team->slots -= player->from_egg ? 0 : 1;
     SLIST_INSERT_HEAD(team->players, client->player, next_team);
     SLIST_INSERT_HEAD(&spawn->players, client->player, next_tile);
-    send_graphical_join_event(server, client);
+    send_graphical_join_event(server, client->player);
     return true;
 }
 

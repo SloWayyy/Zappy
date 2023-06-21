@@ -23,6 +23,12 @@
     #define COMMAND_PBC "pbc"
     #define COMMAND_PIC "pic"
     #define COMMAND_PIE "pie"
+    #define COMMAND_SMG "smg"
+    #define COMMAND_ENI "eni"
+    #define COMMAND_PDR "pdr"
+    #define COMMAND_SGT "sgt"
+    #define COMMAND_SST "sst"
+    #define SERVER_DISCONNECT "disconnect"
 
     #include "src/Core/Window.hpp"
     #include "src/Gameplay/Map.hpp"
@@ -30,6 +36,7 @@
     #include "src/Menu/Menu.hpp"
     #include "src/Menu/Tuto.hpp"
     #include "src/Menu/Gameover.hpp"
+    #include "src/Menu/Disconnect.hpp"
     #include "src/Menu/Setting.hpp"
     #include "encapsulation/Raylibcpp.hpp"
     #include "DDLoader/DDLoader.hpp"
@@ -63,13 +70,21 @@ class Core {
         void setBroadcast(std::vector<std::string> &input);
         void addIncantation(std::vector<std::string> &input);
         void endIncantation(std::vector<std::string> &input);
+        void personnalMessage(std::vector<std::string> &input);
+        void dropResource(std::vector<std::string> &input);
+        void setTimeUnit(std::vector<std::string> &input);
+        void setDisconnectEvent(std::vector<std::string> &input);
+        bool checkConnection();
     private:
+        int _port;
+        std::string _ip;
         std::shared_ptr<Window> _window;
         std::shared_ptr<Menu> _menu;
         std::shared_ptr<Tuto> _tuto;
         std::shared_ptr<Setting> _setting;
         std::shared_ptr<Gameover> _gameover;
         std::shared_ptr<Gameplay> _gameplay;
+        std::shared_ptr<Disconnect> _disconnect;
         Raylibcpp::RayWindow _rayWindow;
         Raylibcpp::RayClock _rayClock;
         std::shared_ptr<DDLoader<zappy::sdk::ICommunicationModule>> loader;

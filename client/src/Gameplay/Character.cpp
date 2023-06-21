@@ -30,10 +30,16 @@ Character::Character(std::size_t animsCount, std::size_t animFrameCounter, Vecto
         if (orientation == 4)
             this->_currentDirection = WEST;
         this->_model.transform = this->_rayModel.matrixRotateXYZ({-90 * DEG2RAD, 0, _currentDirection * DEG2RAD});
+        this->_startTime = std::chrono::steady_clock::now();
     } catch (const Raylibcpp::Error &e) {
         std::cerr << e.what() << std::endl;
         exit (84);
     }
+}
+
+Character::~Character()
+{
+    this->_rayModel.unloadModel(this->_model);
 }
 
 std::map<std::size_t, Texture2D> Character::getTextures() const
@@ -43,9 +49,9 @@ std::map<std::size_t, Texture2D> Character::getTextures() const
 
 void Character::chooseAnimation(Animations anim)
 {
-    if (anim == WALKING) {
-        if (this->_animFrameCounter == 86)
-            this->_position = this->_pos_temp;
+    this->_currentTime = std::chrono::steady_clock::now();
+    this->_elapsedSeconds = this->_currentTime - this->_startTime;
+    if (_elapsedSeconds.count() >= 0.01) {
         if (this->_animFrameCounter < this->_animations[anim][0].frameCount) {
             this->_rayModel.updateModelAnimation(this->_model, this->_animations[anim][0], this->_animFrameCounter);
             this->_animFrameCounter++;
@@ -54,15 +60,7 @@ void Character::chooseAnimation(Animations anim)
             this->_animFrameCounter = 0;
             this->_currentlyAnimation = NONE;
         }
-    } else {
-        if (this->_animFrameCounter < this->_animations[anim][0].frameCount) {
-            this->_rayModel.updateModelAnimation(this->_model, this->_animations[anim][0], this->_animFrameCounter);
-            this->_animFrameCounter++;
-        }
-        if (this->_animFrameCounter >= this->_animations[anim][0].frameCount) {
-            this->_animFrameCounter = 0;
-            this->_currentlyAnimation = NONE;
-        }
+        this->_startTime = this->_currentTime;
     }
 }
 
@@ -127,20 +125,20 @@ void Character::handleEvent()
         this->chooseAnimation(SPAWN);
     if (this->_currentlyAnimation == DYING)
         this->chooseAnimation(DYING);
-    if (this->_currentlyAnimation == WALKING)
-        this->chooseAnimation(WALKING);
     if (this->_currentlyAnimation == RIGHT_TURN)
         this->chooseAnimation(RIGHT_TURN);
     if (this->_currentlyAnimation == LEFT_TURN)
         this->chooseAnimation(LEFT_TURN);
+    if (this->_currentlyAnimation == TAKING)
+        this->chooseAnimation(TAKING);
 }
 
 void Character::setPos(float x, float z, int orientation)
 {
-    if (this->_pos_temp.x != x || this->_pos_temp.z != z) {
-        this->_pos_temp.x = x;
-        this->_pos_temp.z = z;
-        this->setCurrentlyAnimation(WALKING);
+    if (this->_position.x != x || this->_position.z != z) {
+        this->setCurrentlyAnimation(SPAWN);
+        this->_position.x = x;
+        this->_position.z = z;
     }
     this->_currentDirection = (orientation == 1) ? NORTH : (orientation == 2) ? EAST : (orientation == 3) ? SOUTH : WEST;
     this->_model.transform = this->_rayModel.matrixRotateXYZ({-90 * DEG2RAD, 0, _currentDirection * DEG2RAD});

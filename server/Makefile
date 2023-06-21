@@ -6,6 +6,7 @@
 ##
 
 SRC			=	src/core/fdsets.c \
+				src/core/handler.c \
 				src/core/init.c \
 				src/core/input.c \
 				src/core/loop.c \
@@ -16,7 +17,8 @@ SRC			=	src/core/fdsets.c \
 				src/core/tick.c \
 				src/graphical/command.c \
 				src/graphical/data.c \
-				src/graphical/events.c \
+				src/graphical/events_map.c \
+				src/graphical/events_player.c \
 				src/graphical/map.c \
 				src/graphical/map_size.c \
 				src/graphical/player.c \
@@ -44,6 +46,13 @@ SRC			=	src/core/fdsets.c \
 				src/player/move.c \
 				src/player/rotate.c \
 				src/player/speak.c \
+				src/server/commands.c \
+				src/server/give.c \
+				src/server/kill.c \
+				src/server/misc.c \
+				src/server/modifiers.c \
+				src/server/teleport.c \
+				src/server/teleportation.c \
 				src/util/arguments/args.c \
 				src/util/arguments/check.c \
 				src/util/arguments/handlers.c \
