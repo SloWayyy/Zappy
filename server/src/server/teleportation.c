@@ -6,12 +6,14 @@
 */
 
 #include <string.h>
+#include <sys/queue.h>
 
 #include "buffer.h"
 #include "commands.h"
 #include "constants.h"
 #include "graphical.h"
 #include "types.h"
+#include "resources.h"
 
 static void teleport_eggs(server_t *server, tile_t *source, tile_t *dest)
 {

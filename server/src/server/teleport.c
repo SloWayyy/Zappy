@@ -5,6 +5,7 @@
 ** teleport.c
 */
 
+#include <stdbool.h>
 #include <string.h>
 
 #include "buffer.h"

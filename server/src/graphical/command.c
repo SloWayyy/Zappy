@@ -5,7 +5,9 @@
 ** command.c
 */
 
+#include <stdarg.h>
 #include <string.h>
+#include <sys/queue.h>
 
 #include "buffer.h"
 #include "constants.h"

@@ -16,7 +16,8 @@ SRC			=	src/core/fdsets.c \
 				src/core/tick.c \
 				src/graphical/command.c \
 				src/graphical/data.c \
-				src/graphical/events.c \
+				src/graphical/events_map.c \
+				src/graphical/events_player.c \
 				src/graphical/map.c \
 				src/graphical/map_size.c \
 				src/graphical/player.c \
@@ -45,6 +46,7 @@ SRC			=	src/core/fdsets.c \
 				src/player/rotate.c \
 				src/player/speak.c \
 				src/server/commands.c \
+				src/server/give.c \
 				src/server/modifiers.c \
 				src/server/teleport.c \
 				src/server/teleportation.c \
