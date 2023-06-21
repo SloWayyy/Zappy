@@ -10,9 +10,10 @@
 
     #include <vector>
     #include <map>
+    #include <chrono>
+    #include <memory>
     #include "encapsulation/Raylibcpp.hpp"
     #include "Inventory.hpp"
-    #include <memory>
 
 enum Directions {
     EAST = 90,
@@ -77,6 +78,9 @@ class Character {
         std::size_t _id;
         std::string _teamname;
         std::string _broadmessage;
+        std::chrono::steady_clock::time_point _startTime;
+        std::chrono::steady_clock::time_point _currentTime;
+        std::chrono::duration<double> _elapsedSeconds;
 };
 
 #endif /* !CHARACTER_HPP_ */
