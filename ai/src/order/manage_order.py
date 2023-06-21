@@ -159,6 +159,7 @@ def ai_not_same_level(boss, boss_case, array_minus_level, array_bigger_level):
             send_them_in_routine(boss, array_bigger_level)
             send_them_in_routine(boss, array_minus_level)
         return 1
+    take_specific_ressources(boss)
     send_them_in_routine(boss, array_bigger_level)
     if (result == Answer.INCANTATION.value):
         if (array_minus_level[0]["level"] == 1):
@@ -185,9 +186,25 @@ def ai_not_same_level(boss, boss_case, array_minus_level, array_bigger_level):
     else:
         send_them_in_routine(boss, array_minus_level)
 
+def take_specific_ressources(boss):
+    from ai.src.player import EnumObject
+    boss_case = get_ressources(boss)
+    for i in range(4, len(boss_case) - 1):
+        for _ in range(boss_case[i]):
+            if i == 4:
+                if (boss.take(EnumObject.SIBUR.value) == False):
+                    return False
+            if i == 5:
+                if (boss.take(EnumObject.MENDIANE.value) == False):
+                    return False
+            if i == 6:
+                if (boss.take(EnumObject.PHIRAS.value) == False):
+                    return False
+
 def manage_order(boss):
     from ai.src.game import msg_create
     from ai.src.player import EnumOrder, EnumHeader, EnumObject
+    from ai.src.order.dump_item import dump_item
 
     available_ai = get_available_ia(boss)
     if (len(available_ai) != len(boss.array_uuid) and boss.level7 != 7):
@@ -198,6 +215,8 @@ def manage_order(boss):
         print("manage order -> available ai: ", available_ai)
         print("manage order -> boss array uuid: ", boss.array_uuid)
         return 0
+    print("LE BOSS: JE POSE TOUTES MES RESSOURCES")
+    dump_item(boss, "0")
     boss_case = get_ressources(boss)
     minus_level = check_minus_level(available_ai)
     array_bigger_level, array_minus_level = check_same_level(available_ai, minus_level)
@@ -208,6 +227,8 @@ def manage_order(boss):
     print("manage order -> nbr fork: ", nbr_fork)
 
     if (len(array_bigger_level) == 0):
+        if (result != Answer.INCANTATION.value):
+            take_specific_ressources(boss)
         print("manage order -> all same level")
         ia_all_same_level(boss, array_minus_level, result, nbr_fork)
     else:
