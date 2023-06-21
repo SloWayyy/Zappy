@@ -47,6 +47,7 @@ SRC			=	src/core/fdsets.c \
 				src/player/speak.c \
 				src/server/commands.c \
 				src/server/give.c \
+				src/server/kill.c \
 				src/server/modifiers.c \
 				src/server/teleport.c \
 				src/server/teleportation.c \

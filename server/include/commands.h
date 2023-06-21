@@ -31,6 +31,10 @@
         "than %zu items at once%s"
     #define SERVER_GIVE_FORMAT "Player %zu has received %s x%zu%s"
 
+    #define SERVER_KILL_USAGE "Usage: /kill <src>"
+    #define SERVER_KILL_FORMAT "Player %zu has been killed%s"
+    #define SERVER_KILL_ENTITIES "Resources and eggs have been killed"
+
     #define SERVER_COMMANDS_COUNT \
             (sizeof(SERVER_COMMANDS) / sizeof(server_command_t))
 
@@ -42,6 +46,7 @@ void execute_server_commands(server_t *server);
 
 void tp_handler(server_t *server);
 void give_handler(server_t *server);
+void kill_handler(server_t *server);
 
 typedef void player_handler_t (server_t *server);
 
@@ -59,6 +64,7 @@ typedef struct source {
 static const server_command_t SERVER_COMMANDS[] = {
         { "/tp", &tp_handler },
         { "/give", &give_handler },
+        { "/kill", &kill_handler },
 };
 
 bool get_source(server_t *server, char *target, source_t *ptr);
