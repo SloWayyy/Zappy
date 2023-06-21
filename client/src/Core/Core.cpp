@@ -254,6 +254,8 @@ void Core::setTimeUnit(std::vector<std::string> &args)
 void Core::setDisconnectEvent(std::vector<std::string> &args)
 {
     this->_window->setGameEvent(DISCONNECT);
+    this->_gameplay->getCharacters().clear();
+    this->_gameplay->getEggs().clear();
 }
 
 bool Core::checkConnection()
