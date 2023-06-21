@@ -181,14 +181,14 @@ Test(server, player_death, .timeout = 5, .init=cr_redirect_stdout)
     cr_assert_str_eq(client->buffer, "pdi 0\n");
 }
 
-Test(server, player_incantation, .timeout = 10, .init=cr_redirect_stdout)
+Test(server, player_incantation, .timeout = 5, .init=cr_redirect_stdout)
 {
-    char *argv[] = { "./zappy_server", "-p", "10903", "-f", "5000", "--seed", "4000", "--immortal", "--debug", NULL };
+    char *argv[] = { "./zappy_server", "-p", "8008", "-f", "5000", "--seed", "4000", "--immortal", "--debug", NULL };
     pthread_t thread;
     pthread_t thread_player;
     pid_t pid = launch_server(argv);
-    routine_t *client = launch_client(&thread, 10903);
-    routine_t *player = launch_client(&thread_player, 10903);
+    routine_t *client = launch_client(&thread, 8008);
+    routine_t *player = launch_client(&thread_player, 8008);
 
     execute_command(client, "GRAPHIC");
     execute_command(player, "Team1");
