@@ -74,7 +74,10 @@ class Core {
         void dropResource(std::vector<std::string> &input);
         void setTimeUnit(std::vector<std::string> &input);
         void setDisconnectEvent(std::vector<std::string> &input);
+        void checkConnection();
     private:
+        int _port;
+        std::string _ip;
         std::shared_ptr<Window> _window;
         std::shared_ptr<Menu> _menu;
         std::shared_ptr<Tuto> _tuto;

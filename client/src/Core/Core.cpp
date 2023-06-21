@@ -9,13 +9,11 @@
 #include <string>
 #include <cstring>
 
-Core::Core(int port, std::string ip)
+Core::Core(int port, std::string ip) : _port(port), _ip(ip)
 {
     try {
         this->loader = std::make_shared<DDLoader<zappy::sdk::ICommunicationModule>>("client/libs/communication_sdk.so");
         this->network = std::shared_ptr<zappy::sdk::ICommunicationModule>(this->loader->getInstance("communicationEntrypoint"));
-        this->network->connect(ip, port);
-        this->network->connectAsGraphical();
         this->_window = std::make_shared<Window>(1920, 1080, 60);
         this->_menu = std::make_shared<Menu>(this->_window);
         this->_tuto = std::make_shared<Tuto>(this->_window);
@@ -57,6 +55,7 @@ void Core::run(void)
                 this->_menu->run();
                 break;
             case GAMEPLAY:
+                this->checkConnection();
                 this->_rayWindow.beginMode3D(this->_window->getCamera());
                 this->_window->run();
                 this->_gameplay->run();
@@ -254,4 +253,17 @@ void Core::setTimeUnit(std::vector<std::string> &args)
 void Core::setDisconnectEvent(std::vector<std::string> &args)
 {
     this->_window->setGameEvent(DISCONNECT);
+}
+
+void Core::checkConnection()
+{
+    if (this->network->isDisconnected()) {
+        try {
+            this->network->connect(_ip, _port);
+            this->network->connectAsGraphical();    
+            this->network->setDisconnected(false);
+        } catch (const zappy::sdk::CommunicationException &e) {
+            this->_window->setGameEvent(MENU);
+        }
+    }
 }

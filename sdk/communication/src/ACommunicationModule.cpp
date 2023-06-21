@@ -84,3 +84,11 @@ int zappy::sdk::ACommunicationModule::getSocketFd() const {
 void zappy::sdk::ACommunicationModule::writeBuffer(const std::string &command) {
     this->_writeBuffer = command + "\n";
 }
+
+void zappy::sdk::ACommunicationModule::setDisconnected(bool disconnected) {
+    this->disconneted = disconnected;
+}
+
+bool zappy::sdk::ACommunicationModule::isDisconnected() const {
+    return this->disconneted;
+}
