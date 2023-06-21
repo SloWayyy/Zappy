@@ -50,9 +50,14 @@ static bool get_item_amount(server_t *server, char **args, size_t *amount)
         *amount = 1;
         return true;
     }
-    if (!check_number(args[2], &num) || num < 1 || num > SERVER_GIVE_LIMIT) {
+    if (!check_number(args[2], &num) || num < 1) {
         append_buffer(server->data->stdout_buffer, "%s%s", \
             SERVER_GIVE_USAGE, LINE_BREAK);
+        return false;
+    }
+    if (num > SERVER_GIVE_LIMIT) {
+        append_buffer(server->data->stdout_buffer, SERVER_GIVE_ERROR, \
+            SERVER_GIVE_LIMIT, LINE_BREAK);
         return false;
     }
     *amount = (size_t) num;

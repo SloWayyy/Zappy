@@ -27,6 +27,8 @@
     #define SERVER_TP_FORMAT "Player %zu has been teleported to (%zu %zu)%s"
 
     #define SERVER_GIVE_USAGE "Usage: /give <src> <resource> [amount]"
+    #define SERVER_GIVE_ERROR "Error: You cannot give more " \
+        "than %zu items at once%s"
     #define SERVER_GIVE_FORMAT "Player %zu has received %s x%zu%s"
 
     #define SERVER_COMMANDS_COUNT \
