@@ -8,8 +8,9 @@
 #ifndef WINDOW_HPP_
     #define WINDOW_HPP_
 
-    #include "encapsulation/Raylibcpp.hpp"
+    #include <chrono>
     #include <map>
+    #include "encapsulation/Raylibcpp.hpp"
 
 enum GameEvent {
     MENU,
@@ -91,6 +92,9 @@ class Window {
         std::map<std::size_t, Music> _musics;
         std::size_t _tick = 0;
         std::string _writeBuffer;
+        std::chrono::steady_clock::time_point _startTime;
+        std::chrono::steady_clock::time_point _currentTime;
+        std::chrono::duration<double> _elapsedSeconds;
 };
 
 #endif /* !WINDOW_HPP_ */
