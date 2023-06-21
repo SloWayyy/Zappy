@@ -40,6 +40,7 @@ namespace zappy::sdk {
             __gnu_cxx::stdio_filebuf<char> _stream;
             fd_set reads_set;
             fd_set writes_set;
+            bool disconneted = false;
     };
 }
 

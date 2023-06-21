@@ -17,6 +17,7 @@ enum GameEvent {
     SETTINGS,
     TUTO,
     GAMEOVER,
+    DISCONNECT,
     EXIT
 };
 

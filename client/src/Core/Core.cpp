@@ -22,6 +22,7 @@ Core::Core(int port, std::string ip)
         this->_setting = std::make_shared<Setting>(this->_window);
         this->_gameover = std::make_shared<Gameover>(this->_window);
         this->_gameplay = std::make_shared<Gameplay>(this->_window);
+        this->_disconnect = std::make_shared<Disconnect>(this->_window);
     } catch (const DDLoader<zappy::sdk::ICommunicationModule>::DDLException &e) {
         std::cerr << e.what() << std::endl;
         throw CoreException("Error: Cannot load communication module");
@@ -73,6 +74,10 @@ void Core::run(void)
                 this->_window->run();
                 this->_gameover->run();
                 break;
+            case DISCONNECT:
+                this->_window->run();
+                this->_disconnect->run();
+                break;
             case EXIT:
                 this->_window->setExit(true);
         }
@@ -115,6 +120,7 @@ void Core::handleInput(const std::string &command)
         {COMMAND_PDR, &Core::dropResource},
         {COMMAND_SGT, &Core::setTimeUnit},
         {COMMAND_SST, &Core::setTimeUnit},
+        {SERVER_DISCONNECT, &Core::setDisconnectEvent},
         {COMMAND_SEG, &Core::setWinner}
     };
 
@@ -243,4 +249,9 @@ void Core::dropResource(std::vector<std::string> &args)
 void Core::setTimeUnit(std::vector<std::string> &args)
 {
     this->_window->setTick(std::stoi(args[1]));
+}
+
+void Core::setDisconnectEvent(std::vector<std::string> &args)
+{
+    this->_window->setGameEvent(DISCONNECT);
 }
