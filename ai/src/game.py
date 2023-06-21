@@ -12,7 +12,7 @@ def msg_create(sender: Player, receiver: str, header: str, order: str = None, da
         return (sender.uuid + " " + header + " " + receiver + " " + data)
 
 def boss_routine(player: Player):
-    # take_around(player, [])
+    take_around(player, 4)
     for i in player.array_uuid:
         player.broadcast(msg_create(player, i["uuid"], EnumHeader.ORDER.value, EnumOrder.JOIN_BOSS.value))
     while True:

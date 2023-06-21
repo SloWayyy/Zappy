@@ -1,758 +1,695 @@
 Connexion établie avec le serveur sur le port 4242
-UUID: a06cfba2-1077-11ee-bd53-b06088578091
+UUID: 3d7c3f8a-1081-11ee-9ac2-b06088578091
 Envoi du nom de l'équipe... (hilo)
-LOOK: [player,linemate,food sibur,food]
-FOOT CASE DANS LOOK: ['player']
-LOOK: [player food sibur,food,linemate,food]
-FOOT CASE DANS LOOK: ['player', 'food', 'sibur']
-LOOK: [player linemate,linemate,food,sibur]
-FOOT CASE DANS LOOK: ['player', 'linemate']
-LOOK: [player food,linemate,food,player]
-FOOT CASE DANS LOOK: ['player', 'food']
-LOOK: [player food,food,player,sibur]
-FOOT CASE DANS LOOK: ['player', 'food']
-je suis arrivé
 YES SIR
 Connexion établie avec le serveur sur le port 4242
-UUID: 9ffa3b6c-1077-11ee-9969-b06088578091
+UUID: 3da606bc-1081-11ee-8977-b06088578091
+Envoi du nom de l'équipe... (hilo)
+YES SIR
+Connexion établie avec le serveur sur le port 4242
+UUID: 3dd2eb1e-1081-11ee-b164-b06088578091
+Envoi du nom de l'équipe... (hilo)
+YES SIR
+Connexion établie avec le serveur sur le port 4242
+UUID: 3dfd340a-1081-11ee-a7f4-b06088578091
+Envoi du nom de l'équipe... (hilo)
+YES SIR
+Connexion établie avec le serveur sur le port 4242
+UUID: 3d482470-1081-11ee-bb1e-b06088578091
 Envoi du nom de l'équipe... (hilo)
 I AM THE BOSS
 
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 1 2 2
+LOOK: [player,food,food sibur,food phiras]
+FOOT CASE DANS LOOK: ['player']
+LOOK: [player,food phiras,food,linemate]
+FOOT CASE DANS LOOK: ['player']
+LOOK: [player,linemate,sibur,linemate]
+FOOT CASE DANS LOOK: ['player']
+LOOK: [player,linemate,linemate,food]
+FOOT CASE DANS LOOK: ['player']
+ping answer: 3d7c3f8a-1081-11ee-9ac2-b06088578091 1 2 3
+ping answer: 3da606bc-1081-11ee-8977-b06088578091 1 2 5
+ping answer: 3dd2eb1e-1081-11ee-b164-b06088578091 1 2 3
+ping answer: 3dfd340a-1081-11ee-a7f4-b06088578091 1 2 7
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 1 0 0
-LOOK: [player player linemate linemate sibur,deraumere,food,deraumere]
-FOOT CASE DANS LOOK: ['player', 'player', 'linemate', 'linemate', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'linemate', 'linemate', 'sibur']
-BOSS CASE IN GET RESSOURCES: [2, 0, 2, 0, 1, 0, 0, 0]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 1 6 0
-LOOK: [player player linemate linemate sibur,deraumere,food,deraumere]
-FOOT CASE DANS LOOK: ['player', 'player', 'linemate', 'linemate', 'sibur']
-LOOK: [player player linemate linemate sibur,deraumere,sibur,food]
-FOOT CASE DANS LOOK: ['player', 'player', 'linemate', 'linemate', 'sibur']
-LOOK: [player player linemate linemate sibur,food,,linemate]
-FOOT CASE DANS LOOK: ['player', 'player', 'linemate', 'linemate', 'sibur']
-LOOK: [player player linemate linemate sibur,linemate,food,deraumere]
-FOOT CASE DANS LOOK: ['player', 'player', 'linemate', 'linemate', 'sibur']
-
-
-
-
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 6, 'pos': 0}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 6, 'pos': 0}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 6, 'pos': 0}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 6, 'pos': 0}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 6, 'pos': 0}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 6, 'pos': 0}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 6, 'pos': 0}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 6, 'pos': 0}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 6, 'pos': 0}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 6, 'pos': 0}]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 6, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 6 0
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
 Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 6, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 0 0
-LOOK: [player player linemate sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'linemate', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'linemate', 'sibur']
-BOSS CASE IN GET RESSOURCES: [2, 0, 1, 0, 1, 0, 0, 0]
-
-
-
-
-LOOK: [player player linemate sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'linemate', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'linemate', 'sibur']
-BOSS CASE IN GET RESSOURCES: [2, 0, 1, 0, 1, 0, 0, 0]
-
-
-
-
-LOOK: [player player linemate sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'linemate', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'linemate', 'sibur']
-BOSS CASE IN GET RESSOURCES: [2, 0, 1, 0, 1, 0, 0, 0]
-
-
-
-
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-Connexion établie avec le serveur sur le port 4242
-UUID: aae17996-1077-11ee-845d-b06088578091
-Envoi du nom de l'équipe... (hilo)
-YES SIR
-Connexion établie avec le serveur sur le port 4242
-UUID: ac1594a0-1077-11ee-a3a9-b06088578091
-Envoi du nom de l'équipe... (hilo)
-YES SIR
-Connexion établie avec le serveur sur le port 4242
-UUID: ad545f0e-1077-11ee-bef8-b06088578091
-Envoi du nom de l'équipe... (hilo)
-YES SIR
-Connexion établie avec le serveur sur le port 4242
-UUID: ae988106-1077-11ee-800f-b06088578091
-Envoi du nom de l'équipe... (hilo)
-YES SIR
-Connexion établie avec le serveur sur le port 4242
-UUID: afe3749e-1077-11ee-ac87-b06088578091
-Envoi du nom de l'équipe... (hilo)
-YES SIR
-Connexion établie avec le serveur sur le port 4242
-UUID: b11b4274-1077-11ee-a34a-b06088578091
-Envoi du nom de l'équipe... (hilo)
-YES SIR
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 0 0
-LOOK: [player player player linemate sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'linemate', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'linemate', 'sibur']
-BOSS CASE IN GET RESSOURCES: [3, 0, 1, 0, 1, 0, 0, 0]
-
-
-
-
-LOOK: [player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [3, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-LOOK: [player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [3, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 0 0
-LOOK: [player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [4, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-LOOK: [player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [4, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-LOOK: [player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [4, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 0 0
-LOOK: [player player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [5, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-LOOK: [player player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [5, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-LOOK: [player player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [5, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 0 0
-LOOK: [player player player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [6, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-LOOK: [player player player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [6, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-LOOK: [player player player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [6, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 0 0
-LOOK: [player player player player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [7, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-LOOK: [player player player player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [7, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-LOOK: [player player player player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [7, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 0 0
-LOOK: [player player player player player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [8, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-LOOK: [player player player player player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [8, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-LOOK: [player player player player player player player player sibur,,deraumere,]
-Connexion établie avec le serveur sur le port 4242
-UUID: b25c2f36-1077-11ee-a9ca-b06088578091
-Envoi du nom de l'équipe... (hilo)
-YES SIR
-Connexion établie avec le serveur sur le port 4242
-UUID: b3a1c45a-1077-11ee-83d4-b06088578091
-Envoi du nom de l'équipe... (hilo)
-YES SIR
-Connexion établie avec le serveur sur le port 4242
-UUID: b4e2d2f0-1077-11ee-a5db-b06088578091
-Envoi du nom de l'équipe... (hilo)
-YES SIR
-Connexion établie avec le serveur sur le port 4242
-UUID: b61ff800-1077-11ee-90c1-b06088578091
-Envoi du nom de l'équipe... (hilo)
-YES SIR
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [8, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 0 0
-LOOK: [player player player player player player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [9, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-LOOK: [player player player player player player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [9, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-LOOK: [player player player player player player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [9, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 0 0
-LOOK: [player player player player player player player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [10, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-LOOK: [player player player player player player player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [10, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-LOOK: [player player player player player player player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [10, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 0 0
-LOOK: [player player player player player player player player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [11, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-LOOK: [player player player player player player player player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [11, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-LOOK: [player player player player player player player player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [11, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 0 0
-LOOK: [player player player player player player player player player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [12, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-LOOK: [player player player player player player player player player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [12, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-LOOK: [player player player player player player player player player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [12, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  Connexion établie avec le serveur sur le port 4242
-UUID: b76869e0-1077-11ee-8962-b06088578091
-Envoi du nom de l'équipe... (hilo)
-YES SIR
-Connexion établie avec le serveur sur le port 4242
-UUID: b8a676c6-1077-11ee-8568-b06088578091
-Envoi du nom de l'équipe... (hilo)
-YES SIR
-Connexion établie avec le serveur sur le port 4242
-UUID: b9ee3d8e-1077-11ee-a075-b06088578091
-Envoi du nom de l'équipe... (hilo)
-YES SIR
-Connexion établie avec le serveur sur le port 4242
-UUID: bb2f258c-1077-11ee-843f-b06088578091
-Envoi du nom de l'équipe... (hilo)
-YES SIR
-[{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 0 0
-LOOK: [player player player player player player player player player player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [13, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-LOOK: [player player player player player player player player player player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [13, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-LOOK: [player player player player player player player player player player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [13, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 0 0
-LOOK: [player player player player player player player player player player player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [14, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-LOOK: [player player player player player player player player player player player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [14, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-LOOK: [player player player player player player player player player player player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [14, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 0 0
-LOOK: [player player player player player player player player player player player player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [15, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-LOOK: [player player player player player player player player player player player player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [15, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-LOOK: [player player player player player player player player player player player player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [15, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 0 0
-LOOK: [player player player player player player player player player player player player player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [16, 0, 0, 0, 1, 0, 0, 0]
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+ping answer: 3d7c3f8a-1081-11ee-9ac2-b06088578091 1 0 0
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 2, 'pos': 3}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+ping answer: 3dd2eb1e-1081-11ee-b164-b06088578091 1 0 0
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 2, 'pos': 5}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+ping answer: 3da606bc-1081-11ee-8977-b06088578091 1 0 0
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 2, 'pos': 7}]
+ping answer: 3dfd340a-1081-11ee-a7f4-b06088578091 1 0 0
+LE BOSS: JE POSE TOUTES MES RESSOURCES
+LOOK: [player player player player player food linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere sibur sibur sibur sibur sibur sibur sibur sibur sibur sibur sibur sibur sibur sibur mendiane mendiane mendiane mendiane mendiane mendiane mendiane mendiane mendiane mendiane phiras phiras phiras phiras phiras phiras phiras phiras thystame thystame,,linemate,deraumere]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'food', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'phiras', 'phiras', 'phiras', 'phiras', 'phiras', 'phiras', 'phiras', 'phiras', 'thystame', 'thystame']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'food', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'phiras', 'phiras', 'phiras', 'phiras', 'phiras', 'phiras', 'phiras', 'phiras', 'thystame', 'thystame']
+BOSS CASE IN GET RESSOURCES: [5, 1, 29, 12, 14, 10, 8, 2]
+ping answer: 3d7c3f8a-1081-11ee-9ac2-b06088578091 1 6 0
+ping answer: 3da606bc-1081-11ee-8977-b06088578091 1 6 0
+ping answer: 3dd2eb1e-1081-11ee-b164-b06088578091 1 6 0
+ping answer: 3dfd340a-1081-11ee-a7f4-b06088578091 1 6 0
+LOOK: [player player player player player linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere sibur sibur sibur sibur sibur sibur sibur sibur sibur sibur sibur sibur sibur sibur mendiane mendiane mendiane mendiane mendiane mendiane mendiane mendiane mendiane mendiane phiras phiras phiras phiras phiras phiras phiras phiras thystame thystame,,linemate,deraumere]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'phiras', 'phiras', 'phiras', 'phiras', 'phiras', 'phiras', 'phiras', 'phiras', 'thystame', 'thystame']
+LOOK: [player player player player player linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere sibur sibur sibur sibur sibur sibur sibur sibur sibur sibur sibur sibur sibur sibur mendiane mendiane mendiane mendiane mendiane mendiane mendiane mendiane mendiane mendiane phiras phiras phiras phiras phiras phiras phiras phiras thystame thystame,deraumere,linemate,food]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'phiras', 'phiras', 'phiras', 'phiras', 'phiras', 'phiras', 'phiras', 'phiras', 'thystame', 'thystame']
+LOOK: [player player player player player linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere sibur sibur sibur sibur sibur sibur sibur sibur sibur sibur sibur sibur sibur sibur mendiane mendiane mendiane mendiane mendiane mendiane mendiane mendiane mendiane mendiane phiras phiras phiras phiras phiras phiras phiras phiras thystame thystame,food,phiras,phiras]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'phiras', 'phiras', 'phiras', 'phiras', 'phiras', 'phiras', 'phiras', 'phiras', 'thystame', 'thystame']
+LOOK: [player player player player player linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere sibur sibur sibur sibur sibur sibur sibur sibur sibur sibur sibur sibur sibur sibur mendiane mendiane mendiane mendiane mendiane mendiane mendiane mendiane mendiane mendiane phiras phiras phiras phiras phiras phiras phiras phiras thystame thystame,phiras,,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'phiras', 'phiras', 'phiras', 'phiras', 'phiras', 'phiras', 'phiras', 'phiras', 'thystame', 'thystame']
 
 
 
 
-LOOK: [player player player player player player player player player player player player player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [16, 0, 0, 0, 1, 0, 0, 0]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 6, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 6, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 6, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 6, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 6, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 6, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 6, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 6, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 6, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 6, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 6, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 6, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 6, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 6, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 1, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 6, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 6, 'pos': 0}]
+ping answer: 3d7c3f8a-1081-11ee-9ac2-b06088578091 2 6 0
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 1, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 6, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 6, 'pos': 0}]
+ping answer: 3da606bc-1081-11ee-8977-b06088578091 2 6 0
+ping answer: 3d7c3f8a-1081-11ee-9ac2-b06088578091 2 0 0
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 2, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 1, 'job': 6, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 6, 'pos': 0}]
+ping answer: 3dd2eb1e-1081-11ee-b164-b06088578091 2 6 0
+ping answer: 3da606bc-1081-11ee-8977-b06088578091 2 0 0
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 2, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 2, 'job': 0, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 1, 'job': 6, 'pos': 0}]
+ping answer: 3dfd340a-1081-11ee-a7f4-b06088578091 2 6 0
+ping answer: 3dd2eb1e-1081-11ee-b164-b06088578091 2 0 0
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 2, 'job': 0, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 2, 'job': 0, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 2, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 2, 'job': 6, 'pos': 0}]
+ping answer: 3dfd340a-1081-11ee-a7f4-b06088578091 2 0 0
+LE BOSS: JE POSE TOUTES MES RESSOURCES
+LOOK: [player player player player player linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere sibur sibur sibur sibur sibur sibur sibur sibur sibur sibur sibur sibur sibur sibur mendiane mendiane mendiane mendiane mendiane mendiane mendiane mendiane mendiane mendiane phiras phiras phiras phiras phiras phiras phiras phiras phiras phiras thystame thystame,,,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'phiras', 'phiras', 'phiras', 'phiras', 'phiras', 'phiras', 'phiras', 'phiras', 'phiras', 'phiras', 'thystame', 'thystame']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'linemate', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'deraumere', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'sibur', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'mendiane', 'phiras', 'phiras', 'phiras', 'phiras', 'phiras', 'phiras', 'phiras', 'phiras', 'phiras', 'phiras', 'thystame', 'thystame']
+BOSS CASE IN GET RESSOURCES: [5, 0, 27, 13, 14, 10, 10, 2]
+ping answer: 3d7c3f8a-1081-11ee-9ac2-b06088578091 2 6 0
 
 
 
 
-LOOK: [player player player player player player player player player player player player player player player player sibur,,deraumere,]
-Connexion établie avec le serveur sur le port 4242
-UUID: bc6e9608-1077-11ee-8f7e-b06088578091
-Envoi du nom de l'équipe... (hilo)
-YES SIR
-Connexion établie avec le serveur sur le port 4242
-UUID: bdb83dd4-1077-11ee-b0c0-b06088578091
-Envoi du nom de l'équipe... (hilo)
-YES SIR
+ping answer: 3da606bc-1081-11ee-8977-b06088578091 2 6 0
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 2, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 2, 'job': 0, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 2, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 2, 'job': 0, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 2, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 2, 'job': 0, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 2, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 2, 'job': 0, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 2, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 2, 'job': 0, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 2, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 2, 'job': 0, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 2, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 2, 'job': 0, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 2, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 2, 'job': 0, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 2, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 2, 'job': 0, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 2, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 2, 'job': 0, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 2, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 2, 'job': 0, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 2, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 2, 'job': 0, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 2, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 2, 'job': 0, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 2, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 2, 'job': 0, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 2, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 2, 'job': 0, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 2, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 2, 'job': 0, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 2, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 2, 'job': 0, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 2, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 2, 'job': 0, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 2, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 2, 'job': 0, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 2, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 2, 'job': 0, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 2, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 2, 'job': 0, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 2, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 2, 'job': 0, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 2, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 2, 'job': 0, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 2, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 2, 'job': 0, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 2, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 2, 'job': 0, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 2, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 2, 'job': 0, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 2, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 2, 'job': 0, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 2, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 2, 'job': 0, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 2, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 2, 'job': 0, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 2, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 2, 'job': 0, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': '3d7c3f8a-1081-11ee-9ac2-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3da606bc-1081-11ee-8977-b06088578091', 'level': 2, 'job': 6, 'pos': 0}, {'uuid': '3dd2eb1e-1081-11ee-b164-b06088578091', 'level': 2, 'job': 0, 'pos': 0}, {'uuid': '3dfd340a-1081-11ee-a7f4-b06088578091', 'level': 2, 'job': 0, 'pos': 0}]
+Error: player dead
+LOOK: [player,linemate,sibur,linemate]
+FOOT CASE DANS LOOK: ['player']
+LOOK: [player sibur,deraumere mendiane,food,linemate]
+FOOT CASE DANS LOOK: ['player', 'sibur']
+LOOK: [player food,food,food,deraumere]
+FOOT CASE DANS LOOK: ['player', 'food']
+LOOK: [player food,food,deraumere,linemate]
+FOOT CASE DANS LOOK: ['player', 'food']
+LOOK: [player deraumere,food,food,food]
+FOOT CASE DANS LOOK: ['player', 'deraumere']
+LOOK: [player food,deraumere,linemate,food]
+FOOT CASE DANS LOOK: ['player', 'food']
+LOOK: [player linemate,deraumere,food,sibur]
+FOOT CASE DANS LOOK: ['player', 'linemate']
+LOOK: [player food,deraumere phiras,linemate,food]
+FOOT CASE DANS LOOK: ['player', 'food']
+LOOK: [player linemate,food sibur,deraumere sibur mendiane mendiane,linemate]
+FOOT CASE DANS LOOK: ['player', 'linemate']
+LOOK: [player deraumere sibur mendiane mendiane,linemate,deraumere,food]
+FOOT CASE DANS LOOK: ['player', 'deraumere', 'sibur', 'mendiane', 'mendiane']
+LOOK: [player deraumere,food,deraumere,food]
+FOOT CASE DANS LOOK: ['player', 'deraumere']
+LOOK: [player deraumere,linemate,linemate,linemate]
+FOOT CASE DANS LOOK: ['player', 'deraumere']
+LOOK: [player linemate,food,linemate,food]
+FOOT CASE DANS LOOK: ['player', 'linemate']
+LOOK: [player linemate,sibur phiras,food,food]
+FOOT CASE DANS LOOK: ['player', 'linemate']
+LOOK: [player food,food,sibur phiras,food thystame thystame]
+FOOT CASE DANS LOOK: ['player', 'food']
+LOOK: [player sibur phiras,linemate,linemate sibur mendiane,food]
+FOOT CASE DANS LOOK: ['player', 'sibur', 'phiras']
+LOOK: [player linemate sibur mendiane,linemate,deraumere,food mendiane mendiane]
+FOOT CASE DANS LOOK: ['player', 'linemate', 'sibur', 'mendiane']
+LOOK: [player deraumere,linemate,linemate,food]
+FOOT CASE DANS LOOK: ['player', 'deraumere']
+LOOK: [player linemate,food,food,food mendiane mendiane]
+FOOT CASE DANS LOOK: ['player', 'linemate']
+LOOK: [player food,player player food linemate linemate linemate linemate linemate deraumere sibur sibur sibur mendiane,player,linemate]
+FOOT CASE DANS LOOK: ['player', 'food']
+LOOK: [player,food,player player player food linemate linemate linemate linemate linemate linemate linemate linemate linemate deraumere sibur sibur sibur mendiane mendiane mendiane phiras,linemate]
+FOOT CASE DANS LOOK: ['player']
+je suis arrivé
 Current level: 2
 JE DEVIENS LEVEL -> Level: 2
 lvl  Current level: 2
 
 
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [16, 0, 0, 0, 1, 0, 0, 0]
+Error: player dead
+LOOK: [player deraumere,linemate,food,linemate]
+FOOT CASE DANS LOOK: ['player', 'deraumere']
+LOOK: [player food,food,sibur,linemate]
+FOOT CASE DANS LOOK: ['player', 'food']
+LOOK: [player sibur,deraumere,linemate,deraumere]
+FOOT CASE DANS LOOK: ['player', 'sibur']
+LOOK: [player linemate,food phiras,sibur mendiane,food]
+FOOT CASE DANS LOOK: ['player', 'linemate']
+LOOK: [player sibur mendiane,food,food,linemate]
+FOOT CASE DANS LOOK: ['player', 'sibur', 'mendiane']
+LOOK: [player food,food,linemate,food]
+FOOT CASE DANS LOOK: ['player', 'food']
+LOOK: [player linemate,food,food,food]
+FOOT CASE DANS LOOK: ['player', 'linemate']
+LOOK: [player food,food,food,linemate sibur thystame]
+FOOT CASE DANS LOOK: ['player', 'food']
+LOOK: [player food,linemate,food,food]
+FOOT CASE DANS LOOK: ['player', 'food']
+LOOK: [player food,food,linemate,deraumere]
+FOOT CASE DANS LOOK: ['player', 'food']
+LOOK: [player linemate,food,linemate mendiane mendiane phiras,linemate]
+FOOT CASE DANS LOOK: ['player', 'linemate']
+LOOK: [player linemate mendiane mendiane phiras,linemate sibur,food,linemate linemate phiras]
+FOOT CASE DANS LOOK: ['player', 'linemate', 'mendiane', 'mendiane', 'phiras']
+LOOK: [player food,deraumere,food,deraumere phiras phiras]
+FOOT CASE DANS LOOK: ['player', 'food']
+LOOK: [player food,deraumere,food,food]
+FOOT CASE DANS LOOK: ['player', 'food']
+LOOK: [player food,food,food,deraumere phiras phiras]
+FOOT CASE DANS LOOK: ['player', 'food']
+LOOK: [player food,linemate,sibur,food]
+FOOT CASE DANS LOOK: ['player', 'food']
+LOOK: [player sibur,player food,linemate,food thystame]
+FOOT CASE DANS LOOK: ['player', 'sibur']
+LOOK: [player linemate,linemate,player food,food]
+FOOT CASE DANS LOOK: ['player', 'linemate']
+je suis arrivé
+Current level: 2
+JE DEVIENS LEVEL -> Level: 2
+lvl  Current level: 2
 
 
+Current level: 3
+JE DEVIENS LEVEL -> Level: 3
+lvl  Current level: 3
 
 
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 0 0
-LOOK: [player player player player player player player player player player player player player player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [17, 0, 0, 0, 1, 0, 0, 0]
+Error: player dead
+LOOK: [player sibur sibur mendiane mendiane,linemate,food,food]
+FOOT CASE DANS LOOK: ['player', 'sibur', 'sibur', 'mendiane', 'mendiane']
+LOOK: [player food,deraumere,linemate,food]
+FOOT CASE DANS LOOK: ['player', 'food']
+LOOK: [player linemate,food sibur,food,deraumere]
+FOOT CASE DANS LOOK: ['player', 'linemate']
+LOOK: [player food,deraumere sibur thystame,linemate,food thystame]
+FOOT CASE DANS LOOK: ['player', 'food']
+LOOK: [player linemate,linemate,linemate,food]
+FOOT CASE DANS LOOK: ['player', 'linemate']
+LOOK: [player linemate,food,linemate,food]
+FOOT CASE DANS LOOK: ['player', 'linemate']
+LOOK: [player linemate,deraumere,linemate mendiane thystame,food]
+FOOT CASE DANS LOOK: ['player', 'linemate']
+LOOK: [player linemate mendiane thystame,linemate,deraumere phiras,food]
+FOOT CASE DANS LOOK: ['player', 'linemate', 'mendiane', 'thystame']
+LOOK: [player deraumere phiras,food,food,food]
+FOOT CASE DANS LOOK: ['player', 'deraumere', 'phiras']
+LOOK: [player food,food,food,deraumere sibur phiras thystame thystame]
+FOOT CASE DANS LOOK: ['player', 'food']
+LOOK: [player food,food,food,food]
+FOOT CASE DANS LOOK: ['player', 'food']
+LOOK: [player food,food,food,deraumere sibur phiras thystame thystame]
+FOOT CASE DANS LOOK: ['player', 'food']
+LOOK: [player food,linemate phiras,food,deraumere]
+FOOT CASE DANS LOOK: ['player', 'food']
+LOOK: [player food,food,linemate,food]
+FOOT CASE DANS LOOK: ['player', 'food']
+LOOK: [player linemate,linemate sibur,food,food]
+FOOT CASE DANS LOOK: ['player', 'linemate']
+LOOK: [player food,food,food,food]
+FOOT CASE DANS LOOK: ['player', 'food']
+LOOK: [player food,linemate linemate phiras,linemate,deraumere]
+FOOT CASE DANS LOOK: ['player', 'food']
+LOOK: [player linemate,food,linemate linemate phiras,linemate]
+FOOT CASE DANS LOOK: ['player', 'linemate']
+LOOK: [player linemate linemate phiras,linemate,deraumere phiras phiras,food]
+FOOT CASE DANS LOOK: ['player', 'linemate', 'linemate', 'phiras']
+LOOK: [player deraumere phiras phiras,food,phiras,deraumere]
+FOOT CASE DANS LOOK: ['player', 'deraumere', 'phiras', 'phiras']
+LOOK: [player phiras,linemate,deraumere,food]
+FOOT CASE DANS LOOK: ['player', 'phiras']
+LOOK: [player deraumere,player player player player food linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate deraumere deraumere deraumere deraumere sibur sibur sibur sibur sibur sibur mendiane mendiane mendiane mendiane phiras thystame,food,food thystame]
+FOOT CASE DANS LOOK: ['player', 'deraumere']
+LOOK: [player food,linemate,player player player player food linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere sibur sibur sibur sibur sibur sibur sibur sibur sibur mendiane mendiane mendiane mendiane phiras thystame,phiras]
+FOOT CASE DANS LOOK: ['player', 'food']
+je suis arrivé
+Current level: 2
+JE DEVIENS LEVEL -> Level: 2
+lvl  Current level: 2
 
 
+Error: player dead
+LOOK: [player,food,linemate thystame,food]
+FOOT CASE DANS LOOK: ['player']
+LOOK: [player linemate thystame,linemate thystame,food,deraumere]
+FOOT CASE DANS LOOK: ['player', 'linemate', 'thystame']
+LOOK: [player food,food mendiane,food,linemate]
+FOOT CASE DANS LOOK: ['player', 'food']
+LOOK: [player food,food,linemate,linemate mendiane]
+FOOT CASE DANS LOOK: ['player', 'food']
+LOOK: [player linemate,food,linemate sibur,linemate mendiane]
+FOOT CASE DANS LOOK: ['player', 'linemate']
+LOOK: [player linemate sibur,food,food,sibur]
+FOOT CASE DANS LOOK: ['player', 'linemate', 'sibur']
+LOOK: [player food,linemate,food,linemate]
+FOOT CASE DANS LOOK: ['player', 'food']
+LOOK: [player food,deraumere,food,food]
+FOOT CASE DANS LOOK: ['player', 'food']
+LOOK: [player food,food,linemate,food]
+FOOT CASE DANS LOOK: ['player', 'food']
+LOOK: [player linemate,linemate phiras,food,food]
+FOOT CASE DANS LOOK: ['player', 'linemate']
+LOOK: [player food,food,deraumere mendiane,sibur]
+FOOT CASE DANS LOOK: ['player', 'food']
+LOOK: [player deraumere mendiane,linemate,food,deraumere]
+FOOT CASE DANS LOOK: ['player', 'deraumere', 'mendiane']
+LOOK: [player food,sibur mendiane,linemate,deraumere]
+FOOT CASE DANS LOOK: ['player', 'food']
+LOOK: [player linemate,food,sibur sibur,deraumere]
+FOOT CASE DANS LOOK: ['player', 'linemate']
+LOOK: [player sibur sibur,food,deraumere,deraumere]
+FOOT CASE DANS LOOK: ['player', 'sibur', 'sibur']
+LOOK: [player deraumere,linemate,deraumere,linemate]
+FOOT CASE DANS LOOK: ['player', 'deraumere']
+LOOK: [player deraumere,food,food,linemate mendiane]
+FOOT CASE DANS LOOK: ['player', 'deraumere']
+LOOK: [player food,linemate,food,linemate]
+FOOT CASE DANS LOOK: ['player', 'food']
+LOOK: [player food,linemate,food,player player food linemate]
+FOOT CASE DANS LOOK: ['player', 'food']
+LOOK: [player food,food,player player food linemate linemate linemate linemate linemate deraumere sibur sibur sibur,linemate]
+FOOT CASE DANS LOOK: ['player', 'food']
+je suis arrivé
+Current level: 2
+JE DEVIENS LEVEL -> Level: 2
+lvl  Current level: 2
 
 
-LOOK: [player player player player player player player player player player player player player player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [17, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-LOOK: [player player player player player player player player player player player player player player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [17, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
-Not all ai are available
-All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
-ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 0 0
-LOOK: [player player player player player player player player player player player player player player player player player player sibur,,deraumere,]
-FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
-BOSS CASE IN GET RESSOURCES: [18, 0, 0, 0, 1, 0, 0, 0]
-
-
-
-
+broad:  Current level: 3
+JE DEVIENS LEVEL -> Level: 3
+Error: player dead
