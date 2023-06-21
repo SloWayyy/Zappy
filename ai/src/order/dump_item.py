@@ -5,7 +5,6 @@ def dump_item(player, _ = None):
     inventory = player.inventory()
     if (inventory == False or len(inventory) == 0):
         return False
-    # pk on start a 1 ici a voir
     for i in range(len(inventory)):
         for _ in range(0, inventory[i]):
             if i == 1:

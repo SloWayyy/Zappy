@@ -55,13 +55,15 @@ def send_them_in_routine(boss, array_player):
     count = 0
     order = EnumHeader.ORDER.value
     # call look at me here
+    print("DANS SENd THEM IN ROUTINE il y a ", len(array_player), " joueurs")
     for player in array_player:
         print("len: ", len(array_player))
         if count == 0:
             print("order 0")
+            # boss.broadcast(msg_create(boss, player["uuid"], order, EnumOrder.SQUARE_COLLECT.value, "1"))
+            boss.broadcast(msg_create(boss, player["uuid"], order, EnumOrder.TAKE_FAR.value, "1"))
         elif count == 1:
             print("order 1")
-            boss.broadcast(msg_create(boss, player["uuid"], order, EnumOrder.SQUARE_COLLECT.value, "1"))
             # TAKE_FAR ROUTINE
             boss.broadcast(msg_create(boss, player["uuid"], order, EnumOrder.SQUARE_COLLECT.value, "3"))
         elif count == 2:
@@ -69,13 +71,13 @@ def send_them_in_routine(boss, array_player):
             boss.broadcast(msg_create(boss, player["uuid"], order, EnumOrder.SQUARE_COLLECT.value, "7"))
         elif count == 3:
             print("order 3")
-            boss.broadcast(msg_create(boss, player["uuid"], order, EnumOrder.SQUARE_COLLECT.value, "5"))
-        elif count == 4:
             boss.broadcast(msg_create(boss, player["uuid"], order, EnumOrder.TAKE_AROUND.value))
+        elif count == 4:
             print("order 4")
+            boss.broadcast(msg_create(boss, player["uuid"], order, EnumOrder.SQUARE_COLLECT.value, "5"))
         else:
             print("order 7")
-            boss.broadcast(msg_create(boss, player["uuid"], order, EnumOrder.TAKE_AROUND.value))
+            boss.broadcast(msg_create(boss, player["uuid"], order, EnumOrder.TAKE_FAR.value))
         count += 1
 
 def handle_result_level_up(player, result):
@@ -120,6 +122,8 @@ def ia_all_same_level(boss, array_minus_level, result, nbr_fork):
     from ai.src.game import msg_create
     from ai.src.player import EnumOrder, EnumHeader, EnumObject
 
+    print("resultat de handle level up SAME LVL", result, "nbr fork", nbr_fork, "pour passer lvl", int(array_minus_level[0]["level"]) + 1)
+
     if (result == Answer.INCANTATION.value):
         if (array_minus_level[0]["level"] == 1):
             for player in array_minus_level:
@@ -134,12 +138,18 @@ def ia_all_same_level(boss, array_minus_level, result, nbr_fork):
             for i in range (len(array_minus_level) // 6):
                 boss.broadcast(msg_create(boss, array_minus_level[i]["uuid"], EnumHeader.ORDER.value, EnumOrder.LEVEL_UP.value))
     elif (result == Answer.FORK.value):
+        count = 0
+        print("je les envoi en fork", "len array minus : ", len(array_minus_level), "et nbr fork", nbr_fork)
         for player in range(len(array_minus_level)):
-            if (player < nbr_fork):
+            if (count < nbr_fork):
+                print("JE LUI DIT DE FORK", count)
                 boss.broadcast(msg_create(boss, array_minus_level[player]["uuid"], EnumHeader.ORDER.value, EnumOrder.FORK.value))
+                count += 1
             else:
+                print("JE LUI DIT DE COLLECTER", count)
                 boss.broadcast(msg_create(boss, array_minus_level[player]["uuid"], EnumHeader.ORDER.value, EnumOrder.SQUARE_COLLECT.value, "1"))
     else:
+        print("je les envoi en routine")
         send_them_in_routine(boss, array_minus_level)
 
 def ai_not_same_level(boss, boss_case, array_minus_level, array_bigger_level):
@@ -149,27 +159,51 @@ def ai_not_same_level(boss, boss_case, array_minus_level, array_bigger_level):
 
     send_them_in_routine(boss, array_bigger_level)
     result, nbr_fork = handle_level_up(int(array_minus_level[0]["level"]), boss_case, len(array_minus_level))
+    cpt_ai_lvl_7 = 0
+    for player in array_bigger_level:
+        if player["level"] == 7:
+            cpt_ai_lvl_7 += 1
+    print("nbr ia lvl 7", cpt_ai_lvl_7)
+    print("RESULT LOOK DU BOSS", boss.look())
+    if (cpt_ai_lvl_7 >= 6):
+        result, nbr_fork = handle_level_up(int(array_bigger_level[0]["level"]), boss_case, len(array_bigger_level))
 
+        if (result == Answer.INCANTATION.INCANTATION):
+            print("je rentre dans incantation SAME LVL LVL 7")
+            boss.broadcast(msg_create(boss, array_bigger_level[0]["uuid"], EnumHeader.ORDER.value, EnumOrder.LEVEL_UP.value))
+        else:
+            print("JE LES ENVOI EN ROUTINE SAME LVL LVL 7")
+            send_them_in_routine(boss, array_bigger_level)
+        return 1 
+    print("resultat de handle level up NOT SAME LVL", result, "nbr fork", nbr_fork, "pour passer lvl", int(array_minus_level[0]["level"]) + 1)
     if (result == Answer.INCANTATION.value):
+        print("je rentre dans incantationNOT SAME LVL")
         if (array_minus_level[0]["level"] == 1):
             for player in array_minus_level:
                 boss.broadcast(msg_create(boss, player["uuid"], EnumHeader.ORDER.value, EnumOrder.LEVEL_UP.value))
+            print("je rentre dans incantationNOT SAME LVL 1 ")
         elif array_minus_level[0]["level"] == 2 or array_minus_level[0]["level"] == 3:
             for i in range (len(array_minus_level) // 2):
                 boss.broadcast(msg_create(boss, array_minus_level[i]["uuid"], EnumHeader.ORDER.value, EnumOrder.LEVEL_UP.value))
+            print("je rentre dans incantationNOT SAME LVL 2 ")
         elif array_minus_level[0]["level"] == 4 or array_minus_level[0]["level"] == 5:
             for i in range (len(array_minus_level) // 4):
                 boss.broadcast(msg_create(boss, array_minus_level[i]["uuid"], EnumHeader.ORDER.value, EnumOrder.LEVEL_UP.value))
+            print("je rentre dans incantationNOT SAME LVL 3 ")
         elif array_minus_level[0]["level"] == 6 or array_minus_level[0]["level"] == 7:
             for i in range (len(array_minus_level) // 6):
                 boss.broadcast(msg_create(boss, array_minus_level[i]["uuid"], EnumHeader.ORDER.value, EnumOrder.LEVEL_UP.value))
+            print("je rentre dans incantationNOT SAME LVL 4 ")
     elif (result == Answer.FORK.value):
+        count = 0
         for player in range(len(array_minus_level)):
             print("je leur dit de fork ia inferieur: ", nbr_fork)
-            if (player < nbr_fork):
+            if (count < nbr_fork):
                 boss.broadcast(msg_create(boss, array_minus_level[player]["uuid"], EnumHeader.ORDER.value, EnumOrder.FORK.value))
+                count += 1
             else:
                 print("je leur dit de routine1")
+                #ne pas les envoyer dans la meme routine
                 boss.broadcast(msg_create(boss, array_minus_level[player]["uuid"], EnumHeader.ORDER.value, EnumOrder.SQUARE_COLLECT.value, "1"))
     else:
         print("je leur dit de routine2")
@@ -180,6 +214,7 @@ def manage_order(boss):
     from ai.src.player import EnumOrder, EnumHeader, EnumObject
 
     available_ai = get_available_ia(boss)
+    print("available ai", available_ai, "boss array uuid", boss.array_uuid)
     if (len(available_ai) != len(boss.array_uuid)):
         return 0
     boss_case = get_ressources(boss)

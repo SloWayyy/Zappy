@@ -166,10 +166,8 @@ class Player:
     def handle_broadcast(self, donnees: str):
         for i in donnees:
             if i.find("Current level") != -1:
-                print("laval: ", self.level)
                 self.level = int(i.split(" ")[2])
                 ping(self)
-                print("laval: ", self.level)
             else:
                 x = re.findall("^message ([0-8]), " + UUID_REGEX + " (\$[0-9]\$) " + UUID_REGEX + " (.*)$", i)
                 if len(x) and (x[0][3] == self.uuid or x[0][3] == ALL):
