@@ -11,6 +11,7 @@
     #include <memory>
     #include <map>
     #include <vector>
+    #include <chrono>
     #include "src/Gameplay/Map.hpp"
     #include "src/Core/Window.hpp"
     #include "src/Gameplay/Character.hpp"
@@ -80,6 +81,9 @@ class Gameplay {
         std::map<std::size_t, Texture2D> _textures;
         std::vector<ModelAnimation *> _animations;
         std::map<std::pair<std::size_t, std::size_t>, std::string> _incantation;
+        std::chrono::steady_clock::time_point _startTime;
+        std::chrono::steady_clock::time_point _currentTime;
+        std::chrono::duration<double> _elapsedSeconds;
 };
 
 #endif /* !GAMEPLAY_HPP_ */

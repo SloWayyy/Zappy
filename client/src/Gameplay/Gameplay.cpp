@@ -15,6 +15,7 @@ Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window),_currentC
     this->setTextures();
     this->setAnimations();
     this->_map = std::make_shared<Map>(10, 10);
+    this->_startTime = std::chrono::steady_clock::now();
 }
 
 Gameplay::~Gameplay()
@@ -295,10 +296,16 @@ void Gameplay::drawMap(void)
             this->_map->draw(this->_map->getmodel(), this->_map->getcubePosition(), 2.0f);
             this->_map->draw(this->_map->getmodelPlatform(), {this->_map->getcubePosition().x, this->_map->getcubePosition().y + 1.6f, this->_map->getcubePosition().z}, 0.02f);
             _x += 4.0f;
-            for (auto &incantation : this->_incantation) {
-                if (incantation.first.first == x && incantation.first.second == y) {
-                    this->_rayCube.drawCube({this->_map->getcubePosition().x, this->_map->getcubePosition().y + 1.5f, this->_map->getcubePosition().z}, 4.0f, 0.6f, 4.0f, RED);
+            this->_currentTime = std::chrono::steady_clock::now();
+            this->_elapsedSeconds = this->_currentTime - this->_startTime;
+            if (_elapsedSeconds.count() >= 0.2) {
+                for (auto &incantation : this->_incantation) {
+                    if (incantation.first.first == x && incantation.first.second == y) {
+                        this->_rayCube.drawCube({this->_map->getcubePosition().x, this->_map->getcubePosition().y + 1.5f, this->_map->getcubePosition().z}, 4.0f, 0.6f, 4.0f, YELLOW);
+                    }
                 }
+                if (_elapsedSeconds.count() >= 0.5)
+                    this->_startTime = this->_currentTime;
             }
             if (this->_isDisplay == true && (tileX == x && tileY == y))
                 this->_rayCube.drawCube({this->_map->getcubePosition().x, this->_map->getcubePosition().y + 1.5f, this->_map->getcubePosition().z}, 4.0f, 0.6f, 4.0f, {255, 255, 255, 200});
