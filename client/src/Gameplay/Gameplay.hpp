@@ -39,7 +39,7 @@ class Gameplay {
         Gameplay(std::shared_ptr<Window> _window);
         ~Gameplay();
         void run(void);
-        void initPlayer(Vector3 pos, std::size_t level, std::size_t orientation, std::size_t id, std::string teamname, std::map<std::size_t, Texture2D> textures, std::vector<ModelAnimation *> animations);
+        void initPlayer(Vector3 pos, std::size_t level, std::size_t orientation, std::size_t id, std::string teamname, std::map<std::size_t, Texture2D> textures, std::vector<ModelAnimation *> animations, Model model);
         void initEgg(std::size_t id, float x, float y);
         void runPlayers(void);
         void runEggs(void);
@@ -56,6 +56,8 @@ class Gameplay {
         std::shared_ptr<Map> getMap() const;
         std::map<std::size_t, Texture2D> getTextures() const;
         void setTextures();
+        Model getModel() const;
+        void setModel();
         std::vector<ModelAnimation *> getAnimations() const;
         void setAnimations();
         std::map<std::size_t, std::shared_ptr<Character>> &getCharacters();
@@ -80,6 +82,7 @@ class Gameplay {
         CameraType _cameraType;
         std::map<std::size_t, Texture2D> _textures;
         std::vector<ModelAnimation *> _animations;
+        Model _model;
         std::map<std::pair<std::size_t, std::size_t>, std::string> _incantation;
         std::chrono::steady_clock::time_point _startTime;
         std::chrono::steady_clock::time_point _currentTime;

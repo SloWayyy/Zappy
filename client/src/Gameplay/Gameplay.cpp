@@ -12,6 +12,7 @@ Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window),_currentC
     this->_isDisplay = true;
     this->_display = Display(this->_window);
     this->_cameraType = CAMERA_THIRD;
+    this->setModel();
     this->setTextures();
     this->setAnimations();
     this->_map = std::make_shared<Map>(10, 10);
@@ -20,6 +21,7 @@ Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window),_currentC
 
 Gameplay::~Gameplay()
 {
+    this->_rayModel.unloadModel(this->_model);
     for (auto &textures : this->_textures) {
         try {
             this->_rayModel.unloadTexture(textures.second);
@@ -34,6 +36,21 @@ Gameplay::~Gameplay()
             std::cerr << e.what() << std::endl;
         }
     }
+}
+
+void Gameplay::setModel()
+{
+    try {
+        this->_model = this->_rayModel.loadModel("client/assets/monster/animations/monsterWalking.iqm");
+    } catch (const Raylibcpp::Error &e) {
+        std::cerr << e.what() << std::endl;
+        throw Error("Error: Gameplay constructor failed");
+    }
+}
+
+Model Gameplay::getModel() const
+{
+    return this->_model;
 }
 
 void Gameplay::setTextures()
@@ -79,9 +96,9 @@ std::vector<ModelAnimation *> Gameplay::getAnimations() const
     return this->_animations;
 }
 
-void Gameplay::initPlayer(Vector3 pos, std::size_t level, std::size_t orientation, std::size_t id, std::string teamname, std::map<std::size_t, Texture2D> textures, std::vector<ModelAnimation *> animations)
+void Gameplay::initPlayer(Vector3 pos, std::size_t level, std::size_t orientation, std::size_t id, std::string teamname, std::map<std::size_t, Texture2D> textures, std::vector<ModelAnimation *> animations, Model model)
 {
-    std::shared_ptr<Character> player = std::make_shared<Character>(5, 0, pos, level, orientation, teamname, id, textures, animations);
+    std::shared_ptr<Character> player = std::make_shared<Character>(5, 0, pos, level, orientation, teamname, id, textures, animations, model);
 
     this->_characters.insert(std::pair<std::size_t, std::shared_ptr<Character>>(id, player));
     this->_characters[id]->setCurrentlyAnimation(SPAWN);

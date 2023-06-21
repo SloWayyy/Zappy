@@ -10,13 +10,13 @@
 
 #include <stdio.h>
 
-Character::Character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos, std::size_t level, std::size_t orientation, std::string name, std::size_t id, std::map<std::size_t, Texture2D> textures, std::vector<ModelAnimation *> _animations) : _position(pos), _animsCount(animsCount), _animFrameCounter(animFrameCounter), _currentlyAnimation(NONE), _level(level), _teamname(name)
+Character::Character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos, std::size_t level, std::size_t orientation, std::string name, std::size_t id, std::map<std::size_t, Texture2D> textures, std::vector<ModelAnimation *> _animations, Model model) : _position(pos), _animsCount(animsCount), _animFrameCounter(animFrameCounter), _currentlyAnimation(NONE), _level(level), _teamname(name)
 {
     try {
         this->_id = id;
         this->_levelTmp = level;
         this->_inventory = std::make_shared<Inventory>();
-        this->_model = this->_rayModel.loadModel("client/assets/monster/animations/monsterWalking.iqm");
+        this->_model = model;
         this->_textures = textures;
         this->_animations = _animations;
         this->_pos_temp = this->_position;
@@ -38,7 +38,6 @@ Character::Character(std::size_t animsCount, std::size_t animFrameCounter, Vecto
 
 Character::~Character()
 {
-    this->_rayModel.unloadModel(this->_model);
 }
 
 std::map<std::size_t, Texture2D> Character::getTextures() const
