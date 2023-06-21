@@ -26,6 +26,7 @@ add_executable(zappy_gui
         src/Menu/AScreen.cpp
         src/Menu/Button.cpp
         src/Menu/Disconnect.cpp
+        src/Menu/Credits.cpp
         src/Parser/Parser.cpp
         encapsulation/Cube.cpp
         encapsulation/Model.cpp
