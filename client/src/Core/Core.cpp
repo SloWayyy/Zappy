@@ -198,7 +198,8 @@ void Core::setPlayerDeath(std::vector<std::string> &args)
 
 void Core::setWinner(std::vector<std::string> &args)
 {
-    std::cout << args[1] << std::endl; 
+    std::cout << args[1] << std::endl;
+    this->_window->setWinningTeam(args[1]);
     this->_window->setGameEvent(GAMEOVER);
 }
 

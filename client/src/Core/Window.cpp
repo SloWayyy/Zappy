@@ -15,6 +15,8 @@ Window::Window(std::size_t height, std::size_t width, std::size_t fps) : _window
         this->_rayMusic.initAudioDevice();
         this->_musics.insert(std::make_pair(1, this->_rayMusic.loadMusicStream("client/assets/song/gameSong.mp3")));
         this->_musics.insert(std::make_pair(2, this->_rayMusic.loadMusicStream("client/assets/song/music2.mp3")));
+        this->_sound = this->_raySound.loadSound("client/assets/song/ButtonSound.wav");
+        this->_raySound.setSoundVolume(this->_sound, 0.5f);
         this->setMusic(this->_musics[1]);
         this->_rayMusic.playMusicStream(this->_music);
         this->_rayMusic.setMusicVolume(this->_music, 0.05f);
@@ -33,6 +35,8 @@ Window::~Window()
 {
     for (auto &it : this->_musics)
         this->_rayMusic.unloadMusicStream(it.second);
+    this->_raySound.unloadSound(this->_sound);
+    this->_rayMusic.closeAudioDevice();
 }
 
 void Window::setMusic(Music _music)
@@ -278,4 +282,19 @@ void Window::setWriteBuffer(std::string const &writeBuffer)
 std::string Window::getWriteBuffer(void) const
 {
     return (this->_writeBuffer);
+}
+
+Sound Window::getSound(void) const
+{
+    return (this->_sound);
+}
+
+void Window::setWinningTeam(std::string const &winningteam)
+{
+    this->_winningteam = winningteam;
+}
+
+std::string Window::getWinningTeam(void) const
+{
+    return (this->_winningteam);
 }
