@@ -42,6 +42,10 @@ void Core::run(void)
     while (!this->_window->getExit()) {
         this->_rayWindow.clearBackground(SKYBLUE);
         this->_rayWindow.beginDrawing();
+        if (!this->_window->getWriteBuffer().empty()) {
+            this->network->writeBuffer(this->_window->getWriteBuffer());
+            this->_window->setWriteBuffer("");
+        }
         auto i = this->network->readBuffer();
         for (auto &command : i) {
             this->handleInput(command);
@@ -109,6 +113,8 @@ void Core::handleInput(const std::string &command)
         {COMMAND_PIE, &Core::endIncantation},
         {COMMAND_SMG, &Core::personnalMessage},
         {COMMAND_PDR, &Core::dropResource},
+        {COMMAND_SGT, &Core::setTimeUnit},
+        {COMMAND_SST, &Core::setTimeUnit},
         {COMMAND_SEG, &Core::setWinner}
     };
 
@@ -232,4 +238,9 @@ void Core::dropResource(std::vector<std::string> &args)
     if (this->_gameplay->getCharacters().find(std::stoi(args[1])) == this->_gameplay->getCharacters().end())
         return;
     this->_gameplay->getCharacters()[std::stoi(args[1])]->setCurrentlyAnimation(TAKING);
+}
+
+void Core::setTimeUnit(std::vector<std::string> &args)
+{
+    this->_window->setTick(std::stoi(args[1]));
 }

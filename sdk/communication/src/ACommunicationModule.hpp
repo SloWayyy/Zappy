@@ -29,6 +29,7 @@ namespace zappy::sdk {
             void disconnect() final;
             bool isConnected() final;
             std::vector<std::string> readBuffer();
+            void writeBuffer(const std::string &command);
             int getSocketFd() const;
             std::string _readBuffer;
             std::string _writeBuffer;

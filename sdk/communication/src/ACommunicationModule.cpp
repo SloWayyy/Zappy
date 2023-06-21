@@ -76,3 +76,7 @@ std::vector<std::string> zappy::sdk::ACommunicationModule::readBuffer() {
 int zappy::sdk::ACommunicationModule::getSocketFd() const {
     return this->_socketFd;
 }
+
+void zappy::sdk::ACommunicationModule::writeBuffer(const std::string &command) {
+    this->_writeBuffer = command + "\n";
+}
