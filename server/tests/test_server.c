@@ -270,3 +270,69 @@ Test(server, pause_resume, .timeout = 10, .init=cr_redirect_stdout)
     cr_assert_str_eq(first, "WELCOME\n3\n10 10\n");
     cr_assert_str_eq(player->buffer, "ok\n");
 }
+
+Test(server, broadcast_teleport, .timeout = 10, .init=cr_redirect_stdout)
+{
+    char *argv[] = { "./zappy_server", "-p", "8012", "--seed", "25565", "-f", "1000", "--immortal", NULL };
+    pthread_t player_thread;
+    pthread_t player_thread_2;
+    process_t *process = launch_server(argv);
+    routine_t *player = launch_client(&player_thread, 8012);
+    routine_t *player_2 = launch_client(&player_thread_2, 8012);
+
+    execute_command(player, "Team1");
+    execute_command(player_2, "Team1");
+    execute_server_command(process, "/tp @r 5 5");
+    execute_command(player_2, "Broadcast random");
+    usleep(100000);
+    execute_server_command(process, "/tp @a 0");
+    execute_command(player_2, "Broadcast same zone");
+    usleep(100000);
+    execute_server_command(process, "/tp 1 ~ ~");
+    execute_command(player_2, "Broadcast still same zone");
+    usleep(100000);
+    execute_server_command(process, "/tp 1 ~ ~-1");
+    execute_command(player_2, "Broadcast ahead");
+    execute_command(player_2, "Left\nForward");
+    execute_command(player_2, "Broadcast ahead left");
+    execute_server_command(process, "/tp 1 ~2 ~2");
+    execute_command(player_2, "Broadcast behind right");
+    usleep(100000);
+    get_output(player);
+    exit_server(process);
+    exit_client(&player_thread, player);
+    exit_client(&player_thread_2, player_2);
+    fflush(stdout);
+    cr_assert_stdout_eq_str(get_file_content("tests/samples/broadcast_teleport_server.txt"));
+    cr_assert_str_eq(player->buffer, get_file_content("tests/samples/broadcast_teleport_player.txt"));
+}
+
+Test(server, inventory_give, .timeout = 10, .init=cr_redirect_stdout)
+{
+    char *argv[] = { "./zappy_server", "-p", "8013", "--seed", "666", "-f", "1000", "--immortal", NULL };
+    pthread_t thread;
+    pthread_t player_thread;
+    pthread_t player_thread_2;
+    process_t *process = launch_server(argv);
+    routine_t *client = launch_client(&thread, 8013);
+    routine_t *player = launch_client(&player_thread, 8013);
+    routine_t *player_2 = launch_client(&player_thread_2, 8013);
+
+    execute_command(client, "GRAPHIC");
+    execute_command(player, "Team1");
+    execute_command(player_2, "Team1");
+    execute_server_command(process, "/give @a linemate 2");
+    execute_server_command(process, "/give 1 food");
+    execute_command(client, "pin 0");
+    execute_command(client, "pin 2");
+    execute_command(client, "pin 0 b");
+    execute_command(client, "pin 0b");
+    get_output(client);
+    exit_server(process);
+    exit_client(&thread, client);
+    exit_client(&player_thread, player);
+    exit_client(&player_thread_2, player_2);
+    fflush(stdout);
+    cr_assert_stdout_eq_str(get_file_content("tests/samples/inventory_give_server.txt"));
+    cr_assert_str_eq(client->buffer, get_file_content("tests/samples/inventory_give_client.txt"));
+}
