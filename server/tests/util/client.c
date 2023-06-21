@@ -7,6 +7,7 @@
 
 #include <criterion/criterion.h>
 #include <pthread.h>
+#include <unistd.h>
 
 #include "tests.h"
 
@@ -43,6 +44,7 @@ void execute_command(routine_t *routine, char *command)
     routine->buffer = command;
     cr_assert_not_null(routine->buffer, "Error: malloc failed");
     pthread_cond_signal(routine->cond);
+    usleep(50000);
 }
 
 void get_output(routine_t *routine)
@@ -51,6 +53,7 @@ void get_output(routine_t *routine)
     routine->type = OUTPUT;
     routine->buffer = NULL;
     pthread_cond_signal(routine->cond);
+    usleep(50000);
 }
 
 routine_t *launch_client(pthread_t *thread, int port)

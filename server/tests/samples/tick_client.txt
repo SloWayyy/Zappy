@@ -1,0 +1,34 @@
+WELCOME
+ko
+msz 1 1
+sgt 100
+bct 0 0 1 1 1 1 1 1 1
+tna Team1
+tna Team2
+tna Team3
+tna Team4
+smg eni 15 0 0
+smg eni 14 0 0
+smg eni 13 0 0
+smg eni 12 0 0
+smg eni 11 0 0
+smg eni 10 0 0
+smg eni 9 0 0
+smg eni 8 0 0
+smg eni 7 0 0
+smg eni 6 0 0
+smg eni 5 0 0
+smg eni 4 0 0
+smg eni 3 0 0
+smg eni 2 0 0
+smg eni 1 0 0
+smg eni 0 0 0
+sbp
+sgt 100
+sbp
+sbp
+sbp
+sbp
+sbp
+sst 10
+sgt 10

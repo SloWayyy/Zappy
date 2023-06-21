@@ -43,6 +43,16 @@ Test(check_arguments, only_team_name, .init=cr_redirect_stdout)
     cr_assert_eq(check_arguments(4, argv, &options), true);
 }
 
+Test(check_arguments, graphic_team_name, .init=cr_redirect_stderr)
+{
+    char const *argv[] = { "./zappy_server", "-n", "GRAPHIC", "toto" };
+    options_t options;
+
+    memset(&options, 0, sizeof(options_t));
+    cr_assert_eq(check_arguments(4, argv, &options), false);
+    cr_assert_stderr_eq_str("Error: The team can't have this name.\n");
+}
+
 Test(check_arguments, default_values, .init=cr_redirect_stdout)
 {
     char const *argv[] = { "./zappy_server" };
@@ -119,6 +129,16 @@ Test(check_arguments, width_already_set, .init=cr_redirect_stderr)
     memset(&options, 0, sizeof(options_t));
     cr_assert_eq(check_arguments(5, argv, &options), false);
     cr_assert_stderr_eq_str("Error: Width already set\n");
+}
+
+Test(check_arguments, names_already_set, .init=cr_redirect_stderr)
+{
+    char const *argv[] = { "./zappy_server", "-n", "a", "-n", "b", "c" };
+    options_t options;
+
+    memset(&options, 0, sizeof(options_t));
+    cr_assert_eq(check_arguments(6, argv, &options), false);
+    cr_assert_stderr_eq_str("Error: Team names are already set\n");
 }
 
 Test(check_arguments, missing_port_argument, .init=cr_redirect_stderr)
@@ -316,4 +336,42 @@ Test(check_arguments, return_value, .init=cr_redirect_stderr)
 
     memset(&options, 0, sizeof(options_t));
     cr_assert_eq(zappy_server(2, argv), FAILURE);
+}
+
+Test(check_arguments, debug, .init=cr_redirect_stdout)
+{
+    char const *argv[] = { "./zappy_server", "--debug" };
+    options_t options;
+
+    memset(&options, 0, sizeof(options_t));
+    cr_assert_eq(check_arguments(2, argv, &options), true);
+}
+
+Test(check_arguments, debug_twice, .init=cr_redirect_stderr)
+{
+    char const *argv[] = { "./zappy_server", "--debug", "--debug" };
+    options_t options;
+
+    memset(&options, 0, sizeof(options_t));
+    cr_assert_eq(check_arguments(3, argv, &options), false);
+    cr_assert_stderr_eq_str("Error: Debug mode is already set\n");
+}
+
+Test(check_arguments, immortal, .init=cr_redirect_stdout)
+{
+    char const *argv[] = { "./zappy_server", "--immortal" };
+    options_t options;
+
+    memset(&options, 0, sizeof(options_t));
+    cr_assert_eq(check_arguments(2, argv, &options), true);
+}
+
+Test(check_arguments, immortal_twice, .init=cr_redirect_stderr)
+{
+    char const *argv[] = { "./zappy_server", "--immortal", "--immortal" };
+    options_t options;
+
+    memset(&options, 0, sizeof(options_t));
+    cr_assert_eq(check_arguments(3, argv, &options), false);
+    cr_assert_stderr_eq_str("Error: Immortal mode is already set\n");
 }

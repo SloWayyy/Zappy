@@ -32,9 +32,7 @@ Test(server, unknown_client, .timeout = 5, .init=cr_redirect_stdout)
     routine_t *client = launch_client(&thread, 8001);
 
     execute_command(client, "test");
-    usleep(1000);
     get_output(client);
-    usleep(1000);
     exit_server(pid);
     exit_client(&thread, client);
     cr_assert_str_eq(client->buffer, "WELCOME\nko\n");
@@ -51,9 +49,7 @@ Test(server, graphic_client_default, .timeout = 5, .init=cr_redirect_stdout)
 
     cr_assert_not_null(buffer);
     execute_command(client, "GRAPHIC");
-    usleep(1000);
     get_output(client);
-    usleep(1000);
     exit_server(pid);
     exit_client(&thread, client);
     append_buffer(buffer, "%s", client->buffer);
@@ -77,12 +73,52 @@ Test(server, single_tile, .timeout = 5, .init=cr_redirect_stdout)
     routine_t *client = launch_client(&thread, 8003);
 
     execute_command(client, "GRAPHIC");
-    usleep(1000);
     get_output(client);
-    usleep(1000);
     exit_server(pid);
     exit_client(&thread, client);
     fflush(stdout);
     cr_assert_stdout_eq_str(get_file_content("tests/samples/single_tile_server.txt"));
     cr_assert_str_eq(client->buffer, get_file_content("tests/samples/single_tile_client.txt"));
+}
+
+Test(server, graphical_tick, .timeout = 5, .init=cr_redirect_stdout)
+{
+    char *argv[] = { "./zappy_server", "-p", "8004", "-x", "1", "-y", "1", NULL };
+    pthread_t thread;
+    pid_t pid = launch_server(argv);
+    routine_t *client = launch_client(&thread, 8004);
+
+    execute_command(client, "sgt");
+    execute_command(client, "GRAPHIC");
+    execute_command(client, "sgt 100");
+    execute_command(client, "sgt");
+    execute_command(client, "sst");
+    execute_command(client, "sst 10 10");
+    execute_command(client, "sst 10a");
+    execute_command(client, "sst -10");
+    execute_command(client, "sst 9999999");
+    execute_command(client, "sst 10");
+    execute_command(client, "sgt");
+    get_output(client);
+    exit_server(pid);
+    exit_client(&thread, client);
+    cr_assert_str_eq(client->buffer, get_file_content("tests/samples/tick_client.txt"));
+}
+
+Test(server, graphical_infos, .timeout = 5, .init=cr_redirect_stdout)
+{
+    char *argv[] = { "./zappy_server", "-p", "8005", "-x", "1", "-y", "1", NULL };
+    pthread_t thread;
+    pid_t pid = launch_server(argv);
+    routine_t *client = launch_client(&thread, 8005);
+
+    execute_command(client, "GRAPHIC");
+    execute_command(client, "abc");
+    execute_command(client, "msz");
+    execute_command(client, "msz aaa");
+    execute_command(client, "bct 0 0");
+    get_output(client);
+    exit_server(pid);
+    exit_client(&thread, client);
+    cr_assert_str_eq(client->buffer, get_file_content("tests/samples/infos_client.txt"));
 }

@@ -52,7 +52,6 @@ static void dump_client_buffer(routine_t *routine, int socket_fd)
         }
         size += 2048;
     }
-    routine->buffer = routine->buffer;
 }
 
 static void client_loop(routine_t *routine, int socket_fd)
