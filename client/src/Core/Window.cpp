@@ -13,7 +13,11 @@ Window::Window(std::size_t height, std::size_t width, std::size_t fps) : _window
         this->_rayWindow.initWindow(this->_windowParam._screenHeight, this->_windowParam._screenWidth, "Zappy");
         this->_rayWindow.setTargetFPS(this->_windowParam._fps);
         this->_rayMusic.initAudioDevice();
-        this->setMusic("client/assets/song/gameSong.mp3");
+        this->_musics.insert(std::make_pair(1, this->_rayMusic.loadMusicStream("client/assets/song/gameSong.mp3")));
+        this->_musics.insert(std::make_pair(2, this->_rayMusic.loadMusicStream("client/assets/song/music2.mp3")));
+        this->setMusic(this->_musics[1]);
+        this->_rayMusic.playMusicStream(this->_music);
+        this->_rayMusic.setMusicVolume(this->_music, 0.05f);
         this->_clock = 0;
         this->_coefx = 1.0f;
         this->_coefy = 1.0f;
@@ -24,11 +28,15 @@ Window::Window(std::size_t height, std::size_t width, std::size_t fps) : _window
     }
 }
 
-void Window::setMusic(const std::string &musicPath)
+Window::~Window()
 {
-    this->_music = this->_rayMusic.loadMusicStream(musicPath);
-    this->_rayMusic.playMusicStream(this->_music);
-    this->_rayMusic.setMusicVolume(this->_music, 0.05f);
+    for (auto &it : this->_musics)
+        this->_rayMusic.unloadMusicStream(it.second);
+}
+
+void Window::setMusic(Music _music)
+{
+    this->_music = _music;
 }
 
 void Window::setDefaultCamera(void)
@@ -239,6 +247,11 @@ std::string Window::keyToString(std::size_t const &key)
     if (key == KEY_F)
         os = "F";
     return os;
+}
+
+std::map<std::size_t, Music> Window::getMusics(void) const
+{
+    return (this->_musics);
 }
 
 std::size_t Window::getTick(void) const
