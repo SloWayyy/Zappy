@@ -33,6 +33,11 @@
     #define SERVER_KILL_FORMAT "Player %zu has been killed%s"
     #define SERVER_KILL_ENTITIES "Resources and eggs have been killed"
 
+    #define SERVER_PAUSE "Game paused"
+    #define SERVER_PAUSE_ERROR "Game is already paused (use /resume)"
+    #define SERVER_RESUME "Game resumed"
+    #define SERVER_RESUME_ERROR "Game is already resumed (use /pause)"
+
     #define SERVER_TP_PLAYER_USAGE "Usage: /tp <src> <dest>"
     #define SERVER_TP_COORD_USAGE "Usage: /tp <src> <x> <y>"
     #define SERVER_TP_ERROR "Error: Invalid destination"
@@ -53,6 +58,8 @@ void debug_handler_server(server_t *server);
 void give_handler(server_t *server);
 void help_handler(server_t *server);
 void kill_handler(server_t *server);
+void pause_handler(server_t *server);
+void resume_handler(server_t *server);
 void tp_handler(server_t *server);
 
 typedef void player_handler_t (server_t *server);
@@ -73,6 +80,8 @@ static const server_command_t SERVER_COMMANDS[] = {
         { "/give", &give_handler },
         { "/help", &help_handler },
         { "/kill", &kill_handler },
+        { "/pause", &pause_handler },
+        { "/resume", &resume_handler },
         { "/tp", &tp_handler },
 };
 

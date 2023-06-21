@@ -45,8 +45,10 @@ void refresh_timeout(server_t *server)
 
 bool tick(server_t *server)
 {
-    server->zappy->tick->tick_nb += 1;
+    if (!server->zappy->paused) {
+        server->zappy->tick->tick_nb += 1;
+        execute_tasks(server);
+    }
     gettimeofday(&server->zappy->tick->last_tick, NULL);
-    execute_tasks(server);
     return false;
 }

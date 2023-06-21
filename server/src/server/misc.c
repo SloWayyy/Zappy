@@ -5,9 +5,13 @@
 ** help.c
 */
 
+#include <stdbool.h>
+#include <stddef.h>
+
 #include "buffer.h"
 #include "commands.h"
 #include "constants.h"
+#include "graphical.h"
 #include "types.h"
 
 void help_handler(server_t *server)
@@ -31,4 +35,32 @@ void debug_handler_server(server_t *server)
     msg = server->options->debug ? SERVER_DEBUG_ENABLED : SERVER_DEBUG_DISABLED;
     append_buffer(server->data->stdout_buffer, "%s%s%s", \
         DEBUG_PREFIX, msg, LINE_BREAK);
+}
+
+void pause_handler(server_t *server)
+{
+    if (server->zappy->paused) {
+        append_buffer(server->data->stdout_buffer, "%s%s", \
+            SERVER_PAUSE_ERROR, LINE_BREAK);
+        return;
+    }
+    server->zappy->paused = true;
+    send_graphical_event(server, "%s %s %d%s", \
+        GRAPHICAL_CUSTOM, GRAPHICAL_CUSTOM_PAUSE, true, LINE_BREAK);
+    append_buffer(server->data->stdout_buffer, "%s%s", \
+        SERVER_PAUSE, LINE_BREAK);
+}
+
+void resume_handler(server_t *server)
+{
+    if (!server->zappy->paused) {
+        append_buffer(server->data->stdout_buffer, "%s%s", \
+            SERVER_RESUME_ERROR, LINE_BREAK);
+        return;
+    }
+    server->zappy->paused = false;
+    send_graphical_event(server, "%s %s %d%s", \
+        GRAPHICAL_CUSTOM, GRAPHICAL_CUSTOM_PAUSE, false, LINE_BREAK);
+    append_buffer(server->data->stdout_buffer, "%s%s", \
+        SERVER_RESUME, LINE_BREAK);
 }

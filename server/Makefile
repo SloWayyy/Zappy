@@ -6,6 +6,7 @@
 ##
 
 SRC			=	src/core/fdsets.c \
+				src/core/handler.c \
 				src/core/init.c \
 				src/core/input.c \
 				src/core/loop.c \
