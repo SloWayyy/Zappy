@@ -64,6 +64,10 @@ class Window {
         std::size_t getKeyCam2(void) const;
         std::size_t getKeyCam3(void) const;
         std::string keyToString(std::size_t const &key);
+        std::size_t getTick(void) const;
+        void setTick(std::size_t tick);
+        void setWriteBuffer(std::string const &writeBuffer);
+        std::string getWriteBuffer(void) const;
     private:
         windowParams _windowParam;
         double _clock;
@@ -81,6 +85,8 @@ class Window {
         std::size_t key_cam1 = KEY_F1;
         std::size_t key_cam2 = KEY_F2;
         std::size_t key_cam3 = KEY_F3;
+        std::size_t _tick = 0;
+        std::string _writeBuffer;
 };
 
 #endif /* !WINDOW_HPP_ */

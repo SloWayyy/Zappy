@@ -7,7 +7,7 @@
 
 #include "src/Gameplay/Gameplay.hpp"
 
-Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window), _currentCharacterId(0), _currentCharacterIndex(0)
+Gameplay::Gameplay(std::shared_ptr<Window> _window) : _window(_window),_currentCharacterId(0), _currentCharacterIndex(0)
 {
     this->_isDisplay = true;
     this->_display = Display(this->_window);
@@ -133,6 +133,9 @@ void Gameplay::run(void)
         this->drawTextOnScreen(this->_window->keyToString(this->_window->getKeyCam1()) + " : Camera 1", 20, this->_window->getScreenHeight() - 150, 10, BLACK);
         this->drawTextOnScreen(this->_window->keyToString(this->_window->getKeyCam2()) + " : Camera 2", 20, this->_window->getScreenHeight() - 150, 60, BLACK);
         this->drawTextOnScreen(this->_window->keyToString(this->_window->getKeyCam3()) + " : Camera 3", 20, this->_window->getScreenHeight() - 150, 110, BLACK);
+        this->drawTextOnScreen("F4: Decrease", 20, this->_window->getScreenHeight() - 150, 160, BLACK);
+        this->drawTextOnScreen("F5: Increase", 20, this->_window->getScreenHeight() - 150, 210, BLACK);
+        this->drawTextOnScreen("Freq : " + std::to_string(this->_window->getTick()), 20, this->_window->getScreenHeight() - 150, 260, BLACK);
         this->_rayWindow.beginMode3D(this->_window->getCamera());
         this->handleInput();
     }
@@ -238,6 +241,14 @@ void Gameplay::handleInput(void)
     if (this->_rayWindow.isKeyReleased(this->_window->getKeyCam3())) {
         this->_window->setDefaultCamera();
         this->setCameraType(CAMERA_THIRD);
+    }
+    if (this->_rayWindow.isKeyReleased(KEY_F4)) {
+        this->_window->setTick(this->_window->getTick() - 1);
+        this->_window->setWriteBuffer("sst " + std::to_string(this->_window->getTick()));
+    }
+    if (this->_rayWindow.isKeyReleased(KEY_F5)) {
+        this->_window->setTick(this->_window->getTick() + 1);
+        this->_window->setWriteBuffer("sst " + std::to_string(this->_window->getTick()));
     }
 }
 
