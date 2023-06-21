@@ -44,6 +44,9 @@ SRC			=	src/core/fdsets.c \
 				src/player/move.c \
 				src/player/rotate.c \
 				src/player/speak.c \
+				src/server/commands.c \
+				src/server/modifiers.c \
+				src/server/teleport.c \
 				src/util/arguments/args.c \
 				src/util/arguments/check.c \
 				src/util/arguments/handlers.c \

@@ -31,11 +31,11 @@ void send_graphical_event(server_t *server, const char *format, ...)
     va_end(list);
 }
 
-void send_graphical_position_event(server_t *server, client_t *client)
+void send_graphical_position_event(server_t *server, player_t *player)
 {
     send_graphical_event(server, "%s %zu %d %d %zu%s", \
-        GRAPHICAL_PLAYER_POSITION, client->player->id, client->player->pos->x, \
-        client->player->pos->y, client->player->direction + 1, LINE_BREAK);
+        GRAPHICAL_PLAYER_POSITION, player->id, player->pos->x, \
+        player->pos->y, player->direction + 1, LINE_BREAK);
 }
 
 void send_graphical_join_event(server_t *server, client_t *client)

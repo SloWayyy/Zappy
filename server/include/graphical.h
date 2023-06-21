@@ -15,10 +15,9 @@
     #include "types.h"
 
 void handle_graphical_command(server_t *server, client_t *client, char *line);
-client_t *get_client_by_player_id(server_t *server, size_t id);
 
 void send_graphical_event(server_t *server, const char *format, ...);
-void send_graphical_position_event(server_t *server, client_t *client);
+void send_graphical_position_event(server_t *server, player_t *player);
 void send_graphical_join_event(server_t *server, client_t *client);
 void send_graphical_tile_event(server_t *server, tile_t *tile);
 

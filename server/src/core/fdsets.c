@@ -15,6 +15,7 @@
 #include <unistd.h>
 
 #include "buffer.h"
+#include "commands.h"
 #include "constants.h"
 #include "objects.h"
 #include "server.h"
@@ -29,6 +30,7 @@ static bool handle_stdin(server_t *server)
     ret = getline(&line, &len, stdin);
     if (ret != -1) {
         append_buffer(server->data->stdin_buffer, line);
+        execute_server_commands(server);
     }
     free(line);
     return ret == -1;

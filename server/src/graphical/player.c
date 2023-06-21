@@ -11,6 +11,7 @@
 #include "buffer.h"
 #include "constants.h"
 #include "graphical.h"
+#include "objects.h"
 #include "resources.h"
 #include "server.h"
 #include "types.h"
