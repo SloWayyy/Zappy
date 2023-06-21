@@ -69,7 +69,7 @@ static void eject_eggs(server_t *server, client_t *client)
             SLIST_REMOVE(node->team->eggs, node, egg, next_team);
             SLIST_REMOVE(&client->player->pos->eggs, node, egg, next_tile);
             send_graphical_event(server, "%s %zu%s", \
-            GRAPHICAL_PLAYER_EGG_DEATH, node->id, LINE_BREAK);
+                GRAPHICAL_PLAYER_EGG_DEATH, node->id, LINE_BREAK);
             free(node);
         }
         node = tmp;

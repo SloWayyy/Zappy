@@ -5,97 +5,84 @@
 ** teleport.c
 */
 
-#include <stdbool.h>
 #include <string.h>
-#include <sys/queue.h>
 
 #include "buffer.h"
 #include "commands.h"
-#include "graphical.h"
+#include "constants.h"
 #include "server.h"
 #include "types.h"
-#include "constants.h"
-
-static void teleport_player(server_t *server, player_t *source, tile_t *dest, \
-    direction_type_t direction)
-{
-    SLIST_REMOVE(&source->pos->players, source, player, next_tile);
-    source->pos = dest;
-    SLIST_INSERT_HEAD(&dest->players, source, next_tile);
-    source->direction = direction;
-    append_buffer(server->data->stdout_buffer, SERVER_TP_FORMAT, \
-        source->id, dest->x, dest->y, LINE_BREAK);
-    send_graphical_position_event(server, source);
-}
-
-static void teleport_players(server_t *server, player_t *source, tile_t *dest, \
-    direction_type_t *ptr)
-{
-    client_t *node = NULL;
-    direction_type_t direction = NORTH;
-
-    if (source == NULL) {
-        SLIST_FOREACH(node, server->clients, next) {
-            if (node->type == PLAYER) {
-                direction = ptr == NULL ? node->player->direction : *ptr;
-                teleport_player(server, node->player, dest, direction);
-            }
-        }
-        return;
-    }
-    if (ptr == NULL) {
-        direction = source->direction;
-    }
-    teleport_player(server, source, dest, direction);
-}
+#include "util.h"
 
 static tile_t *get_player_destination(server_t *server, char *target, \
     direction_type_t **direction)
 {
-    player_t *source = NULL;
+    source_t source = { NULL, false, false };
     bool done = get_source(server, target, &source);
 
     if (!done) {
         append_buffer(server->data->stdout_buffer, "%s %s%s", \
             SERVER_PLAYER_ERROR, target, LINE_BREAK);
         return NULL;
-    } else if (source == NULL) {
+    } else if (source.player == NULL) {
         append_buffer(server->data->stdout_buffer, "%s%s", \
             SERVER_TP_ERROR, LINE_BREAK);
         return NULL;
     }
-    *direction = &source->direction;
-    return source->pos;
+    *direction = &source.player->direction;
+    return source.player->pos;
 }
 
-static tile_t *get_destination(server_t *server, char *dest_x, char *dest_y, \
-    direction_type_t **direction)
+static bool get_coordinates(server_t *server, char **args, \
+    source_t *source, vector_t *pos)
 {
-    int x = 0;
-    int y = 0;
-    bool neg = false;
+    vector_t vec = { 0, 0 };
+    char *arg_x = args[1];
+    char *arg_y = args[2];
 
-    if (dest_y == NULL) {
-        return get_player_destination(server, dest_x, direction);
+    if (args[1][0] == '~' && source->player != NULL) {
+        pos->x = source->player->pos->x;
+        arg_x = &args[1][1];
     }
-    if (!check_number(dest_x, &x) || !check_number(dest_y, &y)) {
-        append_buffer(server->data->stdout_buffer, "%s%s", \
-            SERVER_TP_COORD_USAGE, LINE_BREAK);
-        return NULL;
+    if (args[2][0] == '~' && source->player != NULL) {
+        pos->y = source->player->pos->y;
+        arg_y = &args[2][1];
     }
-    neg = x < 0 || y < 0;
-    if (neg || x >= server->options->width || y >= server->options->height) {
+    if (!check_number(arg_x, &vec.x) || !check_number(arg_y, &vec.y)) {
         append_buffer(server->data->stdout_buffer, "%s%s", \
             SERVER_TP_ERROR, LINE_BREAK);
+        return false;
+    }
+    pos->x += vec.x;
+    pos->y += vec.y;
+    return true;
+}
+
+static tile_t *get_destination(server_t *server, char **args, \
+    source_t *source, direction_type_t **direction)
+{
+    vector_t pos = { 0, 0 };
+
+    if (args[2] == NULL) {
+        return get_player_destination(server, args[1], direction);
+    } else if (!get_coordinates(server, args, source, &pos)) {
         return NULL;
     }
-    return &server->zappy->map[y][x];
+    while (pos.x < 0) {
+        pos.x += server->options->width;
+    }
+    while (pos.y < 0) {
+        pos.y += server->options->height;
+    }
+    pos.x %= server->options->width;
+    pos.y %= server->options->height;
+    return &server->zappy->map[pos.y][pos.x];
 }
 
 void tp_handler(server_t *server)
 {
     char *args[4];
-    player_t *player = NULL;
+    source_t source = { NULL, false, false };
     tile_t *dest = NULL;
     direction_type_t *direction = NULL;
 
@@ -106,12 +93,12 @@ void tp_handler(server_t *server)
             SERVER_TP_PLAYER_USAGE, LINE_BREAK, \
             SERVER_TP_COORD_USAGE, LINE_BREAK);
         return;
-    } else if (!get_source(server, args[0], &player)) {
+    } else if (!get_source(server, args[0], &source)) {
         append_buffer(server->data->stdout_buffer, "%s %s%s", \
             SERVER_PLAYER_ERROR, args[0], LINE_BREAK);
         return;
     }
-    dest = get_destination(server, args[1], args[2], &direction);
+    dest = get_destination(server, args, &source, &direction);
     if (dest != NULL)
-        teleport_players(server, player, dest, direction);
+        teleport_players(server, &source, dest, direction);
 }

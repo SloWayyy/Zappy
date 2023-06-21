@@ -47,6 +47,7 @@ SRC			=	src/core/fdsets.c \
 				src/server/commands.c \
 				src/server/modifiers.c \
 				src/server/teleport.c \
+				src/server/teleportation.c \
 				src/util/arguments/args.c \
 				src/util/arguments/check.c \
 				src/util/arguments/handlers.c \

@@ -29,7 +29,7 @@ static void send_players(server_t *server, client_t *client)
     }
 }
 
-static void send_egg(client_t *client, egg_t *egg)
+void send_egg(client_t *client, egg_t *egg)
 {
     if (egg->immortal) {
         append_buffer(client->buffer_out, "%s %s %zu %zu %zu%s", \
