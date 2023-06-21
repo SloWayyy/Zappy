@@ -375,3 +375,42 @@ Test(check_arguments, immortal_twice, .init=cr_redirect_stderr)
     cr_assert_eq(check_arguments(3, argv, &options), false);
     cr_assert_stderr_eq_str("Error: Immortal mode is already set\n");
 }
+
+Test(check_arguments, seed, .init=cr_redirect_stdout)
+{
+    char const *argv[] = { "./zappy_server", "--seed", "15" };
+    options_t options;
+
+    memset(&options, 0, sizeof(options_t));
+    cr_assert_eq(check_arguments(3, argv, &options), true);
+}
+
+Test(check_arguments, seed_twice, .init=cr_redirect_stderr)
+{
+    char const *argv[] = { "./zappy_server", "--seed", "10", "--seed", "12" };
+    options_t options;
+
+    memset(&options, 0, sizeof(options_t));
+    cr_assert_eq(check_arguments(5, argv, &options), false);
+    cr_assert_stderr_eq_str("Error: Seed already set\n");
+}
+
+Test(check_arguments, seed_arg, .init=cr_redirect_stderr)
+{
+    char const *argv[] = { "./zappy_server", "--seed" };
+    options_t options;
+
+    memset(&options, 0, sizeof(options_t));
+    cr_assert_eq(check_arguments(2, argv, &options), false);
+    cr_assert_stderr_eq_str("Error: --seed requires an argument\n");
+}
+
+Test(check_arguments, seed_negative, .init=cr_redirect_stderr)
+{
+    char const *argv[] = { "./zappy_server", "--seed", "-15" };
+    options_t options;
+
+    memset(&options, 0, sizeof(options_t));
+    cr_assert_eq(check_arguments(3, argv, &options), false);
+    cr_assert_stderr_eq_str("Error: Seed must be positive\n");
+}

@@ -51,6 +51,7 @@ typedef struct options {
     int freq;
     bool debug;
     bool immortal;
+    int seed;
 } options_t;
 
 typedef struct tile {
