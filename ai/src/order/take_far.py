@@ -22,11 +22,8 @@ def take_far(player, _):
 
     first_pattern(list_item, player, EnumDirection.RIGHT)
     second_pattern(list_item[2:], player)
-    # player.turn(EnumDirection.LEFT.value)
-    # player.turn(EnumDirection.LEFT.value)
     for i in range(5):
         player.move()
     dump_item(player, "")
     player.job = 0
     ping(player)
-    print("je recois dans look_item", look_item(player))

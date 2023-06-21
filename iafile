@@ -1,0 +1,758 @@
+Connexion établie avec le serveur sur le port 4242
+UUID: a06cfba2-1077-11ee-bd53-b06088578091
+Envoi du nom de l'équipe... (hilo)
+LOOK: [player,linemate,food sibur,food]
+FOOT CASE DANS LOOK: ['player']
+LOOK: [player food sibur,food,linemate,food]
+FOOT CASE DANS LOOK: ['player', 'food', 'sibur']
+LOOK: [player linemate,linemate,food,sibur]
+FOOT CASE DANS LOOK: ['player', 'linemate']
+LOOK: [player food,linemate,food,player]
+FOOT CASE DANS LOOK: ['player', 'food']
+LOOK: [player food,food,player,sibur]
+FOOT CASE DANS LOOK: ['player', 'food']
+je suis arrivé
+YES SIR
+Connexion établie avec le serveur sur le port 4242
+UUID: 9ffa3b6c-1077-11ee-9969-b06088578091
+Envoi du nom de l'équipe... (hilo)
+I AM THE BOSS
+
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 1 2 2
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 2, 'pos': 2}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 1 0 0
+LOOK: [player player linemate linemate sibur,deraumere,food,deraumere]
+FOOT CASE DANS LOOK: ['player', 'player', 'linemate', 'linemate', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'linemate', 'linemate', 'sibur']
+BOSS CASE IN GET RESSOURCES: [2, 0, 2, 0, 1, 0, 0, 0]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 1 6 0
+LOOK: [player player linemate linemate sibur,deraumere,food,deraumere]
+FOOT CASE DANS LOOK: ['player', 'player', 'linemate', 'linemate', 'sibur']
+LOOK: [player player linemate linemate sibur,deraumere,sibur,food]
+FOOT CASE DANS LOOK: ['player', 'player', 'linemate', 'linemate', 'sibur']
+LOOK: [player player linemate linemate sibur,food,,linemate]
+FOOT CASE DANS LOOK: ['player', 'player', 'linemate', 'linemate', 'sibur']
+LOOK: [player player linemate linemate sibur,linemate,food,deraumere]
+FOOT CASE DANS LOOK: ['player', 'player', 'linemate', 'linemate', 'sibur']
+
+
+
+
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 6, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 6, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 6, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 6, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 6, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 6, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 6, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 6, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 6, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 6, 'pos': 0}]
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 1, 'job': 6, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 6 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 6, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 0 0
+LOOK: [player player linemate sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'linemate', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'linemate', 'sibur']
+BOSS CASE IN GET RESSOURCES: [2, 0, 1, 0, 1, 0, 0, 0]
+
+
+
+
+LOOK: [player player linemate sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'linemate', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'linemate', 'sibur']
+BOSS CASE IN GET RESSOURCES: [2, 0, 1, 0, 1, 0, 0, 0]
+
+
+
+
+LOOK: [player player linemate sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'linemate', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'linemate', 'sibur']
+BOSS CASE IN GET RESSOURCES: [2, 0, 1, 0, 1, 0, 0, 0]
+
+
+
+
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+Connexion établie avec le serveur sur le port 4242
+UUID: aae17996-1077-11ee-845d-b06088578091
+Envoi du nom de l'équipe... (hilo)
+YES SIR
+Connexion établie avec le serveur sur le port 4242
+UUID: ac1594a0-1077-11ee-a3a9-b06088578091
+Envoi du nom de l'équipe... (hilo)
+YES SIR
+Connexion établie avec le serveur sur le port 4242
+UUID: ad545f0e-1077-11ee-bef8-b06088578091
+Envoi du nom de l'équipe... (hilo)
+YES SIR
+Connexion établie avec le serveur sur le port 4242
+UUID: ae988106-1077-11ee-800f-b06088578091
+Envoi du nom de l'équipe... (hilo)
+YES SIR
+Connexion établie avec le serveur sur le port 4242
+UUID: afe3749e-1077-11ee-ac87-b06088578091
+Envoi du nom de l'équipe... (hilo)
+YES SIR
+Connexion établie avec le serveur sur le port 4242
+UUID: b11b4274-1077-11ee-a34a-b06088578091
+Envoi du nom de l'équipe... (hilo)
+YES SIR
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 0 0
+LOOK: [player player player linemate sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'linemate', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'linemate', 'sibur']
+BOSS CASE IN GET RESSOURCES: [3, 0, 1, 0, 1, 0, 0, 0]
+
+
+
+
+LOOK: [player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [3, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+LOOK: [player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [3, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 0 0
+LOOK: [player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [4, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+LOOK: [player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [4, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+LOOK: [player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [4, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 0 0
+LOOK: [player player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [5, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+LOOK: [player player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [5, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+LOOK: [player player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [5, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 0 0
+LOOK: [player player player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [6, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+LOOK: [player player player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [6, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+LOOK: [player player player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [6, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 0 0
+LOOK: [player player player player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [7, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+LOOK: [player player player player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [7, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+LOOK: [player player player player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [7, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 0 0
+LOOK: [player player player player player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [8, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+LOOK: [player player player player player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [8, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+LOOK: [player player player player player player player player sibur,,deraumere,]
+Connexion établie avec le serveur sur le port 4242
+UUID: b25c2f36-1077-11ee-a9ca-b06088578091
+Envoi du nom de l'équipe... (hilo)
+YES SIR
+Connexion établie avec le serveur sur le port 4242
+UUID: b3a1c45a-1077-11ee-83d4-b06088578091
+Envoi du nom de l'équipe... (hilo)
+YES SIR
+Connexion établie avec le serveur sur le port 4242
+UUID: b4e2d2f0-1077-11ee-a5db-b06088578091
+Envoi du nom de l'équipe... (hilo)
+YES SIR
+Connexion établie avec le serveur sur le port 4242
+UUID: b61ff800-1077-11ee-90c1-b06088578091
+Envoi du nom de l'équipe... (hilo)
+YES SIR
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [8, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 0 0
+LOOK: [player player player player player player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [9, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+LOOK: [player player player player player player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [9, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+LOOK: [player player player player player player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [9, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 0 0
+LOOK: [player player player player player player player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [10, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+LOOK: [player player player player player player player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [10, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+LOOK: [player player player player player player player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [10, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 0 0
+LOOK: [player player player player player player player player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [11, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+LOOK: [player player player player player player player player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [11, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+LOOK: [player player player player player player player player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [11, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 0 0
+LOOK: [player player player player player player player player player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [12, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+LOOK: [player player player player player player player player player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [12, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+LOOK: [player player player player player player player player player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [12, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  Connexion établie avec le serveur sur le port 4242
+UUID: b76869e0-1077-11ee-8962-b06088578091
+Envoi du nom de l'équipe... (hilo)
+YES SIR
+Connexion établie avec le serveur sur le port 4242
+UUID: b8a676c6-1077-11ee-8568-b06088578091
+Envoi du nom de l'équipe... (hilo)
+YES SIR
+Connexion établie avec le serveur sur le port 4242
+UUID: b9ee3d8e-1077-11ee-a075-b06088578091
+Envoi du nom de l'équipe... (hilo)
+YES SIR
+Connexion établie avec le serveur sur le port 4242
+UUID: bb2f258c-1077-11ee-843f-b06088578091
+Envoi du nom de l'équipe... (hilo)
+YES SIR
+[{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 0 0
+LOOK: [player player player player player player player player player player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [13, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+LOOK: [player player player player player player player player player player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [13, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+LOOK: [player player player player player player player player player player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [13, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 0 0
+LOOK: [player player player player player player player player player player player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [14, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+LOOK: [player player player player player player player player player player player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [14, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+LOOK: [player player player player player player player player player player player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [14, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 0 0
+LOOK: [player player player player player player player player player player player player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [15, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+LOOK: [player player player player player player player player player player player player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [15, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+LOOK: [player player player player player player player player player player player player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [15, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 0 0
+LOOK: [player player player player player player player player player player player player player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [16, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+LOOK: [player player player player player player player player player player player player player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [16, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+LOOK: [player player player player player player player player player player player player player player player player sibur,,deraumere,]
+Connexion établie avec le serveur sur le port 4242
+UUID: bc6e9608-1077-11ee-8f7e-b06088578091
+Envoi du nom de l'équipe... (hilo)
+YES SIR
+Connexion établie avec le serveur sur le port 4242
+UUID: bdb83dd4-1077-11ee-b0c0-b06088578091
+Envoi du nom de l'équipe... (hilo)
+YES SIR
+Current level: 2
+JE DEVIENS LEVEL -> Level: 2
+lvl  Current level: 2
+
+
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [16, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 0 0
+LOOK: [player player player player player player player player player player player player player player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [17, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+LOOK: [player player player player player player player player player player player player player player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [17, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+LOOK: [player player player player player player player player player player player player player player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [17, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 7 0
+Not all ai are available
+All ai :  [{'uuid': 'a06cfba2-1077-11ee-bd53-b06088578091', 'level': 2, 'job': 7, 'pos': 0}]
+ping answer: a06cfba2-1077-11ee-bd53-b06088578091 2 0 0
+LOOK: [player player player player player player player player player player player player player player player player player player sibur,,deraumere,]
+FOOT CASE DANS LOOK: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+FOOT CASE IN GET RESSOURCES: ['player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'player', 'sibur']
+BOSS CASE IN GET RESSOURCES: [18, 0, 0, 0, 1, 0, 0, 0]
+
+
+
+

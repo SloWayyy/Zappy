@@ -34,6 +34,5 @@ def seppuku_answer(player, uuid, _):
     for i in player.array_uuid:
         if i["uuid"] == uuid:
             player.array_uuid.remove(i)
-            print("Someone will die for us")
             return True
     return False

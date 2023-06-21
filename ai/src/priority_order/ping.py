@@ -22,7 +22,7 @@ def ping_answer(player, uuid, info):
                 i["level"] = int(data[0][0])
             i["job"] = int(data[0][1])
             i["pos"] = int(data[0][2])
-            print("i receive: from {}, He is level {}, Do job {}, he his there {}".format(uuid, data[0][0], data[0][1], data[0][2]))
+            print("ping answer: {} {} {} {}".format(uuid, i["level"], i["job"], i["pos"]))
             if i["level"] == 7:
                 player.level7 = True
             return True

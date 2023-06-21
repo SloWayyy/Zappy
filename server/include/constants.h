@@ -33,7 +33,7 @@
 
     #define REFILL_DELAY 20
     #define REFILL_COEFFICIENT 100
-    #define FOOD_CONSUME_TICKS 126
+    #define FOOD_CONSUME_TICKS 999999999999
     #define FOOD_DEFAULT 10
     #define MAX_ACTIONS 10
     #define VICTORY_LEVEL 8

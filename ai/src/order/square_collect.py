@@ -25,7 +25,6 @@ def second_pattern_ai(list_item: list, player):
         player.move()
         player.turn(EnumDirection.RIGHT)
         player.move()
-        print("SECOND PATTERN DEBUG -> ", list_item, flush=True)
         return False
     player.turn(EnumDirection.LEFT)
     player.move()
@@ -117,4 +116,3 @@ def square_collect(player, data):
     # ici aussi a enlever le set
     # je met une bonne demarquation
     player.set(EnumObject.FOOD)
-    print("==================(AI) je suis arrivé au boss et j'ai déposé mes items====================")

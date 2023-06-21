@@ -3,6 +3,7 @@ from ai.src.player import *
 
 def look_item(player):
     str: str = player.look()
+    print("LOOK: {}".format(str))
     str = str.replace("[", "")
     str = str.replace(",]", ",V")
     str = str.replace("]", "")
@@ -13,6 +14,7 @@ def look_item(player):
     for i in list:
         list_tmp.append(i.split(" "))
     foot_case = list_tmp.pop(0)
+    print("FOOT CASE DANS LOOK: {}".format(foot_case))
     return list_tmp[:3], foot_case
 
 def first_pattern(list_item : list, player, direction):
@@ -65,7 +67,6 @@ def take_around(player, routine = False):
     if (len(list_item) < 6):
         ping(player)
         return False
-    print("DEBUG TAKE AROUND -> ", list_item, flush=True)
     first_pattern(list_item, player, EnumDirection.RIGHT)
     second_pattern(list_item[2:], player)
     if (routine == False and dump_item(player, 4) == False):
