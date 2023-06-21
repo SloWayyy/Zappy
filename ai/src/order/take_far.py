@@ -1,13 +1,11 @@
 from ai.src.player import *
 
 def take_far(player, _):
-    print("take_far")
     from ai.src.order.take_around import look_item, first_pattern, second_pattern
     from ai.src.player import EnumDirection, EnumObject
     from ai.src.priority_order.ping import ping
     from ai.src.order.dump_item import dump_item
     ping(player)
-    print("DANS LE TAKE AROUND mon uuid ", player.uuid)
     for i in range(5):
         player.move()
     list_item = []

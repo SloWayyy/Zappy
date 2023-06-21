@@ -91,6 +91,7 @@ class Player:
         self.sock = sock
         self.boss = -1
         self.pos_boss = -1
+        self.level7 = False
         self.level = 1
         self.slot = 0
         self.uuid = str(uuid.uuid1())
@@ -167,6 +168,7 @@ class Player:
         for i in donnees:
             if i.find("Current level") != -1:
                 self.level = int(i.split(" ")[2])
+                print("JE DEVIENS LEVEL -> Level: " + str(self.level))
                 ping(self)
             else:
                 x = re.findall("^message ([0-8]), " + UUID_REGEX + " (\$[0-9]\$) " + UUID_REGEX + " (.*)$", i)
@@ -194,6 +196,9 @@ class Player:
         array_decrypt = self.decrypt_donnees(donnees)
         if (array_decrypt == None):
             return self.wait_answer()
+        for i in array_decrypt:
+            if i.find("level") != -1:
+                print(i)
         self.handle_broadcast(array_decrypt)
         self.clear_data(array_decrypt)
         if len(array_decrypt) <= 1:
@@ -216,6 +221,9 @@ class Player:
         array_decrypt = self.decrypt_donnees(donnees)
         if (array_decrypt == None):
             return self.wait_answer()
+        for i in array_decrypt:
+            if i.find("level") != -1:
+                print("broad: ", i)
         self.handle_broadcast(array_decrypt)
         if (array_decrypt[0] == "dead"):
             raise ErrorConnection("Error: player dead")
@@ -297,6 +305,7 @@ class Player:
         return int(tmp)
 
     def fork(self, return_only: bool = False):
+        from ai.src.priority_order.ping import ping
         self.sock.send("Fork\n".encode())
         if (return_only == True):
             if (self.wait_return()[0] == "ko"):
@@ -304,6 +313,7 @@ class Player:
         else:
             if (self.wait_answer()[0] == "ko"):
                 return False
+        ping(self)
         return True
 
     def eject(self, return_only: bool = False):
