@@ -21,6 +21,7 @@ Core::Core(int port, std::string ip) : _port(port), _ip(ip)
         this->_gameover = std::make_shared<Gameover>(this->_window);
         this->_gameplay = std::make_shared<Gameplay>(this->_window);
         this->_disconnect = std::make_shared<Disconnect>(this->_window);
+        this->_credits = std::make_shared<Credits>(this->_window);
     } catch (const DDLoader<zappy::sdk::ICommunicationModule>::DDLException &e) {
         std::cerr << e.what() << std::endl;
         throw CoreException("Error: Cannot load communication module");
@@ -69,6 +70,10 @@ void Core::run(void)
             case TUTO:
                 this->_window->run();
                 this->_tuto->run();
+                break;
+            case CREDITS:
+                this->_window->run();
+                this->_credits->run();
                 break;
             case GAMEOVER:
                 this->_window->run();
