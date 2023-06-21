@@ -54,9 +54,13 @@ static void handle_incoming(server_t *server)
         return;
     }
     stream = fdopen(fd, "r");
-    client = new_client(fd, stream);
-    if (stream == NULL || client == NULL) {
+    if (stream == NULL) {
         close(fd);
+        return;
+    }
+    client = new_client(fd, stream);
+    if (client == NULL) {
+        fclose(stream);
         return;
     }
     append_buffer(client->buffer_out, "%s%s", WELCOME_MESSAGE, LINE_BREAK);

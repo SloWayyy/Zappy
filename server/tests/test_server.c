@@ -17,10 +17,10 @@ Test(server, startup, .timeout = 5, .init=cr_redirect_stdout)
 {
     char *argv[] = { "./zappy_server", "-p", "8000", NULL };
     int res = 0;
-    pid_t pid = launch_server(argv);
+    process_t *process = launch_server(argv);
 
     usleep(1000000);
-    exit_server(pid);
+    exit_server(process);
     cr_assert_eq(res, 0);
 }
 
@@ -28,12 +28,12 @@ Test(server, unknown_client, .timeout = 5, .init=cr_redirect_stdout)
 {
     char *argv[] = { "./zappy_server", "-p", "8001", NULL };
     pthread_t thread;
-    pid_t pid = launch_server(argv);
+    process_t *process = launch_server(argv);
     routine_t *client = launch_client(&thread, 8001);
 
     execute_command(client, "test");
     get_output(client);
-    exit_server(pid);
+    exit_server(process);
     exit_client(&thread, client);
     cr_assert_str_eq(client->buffer, "WELCOME\nko\n");
 }
@@ -42,7 +42,7 @@ Test(server, graphic_client_default, .timeout = 5, .init=cr_redirect_stdout)
 {
     char *argv[] = { "./zappy_server", "-p", "8002", NULL };
     pthread_t thread;
-    pid_t pid = launch_server(argv);
+    process_t *process = launch_server(argv);
     routine_t *client = launch_client(&thread, 8002);
     buffer_t *buffer = new_buffer();
     char *resource_line = strdup("bct x y");
@@ -51,7 +51,7 @@ Test(server, graphic_client_default, .timeout = 5, .init=cr_redirect_stdout)
     cr_assert_not_null(resource_line);
     execute_command(client, "GRAPHIC");
     get_output(client);
-    exit_server(pid);
+    exit_server(process);
     exit_client(&thread, client);
     append_buffer(buffer, "%s", client->buffer);
     cr_assert_str_eq(extract_line(buffer), "WELCOME");
@@ -70,12 +70,12 @@ Test(server, single_tile, .timeout = 5, .init=cr_redirect_stdout)
 {
     char *argv[] = { "./zappy_server", "-p", "8003", "--debug", "-x", "1", "-y", "1", NULL };
     pthread_t thread;
-    pid_t pid = launch_server(argv);
+    process_t *process = launch_server(argv);
     routine_t *client = launch_client(&thread, 8003);
 
     execute_command(client, "GRAPHIC");
     get_output(client);
-    exit_server(pid);
+    exit_server(process);
     exit_client(&thread, client);
     fflush(stdout);
     cr_assert_stdout_eq_str(get_file_content("tests/samples/single_tile_server.txt"));
@@ -86,7 +86,7 @@ Test(server, graphical_tick, .timeout = 5, .init=cr_redirect_stdout)
 {
     char *argv[] = { "./zappy_server", "-p", "8004", "-x", "1", "-y", "1", NULL };
     pthread_t thread;
-    pid_t pid = launch_server(argv);
+    process_t *process = launch_server(argv);
     routine_t *client = launch_client(&thread, 8004);
 
     execute_command(client, "sgt");
@@ -101,7 +101,7 @@ Test(server, graphical_tick, .timeout = 5, .init=cr_redirect_stdout)
     execute_command(client, "sst 10");
     execute_command(client, "sgt");
     get_output(client);
-    exit_server(pid);
+    exit_server(process);
     exit_client(&thread, client);
     cr_assert_str_eq(client->buffer, get_file_content("tests/samples/tick_client.txt"));
 }
@@ -110,7 +110,7 @@ Test(server, graphical_infos, .timeout = 5, .init=cr_redirect_stdout)
 {
     char *argv[] = { "./zappy_server", "-p", "8005", "-x", "1", "-y", "1", NULL };
     pthread_t thread;
-    pid_t pid = launch_server(argv);
+    process_t *process = launch_server(argv);
     routine_t *client = launch_client(&thread, 8005);
 
     execute_command(client, "GRAPHIC");
@@ -119,7 +119,7 @@ Test(server, graphical_infos, .timeout = 5, .init=cr_redirect_stdout)
     execute_command(client, "msz aaa");
     execute_command(client, "bct 0 0");
     get_output(client);
-    exit_server(pid);
+    exit_server(process);
     exit_client(&thread, client);
     cr_assert_str_eq(client->buffer, get_file_content("tests/samples/infos_client.txt"));
 }
@@ -129,7 +129,7 @@ Test(server, player_connection, .timeout = 5, .init=cr_redirect_stdout)
     char *argv[] = { "./zappy_server", "-p", "8006", "-x", "1", "-y", "1", NULL };
     pthread_t thread;
     pthread_t thread_player;
-    pid_t pid = launch_server(argv);
+    process_t *process = launch_server(argv);
     routine_t *client = launch_client(&thread, 8006);
     routine_t *player = launch_client(&thread_player, 8006);
     buffer_t *buffer = new_buffer();
@@ -144,8 +144,9 @@ Test(server, player_connection, .timeout = 5, .init=cr_redirect_stdout)
     execute_command(player, "Team1");
     get_output(client);
     get_output(player);
-    exit_server(pid);
+    exit_server(process);
     exit_client(&thread, client);
+    exit_client(&thread, player);
     append_buffer(buffer, "%s", client->buffer);
     line = extract_line(buffer);
     cr_assert_not_null(line);
@@ -163,7 +164,7 @@ Test(server, player_death, .timeout = 5, .init=cr_redirect_stdout)
     char *argv[] = { "./zappy_server", "-p", "8007", "-f", "5000", NULL };
     pthread_t thread;
     pthread_t thread_player;
-    pid_t pid = launch_server(argv);
+    process_t *process = launch_server(argv);
     routine_t *client = launch_client(&thread, 8007);
     routine_t *player = launch_client(&thread_player, 8007);
 
@@ -174,7 +175,7 @@ Test(server, player_death, .timeout = 5, .init=cr_redirect_stdout)
     usleep(500000);
     get_output(client);
     get_output(player);
-    exit_server(pid);
+    exit_server(process);
     exit_client(&thread, client);
     exit_client(&thread, player);
     cr_assert_str_eq(player->buffer, "dead\n");
@@ -186,7 +187,7 @@ Test(server, player_incantation, .timeout = 5, .init=cr_redirect_stdout)
     char *argv[] = { "./zappy_server", "-p", "8008", "-f", "5000", "--seed", "4000", "--immortal", "--debug", NULL };
     pthread_t thread;
     pthread_t thread_player;
-    pid_t pid = launch_server(argv);
+    process_t *process = launch_server(argv);
     routine_t *client = launch_client(&thread, 8008);
     routine_t *player = launch_client(&thread_player, 8008);
 
@@ -201,11 +202,71 @@ Test(server, player_incantation, .timeout = 5, .init=cr_redirect_stdout)
     usleep(500000);
     get_output(client);
     get_output(player);
-    exit_server(pid);
+    exit_server(process);
     exit_client(&thread, client);
     exit_client(&thread, player);
     fflush(stdout);
     cr_assert_stdout_eq_str(get_file_content("tests/samples/incantation_server.txt"));
     cr_assert_str_eq(client->buffer, get_file_content("tests/samples/incantation_client.txt"));
     cr_assert_str_eq(player->buffer, get_file_content("tests/samples/incantation_player.txt"));
+}
+
+Test(server, server_commands_help, .timeout = 5, .init=cr_redirect_stdout)
+{
+    char *argv[] = { "./zappy_server", "-p", "8009", "--debug", NULL };
+    process_t *process = launch_server(argv);
+
+    execute_server_command(process, "/kzejkzje");
+    execute_server_command(process, "/help");
+    execute_server_command(process, "/debug");
+    exit_server(process);
+}
+
+Test(server, kill_refill, .timeout = 5, .init=cr_redirect_stdout)
+{
+    char *argv[] = { "./zappy_server", "-p", "8010", "--seed", "1234", "-f", "1000", NULL };
+    pthread_t thread;
+    process_t *process = launch_server(argv);
+    routine_t *client = launch_client(&thread, 8010);
+
+    execute_command(client, "GRAPHIC");
+    execute_server_command(process, "/debug");
+    execute_server_command(process, "/kill @e");
+    get_output(client);
+    exit_server(process);
+    exit_client(&thread, client);
+    fflush(stdout);
+    cr_assert_stdout_eq_str(get_file_content("tests/samples/kill_refill_server.txt"));
+    cr_assert_str_eq(client->buffer, get_file_content("tests/samples/kill_refill_client.txt"));
+}
+
+Test(server, pause_resume, .timeout = 10, .init=cr_redirect_stdout)
+{
+    char *argv[] = { "./zappy_server", "-p", "8011", "--seed", "999", "-f", "1000", "--immortal", NULL };
+    char *first = NULL;
+    pthread_t thread;
+    pthread_t player_thread;
+    process_t *process = launch_server(argv);
+    routine_t *client = launch_client(&thread, 8011);
+    routine_t *player = launch_client(&player_thread, 8011);
+
+    execute_server_command(process, "/resume");
+    execute_command(player, "Team1");
+    execute_command(client, "GRAPHIC");
+    execute_server_command(process, "/pause");
+    execute_server_command(process, "/pause");
+    execute_command(player, "Forward");
+    get_output(player);
+    first = strdup(player->buffer);
+    execute_server_command(process, "/resume");
+    get_output(client);
+    get_output(player);
+    exit_server(process);
+    exit_client(&thread, client);
+    exit_client(&player_thread, player);
+    fflush(stdout);
+    cr_assert_stdout_eq_str(get_file_content("tests/samples/pause_resume_server.txt"));
+    cr_assert_str_eq(client->buffer, get_file_content("tests/samples/pause_resume_client.txt"));
+    cr_assert_str_eq(first, "WELCOME\n3\n10 10\n");
+    cr_assert_str_eq(player->buffer, "ok\n");
 }

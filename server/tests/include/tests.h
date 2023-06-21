@@ -26,6 +26,11 @@ typedef struct routine {
     pthread_cond_t *cond;
 } routine_t;
 
+typedef struct process {
+    pid_t pid;
+    int stdin_fd;
+} process_t;
+
 char *get_file_content(char *filepath);
 
 routine_t *launch_client(pthread_t *thread, int port);
@@ -35,7 +40,8 @@ void exit_client(pthread_t *thread, routine_t *routine);
 
 void *client_routine(void *arg);
 
-pid_t launch_server(char **argv);
-void exit_server(pid_t pid);
+process_t *launch_server(char **argv);
+void execute_server_command(process_t *process, char *command);
+void exit_server(process_t *process);
 
 #endif

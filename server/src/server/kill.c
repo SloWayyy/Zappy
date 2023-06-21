@@ -6,6 +6,7 @@
 */
 
 #include <stdbool.h>
+#include <stdlib.h>
 #include <string.h>
 #include <sys/queue.h>
 
@@ -23,9 +24,11 @@ static void kill_eggs(server_t *server, tile_t *source)
 
     while (!SLIST_EMPTY(&source->eggs)) {
         node = SLIST_FIRST(&source->eggs);
-        SLIST_REMOVE(&source->eggs, node, egg, next_tile);
         send_graphical_event(server, "%s %zu%s", \
             GRAPHICAL_PLAYER_EGG_DEATH, node->id, LINE_BREAK);
+        SLIST_REMOVE(&source->eggs, node, egg, next_tile);
+        SLIST_REMOVE(node->team->eggs, node, egg, next_team);
+        free(node);
     }
 }
 
@@ -38,6 +41,8 @@ static void kill_entities(server_t *server)
             kill_eggs(server, &server->zappy->map[y][x]);
         }
     }
+    memset(server->zappy->current, 0, \
+        sizeof(size_t) * RESOURCES_TYPES_QUANTITY);
     append_buffer(server->data->stdout_buffer, "%s%s", \
         SERVER_KILL_ENTITIES, LINE_BREAK);
     send_graphical_map_event(server);
