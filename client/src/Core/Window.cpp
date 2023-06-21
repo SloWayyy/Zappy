@@ -282,3 +282,13 @@ Sound Window::getSound(void) const
 {
     return (this->_sound);
 }
+
+void Window::setWinningTeam(std::string const &winningteam)
+{
+    this->_winningteam = winningteam;
+}
+
+std::string Window::getWinningTeam(void) const
+{
+    return (this->_winningteam);
+}

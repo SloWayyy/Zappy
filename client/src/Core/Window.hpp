@@ -72,6 +72,8 @@ class Window {
         void setWriteBuffer(std::string const &writeBuffer);
         std::string getWriteBuffer(void) const;
         Sound getSound(void) const;
+        void setWinningTeam(std::string const &winningteam);
+        std::string getWinningTeam(void) const;
     private:
         windowParams _windowParam;
         double _clock;
@@ -94,6 +96,7 @@ class Window {
         std::string _writeBuffer;
         Raylibcpp::RaySound _raySound;
         Sound _sound;
+        std::string _winningteam;
 };
 
 #endif /* !WINDOW_HPP_ */
