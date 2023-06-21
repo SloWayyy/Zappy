@@ -25,6 +25,7 @@ class IScreen {
         virtual void handleInput(void) = 0;
         virtual void createButtons(std::string string, coord coord, Color color, int size, GameEvent screen) = 0;
         virtual void drawButton(void) = 0;
+        virtual std::vector<Raylibcpp::RayText> &getText() = 0;
 };
 
 #endif /* !ISCREEEN_HPP_ */
