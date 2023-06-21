@@ -4,15 +4,29 @@ from ai.src.order.dump_item import *
 def first_pattern_ai(list_item: list, player):
     from ai.src.player import EnumDirection
     player.move()
+    if (len(list_item) < 2):
+        for _ in range(3):
+            player.move()
+        return False
     for i in list_item[0]:
         player.take(i)
     player.turn(EnumDirection.LEFT)
     player.move()
     for i in list_item[1]:
         player.take(i)
+    return True
 
 def second_pattern_ai(list_item: list, player):
     from ai.src.player import EnumDirection
+    from ai.src.order.join_boss import join_boss
+    if (len(list_item) < 4):
+        player.turn(EnumDirection.RIGHT)
+        player.move()
+        player.move()
+        player.turn(EnumDirection.RIGHT)
+        player.move()
+        print("SECOND PATTERN DEBUG -> ", list_item, flush=True)
+        return False
     player.turn(EnumDirection.LEFT)
     player.move()
     player.take("food")
@@ -32,6 +46,7 @@ def second_pattern_ai(list_item: list, player):
     player.move()
     for i in list_item[3]:
         player.take(i)
+    return True
 
 def look_aroud_ai(player):
     from ai.src.player import EnumDirection
@@ -92,10 +107,11 @@ def square_collect(player, data):
     list_item, foot_case = look_aroud_ai(player)
     list_item.reverse()
     get_foot_case(player, foot_case)
-    first_pattern_ai(list_item, player)
-    second_pattern_ai(list_item[2:], player)
-    if (return_to_boss(player) == False):
-        return False
+    res = first_pattern_ai(list_item, player)
+    if (res == True):
+        result = second_pattern_ai(list_item[2:], player)
+        if (result == True and return_to_boss(player) == False):
+            return False
     if (dump_item(player, []) == False):
         return False
     # ici aussi a enlever le set

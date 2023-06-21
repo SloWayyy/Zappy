@@ -1,14 +1,18 @@
 from ai.src.player import *
-
 import re
 
 # ANSWER = lvl job pos_boss
 
 def ping(player):
-    from ai.src.game import msg_create
     from ai.src.player import EnumHeader, EnumPriorityOrder
-    player.broadcast(msg_create(player, player.boss_uuid, EnumHeader.ANSWER.value, EnumPriorityOrder.PING.value, "{} {} {}".format(player.level, player.job, player.pos_boss)))
-   
+    player.broadcast("{} {} {} {} {} {} {}".format(player.uuid,
+            EnumHeader.ANSWER.value, player.boss_uuid, EnumPriorityOrder.PING.value, player.level, player.job, player.pos_boss), False)
+
+# def ping(player):
+#     from ai.src.game import msg_create
+#     from ai.src.player import EnumHeader, EnumPriorityOrder
+#     player.broadcast(msg_create(player, player.boss_uuid, EnumHeader.ANSWER.value,
+#                 EnumPriorityOrder.PING.value, "{} {} {}".format(player.level, player.job, player.pos_boss)))
 
 def ping_answer(player, uuid, info):
     data = re.findall("(\d+) (\d+) (\d+)", info)

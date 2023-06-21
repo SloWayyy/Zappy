@@ -41,7 +41,7 @@ def second_pattern(list_item : list, player):
         player.turn(EnumDirection.RIGHT)
         player.move()
 
-def take_around(player, _):
+def take_around(player, routine = False):
     from ai.src.player import EnumDirection, EnumObject
     from ai.src.priority_order.ping import ping
     ping(player)
@@ -60,6 +60,6 @@ def take_around(player, _):
 
     first_pattern(list_item, player, EnumDirection.RIGHT)
     second_pattern(list_item[2:], player)
-    if (dump_item(player, 4) == False):
+    if (routine == False and dump_item(player, 4) == False):
         return False
     print("je suis le boss et j'ai fini mon tour j'ai tout jeté au sol")

@@ -1,4 +1,4 @@
-from ai.src.player import * 
+from ai.src.player import *
 
 def dump_item(player, _ = None):
     from ai.src.player import EnumObject
@@ -6,8 +6,8 @@ def dump_item(player, _ = None):
     if (inventory == False or len(inventory) == 0):
         return False
     # pk on start a 1 ici a voir
-    for i in range(len(inventory)): 
-        for __ in range(0, inventory[i]):
+    for i in range(len(inventory)):
+        for _ in range(0, inventory[i]):
             if i == 1:
                 if (player.set(EnumObject.LINEMATE) == False):
                     return False
