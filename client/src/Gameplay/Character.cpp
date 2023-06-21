@@ -30,6 +30,7 @@ Character::Character(std::size_t animsCount, std::size_t animFrameCounter, Vecto
         if (orientation == 4)
             this->_currentDirection = WEST;
         this->_model.transform = this->_rayModel.matrixRotateXYZ({-90 * DEG2RAD, 0, _currentDirection * DEG2RAD});
+        this->_startTime = std::chrono::steady_clock::now();
     } catch (const Raylibcpp::Error &e) {
         std::cerr << e.what() << std::endl;
         exit (84);
@@ -48,14 +49,18 @@ std::map<std::size_t, Texture2D> Character::getTextures() const
 
 void Character::chooseAnimation(Animations anim)
 {
-
-    if (this->_animFrameCounter < this->_animations[anim][0].frameCount) {
-        this->_rayModel.updateModelAnimation(this->_model, this->_animations[anim][0], this->_animFrameCounter);
-        this->_animFrameCounter++;
-    }
-    if (this->_animFrameCounter >= this->_animations[anim][0].frameCount) {
-        this->_animFrameCounter = 0;
-        this->_currentlyAnimation = NONE;
+    this->_currentTime = std::chrono::steady_clock::now();
+    this->_elapsedSeconds = this->_currentTime - this->_startTime;
+    if (_elapsedSeconds.count() >= 0.01) {
+        if (this->_animFrameCounter < this->_animations[anim][0].frameCount) {
+            this->_rayModel.updateModelAnimation(this->_model, this->_animations[anim][0], this->_animFrameCounter);
+            this->_animFrameCounter++;
+        }
+        if (this->_animFrameCounter >= this->_animations[anim][0].frameCount) {
+            this->_animFrameCounter = 0;
+            this->_currentlyAnimation = NONE;
+        }
+        this->_startTime = this->_currentTime;
     }
 }
 

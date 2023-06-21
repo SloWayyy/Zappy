@@ -24,6 +24,7 @@ Window::Window(std::size_t height, std::size_t width, std::size_t fps) : _window
         this->_coefx = 1.0f;
         this->_coefy = 1.0f;
         this->setDefaultCamera();
+        this->_startTime = std::chrono::steady_clock::now();
     } catch (const Raylibcpp::Error &e) {
         std::cerr << e.what() << std::endl;
         exit (84);
@@ -89,8 +90,13 @@ void Window::handleInput()
 
 void Window::run()
 {
-    this->_rayMusic.updateMusicStream(this->_music);
-    this->updateCamera();
+    this->_currentTime = std::chrono::steady_clock::now();
+    this->_elapsedSeconds = this->_currentTime - this->_startTime;
+    if (_elapsedSeconds.count() >= 0.01) {
+        this->_rayMusic.updateMusicStream(this->_music);
+        this->updateCamera();
+        this->_startTime = this->_currentTime;
+    }
     this->handleInput();
 }
 
