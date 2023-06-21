@@ -9,6 +9,7 @@
     #define WINDOW_HPP_
 
     #include "encapsulation/Raylibcpp.hpp"
+    #include <map>
 
 enum GameEvent {
     MENU,
@@ -29,12 +30,12 @@ class Window {
     public:
         Window() = default;
         Window(std::size_t height, std::size_t width, std::size_t fps);
-        ~Window() = default;
+        ~Window();
         void run();
         void updateCamera();
         void handleInput();
         void setGameEvent(GameEvent event);
-        void setMusic(const std::string &musicPath);
+        void setMusic(Music _music);
         void setCamera(Vector3 pos, Vector3 target, Vector3 up, float fovy, int projection);
         Camera getCamera() const;
         GameEvent getGameEvent(void) const;
@@ -49,6 +50,7 @@ class Window {
         void setDefaultCamera(void);
         Raylibcpp::RayWindow getRayWindow(void) const;
         Music getMusic(void) const;
+        std::map<std::size_t, Music> getMusics(void) const;
         double getClock(void) const;
         void setClock(double clock);
         void setIsNight(bool isNight);
@@ -81,6 +83,7 @@ class Window {
         std::size_t key_cam1 = KEY_F1;
         std::size_t key_cam2 = KEY_F2;
         std::size_t key_cam3 = KEY_F3;
+        std::map<std::size_t, Music> _musics;
 };
 
 #endif /* !WINDOW_HPP_ */
