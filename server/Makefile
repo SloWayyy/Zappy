@@ -49,6 +49,7 @@ SRC			=	src/core/fdsets.c \
 				src/server/commands.c \
 				src/server/give.c \
 				src/server/kill.c \
+				src/server/level.c \
 				src/server/misc.c \
 				src/server/modifiers.c \
 				src/server/teleport.c \
@@ -65,7 +66,12 @@ SRC			=	src/core/fdsets.c \
 
 MAIN		=	src/main.c
 
-TESTS		=	tests/test_server.c
+TESTS		=	tests/test_args.c \
+				tests/test_server.c \
+				tests/util/client.c \
+				tests/util/routine.c \
+				tests/util/server.c \
+				tests/util/util.c
 
 INC			=	include/
 
@@ -106,10 +112,13 @@ fclean:	clean
 re:	fclean all
 
 tests_run: CFLAGS += --coverage
-tests_run: LDLIBS += -lcriterion
-tests_run: clean $(OBJ) $(OBJ_T)
+tests_run: CPPFLAGS += -iquote tests/include
+tests_run: LDLIBS += -lcriterion -lpthread
+tests_run: clean $(OBJ) $(OBJ_M) $(OBJ_T)
+	$(CC) -o $(NAME) $(OBJ) $(OBJ_M) $(LDLIBS) --coverage
 	$(CC) -o $(TEST) $(OBJ) $(OBJ_T) $(LDLIBS) --coverage
 	$(RM) $(OBJ)
+	$(RM) $(OBJ_M)
 	./$(TEST)
 
 .PHONY: all ci clean fclean re tests_run

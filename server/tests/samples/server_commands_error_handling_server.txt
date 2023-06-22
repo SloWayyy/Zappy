@@ -1,0 +1,25 @@
+Game paused
+Usage: /give <src> <resource> [amount]
+Usage: /give <src> <resource> [amount]
+Error: You cannot give more than 1000 items at once
+Error: Invalid resource type
+Usage: /give <src> <resource> [amount]
+Usage: /give <src> <resource> [amount]
+Error: Cannot find player 1
+Usage: /kill <src>
+Usage: /kill <src>
+Error: Cannot find player 1
+Usage: /give <src> <resource> [amount]
+Usage: /give <src> <resource> [amount]
+Error: Cannot find player 1
+Error: The max level is 10
+Usage: /give <src> [level]
+Usage: /give <src> [level]
+Player 0 is at level 1
+Player 0 is now at level 4
+Player 0 has been killed
+Game resumed
+No team names set, default team names are Team1, Team2, Team3, Team4
+No map dimensions set, default is 10x10
+No client number set, default client number is 4
+No frequency set, default frequency is 100 tps

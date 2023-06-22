@@ -1,0 +1,7 @@
+Game is already resumed (use /pause)
+Game paused
+Game is already paused (use /resume)
+Game resumed
+No team names set, default team names are Team1, Team2, Team3, Team4
+No map dimensions set, default is 10x10
+No client number set, default client number is 4

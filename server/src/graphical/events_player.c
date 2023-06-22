@@ -36,3 +36,9 @@ void send_graphical_position_event(server_t *server, player_t *player)
         GRAPHICAL_PLAYER_POSITION, player->id, player->pos->x, \
         player->pos->y, player->direction + 1, LINE_BREAK);
 }
+
+void send_graphical_level_event(server_t *server, player_t *player)
+{
+    send_graphical_event(server, "%s %zu %zu%s", GRAPHICAL_PLAYER_LEVEL, \
+        player->id, player->level, LINE_BREAK);
+}

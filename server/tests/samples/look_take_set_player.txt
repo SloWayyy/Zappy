@@ -1,0 +1,18 @@
+WELCOME
+3
+10 10
+[player linemate,food,food,food]
+ok
+ko
+ko
+ko
+[food 10, linemate 1, deraumere 0, sibur 0, mendiane 0, phiras 0, thystame 0]
+ok
+ko
+ko
+ko
+[player linemate,food,food,food]
+[player food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere sibur sibur sibur sibur sibur sibur sibur sibur sibur sibur mendiane mendiane mendiane mendiane mendiane mendiane mendiane mendiane mendiane mendiane phiras phiras phiras phiras phiras phiras phiras phiras thystame thystame thystame thystame thystame,,,]
+ok
+[player food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food food linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate linemate deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere deraumere sibur sibur sibur sibur sibur sibur sibur sibur sibur sibur mendiane mendiane mendiane mendiane mendiane mendiane mendiane mendiane mendiane mendiane phiras phiras phiras phiras phiras phiras phiras phiras thystame thystame thystame thystame thystame,,,]
+dead

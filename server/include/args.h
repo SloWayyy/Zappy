@@ -25,6 +25,7 @@ int clients_handler(int argc, char const *argv[], options_t *options, int idx);
 int freq_handler(int argc, char const *argv[], options_t *options, int idx);
 int debug_handler(int argc, char const *argv[], options_t *options, int idx);
 int immortal_handler(int argc, char const *argv[], options_t *options, int idx);
+int seed_handler(int argc, char const *argv[], options_t *options, int idx);
 
 typedef int (options_handler_t) \
     (int argc, char const *argv[], options_t *options, int index);
@@ -44,6 +45,7 @@ static const option_t HANDLERS[] = {
         { "-f", "--freq", &freq_handler },
         { NULL, "--debug", &debug_handler },
         { NULL, "--immortal", &immortal_handler },
+        { NULL, "--seed", &seed_handler },
 };
 
 #endif

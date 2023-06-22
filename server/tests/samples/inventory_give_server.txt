@@ -1,0 +1,6 @@
+Player 1 has received linemate x2
+Player 0 has received linemate x2
+Player 1 has received food x1
+No team names set, default team names are Team1, Team2, Team3, Team4
+No map dimensions set, default is 10x10
+No client number set, default client number is 4
