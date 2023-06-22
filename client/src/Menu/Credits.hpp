@@ -19,6 +19,12 @@ class Credits : public AScreen {
         Texture2D _mixamo;
         Texture2D _blender;
         Texture2D _sketchfab;
+        Texture2D _kevin;
+        Texture2D _taha;
+        Texture2D _mehdi;
+        Texture2D _florian;
+        Texture2D _jonathan;
+        Texture2D _rayan;
         std::size_t width;
         std::size_t height;
 };
