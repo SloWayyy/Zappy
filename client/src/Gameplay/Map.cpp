@@ -48,7 +48,7 @@ Map::Map(std::size_t height, std::size_t width) : _mapSize{ height, width }, _cu
         this->_rayModel.setMaterialTexture(&this->_modelMap[this->THYSTAME].first.materials[0], MATERIAL_MAP_DIFFUSE, this->_modelMap[this->THYSTAME].second);
     } catch (const Raylibcpp::Error &e) {
         std::cerr << e.what() << std::endl;
-        exit (84);
+        std::exit(84);
     }
 }
 

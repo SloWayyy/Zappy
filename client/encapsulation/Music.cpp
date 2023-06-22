@@ -15,7 +15,7 @@ void Raylibcpp::RayMusic::initAudioDevice() const
 Music Raylibcpp::RayMusic::loadMusicStream(const std::string &fileName)
 {
     Music music = LoadMusicStream(fileName.c_str());
-    if (music.ctxType == 0)
+    if (music.ctxData == NULL)
         throw Error("Error: Cannot load music");
     return music;
 }

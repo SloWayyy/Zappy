@@ -10,6 +10,7 @@
 
     #include <chrono>
     #include <map>
+    #include <exception>
     #include "encapsulation/Raylibcpp.hpp"
 
 enum GameEvent {
@@ -31,6 +32,14 @@ struct windowParams {
 
 class Window {
     public:
+        class Error : public std::exception {
+            public:
+                Error(std::string const &message) : _message(message) {};
+                ~Error() = default;
+                const char *what() const noexcept override { return _message.c_str(); }
+            private:
+                std::string _message;
+        };
         Window() = default;
         Window(std::size_t height, std::size_t width, std::size_t fps);
         ~Window();
