@@ -86,6 +86,9 @@ void Window::handleInput()
     }
     if (this->_rayWindow.isKeyPressed(KEY_ESCAPE) || this->_rayWindow.windowShouldClose())
         this->_gameEvent = GameEvent::EXIT;
+    if (this->_rayWindow.isKeyReleased(KEY_BACKSPACE)) {
+        this->_gameEvent = GameEvent::SETTINGS;
+    }
 }
 
 void Window::run()
