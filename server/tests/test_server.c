@@ -327,6 +327,7 @@ Test(server, inventory_give, .timeout = 10, .init=cr_redirect_stdout)
     execute_command(client, "pin 0");
     execute_command(client, "pin 2");
     execute_command(client, "pin 0 b");
+    execute_command(client, "pin 0b b");
     execute_command(client, "pin 0b");
     get_output(client);
     exit_server(process);
@@ -415,4 +416,75 @@ Test(server, fork_eject, .timeout = 10, .init=cr_redirect_stdout)
     cr_assert_str_eq(client->buffer, get_file_content("tests/samples/fork_eject_client.txt"));
     cr_assert_str_eq(player->buffer, get_file_content("tests/samples/fork_eject_player.txt"));
     cr_assert_str_eq(player_2->buffer, get_file_content("tests/samples/fork_eject_player_2.txt"));
+}
+
+Test(server, graphical_commands_error_handling, .timeout = 5, .init=cr_redirect_stdout)
+{
+    char *argv[] = { "./zappy_server", "-p", "8016", "-f", "1000","--seed", "25", "--immortal", NULL };
+    pthread_t thread;
+    pthread_t player_thread;
+    process_t *process = launch_server(argv);
+    routine_t *client = launch_client(&thread, 8016);
+    routine_t *player = launch_client(&player_thread, 8016);
+
+    execute_command(player, "Team1");
+    execute_command(player, "Fork");
+    usleep(100000);
+    execute_command(client, "GRAPHIC");
+    execute_command(client, "bct");
+    execute_command(client, "bct 0");
+    execute_command(client, "bct 0 -1");
+    execute_command(client, "bct -1 0");
+    execute_command(client, "bct 2 19");
+    execute_command(client, "bct 20 1");
+    execute_command(client, "bct 20 12");
+    execute_command(client, "bct 20a 12");
+    execute_command(client, "bct 20 12a");
+    execute_command(client, "bct 20a 12a");
+    execute_command(client, "bct 20 12 a");
+    execute_command(client, "mct 20 12");
+    execute_command(client, "mct");
+    execute_command(client, "tna");
+    execute_command(client, "tna 2");
+    execute_command(client, "plv");
+    execute_command(client, "plv 1 2");
+    execute_command(client, "plv 0");
+    execute_command(client, "plv 1");
+    execute_command(client, "plv 0a");
+    execute_command(client, "ppo");
+    execute_command(client, "ppo 1 2");
+    execute_command(client, "ppo 0");
+    execute_command(client, "ppo 1");
+    execute_command(client, "ppo 0a");
+    get_output(client);
+    exit_server(process);
+    exit_client(&thread, client);
+    exit_client(&player_thread, player);
+    cr_assert_str_eq(client->buffer, get_file_content("tests/samples/graphical_commands_error_handling_client.txt"));
+}
+
+Test(server, command_queue, .timeout = 5, .init=cr_redirect_stdout)
+{
+    char *argv[] = { "./zappy_server", "-p", "8017", "-f", "1000","--seed", "50", "--immortal", NULL };
+    pthread_t thread;
+    pthread_t player_thread;
+    process_t *process = launch_server(argv);
+    routine_t *player = launch_client(&player_thread, 8017);
+
+    execute_command(player, "Team1");
+    execute_command(player, "Forward");
+    usleep(50000);
+    execute_server_command(process, "/pause");
+    execute_command(player, "Forward\nLeft\nRight");
+    execute_command(player, "orward\nForward\nForward");
+    execute_command(player, "Forward\nForward\nForward");
+    execute_command(player, "Yo\nForward\nForward");
+    execute_command(player, "Forward\nForward\nForward");
+    execute_command(player, "Forward\nForward\nForward");
+    execute_server_command(process, "/resume");
+    usleep(50000);
+    get_output(player);
+    exit_server(process);
+    exit_client(&player_thread, player);
+    cr_assert_str_eq(player->buffer, get_file_content("tests/samples/command_queue_player.txt"));
 }
