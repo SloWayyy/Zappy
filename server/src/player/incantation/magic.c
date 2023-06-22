@@ -82,7 +82,7 @@ static bool meet_player_requirements(server_t *server, \
 
     SLIST_FOREACH(node, &incantation->players, next_incantation) {
         if (node->pos != leader->pos || node->level != leader->level) {
-            debug(server, "Incantation requirements failed: player %d has" \
+            debug(server, "Incantation requirements failed: player %d has " \
                 "a different position (%zu %zu) or level (%zu)", node->id, \
                 node->pos->x, node->pos->y, node->level);
             debug(server, "Leader is at position (%zu %zu) and level %zu", \

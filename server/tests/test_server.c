@@ -466,7 +466,6 @@ Test(server, graphical_commands_error_handling, .timeout = 5, .init=cr_redirect_
 Test(server, command_queue, .timeout = 5, .init=cr_redirect_stdout)
 {
     char *argv[] = { "./zappy_server", "-p", "8017", "-f", "1000","--seed", "50", "--immortal", NULL };
-    pthread_t thread;
     pthread_t player_thread;
     process_t *process = launch_server(argv);
     routine_t *player = launch_client(&player_thread, 8017);
@@ -487,4 +486,67 @@ Test(server, command_queue, .timeout = 5, .init=cr_redirect_stdout)
     exit_server(process);
     exit_client(&player_thread, player);
     cr_assert_str_eq(player->buffer, get_file_content("tests/samples/command_queue_player.txt"));
+}
+
+Test(server, incantation_multiple, .timeout = 10, .init=cr_redirect_stdout)
+{
+    char *argv[] = { "./zappy_server", "-p", "8018", "--seed", "98765", "-f", "5000", "--immortal", "--debug",NULL };
+    pthread_t player_thread;
+    pthread_t player_thread_2;
+    pthread_t player_thread_3;
+    process_t *process = launch_server(argv);
+    routine_t *player = launch_client(&player_thread, 8018);
+    routine_t *player_2 = launch_client(&player_thread_2, 8018);
+    routine_t *player_3 = launch_client(&player_thread_3, 8018);
+
+    execute_command(player, "Team1");
+    execute_command(player_2, "Team1");
+    execute_command(player_3, "Team2");
+    execute_server_command(process, "/tp @e 5 5");
+    execute_command(player, "Incantation");
+    execute_command(player_2, "Incantation");
+    execute_command(player_3, "Incantation");
+    usleep(200000);
+    execute_command(player_3, "Incantation");
+    usleep(200000);
+    execute_command(player_3, "Incantation");
+    usleep(10000);
+    execute_server_command(process, "/tp @a 2 3");
+    usleep(200000);
+    exit_server(process);
+    exit_client(&player_thread, player);
+    exit_client(&player_thread_2, player_2);
+    exit_client(&player_thread_3, player_3);
+    fflush(stdout);
+    cr_assert_stdout_eq_str(get_file_content("tests/samples/incantation_multiple_server.txt"));
+}
+
+Test(server, empty_lines, .timeout = 5, .init=cr_redirect_stdout)
+{
+    char *argv[] = { "./zappy_server", "-p", "8019", NULL };
+    pthread_t thread;
+    pthread_t player_thread;
+    process_t *process = launch_server(argv);
+    routine_t *client = launch_client(&thread, 8019);
+    routine_t *player = launch_client(&player_thread, 8019);
+
+    execute_command(client, "\nGRAPHIC");
+    execute_command(player, "\nTeam1\n");
+    exit_server(process);
+    exit_client(&thread, client);
+    exit_client(&player_thread, player);
+}
+
+Test(server, empty_team_name, .timeout = 5, .init=cr_redirect_stdout)
+{
+    char *argv[] = { "./zappy_server", "-p", "8020", "-n", "", "--immortal", NULL };
+    pthread_t player_thread;
+    process_t *process = launch_server(argv);
+    routine_t *player = launch_client(&player_thread, 8020);
+
+    execute_command(player, "\n\n");
+    get_output(player);
+    exit_server(process);
+    exit_client(&player_thread, player);
+    cr_assert_str_eq(player->buffer, "WELCOME\n3\n10 10\n");
 }

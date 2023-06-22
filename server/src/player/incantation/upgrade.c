@@ -31,20 +31,15 @@ static void end_incantation_error(server_t *server, incantation_t *incantation)
     }
 }
 
-static void end_incantation_success(server_t *server, \
-    incantation_t *incantation, tile_t *tile)
+static void notify_players(server_t *server, incantation_t *incantation)
 {
     player_t *node = NULL;
     client_t *target = NULL;
 
-    for (size_t i = 0; i < RESOURCES_TYPES_QUANTITY; i++) {
-        tile->resources[i] -= incantation->requirements->resources[i];
-        server->zappy->current[i] -= incantation->requirements->resources[i];
-    }
-    send_graphical_tile_event(server, tile);
     SLIST_FOREACH(node, &incantation->players, next_incantation) {
         target = get_client_by_player_id(server, node->id);
         node->level += 1;
+        debug(server, "Player %zu leveled up to %zu", node->id, node->level);
         send_graphical_event(server, "%s %zu %zu%s", \
             GRAPHICAL_PLAYER_LEVEL, node->id, node->level, LINE_BREAK);
         if (target != NULL) {
@@ -53,6 +48,17 @@ static void end_incantation_success(server_t *server, \
             flush_command(server, target);
         }
     }
+}
+
+static void end_incantation_success(server_t *server, \
+    incantation_t *incantation, tile_t *tile)
+{
+    for (size_t i = 0; i < RESOURCES_TYPES_QUANTITY; i++) {
+        tile->resources[i] -= incantation->requirements->resources[i];
+        server->zappy->current[i] -= incantation->requirements->resources[i];
+    }
+    send_graphical_tile_event(server, tile);
+    notify_players(server, incantation);
     check_victory(server, incantation);
 }
 

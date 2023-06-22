@@ -139,6 +139,7 @@
 [Debug] Incantation requirements success
 [Debug] Starting post incantation verification
 [Debug] Incantation requirements success
+[Debug] Player 0 leveled up to 2
 [Debug] Incantation initiated by player 0
 [Debug] Starting pre incantation verification
 [Debug] Incantation requirements failed: 1 players died
