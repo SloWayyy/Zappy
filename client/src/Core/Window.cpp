@@ -298,3 +298,13 @@ std::string Window::getWinningTeam(void) const
 {
     return (this->_winningteam);
 }
+
+void Window::setErrorMsg(std::string const &errormsg)
+{
+    this->_errormsg = errormsg;
+}
+
+std::string Window::getErrorMsg(void) const
+{
+    return (this->_errormsg);
+}

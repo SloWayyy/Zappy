@@ -52,6 +52,7 @@ void Core::run(void)
         }
         switch (this->_window->getGameEvent()) {
             case MENU:
+                this->_menu->getText()[0].setString(this->_window->getErrorMsg());
                 this->_window->run();
                 this->_menu->run();
                 break;
@@ -277,8 +278,10 @@ bool Core::checkConnection()
             return true;
         } catch (const zappy::sdk::CommunicationException &e) {
             this->_window->setGameEvent(MENU);
+            this->_window->setErrorMsg("Error: Cannot connect to server");
             return false;
         }
     }
+    this->_window->setErrorMsg("");
     return true;
 }

@@ -76,6 +76,8 @@ class Window {
         Sound getSound(void) const;
         void setWinningTeam(std::string const &winningteam);
         std::string getWinningTeam(void) const;
+        void setErrorMsg(std::string const &errormsg);
+        std::string getErrorMsg(void) const;
     private:
         windowParams _windowParam;
         double _clock;
@@ -102,6 +104,7 @@ class Window {
         std::chrono::steady_clock::time_point _startTime;
         std::chrono::steady_clock::time_point _currentTime;
         std::chrono::duration<double> _elapsedSeconds;
+        std::string _errormsg;
 };
 
 #endif /* !WINDOW_HPP_ */
