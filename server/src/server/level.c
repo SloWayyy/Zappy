@@ -5,7 +5,9 @@
 ** level.c
 */
 
+#include <stdbool.h>
 #include <string.h>
+#include <sys/queue.h>
 
 #include "buffer.h"
 #include "commands.h"

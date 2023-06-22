@@ -550,3 +550,64 @@ Test(server, empty_team_name, .timeout = 5, .init=cr_redirect_stdout)
     exit_client(&player_thread, player);
     cr_assert_str_eq(player->buffer, "WELCOME\n3\n10 10\n");
 }
+
+Test(server, incantation_victory, .timeout = 10, .init=cr_redirect_stdout)
+{
+    char *argv[] = { "./zappy_server", "-p", "8021", "--seed", "8", "-f", "5000", "-c", "10", "--immortal", "--debug",NULL };
+    pthread_t threads[6];
+    process_t *process = launch_server(argv);
+    routine_t *players[6] = { NULL, NULL, NULL, NULL, NULL, NULL };
+
+    for (int i = 0; i < 6; i++) {
+        players[i] = launch_client(&threads[i], 8021);
+        execute_command(players[i], "Team1");
+    }
+    execute_server_command(process, "/tp @e 8 8");
+    execute_server_command(process, "/level @a 7");
+    execute_command(players[0], "Incantation");
+    execute_command(players[0], "Incantation");
+    usleep(500000);
+    exit_server(process);
+    for (int i = 0; i < 6; i++) {
+        exit_client(&threads[i], players[i]);
+    }
+    fflush(stdout);
+    cr_assert_stdout_eq_str(get_file_content("tests/samples/incantation_victory_server.txt"));
+}
+
+Test(server, server_commands_error_handling, .timeout = 5, .init=cr_redirect_stdout)
+{
+    char *argv[] = { "./zappy_server", "-p", "8022", NULL };
+    pthread_t player_thread;
+    process_t *process = launch_server(argv);
+    routine_t *player = launch_client(&player_thread, 8022);
+
+    execute_command(player, "Team1");
+    execute_server_command(process, "/pause");
+    execute_server_command(process, "/give @a food -2");
+    execute_server_command(process, "/give 0 food 2a");
+    execute_server_command(process, "/give @r food 1500");
+    execute_server_command(process, "/give 0 foude 2");
+    execute_server_command(process, "/give");
+    execute_server_command(process, "/give @a food 2 3");
+    execute_server_command(process, "/give 1 food 2");
+    execute_server_command(process, "/kill");
+    execute_server_command(process, "/kill @a 0");
+    execute_server_command(process, "/kill 1");
+    execute_server_command(process, "/level");
+    execute_server_command(process, "/level 1 2 3");
+    execute_server_command(process, "/level 1 8");
+    execute_server_command(process, "/level 0 11");
+    execute_server_command(process, "/level 0 11a");
+    execute_server_command(process, "/level 0 -1");
+    execute_server_command(process, "/level @a");
+    execute_server_command(process, "/level @a 4");
+    execute_server_command(process, "/kill 0");
+    execute_server_command(process, "/resume");
+    get_output(player);
+    exit_server(process);
+    exit_client(&player_thread, player);
+    fflush(stdout);
+    cr_assert_stdout_eq_str(get_file_content("tests/samples/server_commands_error_handling_server.txt"));
+    cr_assert_str_eq(player->buffer, "WELCOME\n3\n10 10\ndead\n");
+}
