@@ -33,7 +33,7 @@ Character::Character(std::size_t animsCount, std::size_t animFrameCounter, Vecto
         this->_startTime = std::chrono::steady_clock::now();
     } catch (const Raylibcpp::Error &e) {
         std::cerr << e.what() << std::endl;
-        exit (84);
+        std::exit(84);
     }
 }
 

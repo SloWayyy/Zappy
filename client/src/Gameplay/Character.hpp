@@ -12,6 +12,8 @@
     #include <map>
     #include <chrono>
     #include <memory>
+    #include <exception>
+    #include <cstdlib>
     #include "encapsulation/Raylibcpp.hpp"
     #include "Inventory.hpp"
 
@@ -33,6 +35,14 @@ enum Animations {
 
 class Character {
     public:
+        class Error : public std::exception {
+            public:
+                Error(std::string const &message) : _message(message) {};
+                ~Error() = default;
+                const char *what() const noexcept override { return _message.c_str(); }
+            private:
+                std::string _message;
+        };
         Character() = default;
         Character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos, std::size_t level, std::size_t orientation, std::string name, std::size_t id, std::map<std::size_t, Texture2D> textures, std::vector<ModelAnimation *> _animations);
         ~Character();
