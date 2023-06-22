@@ -34,6 +34,9 @@ Core::Core(int port, std::string ip) : _port(port), _ip(ip)
     } catch (const Gameplay::Error &e) {
         std::cerr << e.what() << std::endl;
         throw CoreException("Error: Cannot load gameplay");
+    } catch (const Window::Error &e) {
+        std::cerr << e.what() << std::endl;
+        throw CoreException("Error: Cannot load window");
     }
 }
 

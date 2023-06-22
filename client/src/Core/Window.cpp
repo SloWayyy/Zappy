@@ -27,7 +27,7 @@ Window::Window(std::size_t height, std::size_t width, std::size_t fps) : _window
         this->_startTime = std::chrono::steady_clock::now();
     } catch (const Raylibcpp::Error &e) {
         std::cerr << e.what() << std::endl;
-        exit (84);
+        throw Error("Error: Window constructor failed");
     }
 }
 

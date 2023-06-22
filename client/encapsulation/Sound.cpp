@@ -14,7 +14,13 @@ void Raylibcpp::RaySound::initAudioDevice() const
 
 Sound Raylibcpp::RaySound::loadSound(const std::string &fileName)
 {
-    Sound sound = LoadSound(fileName.c_str());
+    Music music = LoadMusicStream(fileName.c_str());
+    Sound sound;
+
+    if (music.ctxData == NULL)
+        throw Error("Error: Cannot load Sound");
+    UnloadMusicStream(music);
+    sound = LoadSound(fileName.c_str());
 
     return sound;
 }
