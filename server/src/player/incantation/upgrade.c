@@ -38,10 +38,9 @@ static void notify_players(server_t *server, incantation_t *incantation)
 
     SLIST_FOREACH(node, &incantation->players, next_incantation) {
         target = get_client_by_player_id(server, node->id);
-        node->level += 1;
+        node->level = incantation->requirements->level + 1;
         debug(server, "Player %zu leveled up to %zu", node->id, node->level);
-        send_graphical_event(server, "%s %zu %zu%s", \
-            GRAPHICAL_PLAYER_LEVEL, node->id, node->level, LINE_BREAK);
+        send_graphical_level_event(server, node);
         if (target != NULL) {
             append_buffer(target->buffer_out, "%s %zu%s", \
                 PLAYER_ELEVATION_END, node->level, LINE_BREAK);

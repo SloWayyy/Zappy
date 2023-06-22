@@ -37,9 +37,9 @@ void execute_server_commands(server_t *server)
         command = extract_line(server->data->stdin_buffer);
         if (command != NULL && command[0] == '/') {
             handle_server_command(server, command);
-            free(command);
         } else {
             exit = true;
         }
+        free(command);
     }
 }

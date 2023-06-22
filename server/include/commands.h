@@ -15,6 +15,7 @@
     #define SERVER_MODIFIER_RANDOM "@r"
 
     #define SERVER_GIVE_LIMIT 1000
+    #define SERVER_LEVEL_LIMIT 10
 
     #define SERVER_PLAYER_ERROR "Error: Cannot find player"
     #define SERVER_RESOURCE_ERROR "Error: Invalid resource type"
@@ -32,6 +33,11 @@
     #define SERVER_KILL_USAGE "Usage: /kill <src>"
     #define SERVER_KILL_FORMAT "Player %zu has been killed%s"
     #define SERVER_KILL_ENTITIES "Resources and eggs have been killed"
+
+    #define SERVER_LEVEL_USAGE "Usage: /give <src> [level]"
+    #define SERVER_LEVEL_ERROR "Error: The max level is %zu%s"
+    #define SERVER_LEVEL_INFO "Player %zu is at level %zu%s"
+    #define SERVER_LEVEL_FORMAT "Player %zu is now at level %zu%s"
 
     #define SERVER_PAUSE "Game paused"
     #define SERVER_PAUSE_ERROR "Game is already paused (use /resume)"
@@ -58,6 +64,7 @@ void debug_handler_server(server_t *server);
 void give_handler(server_t *server);
 void help_handler(server_t *server);
 void kill_handler(server_t *server);
+void level_handler(server_t *server);
 void pause_handler(server_t *server);
 void resume_handler(server_t *server);
 void tp_handler(server_t *server);
@@ -80,6 +87,7 @@ static const server_command_t SERVER_COMMANDS[] = {
         { "/give", &give_handler },
         { "/help", &help_handler },
         { "/kill", &kill_handler },
+        { "/level", &level_handler },
         { "/pause", &pause_handler },
         { "/resume", &resume_handler },
         { "/tp", &tp_handler },

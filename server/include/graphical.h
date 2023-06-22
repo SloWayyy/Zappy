@@ -18,6 +18,7 @@ void handle_graphical_command(server_t *server, client_t *client, char *line);
 
 void send_graphical_event(server_t *server, const char *format, ...);
 void send_graphical_position_event(server_t *server, player_t *player);
+void send_graphical_level_event(server_t *server, player_t *player);
 void send_graphical_map_event(server_t *server);
 void send_graphical_tile_event(server_t *server, tile_t *tile);
 void send_graphical_egg_event(server_t *server, egg_t *egg);
