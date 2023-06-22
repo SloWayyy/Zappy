@@ -6,6 +6,8 @@
 */
 
 #include <sys/param.h>
+#include <sys/queue.h>
+#include <sys/select.h>
 #include <unistd.h>
 
 #include "buffer.h"

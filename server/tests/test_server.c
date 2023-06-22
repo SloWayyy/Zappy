@@ -295,6 +295,7 @@ Test(server, broadcast_teleport, .timeout = 10, .init=cr_redirect_stdout)
     execute_command(player_2, "Broadcast ahead");
     execute_command(player_2, "Left\nForward");
     execute_command(player_2, "Broadcast ahead left");
+    usleep(100000);
     execute_server_command(process, "/tp 1 ~2 ~2");
     execute_command(player_2, "Broadcast behind right");
     usleep(100000);
@@ -335,4 +336,83 @@ Test(server, inventory_give, .timeout = 10, .init=cr_redirect_stdout)
     fflush(stdout);
     cr_assert_stdout_eq_str(get_file_content("tests/samples/inventory_give_server.txt"));
     cr_assert_str_eq(client->buffer, get_file_content("tests/samples/inventory_give_client.txt"));
+}
+
+Test(server, look_take_set, .timeout = 10, .init=cr_redirect_stdout)
+{
+    char *argv[] = { "./zappy_server", "-p", "8014", "--seed", "12345", "-f", "1000", "--immortal", "--debug", NULL };
+    pthread_t thread;
+    pthread_t player_thread;
+    process_t *process = launch_server(argv);
+    routine_t *client = launch_client(&thread, 8014);
+    routine_t *player = launch_client(&player_thread, 8014);
+
+    execute_command(client, "GRAPHIC");
+    execute_command(player, "Team1");
+    execute_server_command(process, "/tp @a 5 8");
+    execute_command(player, "Look");
+    execute_command(player, "Take linemate");
+    execute_command(player, "Take linemate");
+    execute_command(player, "Take lainemet");
+    execute_command(player, "Take");
+    execute_command(player, "Inventory");
+    execute_command(player, "Set linemate");
+    execute_command(player, "Set linemate");
+    execute_command(player, "Set lainemet");
+    execute_command(player, "Set");
+    execute_command(player, "Look");
+    usleep(100000);
+    execute_server_command(process, "/tp @e 3 3");
+    execute_command(player, "Look");
+    execute_command(player, "Right");
+    execute_command(player, "Look");
+    usleep(100000);
+    execute_server_command(process, "/kill @a");
+    get_output(client);
+    get_output(player);
+    exit_server(process);
+    exit_client(&thread, client);
+    exit_client(&player_thread, player);
+    fflush(stdout);
+    cr_assert_stdout_eq_str(get_file_content("tests/samples/look_take_set_server.txt"));
+    cr_assert_str_eq(client->buffer, get_file_content("tests/samples/look_take_set_client.txt"));
+    cr_assert_str_eq(player->buffer, get_file_content("tests/samples/look_take_set_player.txt"));
+}
+
+Test(server, fork_eject, .timeout = 10, .init=cr_redirect_stdout)
+{
+    char *argv[] = { "./zappy_server", "-p", "8015", "--seed", "7", "-f", "5000", "-c", "1", "--immortal", NULL };
+    pthread_t thread;
+    pthread_t player_thread;
+    pthread_t player_thread_2;
+    process_t *process = launch_server(argv);
+    routine_t *client = launch_client(&thread, 8015);
+    routine_t *player = launch_client(&player_thread, 8015);
+    routine_t *player_2 = launch_client(&player_thread_2, 8015);
+
+    execute_command(client, "GRAPHIC");
+    execute_command(player, "Team1");
+    execute_command(player_2, "Team1");
+    execute_command(player, "Connect_nbr");
+    execute_command(player, "Fork");
+    execute_command(player, "Connect_nbr");
+    execute_command(player, "Fork");
+    execute_command(player, "Connect_nbr");
+    execute_command(player_2, "Team1");
+    execute_command(player_2, "Team1");
+    execute_command(player_2, "Eject");
+    execute_command(player_2, "Eject");
+    execute_command(player, "Fork");
+    execute_command(player_2, "Eject");
+    execute_command(player_2, "Connect_nbr");
+    get_output(client);
+    get_output(player);
+    get_output(player_2);
+    exit_server(process);
+    exit_client(&thread, client);
+    exit_client(&player_thread, player);
+    exit_client(&player_thread_2, player_2);
+    cr_assert_str_eq(client->buffer, get_file_content("tests/samples/fork_eject_client.txt"));
+    cr_assert_str_eq(player->buffer, get_file_content("tests/samples/fork_eject_player.txt"));
+    cr_assert_str_eq(player_2->buffer, get_file_content("tests/samples/fork_eject_player_2.txt"));
 }

@@ -60,10 +60,10 @@ static bool eject_players(server_t *server, client_t *client)
 
 static void eject_eggs(server_t *server, client_t *client)
 {
-    egg_t *node = NULL;
+    egg_t *node = SLIST_FIRST(&client->player->pos->eggs);
     egg_t *tmp = NULL;
 
-    SLIST_FOREACH(node, &client->player->pos->eggs, next_tile) {
+    while (node != NULL) {
         tmp = SLIST_NEXT(node, next_tile);
         if (!node->immortal) {
             SLIST_REMOVE(node->team->eggs, node, egg, next_team);
