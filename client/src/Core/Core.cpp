@@ -264,7 +264,7 @@ void Core::setTimeUnit(std::vector<std::string> &args)
 
 void Core::setDisconnectEvent(std::vector<std::string> &args)
 {
-    (void)args;
+    static_cast<void>(args);
     this->_window->setGameEvent(DISCONNECT);
     this->_gameplay->getCharacters().clear();
     this->_gameplay->getEggs().clear();
@@ -281,7 +281,7 @@ bool Core::checkConnection()
             return true;
         } catch (const zappy::sdk::CommunicationException &e) {
             this->_window->setGameEvent(MENU);
-            this->_window->setErrorMsg("Error: Cannot connect to server");
+            this->_window->setErrorMsg("Failed to connect to the server");
             return false;
         }
     }
