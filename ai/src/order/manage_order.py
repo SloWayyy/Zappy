@@ -109,7 +109,6 @@ def call_levelup(boss, level, array_minus_level):
     from ai.src.player import EnumOrder, EnumHeader
     from ai.src.game import msg_create
 
-    
     for i in range (len(array_minus_level) // level):
         boss.broadcast(msg_create(boss, array_minus_level[i]["uuid"], EnumHeader.ORDER.value, EnumOrder.LEVEL_UP.value))
 
@@ -217,10 +216,9 @@ def manage_order(boss):
         ia_all_same_level(boss, array_minus_level, result, nbr_fork)
     else:
         ai_not_same_level(boss, boss_case, array_minus_level, array_bigger_level)
-        pass
 
-    if boss_case[1] != 0:
-        for _ in range (boss_case[1]):
-            boss.take(EnumObject.FOOD.value)
-    take_around(boss, 4)
+    # if boss_case[1] != 0:
+    #     for _ in range (boss_case[1]):
+    #         boss.take(EnumObject.FOOD.value)
+    # take_around(boss, 4)
     return 1
