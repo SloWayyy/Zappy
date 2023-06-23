@@ -166,6 +166,7 @@ def ai_not_same_level(boss, boss_case, array_minus_level, array_bigger_level):
         if (array_minus_level[0]["level"] == 1):
             for player in array_minus_level:
                 boss.broadcast(msg_create(boss, player["uuid"], EnumHeader.ORDER.value, EnumOrder.LEVEL_UP.value))
+            send_them_in_routine(boss, array_bigger_level)
         elif array_minus_level[0]["level"] == 2 or array_minus_level[0]["level"] == 3:
             call_levelup(boss, 2, array_minus_level)
         elif array_minus_level[0]["level"] == 4 or array_minus_level[0]["level"] == 5:
