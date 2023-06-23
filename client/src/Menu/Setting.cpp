@@ -16,16 +16,16 @@ Setting::Setting(std::shared_ptr<Window> window) : _volume(50), _fps(60)
         this->_background = this->_rayModel.loadTexture("client/assets/menu/background_menu.png");
         createButtons("BACK", {width / 50.0f, height / 30.0f}, GOLD, 50, MENU);
         createText("SETTINGS", {width / 1.5f, height / 30.0f}, RED, 100);
-        createText("Volumes :", {width / 50.0f, height / 10.0f}, RAYWHITE, 50);
-        createText(std::to_string(_volume), {width / 3.0f, height / 7.5f}, RAYWHITE, 50);
+        createText("Volumes :", {width / 50.0f, height / 10.0f}, BLACK, 50);
+        createText(std::to_string(_volume), {width / 3.0f, height / 7.5f}, BLACK, 50);
         createButtons("-", {width / 5.0f, height / 7.5f}, PINK, 50, SETTINGS);
         createButtons("+", {width / 2.0f, height / 7.5f}, PINK, 50, SETTINGS);
-        createText("FPS :", {width / 50.0f, height / 5.0f}, RAYWHITE, 50);
-        createText(std::to_string(_fps), {width / 3.0f, height / 4.0f}, RAYWHITE, 50);
+        createText("FPS :", {width / 50.0f, height / 5.0f}, BLACK, 50);
+        createText(std::to_string(_fps), {width / 3.0f, height / 4.0f}, BLACK, 50);
         createButtons("<", {width / 5.0f, height / 4.0f}, PINK, 50, SETTINGS);
         createButtons(">", {width / 2.0f, height / 4.0f}, PINK, 50, SETTINGS);
-        createText("Météo :", {width / 50.0f, height / 3.0f}, RAYWHITE, 50);
-        createText("Jour", {width / 3.0f, height / 2.5f}, RAYWHITE, 50);
+        createText("Météo :", {width / 50.0f, height / 3.0f}, BLACK, 50);
+        createText("Jour", {width / 3.0f, height / 2.5f}, BLACK, 50);
         createButtons("<", {width / 5.0f, height / 2.5f}, PINK, 50, SETTINGS);
         createButtons(">", {width / 2.0f, height / 2.5f}, PINK, 50, SETTINGS);
         createText("Select Key for :", {width / 1.5f, height / 10.0f}, BLACK, 50);
@@ -41,6 +41,10 @@ Setting::Setting(std::shared_ptr<Window> window) : _volume(50), _fps(60)
         createButtons("<", {width / 1.3f, height / 3.0f}, PINK, 50, SETTINGS);
         createText(this->_window->keyToString(this->_window->getKeyCam3()), {width / 1.15f, height / 3.0f}, BLACK, 50);
         createButtons(">", {width / 1.0f, height / 3.0f}, PINK, 50, SETTINGS);
+        createText("Music :", {width / 1.6f, height / 2.5f}, BLACK, 50);
+        createButtons("<", {width / 1.3f, height / 2.5f}, PINK, 50, SETTINGS);
+        createText("1", {width / 1.15f, height / 2.5f}, BLACK, 50);
+        createButtons(">", {width / 1.0f, height / 2.5f}, PINK, 50, SETTINGS);
     } catch (const Raylibcpp::Error &e) {
         std::cerr << e.what() << std::endl;
         throw Error("Error: Setting constructor failed");
@@ -118,6 +122,18 @@ void Setting::handleInput()
             (this->_window->getKeyCam3() == KEY_F3) ? (this->_window->setKeyCam3(KEY_F), this->_text[13]._string = "F")
             : (this->_window->getKeyCam3() == KEY_F) ? (this->_window->setKeyCam3(KEY_V), this->_text[13]._string = "V")
             : (this->_window->setKeyCam3(KEY_F3), this->_text[13]._string = "F3");
+        }
+        if (this->_buttonsScreen[13].MouseClickedOnButton(x, y) == true) {
+            this->_text[15]._string = (this->_text[15]._string == "1") ? "2" : "1";
+            this->_window->setMusic((this->_text[15]._string == "1") ? this->_window->getMusics()[1] : this->_window->getMusics()[2]);
+            this->_Raymusic.stopMusicStream((this->_text[15]._string == "1") ? this->_window->getMusics()[2] : this->_window->getMusics()[1]);
+            this->_Raymusic.playMusicStream((this->_text[15]._string == "1") ? this->_window->getMusics()[1] : this->_window->getMusics()[2]);
+        }
+        if (this->_buttonsScreen[14].MouseClickedOnButton(x, y) == true) {
+            this->_text[15]._string = (this->_text[15]._string == "1") ? "2" : "1";
+            this->_window->setMusic((this->_text[15]._string == "1") ? this->_window->getMusics()[1] : this->_window->getMusics()[2]);
+            this->_Raymusic.stopMusicStream((this->_text[15]._string == "1") ? this->_window->getMusics()[2] : this->_window->getMusics()[1]);
+            this->_Raymusic.playMusicStream((this->_text[15]._string == "1") ? this->_window->getMusics()[1] : this->_window->getMusics()[2]);
         }
     }
 }

@@ -51,7 +51,7 @@ static void forward_callback(server_t *server, client_t *client, \
         next_tile);
     client->player->pos = &server->zappy->map[pos_y][pos_x];
     SLIST_INSERT_HEAD(&client->player->pos->players, client->player, next_tile);
-    send_graphical_position_event(server, client);
+    send_graphical_position_event(server, client->player);
     append_buffer(client->buffer_out, "%s%s", PLAYER_OK, LINE_BREAK);
     flush_command(server, client);
 }

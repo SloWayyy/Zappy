@@ -10,9 +10,12 @@
 
     #include <vector>
     #include <map>
+    #include <chrono>
+    #include <memory>
+    #include <exception>
+    #include <cstdlib>
     #include "encapsulation/Raylibcpp.hpp"
     #include "Inventory.hpp"
-    #include <memory>
 
 enum Directions {
     EAST = 90,
@@ -32,6 +35,14 @@ enum Animations {
 
 class Character {
     public:
+        class Error : public std::exception {
+            public:
+                Error(std::string const &message) : _message(message) {};
+                ~Error() = default;
+                const char *what() const noexcept override { return _message.c_str(); }
+            private:
+                std::string _message;
+        };
         Character() = default;
         Character(std::size_t animsCount, std::size_t animFrameCounter, Vector3 pos, std::size_t level, std::size_t orientation, std::string name, std::size_t id, std::map<std::size_t, Texture2D> textures, std::vector<ModelAnimation *> _animations);
         ~Character();
@@ -58,8 +69,6 @@ class Character {
         std::shared_ptr<Inventory> &getInventory();
         void setBroadMessage(std::string message);
         std::string getBroadMessage() const;
-        void setAlive(bool alive);
-        bool getAlive() const;
     private:
         Model _model;
         std::vector<ModelAnimation *> _animations;
@@ -77,6 +86,9 @@ class Character {
         std::size_t _id;
         std::string _teamname;
         std::string _broadmessage;
+        std::chrono::steady_clock::time_point _startTime;
+        std::chrono::steady_clock::time_point _currentTime;
+        std::chrono::duration<double> _elapsedSeconds;
 };
 
 #endif /* !CHARACTER_HPP_ */

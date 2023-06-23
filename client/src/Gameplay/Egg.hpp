@@ -13,7 +13,7 @@
 
 class Egg {
     public:
-        Egg(std::size_t id, float x, float y);
+        Egg(std::size_t id, float x, float y, Model model, Texture texture);
         ~Egg() = default;
         std::size_t getId() const;
         Vector3 getPosition() const;

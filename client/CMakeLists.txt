@@ -25,6 +25,8 @@ add_executable(zappy_gui
         src/Menu/Setting.cpp
         src/Menu/AScreen.cpp
         src/Menu/Button.cpp
+        src/Menu/Disconnect.cpp
+        src/Menu/Credits.cpp
         src/Parser/Parser.cpp
         encapsulation/Cube.cpp
         encapsulation/Model.cpp
@@ -33,6 +35,7 @@ add_executable(zappy_gui
         encapsulation/Window.cpp
         encapsulation/Music.cpp
         encapsulation/Clock.cpp
+        encapsulation/Sound.cpp
         )
 
 target_link_libraries(zappy_gui raylib)

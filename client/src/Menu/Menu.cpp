@@ -18,6 +18,8 @@ Menu::Menu(std::shared_ptr<Window> window)
         createButtons("HOW TO PLAY", {width / 15.0f, height / 5.0f}, GOLD, 100, TUTO);
         createButtons("EXIT", {width / 15.0f, height / 3.0f}, GOLD, 100, EXIT);
         createButtons("SETTINGS", {width / 15.0f, height / 2.5f}, GOLD, 100, SETTINGS);
+        createButtons("CREDITS", {width / 15.0f, height / 2.0f - 50}, GOLD, 100, CREDITS);
+        createText("", {width / 2.0f, height / 12.0f}, RED, 50);
     } catch (const Raylibcpp::Error &e) {
         std::cerr << e.what() << std::endl;
         throw Error("Error: Menu constructor failed");

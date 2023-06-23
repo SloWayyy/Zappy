@@ -53,7 +53,11 @@ std::vector<std::string> zappy::sdk::ACommunicationModule::readBuffer() {
     }
     if (FD_ISSET(this->_socketFd, &this->reads_set)) {
         i = read(this->_socketFd, buffer, MAX_BUFFER_SIZE);
-        if (i <= 0) {
+        if (i == 0 && !this->disconneted) {
+            this->disconneted = true;
+            return {"disconnect"};
+        }
+        if (i < 0) {
             return queuecommand;
         }
         buffer[i] = '\0';
@@ -75,4 +79,16 @@ std::vector<std::string> zappy::sdk::ACommunicationModule::readBuffer() {
 
 int zappy::sdk::ACommunicationModule::getSocketFd() const {
     return this->_socketFd;
+}
+
+void zappy::sdk::ACommunicationModule::writeBuffer(const std::string &command) {
+    this->_writeBuffer = command + "\n";
+}
+
+void zappy::sdk::ACommunicationModule::setDisconnected(bool disconnected) {
+    this->disconneted = disconnected;
+}
+
+bool zappy::sdk::ACommunicationModule::isDisconnected() const {
+    return this->disconneted;
 }

@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <sys/queue.h>
 
+#include "buffer.h"
 #include "constants.h"
 #include "graphical.h"
 #include "player.h"
@@ -21,6 +22,7 @@ static void select_winning_team(server_t *server, team_t **teams, size_t size)
 
     send_graphical_event(server, "%s %s%s", \
         GRAPHICAL_VICTORY, winner->name, LINE_BREAK);
+    debug(server, "Team %s won the game", winner->name);
 }
 
 static void filter_winning_teams(team_t **teams, size_t *size)

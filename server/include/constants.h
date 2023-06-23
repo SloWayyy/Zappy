@@ -64,6 +64,7 @@
 
     #define GRAPHICAL_CUSTOM "smg"
     #define GRAPHICAL_CUSTOM_EGG "eni"
+    #define GRAPHICAL_CUSTOM_PAUSE "pse"
 
     #define GRAPHICAL_VICTORY "seg"
     #define GRAPHICAL_UNKNOWN "suc"

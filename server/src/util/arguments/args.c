@@ -41,11 +41,11 @@ static bool auto_fill_names(options_t *options)
 {
     const char **names = malloc(sizeof(char *) * (DEFAULT_TEAM_SIZE + 1));
 
-    printf("No team names set, default team names are");
     if (names == NULL) {
         perror("malloc failed");
         return false;
     }
+    printf("No team names set, default team names are");
     for (size_t i = 0; i < DEFAULT_TEAM_SIZE; i++) {
         if (i > 0) {
             printf(",");

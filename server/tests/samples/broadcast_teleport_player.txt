@@ -1,0 +1,9 @@
+WELCOME
+3
+10 10
+message 5, random
+message 0, same zone
+message 0, still same zone
+message 1, ahead
+message 2, ahead left
+message 6, behind right

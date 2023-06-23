@@ -1,0 +1,192 @@
+[Debug] food: 0 / 50 (refilling 50)
+[Debug] Adding 1 food to (6, 5)
+[Debug] Adding 1 food to (9, 6)
+[Debug] Adding 1 food to (8, 6)
+[Debug] Adding 1 food to (5, 2)
+[Debug] Adding 1 food to (6, 3)
+[Debug] Adding 1 food to (3, 5)
+[Debug] Adding 1 food to (7, 8)
+[Debug] Adding 1 food to (5, 6)
+[Debug] Adding 1 food to (4, 4)
+[Debug] Adding 1 food to (1, 8)
+[Debug] Adding 1 food to (0, 2)
+[Debug] Adding 1 food to (9, 4)
+[Debug] Adding 1 food to (8, 1)
+[Debug] Adding 1 food to (8, 4)
+[Debug] Adding 1 food to (1, 3)
+[Debug] Adding 1 food to (5, 5)
+[Debug] Adding 1 food to (1, 5)
+[Debug] Adding 1 food to (2, 7)
+[Debug] Adding 1 food to (6, 0)
+[Debug] Adding 1 food to (4, 1)
+[Debug] Adding 1 food to (6, 1)
+[Debug] Adding 1 food to (8, 3)
+[Debug] Adding 1 food to (2, 8)
+[Debug] Adding 1 food to (8, 2)
+[Debug] Adding 1 food to (4, 0)
+[Debug] Adding 1 food to (4, 7)
+[Debug] Adding 1 food to (9, 2)
+[Debug] Adding 1 food to (2, 1)
+[Debug] Adding 1 food to (8, 8)
+[Debug] Adding 1 food to (4, 3)
+[Debug] Adding 1 food to (4, 6)
+[Debug] Adding 1 food to (5, 3)
+[Debug] Adding 1 food to (5, 8)
+[Debug] Adding 1 food to (7, 9)
+[Debug] Adding 1 food to (3, 4)
+[Debug] Adding 1 food to (2, 3)
+[Debug] Adding 1 food to (2, 5)
+[Debug] Adding 1 food to (9, 3)
+[Debug] Adding 1 food to (3, 9)
+[Debug] Adding 1 food to (3, 7)
+[Debug] Adding 1 food to (9, 5)
+[Debug] Adding 1 food to (3, 1)
+[Debug] Adding 1 food to (7, 5)
+[Debug] Adding 1 food to (1, 2)
+[Debug] Adding 1 food to (7, 6)
+[Debug] Adding 1 food to (3, 8)
+[Debug] Adding 1 food to (1, 6)
+[Debug] Adding 1 food to (4, 2)
+[Debug] Adding 1 food to (6, 2)
+[Debug] Adding 1 food to (7, 2)
+[Debug] linemate: 0 / 30 (refilling 30)
+[Debug] Adding 1 linemate to (6, 9)
+[Debug] Adding 1 linemate to (0, 4)
+[Debug] Adding 1 linemate to (8, 0)
+[Debug] Adding 1 linemate to (3, 3)
+[Debug] Adding 1 linemate to (5, 9)
+[Debug] Adding 1 linemate to (8, 5)
+[Debug] Adding 1 linemate to (2, 6)
+[Debug] Adding 1 linemate to (3, 6)
+[Debug] Adding 1 linemate to (1, 1)
+[Debug] Adding 1 linemate to (1, 0)
+[Debug] Adding 1 linemate to (5, 7)
+[Debug] Adding 1 linemate to (5, 0)
+[Debug] Adding 1 linemate to (2, 4)
+[Debug] Adding 1 linemate to (1, 7)
+[Debug] Adding 1 linemate to (3, 0)
+[Debug] Adding 1 linemate to (0, 5)
+[Debug] Adding 1 linemate to (9, 1)
+[Debug] Adding 1 linemate to (1, 4)
+[Debug] Adding 1 linemate to (4, 8)
+[Debug] Adding 1 linemate to (7, 1)
+[Debug] Adding 1 linemate to (0, 6)
+[Debug] Adding 1 linemate to (8, 9)
+[Debug] Adding 1 linemate to (9, 8)
+[Debug] Adding 1 linemate to (6, 6)
+[Debug] Adding 1 linemate to (2, 9)
+[Debug] Adding 1 linemate to (7, 4)
+[Debug] Adding 1 linemate to (9, 7)
+[Debug] Adding 1 linemate to (0, 0)
+[Debug] Adding 1 linemate to (2, 0)
+[Debug] Adding 1 linemate to (0, 9)
+[Debug] deraumere: 0 / 15 (refilling 15)
+[Debug] Adding 1 deraumere to (0, 7)
+[Debug] Adding 1 deraumere to (8, 7)
+[Debug] Adding 1 deraumere to (0, 8)
+[Debug] Adding 1 deraumere to (1, 9)
+[Debug] Adding 1 deraumere to (4, 9)
+[Debug] Adding 1 deraumere to (6, 8)
+[Debug] Adding 1 deraumere to (7, 3)
+[Debug] Adding 1 deraumere to (4, 5)
+[Debug] Adding 1 deraumere to (6, 7)
+[Debug] Adding 1 deraumere to (0, 3)
+[Debug] Adding 1 deraumere to (5, 4)
+[Debug] Adding 1 deraumere to (0, 1)
+[Debug] Adding 1 deraumere to (2, 2)
+[Debug] Adding 1 deraumere to (3, 2)
+[Debug] Adding 1 deraumere to (5, 1)
+[Debug] sibur: 0 / 10 (refilling 10)
+[Debug] Adding 1 sibur to (7, 0)
+[Debug] Adding 1 sibur to (6, 4)
+[Debug] Adding 1 sibur to (9, 0)
+[Debug] Adding 1 sibur to (9, 9)
+[Debug] Adding 1 sibur to (7, 7)
+[Debug] Adding 1 sibur to (3, 1)
+[Debug] Adding 1 sibur to (2, 3)
+[Debug] Adding 1 sibur to (5, 8)
+[Debug] Adding 1 sibur to (7, 5)
+[Debug] Adding 1 sibur to (8, 9)
+[Debug] mendiane: 0 / 10 (refilling 10)
+[Debug] Adding 1 mendiane to (8, 9)
+[Debug] Adding 1 mendiane to (8, 9)
+[Debug] Adding 1 mendiane to (6, 7)
+[Debug] Adding 1 mendiane to (9, 0)
+[Debug] Adding 1 mendiane to (0, 2)
+[Debug] Adding 1 mendiane to (8, 4)
+[Debug] Adding 1 mendiane to (1, 2)
+[Debug] Adding 1 mendiane to (5, 9)
+[Debug] Adding 1 mendiane to (8, 9)
+[Debug] Adding 1 mendiane to (4, 9)
+[Debug] phiras: 0 / 8 (refilling 8)
+[Debug] Adding 1 phiras to (8, 8)
+[Debug] Adding 1 phiras to (3, 9)
+[Debug] Adding 1 phiras to (6, 7)
+[Debug] Adding 1 phiras to (0, 8)
+[Debug] Adding 1 phiras to (6, 8)
+[Debug] Adding 1 phiras to (2, 9)
+[Debug] Adding 1 phiras to (8, 1)
+[Debug] Adding 1 phiras to (7, 8)
+[Debug] thystame: 0 / 5 (refilling 5)
+[Debug] Adding 1 thystame to (4, 6)
+[Debug] Adding 1 thystame to (5, 5)
+[Debug] Adding 1 thystame to (4, 9)
+[Debug] Adding 1 thystame to (8, 8)
+[Debug] Adding 1 thystame to (9, 0)
+[Debug] Game started
+Resources and eggs have been teleported to (5 5)
+Player 2 has been teleported to (5 5)
+Player 1 has been teleported to (5 5)
+Player 0 has been teleported to (5 5)
+[Debug] Incantation initiated by player 0
+[Debug] Starting pre incantation verification
+[Debug] Incantation requirements success
+[Debug] Incantation initiated by player 1
+[Debug] Starting pre incantation verification
+[Debug] Incantation requirements success
+[Debug] Starting post incantation verification
+[Debug] Incantation requirements success
+[Debug] Player 0 leveled up to 2
+[Debug] linemate: 29 / 30 (refilling 1)
+[Debug] Adding 1 linemate to (9, 3)
+[Debug] Incantation initiated by player 2
+[Debug] Starting pre incantation verification
+[Debug] Incantation requirements success
+[Debug] Starting post incantation verification
+[Debug] Incantation requirements success
+[Debug] Player 1 leveled up to 2
+[Debug] linemate: 29 / 30 (refilling 1)
+[Debug] Adding 1 linemate to (9, 9)
+[Debug] Starting post incantation verification
+[Debug] Incantation requirements success
+[Debug] Player 2 leveled up to 2
+[Debug] linemate: 29 / 30 (refilling 1)
+[Debug] Adding 1 linemate to (8, 5)
+[Debug] Incantation initiated by player 2
+[Debug] Player 0 eligible for incantation
+[Debug] Player 1 eligible for incantation
+[Debug] Too much players for incantation, removing player 0
+[Debug] Starting pre incantation verification
+[Debug] Incantation requirements success
+[Debug] Starting post incantation verification
+[Debug] Incantation requirements success
+[Debug] Player 2 leveled up to 3
+[Debug] Player 1 leveled up to 3
+[Debug] linemate: 29 / 30 (refilling 1)
+[Debug] Adding 1 linemate to (2, 7)
+[Debug] deraumere: 14 / 15 (refilling 1)
+[Debug] Adding 1 deraumere to (9, 8)
+[Debug] sibur: 9 / 10 (refilling 1)
+[Debug] Adding 1 sibur to (3, 9)
+[Debug] Incantation initiated by player 2
+[Debug] Player 1 eligible for incantation
+[Debug] Starting pre incantation verification
+[Debug] Incantation requirements success
+Player 2 has been teleported to (2 3)
+Player 1 has been teleported to (2 3)
+Player 0 has been teleported to (2 3)
+[Debug] Starting post incantation verification
+[Debug] Incantation requirements failed: 2 linemate missing
+No team names set, default team names are Team1, Team2, Team3, Team4
+No map dimensions set, default is 10x10
+No client number set, default client number is 4

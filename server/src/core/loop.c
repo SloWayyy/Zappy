@@ -98,8 +98,9 @@ bool start_server(options_t *options)
     task_list_t tasks;
     zappy_t zappy;
     server_t server = { options, &data, &zappy, &clients, &tasks };
+    long seed = time(NULL) + (unsigned long) &server;
 
-    srand(time(NULL) + (unsigned long)&server);
+    srand(options->seed != 0 ? options->seed : seed);
     init_values(&server, &tick, &teams);
     run = init_standard_buffers(&server) && init_server(&server);
     if (run) {

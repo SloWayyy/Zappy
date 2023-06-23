@@ -32,7 +32,7 @@ Model Raylibcpp::RayModel::loadModel(const char *fileName)
 {
     Model model = LoadModel(fileName);
     
-    if (model.meshCount == 0)
+    if (model.bones == 0)
         throw Error("Error: Cannot load model");
     return model;
 }

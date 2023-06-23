@@ -9,19 +9,19 @@
 #include <string>
 #include <cstring>
 
-Core::Core(int port, std::string ip)
+Core::Core(int port, std::string ip) : _port(port), _ip(ip)
 {
     try {
         this->loader = std::make_shared<DDLoader<zappy::sdk::ICommunicationModule>>("client/libs/communication_sdk.so");
         this->network = std::shared_ptr<zappy::sdk::ICommunicationModule>(this->loader->getInstance("communicationEntrypoint"));
-        this->network->connect(ip, port);
-        this->network->connectAsGraphical();
         this->_window = std::make_shared<Window>(1920, 1080, 60);
         this->_menu = std::make_shared<Menu>(this->_window);
         this->_tuto = std::make_shared<Tuto>(this->_window);
         this->_setting = std::make_shared<Setting>(this->_window);
         this->_gameover = std::make_shared<Gameover>(this->_window);
         this->_gameplay = std::make_shared<Gameplay>(this->_window);
+        this->_disconnect = std::make_shared<Disconnect>(this->_window);
+        this->_credits = std::make_shared<Credits>(this->_window);
     } catch (const DDLoader<zappy::sdk::ICommunicationModule>::DDLException &e) {
         std::cerr << e.what() << std::endl;
         throw CoreException("Error: Cannot load communication module");
@@ -34,6 +34,9 @@ Core::Core(int port, std::string ip)
     } catch (const Gameplay::Error &e) {
         std::cerr << e.what() << std::endl;
         throw CoreException("Error: Cannot load gameplay");
+    } catch (const Window::Error &e) {
+        std::cerr << e.what() << std::endl;
+        throw CoreException("Error: Cannot load window");
     }
 }
 
@@ -42,16 +45,23 @@ void Core::run(void)
     while (!this->_window->getExit()) {
         this->_rayWindow.clearBackground(SKYBLUE);
         this->_rayWindow.beginDrawing();
+        if (!this->_window->getWriteBuffer().empty()) {
+            this->network->writeBuffer(this->_window->getWriteBuffer());
+            this->_window->setWriteBuffer("");
+        }
         auto i = this->network->readBuffer();
         for (auto &command : i) {
             this->handleInput(command);
         }
         switch (this->_window->getGameEvent()) {
             case MENU:
+                this->_menu->getText()[0].setString(this->_window->getErrorMsg());
                 this->_window->run();
                 this->_menu->run();
                 break;
             case GAMEPLAY:
+                if (this->checkConnection() == false)
+                    break;
                 this->_rayWindow.beginMode3D(this->_window->getCamera());
                 this->_window->run();
                 this->_gameplay->run();
@@ -65,9 +75,18 @@ void Core::run(void)
                 this->_window->run();
                 this->_tuto->run();
                 break;
+            case CREDITS:
+                this->_window->run();
+                this->_credits->run();
+                break;
             case GAMEOVER:
                 this->_window->run();
+                this->_gameover->getText()[1].setString(this->_window->getWinningTeam());
                 this->_gameover->run();
+                break;
+            case DISCONNECT:
+                this->_window->run();
+                this->_disconnect->run();
                 break;
             case EXIT:
                 this->_window->setExit(true);
@@ -109,6 +128,9 @@ void Core::handleInput(const std::string &command)
         {COMMAND_PIE, &Core::endIncantation},
         {COMMAND_SMG, &Core::personnalMessage},
         {COMMAND_PDR, &Core::dropResource},
+        {COMMAND_SGT, &Core::setTimeUnit},
+        {COMMAND_SST, &Core::setTimeUnit},
+        {SERVER_DISCONNECT, &Core::setDisconnectEvent},
         {COMMAND_SEG, &Core::setWinner}
     };
 
@@ -186,7 +208,8 @@ void Core::setPlayerDeath(std::vector<std::string> &args)
 
 void Core::setWinner(std::vector<std::string> &args)
 {
-    std::cout << args[1] << std::endl; 
+    std::cout << args[1] << std::endl;
+    this->_window->setWinningTeam(args[1]);
     this->_window->setGameEvent(GAMEOVER);
 }
 
@@ -232,4 +255,36 @@ void Core::dropResource(std::vector<std::string> &args)
     if (this->_gameplay->getCharacters().find(std::stoi(args[1])) == this->_gameplay->getCharacters().end())
         return;
     this->_gameplay->getCharacters()[std::stoi(args[1])]->setCurrentlyAnimation(TAKING);
+}
+
+void Core::setTimeUnit(std::vector<std::string> &args)
+{
+    this->_window->setTick(std::stoi(args[1]));
+}
+
+void Core::setDisconnectEvent(std::vector<std::string> &args)
+{
+    static_cast<void>(args);
+    this->_window->setGameEvent(DISCONNECT);
+    this->_gameplay->getCharacters().clear();
+    this->_gameplay->getEggs().clear();
+    this->_gameplay->getIncantation().clear();
+}
+
+bool Core::checkConnection()
+{
+    if (this->network->isDisconnected()) {
+        try {
+            this->network->connect(_ip, _port);
+            this->network->connectAsGraphical();    
+            this->network->setDisconnected(false);
+            return true;
+        } catch (const zappy::sdk::CommunicationException &e) {
+            this->_window->setGameEvent(MENU);
+            this->_window->setErrorMsg("Failed to connect to the server");
+            return false;
+        }
+    }
+    this->_window->setErrorMsg("");
+    return true;
 }

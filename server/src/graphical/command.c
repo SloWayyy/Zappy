@@ -5,7 +5,9 @@
 ** command.c
 */
 
+#include <stdarg.h>
 #include <string.h>
+#include <sys/queue.h>
 
 #include "buffer.h"
 #include "constants.h"
@@ -23,4 +25,21 @@ void handle_graphical_command(server_t *server, client_t *client, char *line)
         }
     }
     append_buffer(client->buffer_out, "%s%s", GRAPHICAL_UNKNOWN, LINE_BREAK);
+}
+
+void send_graphical_event(server_t *server, const char *format, ...)
+{
+    va_list list;
+    va_list copy;
+    client_t *node = NULL;
+
+    va_start(list, format);
+    SLIST_FOREACH(node, server->clients, next) {
+        if (node->type == GRAPHIC) {
+            va_copy(copy, list);
+            vappend_buffer(node->buffer_out, format, copy);
+            va_end(copy);
+        }
+    }
+    va_end(list);
 }

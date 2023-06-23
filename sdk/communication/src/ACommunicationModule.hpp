@@ -29,7 +29,10 @@ namespace zappy::sdk {
             void disconnect() final;
             bool isConnected() final;
             std::vector<std::string> readBuffer();
+            void writeBuffer(const std::string &command);
             int getSocketFd() const;
+            void setDisconnected(bool disconnected);
+            bool isDisconnected() const;
             std::string _readBuffer;
             std::string _writeBuffer;
             std::string _tmp;
@@ -39,6 +42,7 @@ namespace zappy::sdk {
             __gnu_cxx::stdio_filebuf<char> _stream;
             fd_set reads_set;
             fd_set writes_set;
+            bool disconneted = true;
     };
 }
 

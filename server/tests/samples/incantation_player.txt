@@ -1,0 +1,13 @@
+WELCOME
+3
+10 10
+[player food,linemate,linemate,food]
+ok
+ok
+ok
+[player linemate,linemate,linemate,linemate]
+Elevation underway
+Current level: 2
+[player,linemate,linemate,linemate,food thystame,linemate mendiane,linemate sibur mendiane mendiane thystame,food,deraumere]
+ko
+ko

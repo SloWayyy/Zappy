@@ -15,12 +15,15 @@
     #include "types.h"
 
 void handle_graphical_command(server_t *server, client_t *client, char *line);
-client_t *get_client_by_player_id(server_t *server, size_t id);
 
 void send_graphical_event(server_t *server, const char *format, ...);
-void send_graphical_position_event(server_t *server, client_t *client);
-void send_graphical_join_event(server_t *server, client_t *client);
+void send_graphical_position_event(server_t *server, player_t *player);
+void send_graphical_level_event(server_t *server, player_t *player);
+void send_graphical_map_event(server_t *server);
 void send_graphical_tile_event(server_t *server, tile_t *tile);
+void send_graphical_egg_event(server_t *server, egg_t *egg);
+void send_graphical_join_event(server_t *server, player_t *player);
+void send_graphical_inventory_event(server_t *server, player_t *player);
 
 void send_new_graphical(server_t *server, client_t *client);
 void send_map_size(server_t *server, client_t *client);
@@ -28,6 +31,7 @@ void send_map(server_t *server, client_t *client);
 void send_tile(server_t *server, client_t *client, int x, int y);
 void send_team_names(server_t *server, client_t *client);
 void send_time(server_t *server, client_t *client);
+void send_egg(client_t *client, egg_t *egg);
 
 void msz_handler(server_t *server, client_t *client);
 void bct_handler(server_t *server, client_t *client);

@@ -13,6 +13,7 @@
     #include <vector>
     #include <map>
     #include <unordered_map>
+    #include <cstdlib>
     #include "encapsulation/Raylibcpp.hpp"
     #include <array>
 
