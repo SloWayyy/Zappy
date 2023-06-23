@@ -15,11 +15,14 @@ from enum import Enum
 # si ils sont assez mais pas assez de ressources tu les envoies en routine
 
 def get_available_ia(player):
-    from ai.src.player import EnumOrder
+    from ai.src.player import EnumOrder, EnumHeader, EnumPriorityOrder
+    from ai.src.game import msg_create
     available_ai = []
     for player_array in player.array_uuid:
         if str(player_array["job"]) == EnumOrder.NOTHING.value and player_array["pos"] == 0:
             available_ai.append(player_array)
+        elif str(player_array["job"]) == EnumOrder.NOTHING.value and player_array["pos"] != 0:
+            player.broadcast(msg_create(player, player_array["uuid"], EnumHeader.PRIORITY_ORDER.value, EnumPriorityOrder.PING.value))
     return available_ai
 
 def get_ressources(player):
@@ -98,6 +101,7 @@ def handle_level_up(actual_lvl, boss_case, nbr_player):
             return Answer.ROUTINE.value, 0
         else:
             return Answer.INCANTATION.value, 0
+        
     if (nbr_player < levelUpArray[actual_lvl - 1][0]):
         return Answer.FORK.value, nbr_player % levelUpArray[actual_lvl - 1][0]
     for i in range(len(levelUpArray[0])):
@@ -127,6 +131,7 @@ def ia_all_same_level(boss, array_minus_level, result, nbr_fork):
         elif array_minus_level[0]["level"] == 6 or array_minus_level[0]["level"] == 7:
             call_levelup(boss, 6, array_minus_level)
     elif (result == Answer.FORK.value):
+        print("je fork de ", nbr_fork, "\n\n", flush=True)
         count = 0
         for player in range(len(array_minus_level)):
             if (count < nbr_fork):
@@ -169,6 +174,7 @@ def ai_not_same_level(boss, boss_case, array_minus_level, array_bigger_level):
             call_levelup(boss, 6, array_minus_level)
     elif (result == Answer.FORK.value):
         count = 0
+        print("je fork de ", nbr_fork, "\n\n", flush=True)
         for player in range(len(array_minus_level)):
             if (count < nbr_fork):
                 boss.broadcast(msg_create(boss, array_minus_level[player]["uuid"], EnumHeader.ORDER.value, EnumOrder.FORK.value))
@@ -228,13 +234,13 @@ def manage_order(boss):
         print("All ai : ", boss.array_uuid)
         return 0
     print("Je suis dans avant AI manage_order")
-    if (all_ai_has_food(boss, available_ai) == 0):
-        boss_case = get_ressources(boss)
-        for _ in range(boss_case[1]):
-            print("Je rammasse la food", boss.take("food"))
-        return 0
+    # if (all_ai_has_food(boss, available_ai) == 0):
+    #     boss_case = get_ressources(boss)
+    #     for _ in range(boss_case[1]):
+    #         print("Je rammasse la food", boss.take("food"))
+    #     return 0
     print("Je suis dans apres AI manage_order")
-    print("LE BOSS: JE POSE TOUTES MES RESSOURCES")
+    # print("LE BOSS: JE POSE TOUTES MES RESSOURCES")
     # dump_item(boss, "0")
     boss_case = get_ressources(boss)
     print("boss _case", boss_case, flush=True)
