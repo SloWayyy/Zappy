@@ -193,19 +193,53 @@ def take_specific_ressources(boss):
                 if (boss.take(EnumObject.PHIRAS.value) == False):
                     return False
 
+def all_ai_has_food(boss, available_ia):
+    from ai.src.game import msg_create
+    from ai.src.player import EnumOrder, EnumHeader, ALL
+    print("DANS ALL_AI_has_food", boss.ai_enought_food, "len available_ia", len(available_ia), flush=True)
+    if (boss.ai_enought_food[0] != len(available_ia) and boss.ai_enought_food[0] != -1): # nombre d'ia qui ont repondu
+        print("je return 0 1")
+        return 0
+    if (boss.ai_enought_food[0] == -1):
+        boss.ai_enought_food[0] = 0
+        # for player in available_ia:
+        #     boss.broadcast(msg_create(boss, player["uuid"], EnumHeader.ORDER.value, EnumOrder.GET_AI_NBR_FOOD.value))
+            # print("j'ai envoye x FOIS", player["uuid"])
+        boss.broadcast(msg_create(boss, ALL, EnumHeader.ORDER.value, EnumOrder.GET_AI_NBR_FOOD.value))
+        # boss.broadcast(msg_create(boss, ALL, EnumHeader.IMBOSS.value))
+        return 0
+    elif (boss.ai_enought_food[1] == len(available_ia)):
+        boss.ai_enought_food[0] = -1
+        boss.ai_enought_food[1] = 0
+        return 1
+    else:
+        send_them_in_routine(boss, available_ia)
+        print("je return 0 2")
+        return 0
+
 def manage_order(boss):
     from ai.src.game import msg_create
     from ai.src.player import EnumOrder, EnumHeader, EnumObject
     from ai.src.order.dump_item import dump_item
 
     available_ai = get_available_ia(boss)
-    if (len(available_ai) != len(boss.array_uuid) and boss.level7 != 7):
+    if (len(available_ai) != len(boss.array_uuid)):
         print("Not all ai are available")
         print("All ai : ", boss.array_uuid)
         return 0
+    print("Je suis dans avant AI manage_order")
+    if (all_ai_has_food(boss, available_ai) == 0):
+        boss_case = get_ressources(boss)
+        for _ in range(boss_case[1]):
+            print("Je rammasse la food", boss.take("food"))
+        return 0
+    print("Je suis dans apres AI manage_order")
     print("LE BOSS: JE POSE TOUTES MES RESSOURCES")
-    dump_item(boss, "0")
+    # dump_item(boss, "0")
     boss_case = get_ressources(boss)
+    print("boss _case", boss_case, flush=True)
+    for i in range(boss_case[1]):
+        print("Je rammasse la food", boss.take("food"))
     minus_level = check_minus_level(available_ai)
     array_bigger_level, array_minus_level = check_same_level(available_ai, minus_level)
     if (len(array_minus_level) == 0):

@@ -17,6 +17,7 @@ from ai.src.order.level_up import *
 from ai.src.order.go_front import *
 from ai.src.order.fork import *
 from ai.src.order.take_far import *
+from ai.src.order.get_ai_nbr_food import *
 
 class ErrorConnection(Exception):
     pass
@@ -66,10 +67,12 @@ class EnumOrder(Enum):
     LEVEL_UP = "6"
     FORK = "7"
     TAKE_FAR = "8"
+    GET_AI_NBR_FOOD = "9"
 
 class EnumPriorityOrder(Enum):
     PING = "0"
     SEPPUKU = "1"
+    PING_SEND_FOOD_NBR = "2"
 
 levelUpArray = [
                 [1, 0, 1, 0, 0, 0, 0, 0],
@@ -81,9 +84,9 @@ levelUpArray = [
                 [6, 0, 2, 2, 2, 2, 2, 1]
                ]
 
-ANSWER_FUNC = [ping_answer, seppuku_answer]
-PRIORITY_ORDER_FUNC = [ping, seppuku]
-ORDER_FUNC = [None, dump_item, join_boss, square_collect, take_around, go_front, level_up, fork, take_far]
+ANSWER_FUNC = [ping_answer, seppuku_answer, ping_answer_food_nbr]
+PRIORITY_ORDER_FUNC = [ping, seppuku, ping_send_food_nbr]
+ORDER_FUNC = [None, dump_item, join_boss, square_collect, take_around, go_front, level_up, fork, take_far, get_ai_nbr_food]
 
 class Player:
 
@@ -98,7 +101,7 @@ class Player:
         self.boss_uuid = None
         self.job = 0
         self.array_uuid = []
-        self.last_order = "0"
+        self.ai_enought_food = [-1, 0]
         print("UUID: " + self.uuid)
         self.map_size = SizeMap(0, 0)
         self.args = args
@@ -178,15 +181,20 @@ class Player:
 
     def decrypt_donnees(self, donnees):
         array_decrypt = []
+        if (donnees == None):
+            return None
         for i in donnees:
             if i.find("message") != -1:
                 array = i.split(", ")
                 if len(array) > 0:
                     if (len(array[1]) % 16) != 0:
                         return array_decrypt.append(array[0] + ", " + array[1])
-                    msg_decode = decrypt_message(self.key, bytes.fromhex(array[1]))
-                    msg_decode = msg_decode.replace("\n", "")
-                    array_decrypt.append(array[0] + ", " + msg_decode)
+                    try:
+                        msg_decode = decrypt_message(self.key, bytes.fromhex(array[1]))
+                        msg_decode = msg_decode.replace("\n", "")
+                        array_decrypt.append(array[0] + ", " + msg_decode)
+                    except:
+                        array_decrypt.append(array[0] + ", " + array[1])
             else:
                 array_decrypt.append(i)
         return array_decrypt
@@ -360,14 +368,10 @@ class Player:
             if (tmp == "ko"):
                 return False
             else:
-                # array = tmp.split(": ")
-                # self.level = array[1]
                 return tmp
         else:
             tmp = self.wait_answer()[0]
             if (tmp == "ko"):
                 return False
             else:
-                # array = tmp.split(": ")
-                # self.level = array[1]
                 return tmp

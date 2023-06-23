@@ -11,13 +11,13 @@ def msg_create(sender: Player, receiver: str, header: str, order: str = None, da
     else:
         return (sender.uuid + " " + header + " " + receiver + " " + data)
 
-def boss_routine(player: Player):
-    take_around(player, 4)
-    for i in player.array_uuid:
-        player.broadcast(msg_create(player, i["uuid"], EnumHeader.ORDER.value, EnumOrder.JOIN_BOSS.value))
+def boss_routine(boss: Player):
+    for i in boss.array_uuid:
+        boss.broadcast(msg_create(boss, i["uuid"], EnumHeader.ORDER.value, EnumOrder.JOIN_BOSS.value))
+    take_around(boss, 4)
     while True:
-        player.broadcast(msg_create(player, ALL, EnumHeader.IMBOSS.value))
-        manage_order(player)
+        boss.broadcast(msg_create(boss, ALL, EnumHeader.IMBOSS.value))
+        manage_order(boss)
 
 def game_loop(sock, args):
     player = Player(sock, args)
