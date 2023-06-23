@@ -1,4 +1,4 @@
-from ai.src.player import Player, EnumBoss, EnumHeader, EnumOrder, EnumPriorityOrder
+from ai.src.player import Player, EnumBoss, EnumHeader, EnumOrder, EnumPriorityOrder, EnumObject
 from ai.src.order.manage_order import manage_order
 from ai.src.group_init import find_boss
 from ai.src.player import ALL
@@ -19,12 +19,13 @@ def create_farm(boss: Player):
 def boss_routine(boss: Player):
     create_farm(boss)
 
-    # for i in boss.array_uuid:
-    #     boss.broadcast(msg_create(boss, i["uuid"], EnumHeader.ORDER.value, EnumOrder.JOIN_BOSS.value))
+    for i in boss.array_uuid:
+        boss.broadcast(msg_create(boss, i["uuid"], EnumHeader.ORDER.value, EnumOrder.JOIN_BOSS.value))
     # take_around(boss, 4)
     while True:
+        boss.take(EnumObject.FOOD.value)
         boss.broadcast(msg_create(boss, ALL, EnumHeader.IMBOSS.value))
-    #     manage_order(boss)
+        manage_order(boss)
 
 def game_loop(sock, args):
     player = Player(sock, args)

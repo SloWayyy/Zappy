@@ -244,8 +244,8 @@ def manage_order(boss):
     # dump_item(boss, "0")
     boss_case = get_ressources(boss)
     print("boss _case", boss_case, flush=True)
-    for i in range(boss_case[1]):
-        print("Je rammasse la food", boss.take("food"))
+    # for i in range(boss_case[1]):
+    #     print("Je rammasse la food", boss.take("food"))
     minus_level = check_minus_level(available_ai)
     array_bigger_level, array_minus_level = check_same_level(available_ai, minus_level)
     if (len(array_minus_level) == 0):

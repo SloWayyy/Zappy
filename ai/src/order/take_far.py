@@ -33,5 +33,4 @@ def take_far(player, _):
         player.move()
     dump_item(player, "")
     # supprimer ? le frop
-    player.set(EnumObject.FOOD)
     player.job = 0
