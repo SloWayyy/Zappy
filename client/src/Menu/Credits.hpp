@@ -17,9 +17,6 @@ class Credits : public AScreen {
         ~Credits();
     private:
         void handleInput(void) override;
-        Texture2D _mixamo;
-        Texture2D _blender;
-        Texture2D _sketchfab;
         std::map<std::size_t, Texture2D> _img;
         std::map<std::size_t, Texture2D> _members;
         std::size_t width;
