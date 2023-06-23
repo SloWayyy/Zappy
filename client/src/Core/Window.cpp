@@ -16,7 +16,7 @@ Window::Window(std::size_t height, std::size_t width, std::size_t fps) : _window
         this->_musics.insert(std::make_pair(1, this->_rayMusic.loadMusicStream("client/assets/song/gameSong.mp3")));
         this->_musics.insert(std::make_pair(2, this->_rayMusic.loadMusicStream("client/assets/song/music2.mp3")));
         this->_sound = this->_raySound.loadSound("client/assets/song/ButtonSound.wav");
-        this->_raySound.setSoundVolume(this->_sound, 0.5f);
+        this->_raySound.setSoundVolume(this->_sound, 0.05f);
         this->setMusic(this->_musics[1]);
         this->_rayMusic.playMusicStream(this->_music);
         this->_rayMusic.setMusicVolume(this->_music, 0.05f);
