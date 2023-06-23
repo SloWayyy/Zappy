@@ -137,7 +137,7 @@ class Player:
             self.pos_boss = int(x[0][0])
 
     def normal_reaction(self, x):
-        if x[0][2] == EnumHeader.IMBOSS.value:
+        if x[0][1] == self.boss_uuid:
             self.pos_boss = int(x[0][0])
         if x[0][2] == EnumHeader.ORDER.value and self.job == 0:
             self.execute_order(x)
