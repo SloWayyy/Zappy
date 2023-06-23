@@ -186,15 +186,13 @@ class Player:
         for i in donnees:
             if i.find("message") != -1:
                 array = i.split(", ")
-                if len(array) > 0:
-                    if (len(array[1]) % 16) != 0:
-                        return array_decrypt.append(array[0] + ", " + array[1])
+                if (len(array) == 2 and len(array[1]) % 16) == 0:
                     try:
                         msg_decode = decrypt_message(self.key, bytes.fromhex(array[1]))
                         msg_decode = msg_decode.replace("\n", "")
                         array_decrypt.append(array[0] + ", " + msg_decode)
                     except:
-                        array_decrypt.append(array[0] + ", " + array[1])
+                        continue
             else:
                 array_decrypt.append(i)
         return array_decrypt
