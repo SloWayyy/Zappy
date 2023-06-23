@@ -3,7 +3,7 @@ from ai.src.handle_packets import duplicate
 
 def find_boss(player: Player):
     player.broadcast(player.uuid + " " + EnumHeader.ASKBOSS.value + " " + ALL + " Who", False)
-    player.take(EnumObject.LINEMATE.value, False)
+    player.take(EnumObject.FOOD.value, False)
     player.take(EnumObject.FOOD.value, False)
 
     if player.boss != 0:
