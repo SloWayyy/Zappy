@@ -278,11 +278,11 @@ void Gameplay::handleInput(void)
         this->setCameraType(CAMERA_THIRD);
     }
     if (this->_rayWindow.isKeyReleased(KEY_F4)) {
-        this->_window->setTick(this->_window->getTick() - 1);
+        (this->_window->getTick() <= 5) ? this->_window->setTick(5) : (this->_window->setTick(this->_window->getTick() - 5));
         this->_window->setWriteBuffer("sst " + std::to_string(this->_window->getTick()));
     }
     if (this->_rayWindow.isKeyReleased(KEY_F5)) {
-        this->_window->setTick(this->_window->getTick() + 1);
+        this->_window->setTick(this->_window->getTick() + 5);
         this->_window->setWriteBuffer("sst " + std::to_string(this->_window->getTick()));
     }
 }
