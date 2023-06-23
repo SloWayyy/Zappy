@@ -17,7 +17,7 @@ from ai.src.order.level_up import *
 from ai.src.order.go_front import *
 from ai.src.order.fork import *
 from ai.src.order.take_far import *
-from ai.src.order.get_ai_nbr_food import *
+from ai.src.order.farm import *
 
 class ErrorConnection(Exception):
     pass
@@ -67,12 +67,11 @@ class EnumOrder(Enum):
     LEVEL_UP = "6"
     FORK = "7"
     TAKE_FAR = "8"
-    GET_AI_NBR_FOOD = "9"
 
 class EnumPriorityOrder(Enum):
     PING = "0"
     SEPPUKU = "1"
-    PING_SEND_FOOD_NBR = "2"
+    FARM = "2"
 
 levelUpArray = [
                 [1, 0, 1, 0, 0, 0, 0, 0],
@@ -84,9 +83,9 @@ levelUpArray = [
                 [6, 0, 2, 2, 2, 2, 2, 1]
                ]
 
-ANSWER_FUNC = [ping_answer, seppuku_answer, ping_answer_food_nbr]
-PRIORITY_ORDER_FUNC = [ping, seppuku, ping_send_food_nbr]
-ORDER_FUNC = [None, dump_item, join_boss, square_collect, take_around, go_front, level_up, fork, take_far, get_ai_nbr_food]
+ANSWER_FUNC = [ping_answer, seppuku_answer, farm_answer]
+PRIORITY_ORDER_FUNC = [ping, seppuku, farm]
+ORDER_FUNC = [None, dump_item, join_boss, square_collect, take_around, go_front, level_up, fork, take_far]
 
 class Player:
 
@@ -97,10 +96,12 @@ class Player:
         self.level7 = False
         self.level = 1
         self.slot = 0
+        self.reaper = 0
         self.uuid = str(uuid.uuid1())
         self.boss_uuid = None
         self.job = 0
         self.array_uuid = []
+        self.farmer_uuid = None
         self.ai_enought_food = [-1, 0]
         print("UUID: " + self.uuid)
         self.map_size = SizeMap(0, 0)
@@ -123,10 +124,21 @@ class Player:
         ping(self)
 
     def boss_reaction(self, x):
+        from ai.src.game import msg_create
         if x[0][2] == EnumHeader.ASKBOSS.value:
             self.broadcast(self.uuid + " " + EnumHeader.IMBOSS.value + " " + ALL + " IMBOSS")
-            self.array_uuid.append(dict(uuid = x[0][1], level = 1, job = 0, pos = int(x[0][0])))
-            self.pos_boss = 0
+            if self.farmer_uuid == 0:
+                self.farmer_uuid = x[0][1]
+                self.broadcast(msg_create(self, self.farmer_uuid, EnumHeader.PRIORITY_ORDER.value, EnumPriorityOrder.FARM.value))
+            elif self.reaper > 0:
+                print("you time is counted")
+                print("reaper: ", self.reaper)
+                print("target: ", x[0][1])
+                self.broadcast(msg_create(self, x[0][1], EnumHeader.PRIORITY_ORDER.value, EnumPriorityOrder.SEPPUKU.value))
+                self.reaper -= 1
+            else:
+                self.array_uuid.append(dict(uuid = x[0][1], level = 1, job = 0, pos = int(x[0][0])))
+                self.pos_boss = 0
         if x[0][2] == EnumHeader.ANSWER.value:
             self.update_info(x)
 
