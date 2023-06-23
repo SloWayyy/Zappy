@@ -9,6 +9,7 @@
     #define CREDITS_HPP_
 
     #include "AScreen.hpp"
+    #include <map>
 
 class Credits : public AScreen {
     public:
@@ -16,15 +17,8 @@ class Credits : public AScreen {
         ~Credits();
     private:
         void handleInput(void) override;
-        Texture2D _mixamo;
-        Texture2D _blender;
-        Texture2D _sketchfab;
-        Texture2D _kevin;
-        Texture2D _taha;
-        Texture2D _mehdi;
-        Texture2D _florian;
-        Texture2D _jonathan;
-        Texture2D _rayan;
+        std::map<std::size_t, Texture2D> _img;
+        std::map<std::size_t, Texture2D> _members;
         std::size_t width;
         std::size_t height;
 };
