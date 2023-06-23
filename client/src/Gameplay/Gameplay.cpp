@@ -49,8 +49,8 @@ void Gameplay::setTextures()
         this->_textures.insert(std::pair<std::size_t, Texture2D>(4, this->_rayModel.loadTexture("client/assets/monster/textures/monsterPINK.png")));
         this->_textures.insert(std::pair<std::size_t, Texture2D>(5, this->_rayModel.loadTexture("client/assets/monster/textures/monsterORANGE.png")));
         this->_textures.insert(std::pair<std::size_t, Texture2D>(6, this->_rayModel.loadTexture("client/assets/monster/textures/monsterBLACK.png")));
-        this->_textures.insert(std::pair<std::size_t, Texture2D>(7, this->_rayModel.loadTexture("client/assets/monster/textures/monsterGOLD.png")));
-        this->_textures.insert(std::pair<std::size_t, Texture2D>(8, this->_rayModel.loadTexture("client/assets/monster/textures/monsterWHITE.png")));
+        this->_textures.insert(std::pair<std::size_t, Texture2D>(7, this->_rayModel.loadTexture("client/assets/monster/textures/monsterWHITE.png")));
+        this->_textures.insert(std::pair<std::size_t, Texture2D>(8, this->_rayModel.loadTexture("client/assets/monster/textures/monsterGOLD.png")));
     } catch (const Raylibcpp::Error &e) {
         std::cerr << e.what() << std::endl;
         throw Error("Error: Gameplay constructor failed");
@@ -278,11 +278,11 @@ void Gameplay::handleInput(void)
         this->setCameraType(CAMERA_THIRD);
     }
     if (this->_rayWindow.isKeyReleased(KEY_F4)) {
-        this->_window->setTick(this->_window->getTick() - 1);
+        (this->_window->getTick() <= 5) ? this->_window->setTick(5) : (this->_window->setTick(this->_window->getTick() - 5));
         this->_window->setWriteBuffer("sst " + std::to_string(this->_window->getTick()));
     }
     if (this->_rayWindow.isKeyReleased(KEY_F5)) {
-        this->_window->setTick(this->_window->getTick() + 1);
+        this->_window->setTick(this->_window->getTick() + 5);
         this->_window->setWriteBuffer("sst " + std::to_string(this->_window->getTick()));
     }
 }
