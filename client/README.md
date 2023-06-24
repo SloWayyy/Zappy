@@ -92,17 +92,17 @@ The Game is composed of 3 views:
 
 ## Screenshots
 
-### Menu
+***Menu***
 
-IMAGE HERE
+<img src="assets/readme/menu.png" width="400" height="250" />
 
-### Settings
+***Settings***
 
-IMAGE HERE
+<img src="assets/readme/setiing.png" width="400" height="250" />
 
-### Game
+***Game***
 
-IMAGE HERE
+<img src="assets/readme/game.png" width="400" height="250" />
 
 ## Authors
 
