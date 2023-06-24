@@ -89,6 +89,16 @@ void Window::handleInput()
     if (this->_rayWindow.isKeyReleased(KEY_BACKSPACE)) {
         this->_gameEvent = GameEvent::SETTINGS;
     }
+    if (this->_rayWindow.isKeyReleased(KEY_INSERT)) {
+        this->setScreenHeight(720);
+        this->setScreenWidth(1280);
+        this->_rayWindow.setWindowSize(this->getScreenWidth(), this->getScreenHeight());
+    }
+    if (this->_rayWindow.isKeyReleased(KEY_DELETE)) {
+        this->setScreenHeight(1080);
+        this->setScreenWidth(1920);
+        this->_rayWindow.setWindowSize(this->getScreenWidth(), this->getScreenHeight());
+    }
 }
 
 void Window::run()
