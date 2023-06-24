@@ -6,6 +6,22 @@ This is the graphical client of the Zappy project. It is written in C++ with the
 
 The aim of this part of the project is to provide a graphical interface to the user in order to play the game.
 
+### Table of contents
+
+- [Introduction](#introduction)
+  - [Table of contents](#table-of-contents)
+  - [How to execute the client](#how-to-execute-the-client)
+    - [Requirements](#requirements)
+    - [Execution](#execution)
+      - [Example](#example)
+  - [How to play](#how-to-play)
+    - [Controls](#controls)
+    - [Menu](#menu)
+    - [Settings](#settings)
+    - [Game](#game)
+  - [Screenshots](#screenshots)
+  - [Authors](#authors)
+
 
 ## How to execute the client
 
