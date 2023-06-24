@@ -4,7 +4,7 @@ import hashlib
 import uuid
 
 from enum import Enum
-from ai.src.encryption import decrypt_message, encrypt_message
+from ai.src.encryption import Encryption, NonceException
 from ai.src.handle_packets import *
 from ai.src.order.dump_item import *
 from ai.src.order.join_boss import *
@@ -107,6 +107,7 @@ class Player:
         self.map_size = SizeMap(0, 0)
         self.args = args
         self.key = hashlib.sha256(self.args.name.encode()).digest()
+        self.encryption = Encryption()
         if (self.connection(args) == False):
             ErrorConnection("Error: connection failed")
 
@@ -198,15 +199,15 @@ class Player:
         for i in donnees:
             if i.find("message") != -1:
                 array = i.split(", ")
-                if len(array) > 0:
-                    if (len(array[1]) % 16) != 0:
-                        return array_decrypt.append(array[0] + ", " + array[1])
+                if (len(array) == 2 and len(array[1]) % 16) == 0:
                     try:
-                        msg_decode = decrypt_message(self.key, bytes.fromhex(array[1]))
+                        msg_decode = self.encryption.decrypt_message(self.key, bytes.fromhex(array[1]))
                         msg_decode = msg_decode.replace("\n", "")
                         array_decrypt.append(array[0] + ", " + msg_decode)
+                    except NonceException:
+                        print("Replay attack detected")
                     except:
-                        array_decrypt.append(array[0] + ", " + array[1])
+                        pass
             else:
                 array_decrypt.append(i)
         return array_decrypt
@@ -303,9 +304,9 @@ class Player:
             return False
         return [int(num) for num in number]
 
-    def broadcast(self, message: str, return_only: bool = False):
-        message_encrypt = encrypt_message(self.key, message)
-        self.sock.send(("Broadcast " + message_encrypt.hex() + "\n").encode())
+    def broadcast(self, message: str, return_only: bool = False, encrypt: bool = True):
+        message_encrypt = self.encryption.encrypt_message(self.key, message).hex() if encrypt else message
+        self.sock.send(("Broadcast " + message_encrypt + "\n").encode())
         if (return_only == True):
             if (self.wait_return()[0] == "ko"):
                 return False

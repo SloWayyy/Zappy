@@ -15,9 +15,10 @@ def get_socket(port: int, ip = "127.0.0.1"):
         raise BadConnectionException("Erreur lors de la création de la socket : " + str(e))
 
 def receive_packet(sock: socket.socket):
-    donnees = sock.recv(9996)
+    donnees = sock.recv(8192)
     if not donnees:
-        return
+        from ai.src.player import ErrorConnection
+        raise ErrorConnection("Error: Server closed")
     donnees = donnees.split(b'\n')
     for i, x in enumerate(donnees):
         donnees[i] = x.decode()
