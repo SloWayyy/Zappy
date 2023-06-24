@@ -282,7 +282,7 @@ void Gameplay::handleInput(void)
         this->_window->setWriteBuffer("sst " + std::to_string(this->_window->getTick()));
     }
     if (this->_rayWindow.isKeyReleased(KEY_F5)) {
-        this->_window->setTick(this->_window->getTick() + 5);
+        (this->_window->getTick() >= 10000) ? this->_window->setTick(10000) : (this->_window->setTick(this->_window->getTick() - 5));
         this->_window->setWriteBuffer("sst " + std::to_string(this->_window->getTick()));
     }
 }
