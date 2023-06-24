@@ -152,7 +152,7 @@ void Gameplay::displayBroadcast()
     this->_rayWindow.endMode3D();
     for (auto &character : this->_characters) {
         if (character.second->getBroadMessage().empty() == false) {
-            this->_rayModel.drawRectangle(0, width - 80, 1400, 30, {130, 130, 130, 255});
+            this->_rayModel.drawRectangle(0, width - 80, 1600, 30, {130, 130, 130, 255});
             this->_rayText.drawText("message reçu: " + character.second->getBroadMessage(), 10, width - 75, 10, BLACK);
         }
     }
@@ -278,7 +278,7 @@ void Gameplay::handleInput(void)
         this->setCameraType(CAMERA_THIRD);
     }
     if (this->_rayWindow.isKeyReleased(KEY_F4)) {
-        (this->_window->getTick() <= 5) ? this->_window->setTick(5) : (this->_window->setTick(this->_window->getTick() - 5));
+        (this->_window->getTick() <= 1) ? this->_window->setTick(1) : (this->_window->setTick(this->_window->getTick() - 5));
         this->_window->setWriteBuffer("sst " + std::to_string(this->_window->getTick()));
     }
     if (this->_rayWindow.isKeyReleased(KEY_F5)) {
