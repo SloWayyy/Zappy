@@ -115,28 +115,28 @@ The communication protocol between AI clients and the server follows some rules:
 
 Here is the list of the commands that can be sent by the AI player to the server.
 
-| Command          | Duration | Description                                   | Response Format                                          |
-|------------------|----------|-----------------------------------------------|----------------------------------------------------------|
-| Forward          | 7f       | Move forward                                  | ok                                                       |
-| Left             | 7f       | Rotate 90° left                               | ok                                                       |
-| Right            | 7f       | Rotate 90° right                              | ok                                                       |
-| Look             | 7f       | Look around                                   | [see below](#look)                                       |
-| Inventory        | 1f       | Get inventory                                 | [see below](#inventory)                                  |
-| Broadcast <text> | 7f       | Broadcast a message                           | ok                                                       |
-| Connect_nbr      | 0f       | Get the number of available slots in the team | (number)                                                 |
-| Fork             | 42f      | Fork a new player                             | ok                                                       |
-| Eject            | 7f       | Eject a player from the tile                  | ok                                                       |
-| Take <item>      | 7f       | Take a resource from the tile                 | ok / ko                                                  |
-| Set <item>       | 7f       | Set a resource on the tile                    | ok / ko                                                  |
-| Incantation      | 300f     | Start an incantation                          | Elevation underway<br/>Current level: (number)<br/> / ko |
+| Command           | Duration | Description                                   | Response Format                                          |
+|-------------------|----------|-----------------------------------------------|----------------------------------------------------------|
+| Forward           | 7f       | Move forward                                  | ok                                                       |
+| Left              | 7f       | Rotate 90° left                               | ok                                                       |
+| Right             | 7f       | Rotate 90° right                              | ok                                                       |
+| Look              | 7f       | Look around                                   | [see below](#look)                                       |
+| Inventory         | 1f       | Get inventory                                 | [see below](#inventory)                                  |
+| Broadcast \<text> | 7f       | Broadcast a message                           | ok                                                       |
+| Connect_nbr       | 0f       | Get the number of available slots in the team | (number)                                                 |
+| Fork              | 42f      | Fork a new player                             | ok                                                       |
+| Eject             | 7f       | Eject a player from the tile                  | ok                                                       |
+| Take \<item>      | 7f       | Take a resource from the tile                 | ok / ko                                                  |
+| Set \<item>       | 7f       | Set a resource on the tile                    | ok / ko                                                  |
+| Incantation       | 300f     | Start an incantation                          | Elevation underway<br/>Current level: (number)<br/> / ko |
 
 In addition to the command responses, the server can send the following events to the AI player:
 
-| Event                         | Description                 |
-|-------------------------------|-----------------------------|
-| message <orientation>, <text> | Received a message          |
-| eject: <number>               | Player eject from direction |
-| dead                          | Death of the player         |
+| Event                           | Description                 |
+|---------------------------------|-----------------------------|
+| message \<orientation>, \<text> | Received a message          |
+| eject: \<number>                | Player eject from direction |
+| dead                            | Death of the player         |
 
 ### Map
 
