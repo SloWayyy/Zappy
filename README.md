@@ -94,6 +94,31 @@ The hostname and port are similar to the graphical client, and the team name is 
 
 :rocket: You can run any program that follows the [Server/AI Communication Protocol](./server/README.md).
 
+## External documentations
+
+Each part of the project has its own documentation:
+
+- [Server documentation](./server/README.md)
+- [Graphical client documentation](./gui/README.md)
+- [AI player documentation](./ai/README.md)
+
+:mag: If you are looking for a specific information about one of the parts, please refer to the corresponding documentation.
+
+## Troubleshooting
+
+If you encounter any problem during the installation or the usage of the project, you can create an [issue](https://github.com/EdenComp/Zappy/issues/) explaning your problem.
+
+We will try to help you as soon as possible.
+
+## Contributing
+
+You're invited to contribute to the project!
+
+You have an idea to improve the project? You found a bug? Feel free to create an [issue](https://github.com/EdenComp/Zappy/issues/) to share your idea with us!
+
+You can also **fork** the repository and submit a [pull request](https://github.com/EdenComp/Zappy/pulls/) to propose your changes.
+
 ## Our Trantor Survivors (a.k.a. developers)
+
 | [<img src="https://github.com/EdenComp.png?size=85" width=85><br><sub>Florian Lauch</sub>](https://github.com/EdenComp) | [<img src="https://github.com/SloWayyy.png?size=85" width=85><br><sub>Mehdi Djendar</sub>](https://github.com/SloWayyy) | [<img src="https://github.com/Sloyi.png?size=85" width=85><br><sub>Rayan Es-Seffar</sub>](https://github.com/Sloyi) | [<img src="https://github.com/JonathanYakan.png?size=85" width=85><br><sub>Jonathan Yakan</sub>](https://github.com/JonathanYakan) | [<img src="https://github.com/Tahalani.png?size=85" width=85><br><sub>Taha ALANI</sub>](https://github.com/Tahalani) | [<img src="https://github.com/kvn703.png?size=85" width=85><br><sub>Kevin NADARAJAH</sub>](https://github.com/kvn703) |
 |:-----------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------:|
