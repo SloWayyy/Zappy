@@ -101,6 +101,10 @@ class Player:
         self.uuid = str(uuid.uuid1())
         self.boss_uuid = None
         self.job = 0
+
+        self.order_food = 0
+        self.level6 = False
+
         self.boss_food = 0
         self.bigger_level = -1
         self.player_food = 0
@@ -128,18 +132,6 @@ class Player:
         self.take(EnumObject.FOOD.value)
         self.take(EnumObject.FOOD.value)
         self.take(EnumObject.FOOD.value)
-        self.take(EnumObject.FOOD.value)
-        self.take(EnumObject.FOOD.value)
-        self.take(EnumObject.FOOD.value)
-        self.take(EnumObject.FOOD.value)
-        self.take(EnumObject.FOOD.value)
-        self.take(EnumObject.FOOD.value)
-        self.take(EnumObject.FOOD.value)
-        self.take(EnumObject.FOOD.value)
-        self.take(EnumObject.FOOD.value)
-        self.take(EnumObject.FOOD.value)
-        self.take(EnumObject.FOOD.value)
-        self.take(EnumObject.FOOD.value)
 
         ORDER_FUNC[int(order[0][0])](self, order[0][1])
         self.job = 0
@@ -160,7 +152,14 @@ class Player:
                 self.reaper -= 1
             else:
                 self.array_uuid.append(dict(uuid = x[0][1], level = 1, job = 0, pos = int(x[0][0])))
-                self.array_uuid = self.array_uuid[:4]
+                if self.bigger_level == 6:
+                    self.level6 = True
+                if self.level6 == False:
+                    self.array_uuid = self.array_uuid[:4]
+                else:
+                    print("SLICE 8")
+                    self.array_uuid = self.array_uuid[:8]
+                print("LEVEL IN APPEND: ", self.bigger_level)
                 self.pos_boss = 0
         if x[0][2] == EnumHeader.ANSWER.value:
             self.update_info(x)
@@ -237,7 +236,6 @@ class Player:
     def wait_answer(self):
         donnees = receive_packet(self.sock)
         array_decrypt = self.decrypt_donnees(donnees)
-        print("WAIT ANSWER: ", array_decrypt)
         if (array_decrypt == None):
             return self.wait_answer()
         self.handle_broadcast(array_decrypt)

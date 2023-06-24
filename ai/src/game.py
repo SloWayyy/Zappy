@@ -22,7 +22,7 @@ def boss_routine(boss: Player):
     for i in boss.array_uuid:
         boss.broadcast(msg_create(boss, i["uuid"], EnumHeader.ORDER.value, EnumOrder.JOIN_BOSS.value))
     while True:
-        if boss.boss_food < 30:
+        if boss.boss_food < 20:
             boss.take(EnumObject.FOOD.value)
         tmp = boss.inventory()
         if tmp != False and tmp != True:

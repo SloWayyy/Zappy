@@ -161,7 +161,7 @@ def ai_not_same_level(boss, boss_case, array_minus_level, array_bigger_level):
             send_them_in_routine(boss, array_bigger_level)
             send_them_in_routine(boss, array_minus_level)
         return 1
-    send_them_in_routine(boss, array_bigger_level)
+    # send_them_in_routine(boss, array_bigger_level)
     if (result == Answer.INCANTATION.value):
         if (array_minus_level[0]["level"] == 1):
             for player in array_minus_level:
@@ -232,22 +232,27 @@ def manage_order(boss):
 
     available_ai = get_available_ia(boss)
     if (len(available_ai) != len(boss.array_uuid)):
-        print("Not all ai are available")
-        print("All ai : ", boss.array_uuid)
-        for i in available_ai:
-            boss.broadcast(msg_create(boss, i["uuid"], EnumHeader.ORDER.value, EnumOrder.TAKE_FOOD.value, "1"))
+        # print("Not all ai are available")
+        # print("All ai : ", boss.array_uuid)
+        if boss.order_food < 10:
+            for i in available_ai:
+                boss.broadcast(msg_create(boss, i["uuid"], EnumHeader.ORDER.value, EnumOrder.TAKE_FOOD.value, "1"))
+            boss.order_food += 1
         return 0
-    print("Je suis dans avant AI manage_order")
+    print("TOUTES LES IA SONT DISPONIBLES")
+    print("available_ai", available_ai, flush=True)
+    print("boss.array_uuid", boss.array_uuid, flush=True)
+    print("\n\n")
+    boss.order_food = 0
+    # print("Je suis dans avant AI manage_order")
     boss_case = get_ressources(boss)
-    print("boss _case", boss_case, flush=True)
+    # print("boss _case", boss_case, flush=True)
     minus_level = check_minus_level(available_ai)
     array_bigger_level, array_minus_level = check_same_level(available_ai, minus_level)
-    if len(array_bigger_level) != 0:
-        boss.bigger_level = array_bigger_level[0]["level"]
     if (len(array_minus_level) == 0):
         return 0
+    boss.bigger_level = array_minus_level[0]["level"]
     result, nbr_fork = handle_level_up(minus_level, boss_case, len(array_minus_level))
-
     if (len(array_bigger_level) == 0):
         ia_all_same_level(boss, array_minus_level, result, nbr_fork)
     else:

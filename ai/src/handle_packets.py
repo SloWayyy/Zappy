@@ -16,10 +16,10 @@ def get_socket(port: int, ip = "127.0.0.1"):
 
 def receive_packet(sock: socket.socket):
     donnees = sock.recv(8192)
-    print("Reçu : {}".format(donnees.decode()))
     if not donnees:
         from ai.src.player import ErrorConnection
         raise ErrorConnection("Error: Server closed")
+    print("Reçu : {}".format(donnees))
     donnees = donnees.split(b'\n')
     for i, x in enumerate(donnees):
         donnees[i] = x.decode()

@@ -9,13 +9,12 @@ def farm(player, _ = None):
     ping(player)
     i = 0
     while True:
-        # food = get_ressources(player)
-        # print("food CASE: ", food)
-        # if food[1] > 50:
-        #     break
-        print("broadcast farm: ", player.broadcast("{} {} {} {} {} {}".format(player.uuid, EnumHeader.ANSWER.value, player.boss_uuid, EnumPriorityOrder.FARM.value, player.level, "nothing")))
-        print("JE FORK DANS FARM\n")
-        fork(player)
+        food = get_ressources(player)
+        print("food CASE: ", food)
+        if food[1] < 30:
+            print("broadcast farm: ", player.broadcast("{} {} {} {} {} {}".format(player.uuid, EnumHeader.ANSWER.value, player.boss_uuid, EnumPriorityOrder.FARM.value, player.level, "nothing")))
+            print("JE FORK DANS FARM\n")
+            fork(player)
 
         i += 1
         if i == 3:
