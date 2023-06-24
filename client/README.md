@@ -28,6 +28,9 @@ The aim of this part of the project is to provide a graphical interface to the u
 ### Requirements
 
 - Have the server running in order to connect to it when you play
+- Have the SDK communication library compiled and linked to the client
+
+Please refer to the [SDK Communication documentation](../sdk/communication/README.md) for more information.
 
 ### Execution
 
