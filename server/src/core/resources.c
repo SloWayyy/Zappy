@@ -18,31 +18,29 @@
 #include "server.h"
 #include "types.h"
 
-static double calculate_density(server_t *server, tile_t *tile)
+static double calculate_density(server_t *server, tile_t *tile, size_t *index)
 {
-    int index = 0;
     double density = 0.0;
 
     for (size_t i = 0; i < RESOURCES_TYPES_QUANTITY; i++) {
         density += tile->resources[i] * (1 - RESOURCES[i].density);
     }
     if (density == 0.0 && SLIST_EMPTY(&tile->players)) {
-        while (server->zappy->empty[index] != NULL) {
-            index++;
-        }
-        server->zappy->empty[index] = tile;
+        server->zappy->empty[*index] = tile;
+        *index += 1;
     }
     return density;
 }
 
 static double calculate_densities(server_t *server)
 {
+    size_t i = 0;
     double total = 0;
     double density = 0;
 
     for (int x = 0; x < server->options->width; x++) {
         for (int y = 0; y < server->options->height; y++) {
-            density = calculate_density(server, &server->zappy->map[y][x]);
+            density = calculate_density(server, &server->zappy->map[y][x], &i);
             server->zappy->densities[y * server->options->width + x] = density;
             total += density;
         }

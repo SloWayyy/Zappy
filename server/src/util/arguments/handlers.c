@@ -40,6 +40,10 @@ int width_handler(int argc, char const *argv[], options_t *options, int idx)
     if (!check_positive(argv[idx + 1], "Width", &options->width)) {
         return -1;
     }
+    if (options->width > MAX_WIDTH) {
+        fprintf(stderr, "Error: Width must be between 1 and %d\n", MAX_WIDTH);
+        return -1;
+    }
     return 1;
 }
 
@@ -54,6 +58,10 @@ int height_handler(int argc, char const *argv[], options_t *options, int idx)
         return -1;
     }
     if (!check_positive(argv[idx + 1], "Height", &options->height)) {
+        return -1;
+    }
+    if (options->height > MAX_HEIGHT) {
+        fprintf(stderr, "Error: Height must be between 1 and %d\n", MAX_HEIGHT);
         return -1;
     }
     return 1;

@@ -161,7 +161,7 @@ Test(check_arguments, port_already_set, .init=cr_redirect_stderr)
     cr_assert_stderr_eq_str("Error: Port already set\n");
 }
 
-Test(port_handler, port_too_big, .init=cr_redirect_stderr)
+Test(check_arguments, port_too_big, .init=cr_redirect_stderr)
 {
     char const *argv[] = { "./zappy_server", "-n", "toto", "tata", "-p", "65536" };
     options_t options;
@@ -171,7 +171,27 @@ Test(port_handler, port_too_big, .init=cr_redirect_stderr)
     cr_assert_stderr_eq_str("Error: Port must be between 1 and 65535\n");
 }
 
-Test(port_handler, port_too_low, .init=cr_redirect_stderr)
+Test(check_arguments, width_too_big, .init=cr_redirect_stderr)
+{
+    char const *argv[] = { "./zappy_server", "-x", "900", "-y", "1"  };
+    options_t options;
+
+    memset(&options, 0, sizeof(options_t));
+    cr_assert_eq(check_arguments(5, argv, &options), false);
+    cr_assert_stderr_eq_str("Error: Width must be between 1 and 100\n");
+}
+
+Test(check_arguments, height_too_big, .init=cr_redirect_stderr)
+{
+    char const *argv[] = { "./zappy_server", "-x", "1", "-y", "666"  };
+    options_t options;
+
+    memset(&options, 0, sizeof(options_t));
+    cr_assert_eq(check_arguments(5, argv, &options), false);
+    cr_assert_stderr_eq_str("Error: Height must be between 1 and 100\n");
+}
+
+Test(check_arguments, port_too_low, .init=cr_redirect_stderr)
 {
     char const *argv[] = { "./zappy_server", "-n", "toto", "tata", "-p", "-66" };
     options_t options;
