@@ -25,7 +25,7 @@ def boss_routine(boss: Player):
         if boss.boss_food < 30:
             boss.take(EnumObject.FOOD.value)
         tmp = boss.inventory()
-        if tmp != type(bool):
+        if tmp != False and tmp != True:
             boss.boss_food = tmp[0]
         boss.broadcast(msg_create(boss, ALL, EnumHeader.IMBOSS.value))
         manage_order(boss)

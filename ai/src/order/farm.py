@@ -20,6 +20,8 @@ def farm(player, _ = None):
         i += 1
         if i == 3:
             player.take(EnumObject.FOOD.value)
+            player.take(EnumObject.FOOD.value)
+            player.take(EnumObject.FOOD.value)
             i = 0
 
 def farm_answer(player, uuid, info):
