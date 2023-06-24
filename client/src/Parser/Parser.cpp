@@ -57,4 +57,6 @@ void Parser::handleArgs(void)
     }
     if (this->_port < 1 || this->_port > 65535)
         throw ParserException("Invalid port or missing port argument\n" + this->_usage);
+    if (this->machine.compare("localhost") == 0)
+        this->machine = "127.0.0.1";
 }
