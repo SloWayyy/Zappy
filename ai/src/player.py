@@ -18,6 +18,7 @@ from ai.src.order.go_front import *
 from ai.src.order.fork import *
 from ai.src.order.take_far import *
 from ai.src.order.farm import *
+from ai.src.order.take_food import *
 
 class ErrorConnection(Exception):
     pass
@@ -61,12 +62,12 @@ class EnumOrder(Enum):
     NOTHING = "0"
     DUMP_ITEM = "1"
     JOIN_BOSS = "2"
-    SQUARE_COLLECT = "3"
-    TAKE_AROUND = "4"
-    GO_FRONT = "5"
-    LEVEL_UP = "6"
-    FORK = "7"
-    TAKE_FAR = "8"
+    TAKE_AROUND = "3"
+    GO_FRONT = "4"
+    LEVEL_UP = "5"
+    FORK = "6"
+    TAKE_FAR = "7"
+    TAKE_FOOD = "8"
 
 class EnumPriorityOrder(Enum):
     PING = "0"
@@ -85,7 +86,7 @@ levelUpArray = [
 
 ANSWER_FUNC = [ping_answer, seppuku_answer, farm_answer]
 PRIORITY_ORDER_FUNC = [ping, seppuku, farm]
-ORDER_FUNC = [None, dump_item, join_boss, square_collect, take_around, go_front, level_up, fork, take_far]
+ORDER_FUNC = [None, dump_item, join_boss, take_around, go_front, level_up, fork, take_far, take_food]
 
 class Player:
 
