@@ -23,6 +23,8 @@ The aim of this part of the project is to provide a graphical interface to the u
 -h name of the host machine
 ```
 
+> :bulb: The port must be the same as the one used by the server and between 1 and 65535, and you may need root privileges to use a port below 1024.
+
 ## How to play
 
 ### Controls
