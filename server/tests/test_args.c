@@ -191,6 +191,33 @@ Test(check_arguments, height_too_big, .init=cr_redirect_stderr)
     cr_assert_stderr_eq_str("Error: Height must be between 1 and 100\n");
 }
 
+Test(check_arguments, clients_too_big, .init=cr_redirect_stderr)
+{
+    char const *argv[] = { "./zappy_server", "-c", "198", "-p", "6666"  };
+    options_t options;
+
+    memset(&options, 0, sizeof(options_t));
+    cr_assert_eq(check_arguments(5, argv, &options), false);
+    cr_assert_stderr_eq_str("Error: Clients number must be between 1 and 100\n");
+}
+
+Test(check_arguments, too_much_teams, .init=cr_redirect_stderr)
+{
+    char const *argv[200];
+    char *line = NULL;
+    options_t options;
+
+    argv[0] = "./zappy_server";
+    argv[1] = "-n";
+    for (int i = 2; i < 200; i++) {
+        cr_assert_neq(cr_asprintf(&line, "team%d", i), -1);
+        argv[i] = line;
+    }
+    memset(&options, 0, sizeof(options_t));
+    cr_assert_eq(check_arguments(200, argv, &options), false);
+    cr_assert_stderr_eq_str("Error: Maximum number of teams is 100\n");
+}
+
 Test(check_arguments, port_too_low, .init=cr_redirect_stderr)
 {
     char const *argv[] = { "./zappy_server", "-n", "toto", "tata", "-p", "-66" };

@@ -80,6 +80,11 @@ int clients_handler(int argc, char const *argv[], options_t *options, int idx)
     if (!check_positive(argv[idx + 1], "Clients", &options->clients)) {
         return -1;
     }
+    if (options->clients > MAX_TEAM_SIZE) {
+        fprintf(stderr, "Error: Clients number must be between 1 and %d\n", \
+            MAX_TEAM_SIZE);
+        return -1;
+    }
     return 1;
 }
 

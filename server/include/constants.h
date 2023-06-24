@@ -23,6 +23,8 @@
     #define MAX_WIDTH 100
     #define MAX_HEIGHT 100
     #define MAX_FREQ 10000
+    #define MAX_TEAMS 100
+    #define MAX_TEAM_SIZE 100
     #define BUFFER_SIZE 2048
     #define BUFFER_EXTRA 512
 

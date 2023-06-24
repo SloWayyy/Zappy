@@ -7,7 +7,6 @@
 
 #include <stdbool.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include <sys/select.h>
 #include <sys/socket.h>
 #include <sys/queue.h>
@@ -30,17 +29,16 @@ static bool should_handle(server_t *server, client_t *client)
 
 static bool handle_stdin(server_t *server)
 {
-    size_t len = 0;
     ssize_t ret = 0;
-    char *line = NULL;
+    char buffer[BUFFER_EXTRA + 1];
 
-    ret = getline(&line, &len, stdin);
-    if (ret != -1) {
-        append_buffer(server->data->stdin_buffer, line);
+    ret = read(STDIN_FILENO, buffer, BUFFER_EXTRA);
+    if (ret > 0) {
+        buffer[ret] = '\0';
+        append_buffer(server->data->stdin_buffer, buffer);
         execute_server_commands(server);
     }
-    free(line);
-    return ret == -1;
+    return ret <= 0;
 }
 
 static void handle_incoming(server_t *server)
