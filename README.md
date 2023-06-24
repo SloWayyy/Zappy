@@ -27,7 +27,7 @@ cd Zappy
 make
 ```
 
-> :warn: The following dependencies are required for each part of the project:
+> :warning: The following dependencies are required for each part of the project:
 
 <details>
   <summary>Server</summary>
@@ -55,3 +55,45 @@ make
     <li>The required package can be installed using <code>pip install pycryptodome</code></li>
   </ul>
 </details>
+
+## Usage
+
+Now that the project is installed, let's create a new iteration of Trantor!
+
+To do so, you must start the server, using the following command:
+
+```bash
+./zappy_server
+```
+
+> :wrench: The server is highly **configurable**. Please refer to the [Server documentation](./server/README.md) for more information. 
+
+The server is now connected to the Internet and can be accessed using the port *4242* by default, or any port you want using the *-p* parameter.
+
+The graphical client can be launched alongside the server, using the following command:
+
+```bash
+./zappy_gui -h <hostname> -p <port>
+```
+
+Hostname is the IP address of the server, and port is the port used by the server.
+
+> :bulb: If you're running the server and the client on the same computer, you can use the **127.0.0.1** address.
+
+Finally, you can run one or more AI players.
+
+To use the provided AI player, you can run the following command:
+
+```bash
+./zappy_ai -h <hostname> -p <port> -n <team_name>
+```
+
+The hostname and port are similar to the graphical client, and the team name is the name of the team you want to join.
+
+> :bulb: The provided AI program is configured to connect enough AI players to fill the specified team so that you only have to run the program once per team.
+
+:rocket: You can run any program that follows the [Server/AI Communication Protocol](./server/README.md).
+
+## Our Trantor Survivors (a.k.a. developers)
+| [<img src="https://github.com/EdenComp.png?size=85" width=85><br><sub>Florian Lauch</sub>](https://github.com/EdenComp) | [<img src="https://github.com/SloWayyy.png?size=85" width=85><br><sub>Mehdi Djendar</sub>](https://github.com/SloWayyy) | [<img src="https://github.com/Sloyi.png?size=85" width=85><br><sub>Rayan Es-Seffar</sub>](https://github.com/Sloyi) | [<img src="https://github.com/JonathanYakan.png?size=85" width=85><br><sub>Jonathan Yakan</sub>](https://github.com/JonathanYakan) | [<img src="https://github.com/Tahalani.png?size=85" width=85><br><sub>Taha ALANI</sub>](https://github.com/Tahalani) | [<img src="https://github.com/kvn703.png?size=85" width=85><br><sub>Kevin NADARAJAH</sub>](https://github.com/kvn703) |
+|:-----------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------:|
