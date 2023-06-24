@@ -42,7 +42,7 @@ make
 <details>
   <summary>Graphical client</summary>
   <p>The graphical client is using <a href="">Raylib</a> for rendering purposes, coupled to the C++ language, which is most of the times already available on your computer.</p>
-  <p>If you're using the <strong>Fedora</strong> Linux distribution, you can run the script located in <code>install/raylib_install.sh</code> for an automatic installation of the Raylib.</p> 
+  <p>If you're using the <strong>Fedora</strong> Linux distribution, you can <code>make install</code> for an automatic installation of the Raylib.</p> 
   <p>If you're using <strong>Arch Linux</strong>, Raylib can be installed using <strong>pacman</strong> with the following command: <code>sudo pacman -Sy raylib</code></p>
   <p>If you're using none of them, you can check the <a href="https://github.com/raysan5/raylib/wiki">Raylib Wiki</a> which contains installation steps for several configurations.</p>
 </details>
