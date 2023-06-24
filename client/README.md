@@ -25,6 +25,13 @@ The aim of this part of the project is to provide a graphical interface to the u
 
 > :bulb: The port must be the same as the one used by the server and between 1 and 65535, and you may need root privileges to use a port below 1024.
 
+#### Example
+
+```
+Server : ./zappy_server -p 4242 -x 10 -y 10 -n team1 team2 -c 2 -f 10
+Graphical : ./zappy_gui -p 4242 -h 127.0.0.1
+```
+
 ## How to play
 
 ### Controls
