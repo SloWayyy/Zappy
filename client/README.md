@@ -1,8 +1,11 @@
 # Zappy - Graphical Client
 
-## Description
+## Introduction
 
-This is the graphical client for the Zappy project. It is written in C++ and uses the Raylib library.
+This is the graphical client of the Zappy project. It is written in C++ with the Raylib library for Graphical User Interface.
+
+The aim of this part of the project is to provide a graphical interface to the user in order to play the game.
+
 
 ## How to execute the client
 
@@ -62,7 +65,7 @@ This is the graphical client for the Zappy project. It is written in C++ and use
 
 - ***FPS*** : to change the FPS of the game
 
-- ***Wheather*** : to change the wheather of the game (DAY, NIGHT)
+- ***Weather*** : to change the wheather of the game (DAY, NIGHT)
 
 - ***Music*** : to change the music of the game
 
