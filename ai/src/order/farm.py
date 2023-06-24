@@ -17,7 +17,7 @@ def farm(player, _ = None):
             fork(player)
 
         i += 1
-        if i == 3:
+        if i == 5:
             player.take(EnumObject.FOOD.value)
             player.take(EnumObject.FOOD.value)
             player.take(EnumObject.FOOD.value)

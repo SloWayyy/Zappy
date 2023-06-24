@@ -161,7 +161,6 @@ def ai_not_same_level(boss, boss_case, array_minus_level, array_bigger_level):
             send_them_in_routine(boss, array_bigger_level)
             send_them_in_routine(boss, array_minus_level)
         return 1
-    # send_them_in_routine(boss, array_bigger_level)
     if (result == Answer.INCANTATION.value):
         if (array_minus_level[0]["level"] == 1):
             for player in array_minus_level:
@@ -173,6 +172,7 @@ def ai_not_same_level(boss, boss_case, array_minus_level, array_bigger_level):
             call_levelup(boss, 4, array_minus_level)
         elif array_minus_level[0]["level"] == 6 or array_minus_level[0]["level"] == 7:
             call_levelup(boss, 6, array_minus_level)
+        send_them_in_routine(boss, array_bigger_level)
     elif (result == Answer.FORK.value):
         count = 0
         print("je fork de ", nbr_fork, "\n\n", flush=True)
@@ -226,14 +226,12 @@ def all_ai_has_food(boss, available_ia):
 
 def manage_order(boss):
     from ai.src.game import msg_create
-    from ai.src.player import EnumOrder, EnumHeader, EnumObject
-    from ai.src.order.dump_item import dump_item
-
+    from ai.src.player import EnumOrder, EnumHeader
 
     available_ai = get_available_ia(boss)
     if (len(available_ai) != len(boss.array_uuid)):
-        # print("Not all ai are available")
-        # print("All ai : ", boss.array_uuid)
+        print("[[[[[available_ai", available_ai, flush=True)
+        print("[[[[[boss.array_uuid", boss.array_uuid, flush=True)
         if boss.order_food < 10:
             for i in available_ai:
                 boss.broadcast(msg_create(boss, i["uuid"], EnumHeader.ORDER.value, EnumOrder.TAKE_FOOD.value, "1"))
