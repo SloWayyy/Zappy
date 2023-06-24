@@ -92,7 +92,7 @@ The hostname and port are similar to the graphical client, and the team name is 
 
 > :bulb: The provided AI program is configured to connect enough AI players to fill the specified team so that you only have to run the program once per team.
 
-:rocket: You can run any program that follows the [Server/AI Communication Protocol](./server/README.md).
+:rocket: You can run any program that follows the [Server/AI Communication Protocol](./server/README.md#server--ai-communication-protocol).
 
 ## External documentations
 
