@@ -5,11 +5,11 @@ def seppuku(player):
     inventory = player.inventory()
     if (inventory == False or len(inventory) == 0):
         return False
-    for i in range(len(inventory)): 
+    for i in range(len(inventory)):
         for __ in range(0, inventory[i]):
             if i == 0:
                if (player.set(EnumObject.FOOD) == False):
-                    return False 
+                    return False
             if i == 1:
                 if (player.set(EnumObject.LINEMATE) == False):
                     return False
@@ -28,7 +28,6 @@ def seppuku(player):
             if i == 6:
                 if (player.set(EnumObject.THYSTAME) == False):
                     return False
-
 
 def seppuku_answer(player, uuid, _):
     for i in player.array_uuid:

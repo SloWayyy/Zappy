@@ -17,7 +17,7 @@ def ping_send_food_nbr(player):
 def ping_answer(player, uuid, info):
     data = re.findall("(\d+) (\d+) (\d+)", info)
     for i in player.array_uuid:
-        if i["uuid"] == uuid:
+        if len(data) > 0 and i["uuid"] == uuid:
             if (int(data[0][0]) > i["level"]):
                 i["level"] = int(data[0][0])
             i["job"] = int(data[0][1])

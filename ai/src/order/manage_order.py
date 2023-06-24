@@ -101,7 +101,7 @@ def handle_level_up(actual_lvl, boss_case, nbr_player):
             return Answer.ROUTINE.value, 0
         else:
             return Answer.INCANTATION.value, 0
-        
+
     if (nbr_player < levelUpArray[actual_lvl - 1][0]):
         return Answer.FORK.value, nbr_player % levelUpArray[actual_lvl - 1][0]
     for i in range(len(levelUpArray[0])):
@@ -229,26 +229,19 @@ def manage_order(boss):
     from ai.src.player import EnumOrder, EnumHeader, EnumObject
     from ai.src.order.dump_item import dump_item
 
+
     available_ai = get_available_ia(boss)
     if (len(available_ai) != len(boss.array_uuid)):
         print("Not all ai are available")
         print("All ai : ", boss.array_uuid)
         return 0
     print("Je suis dans avant AI manage_order")
-    # if (all_ai_has_food(boss, available_ai) == 0):
-    #     boss_case = get_ressources(boss)
-    #     for _ in range(boss_case[1]):
-    #         print("Je rammasse la food", boss.take("food"))
-    #     return 0
-    print("Je suis dans apres AI manage_order")
-    # print("LE BOSS: JE POSE TOUTES MES RESSOURCES")
-    # dump_item(boss, "0")
     boss_case = get_ressources(boss)
     print("boss _case", boss_case, flush=True)
-    # for i in range(boss_case[1]):
-    #     print("Je rammasse la food", boss.take("food"))
     minus_level = check_minus_level(available_ai)
     array_bigger_level, array_minus_level = check_same_level(available_ai, minus_level)
+    if len(array_bigger_level) != 0:
+        boss.bigger_level = array_bigger_level[0]["level"]
     if (len(array_minus_level) == 0):
         return 0
     result, nbr_fork = handle_level_up(minus_level, boss_case, len(array_minus_level))
@@ -257,9 +250,4 @@ def manage_order(boss):
         ia_all_same_level(boss, array_minus_level, result, nbr_fork)
     else:
         ai_not_same_level(boss, boss_case, array_minus_level, array_bigger_level)
-
-    # if boss_case[1] != 0:
-    #     for _ in range (boss_case[1]):
-    #         boss.take(EnumObject.FOOD.value)
-    # take_around(boss, 4)
     return 1
