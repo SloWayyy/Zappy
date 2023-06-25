@@ -187,3 +187,177 @@ The format of the response is the following:
 > :bulb: Every resource is shown even if the player doesn't have it in his inventory
 
 ## Server / Graphical Communication Protocol
+
+As well as any AI player that follows the AI / Server protocol will work with the server, any graphical client that respects the following protocol will do so.
+
+After etablishing the connection to the server, the graphical client must send `GRAPHIC\n` in order to be identified as a graphical client.
+
+The server will now receive all the events related to the game, and can send the following commands to get information about the game:
+
+| Command | Description                    | Response Format                       |
+|---------|--------------------------------|---------------------------------------|
+| msz     | Get the map size               | msz X Y                               |
+| bct X Y | Get the content of a map tile  | bct X Y q0 q1 q2 q3 q4 q5 q6          |
+| mct     | Get the content of all the map | Successive `bct` lines (1 per tile)   |
+| tna     | Get team names                 | Successive `tna N` lines (1 per team) |
+| ppo n   | Get a player's position        | ppo n X Y O                           |
+| plv n   | Get a player's level           | plv n L                               |
+| pin n   | Get a player's inventory       | pin n X Y q0 q1 q2 q3 q4 q5 q6        |
+| sgt     | Get the server frequency       | sgt T                                 |
+| sst T   | Change the server frequency    | sst T                                 |
+
+
+Additionally to the command responses, the graphical client will receive the following lines:
+
+
+| Line received                  | Description                   |
+|--------------------------------|-------------------------------|
+| bct X Y q0 q1 q2 q3 q4 q5 q6   | Tile                          |
+| pnw n X Y O L N                | Player connection             |
+| ppo n X Y O                    | Player's position             |
+| plv n L                        | Player's level                |
+| pin n X Y q0 q1 q2 q3 q4 q5 q6 | Player's inventory            |
+| pex n                          | Ejection                      |
+| pbc n M                        | Broadcast                     |
+| pic X Y L n                    | Incantation beginning         |
+| pie X Y R                      | Incantation ending            |
+| pfk n                          | Egg laying                    |
+| pdr n i                        | Resource picked up            |
+| pgt n i                        | Resource dropped              |
+| pdi n                          | Player death                  |
+| enw e n X Y                    | Egg laid by a player          |
+| ebo e                          | Player connection from an egg |
+| edi e                          | Egg destroyed                 |
+| sgt T                          | Time unit modification        |
+| seg N                          | End of the game               |
+| smg eni e X Y                  | First spawn egg               |
+| smg pse P                      | Game paused/resumed           |
+
+When an element is updated, it is sent to the player.
+
+> :information_source: For example, when a player drops an item, the inventory of the player and the tile content are sent to the graphical client after the drop event.
+
+> :warning: When the client sends a command that does not exists, the server will respond `suc`, and `sbp` in case of wrong arguments in a valid command.
+
+Here is the legend for the placeholders used:
+
+| Code          | Description                                |
+|---------------|--------------------------------------------|
+| X             | X coordinate                               |
+| Y             | Y coordinate                               |
+| O             | Orientation: 1(N), 2(E), 3(S), 4(W)        |
+| q0            | Resource 0 (food) quantity                 |
+| q1            | Resource 1 (linemate) quantity             |
+| q2            | Resource 2 (deraumere) quantity            |
+| q3            | Resource 3 (sibur) quantity                |
+| q4            | Resource 4 (mendiane) quantity             |
+| q5            | Resource 5 (phiras) quantity               |
+| q6            | Resource 6 (thystame) quantity             |
+| i             | Resource number                            |
+| n             | Player identifier                          |
+| N             | Team name                                  |
+| e             | Egg identifier                             |
+| T             | Time unit                                  |
+| L             | Level                                      |
+| M             | Message                                    |
+| R             | Incantation result (0: failed, 1: success) |
+| P             | Pause state (0: resumed, 1: paused)        |
+
+## Server commands
+
+It is possible to execute commands from the server, which will affect the game.
+
+### Source operators
+
+Commands that rely on a specific need an identifier to determine the target of your command.
+
+The player ID is used as an identifier, but you can also use modifiers:
+
+- `@a` targets **all the players**
+- `@e` targets **all the entities**, which includes players, eggs and items on the floor
+- `@r` targets **a random player**.
+
+You can find the list of the available commands using `/help`.
+
+> :bulb: Sending EOF (a.k.a. `CTRL+D`) will stop the game and close the server.
+
+> :information_source: Mandatory arguments are surrounded with `< >`, while optional are surrounded with `[ ]`.
+
+#### List of the available commands
+
+- [/tp](./README.md#position-tp)
+- [/give](./README.md#items-give)
+- [/kill](./README.md#entites-kill)
+- [/level](./README.md#players-level)
+- [/pause](./README.md#game-pausing-pause--resume)
+- [/resume](./README.md#game-pausing-pause--resume)
+- [/debug](./README.md#debug-mode-1)
+
+### Position: /tp
+
+The `/tp` allows to teleport a source to a specified destination or another player.
+
+The syntax `/tp <src> <dest>` teleports a source to the location of a specified player, and the syntax `/tp <src> <x> <y>` teleports a source to a specific location.
+
+> :bulb: Relative coordinates can be used, using a `~` before the number.
+
+Examples:
+- `/tp 0 1` - Teleports the player `0` to the position of player `1`
+- `/tp @a 4 3` - Teleports all players to the coordinates `(4, 3)`
+- `/tp 0 ~-1 ~2` - Teleports the player `0` 1 tile on South and 2 tiles on East
+- `/tp @e 2` - Teleports all entities to the position of player `2`
+
+> :warning: `@a` and `@e` cannot be used as a destination, and relative coordinates cannot be used with these modifiers as the source.
+
+### Items: /give
+
+The `/give` command gives items to a source, directly in its inventory.
+
+Format: `/give <src> <type> [amount]`
+
+> :bulb: You need to specify the item type (`food`, `linemate`...), and the default amount is **1**.
+
+Examples:
+- `/give 0 linemate` - Gives 1 linemate to the player `0`
+- `/give @a food 4` - Gives 4 food to all players
+
+> :warning: The maximum amount of items you can give in one command is **1000**.
+
+### Entites: /kill
+
+The `/kill` command can be used to kill player or entities.
+
+Format: `/kill <src>`
+
+Examples:
+- `/kill 2` - Kills the player `2`
+- `/kill @r` - Kills a random player
+- `/kill @e` - Kills all entities (players, resources, eggs)
+
+> :wrench: You cannot kill a specific entity, you need to kill them all using `@e`.
+
+### Players: /level
+
+You can get or modify a player's level using `/level`.
+
+Format: `/level <src> [level]`
+
+> :bulb: The optional argument allows you to modify the player level
+
+Examples:
+- `/level 0` - Shows the level of the player `0`
+- `/level @a` - Shows the level of all players
+- `/level 2 1` - Sets the player `2` to the level 1
+- `/level @r 7` - Sets a random player to the level 7
+
+### Game pausing: /pause & /resume
+
+You can pause and resume the game using `/pause` and `/resume`.
+
+> :information_source: When the game is paused, players actions are stopped, and the server does not process their requests anymore until the game is resumed.
+
+> :bulb: Graphical clients can still normally interact with the server.
+
+### Debug mode
+
+The debug mode can be enabled and disabled at runtime using `/debug`.
