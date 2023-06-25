@@ -8,8 +8,6 @@ The aim of this part of the project is to provide a graphical interface to the u
 
 ### Table of contents
 
-- [Introduction](#introduction)
-- [Table of contents](#table-of-contents)
 - [How to execute the client](#how-to-execute-the-client)
   - [Requirements](#requirements)
   - [Execution](#execution)
