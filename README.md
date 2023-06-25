@@ -94,12 +94,12 @@ The hostname and port are similar to the graphical client, and the team name is 
 
 :rocket: You can run any program that follows the [Server/AI Communication Protocol](./server/README.md#server--ai-communication-protocol).
 
-## External documentations
+## Internal documentations
 
 Each part of the project has its own documentation:
 
 - [Server documentation](./server/README.md)
-- [Graphical client documentation](./gui/README.md)
+- [Graphical client documentation](./client/README.md)
 - [AI player documentation](./ai/README.md)
 
 :mag: If you are looking for a specific information about one of the parts, please refer to the corresponding documentation.

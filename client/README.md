@@ -8,8 +8,6 @@ The aim of this part of the project is to provide a graphical interface to the u
 
 ### Table of contents
 
-- [Introduction](#introduction)
-- [Table of contents](#table-of-contents)
 - [How to execute the client](#how-to-execute-the-client)
   - [Requirements](#requirements)
   - [Execution](#execution)
@@ -20,7 +18,6 @@ The aim of this part of the project is to provide a graphical interface to the u
   - [Settings](#settings)
   - [Game](#game)
 - [Screenshots](#screenshots)
-- [Authors](#authors)
 
 
 ## How to execute the client
@@ -39,7 +36,7 @@ Please refer to the [SDK Communication documentation](../sdk/communication/READM
 ./zappy_gui -p <port> -h <hostname>
 
 -p port number
--h name of the host machine
+-h address of the host machine
 ```
 
 > :bulb: The port must be the same as the one used by the server and between 1 and 65535, and you may need root privileges to use a port below 1024.
