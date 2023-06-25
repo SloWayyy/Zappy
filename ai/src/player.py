@@ -95,16 +95,15 @@ class Player:
         self.boss = -1
         self.pos_boss = -1
         self.level7 = False
+        self.lvl2 = 0
         self.level = 1
         self.slot = 0
         self.reaper = 0
         self.uuid = str(uuid.uuid1())
         self.boss_uuid = None
         self.job = 0
-
         self.order_food = 0
         self.level6 = False
-
         self.boss_food = 0
         self.bigger_level = -1
         self.player_food = 0
@@ -151,6 +150,7 @@ class Player:
                 self.array_uuid.append(dict(uuid = x[0][1], level = 1, job = 0, pos = int(x[0][0])))
                 if self.bigger_level == 6:
                     self.level6 = True
+                    self.lvl2 = 0
                 if self.level6 == False:
                     self.array_uuid = self.array_uuid[:4]
                 else:
