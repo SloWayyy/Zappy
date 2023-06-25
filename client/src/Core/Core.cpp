@@ -269,6 +269,7 @@ void Core::setDisconnectEvent(std::vector<std::string> &args)
     this->_gameplay->getCharacters().clear();
     this->_gameplay->getEggs().clear();
     this->_gameplay->getIncantation().clear();
+    this->_gameplay->getMap()->getMapInventory().clear();
 }
 
 bool Core::checkConnection()
