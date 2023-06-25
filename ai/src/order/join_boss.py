@@ -6,7 +6,6 @@ def locate_boss(player):
         player.wait_broadcast()
 
     if (player.pos_boss == 0):
-        print("je suis arrivé")
         return True
     if (player.pos_boss == 1 or player.pos_boss == 2 or player.pos_boss == 8):
         tmp, foot_case = look_item(player)
@@ -35,5 +34,6 @@ def join_boss(player, _):
     get_arround(player)
     while (locate_boss(player) == False):
         pass
-    player.set(EnumObject.FOOD)
+    # player.set(EnumObject.FOOD)
+    player.take(EnumObject.FOOD.value)
     dump_item(player, None)

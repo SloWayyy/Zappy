@@ -30,7 +30,6 @@ def ping_answer(player, uuid, info):
 
 def ping_answer_food_nbr(boss, uuid, info):
     data = re.findall("(\d+)", info)
-    print("ping answer_food_nbr", data, "uuid", uuid, flush=True)
     # for i in boss.array_uuid:
     #     if i["uuid"] == uuid:
     #         i["job"] = 9
@@ -40,8 +39,5 @@ def ping_answer_food_nbr(boss, uuid, info):
     if int(data[0][0]) < 5:
         pass
     else:
-        print("AI NBR BOUFF AVANT", boss.ai_enought_food[1], flush=True)
         boss.ai_enought_food[1] += 1
-        print("AI NBR BOUFF APRES", boss.ai_enought_food[1], flush=True)
-    print("en sortit", boss.ai_enought_food, flush=True)
 

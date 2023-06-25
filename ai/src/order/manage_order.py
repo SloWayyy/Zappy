@@ -28,12 +28,10 @@ def get_available_ia(player):
 def get_ressources(player):
     from ai.src.player import EnumObject
     _, foot_case = look_item(player)
-    print("FOOT CASE IN GET RESSOURCES: {}".format(foot_case))
     boss_case = []
     boss_case.append(foot_case.count("player"))
     for i in EnumObject:
         boss_case.append(foot_case.count(i.value))
-    print("BOSS CASE IN GET RESSOURCES: {}".format(boss_case))
     return boss_case
 
 def check_minus_level(available_ia):
@@ -131,7 +129,6 @@ def ia_all_same_level(boss, array_minus_level, result, nbr_fork):
         elif array_minus_level[0]["level"] == 6 or array_minus_level[0]["level"] == 7:
             call_levelup(boss, 6, array_minus_level)
     elif (result == Answer.FORK.value):
-        print("je fork de ", nbr_fork, "\n\n", flush=True)
         count = 0
         for player in range(len(array_minus_level)):
             if (count < nbr_fork):
@@ -175,7 +172,6 @@ def ai_not_same_level(boss, boss_case, array_minus_level, array_bigger_level):
         send_them_in_routine(boss, array_bigger_level)
     elif (result == Answer.FORK.value):
         count = 0
-        print("je fork de ", nbr_fork, "\n\n", flush=True)
         for player in range(len(array_minus_level)):
             if (count < nbr_fork):
                 boss.broadcast(msg_create(boss, array_minus_level[player]["uuid"], EnumHeader.ORDER.value, EnumOrder.FORK.value))
@@ -203,9 +199,7 @@ def take_specific_ressources(boss):
 def all_ai_has_food(boss, available_ia):
     from ai.src.game import msg_create
     from ai.src.player import EnumOrder, EnumHeader, ALL
-    print("DANS ALL_AI_has_food", boss.ai_enought_food, "len available_ia", len(available_ia), flush=True)
     if (boss.ai_enought_food[0] != len(available_ia) and boss.ai_enought_food[0] != -1): # nombre d'ia qui ont repondu
-        print("je return 0 1")
         return 0
     if (boss.ai_enought_food[0] == -1):
         boss.ai_enought_food[0] = 0
@@ -221,7 +215,6 @@ def all_ai_has_food(boss, available_ia):
         return 1
     else:
         send_them_in_routine(boss, available_ia)
-        print("je return 0 2")
         return 0
 
 def manage_order(boss):
@@ -230,17 +223,11 @@ def manage_order(boss):
 
     available_ai = get_available_ia(boss)
     if (len(available_ai) != len(boss.array_uuid)):
-        print("[[[[[available_ai", available_ai, flush=True)
-        print("[[[[[boss.array_uuid", boss.array_uuid, flush=True)
         if boss.order_food < 10:
             for i in available_ai:
                 boss.broadcast(msg_create(boss, i["uuid"], EnumHeader.ORDER.value, EnumOrder.TAKE_FOOD.value, "1"))
             boss.order_food += 1
         return 0
-    print("TOUTES LES IA SONT DISPONIBLES")
-    print("available_ai", available_ai, flush=True)
-    print("boss.array_uuid", boss.array_uuid, flush=True)
-    print("\n\n")
     boss.order_food = 0
     # print("Je suis dans avant AI manage_order")
     boss_case = get_ressources(boss)

@@ -30,7 +30,6 @@ def receive_packet(sock: socket.socket):
     if not donnees:
         from ai.src.player import ErrorConnection
         raise ErrorConnection("Error: Server closed")
-    print("Reçu : {}".format(donnees))
     donnees = donnees.split(b'\n')
     for i, x in enumerate(donnees):
         donnees[i] = x.decode()

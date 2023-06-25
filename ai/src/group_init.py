@@ -8,10 +8,7 @@ def find_boss(player: Player):
 
     if player.boss != 0:
         player.boss = 1
-        print("I AM THE BOSS\n")
         if (player.slot > 0):
             for _ in range(0, player.slot):
                 duplicate(player.args)
                 player.wait_broadcast()
-    else:
-        print("YES SIR", flush=True)

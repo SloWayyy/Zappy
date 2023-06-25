@@ -145,9 +145,6 @@ class Player:
                 self.farmer_uuid = x[0][1]
                 self.broadcast(msg_create(self, self.farmer_uuid, EnumHeader.PRIORITY_ORDER.value, EnumPriorityOrder.FARM.value))
             elif self.reaper > 0:
-                print("you time is counted")
-                print("reaper: ", self.reaper)
-                print("target: ", x[0][1])
                 self.broadcast(msg_create(self, x[0][1], EnumHeader.PRIORITY_ORDER.value, EnumPriorityOrder.SEPPUKU.value))
                 self.reaper -= 1
             else:
@@ -157,9 +154,7 @@ class Player:
                 if self.level6 == False:
                     self.array_uuid = self.array_uuid[:4]
                 else:
-                    print("SLICE 8")
                     self.array_uuid = self.array_uuid[:8]
-                print("LEVEL IN APPEND: ", self.bigger_level)
                 self.pos_boss = 0
         if x[0][2] == EnumHeader.ANSWER.value:
             self.update_info(x)
@@ -205,7 +200,6 @@ class Player:
         for i in donnees:
             if i.find("Current level") != -1:
                 self.level = int(i.split(" ")[2])
-                print("JE DEVIENS LEVEL -> Level: " + str(self.level))
                 self.job = 0
                 ping(self)
             else:
@@ -227,7 +221,7 @@ class Player:
                         msg_decode = msg_decode.replace("\n", "")
                         array_decrypt.append(array[0] + ", " + msg_decode)
                     except NonceException:
-                        print("Replay attack detected")
+                        pass
                     except:
                         pass
             else:
@@ -261,9 +255,6 @@ class Player:
         array_decrypt = self.decrypt_donnees(donnees)
         if (array_decrypt == None):
             return self.wait_answer()
-        for i in array_decrypt:
-            if i.find("level") != -1:
-                print("broad: ", i)
         self.handle_broadcast(array_decrypt)
         if (array_decrypt[0] == "dead"):
             raise ErrorConnection("Error: player dead")
