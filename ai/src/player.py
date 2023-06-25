@@ -206,6 +206,7 @@ class Player:
             if i.find("Current level") != -1:
                 self.level = int(i.split(" ")[2])
                 print("JE DEVIENS LEVEL -> Level: " + str(self.level))
+                self.job = 0
                 ping(self)
             else:
                 x = re.findall("^message ([0-8]), " + UUID_REGEX + " (\$[0-9]\$) " + UUID_REGEX + " (.*)$", i)
