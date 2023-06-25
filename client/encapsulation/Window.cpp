@@ -66,3 +66,8 @@ bool Raylibcpp::RayWindow::windowShouldClose()
 {
     return WindowShouldClose();
 }
+
+void Raylibcpp::RayWindow::setWindowSize(int width, int height)
+{
+    SetWindowSize(width, height);
+}

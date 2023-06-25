@@ -31,6 +31,7 @@ namespace Raylibcpp {
             bool isKeyReleased(int key);
             bool isKeyDown(int key);
             void updateCamera(Camera *camera, int mode);
+            void setWindowSize(int width, int height);
             void beginDrawing();
             void endDrawing();
             void clearBackground(Color color);
