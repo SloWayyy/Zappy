@@ -112,10 +112,6 @@ int main()
         return 84;
     }
     std::cout << "Connected to the server" << std::endl;
+    dlclose(handle); // Close the library
 }
 ```
-
-## Authors
-
-| [<img src="https://github.com/EdenComp.png?size=85" width=85><br><sub>Florian Lauch</sub>](https://github.com/EdenComp) | [<img src="https://github.com/kvn703.png?size=85" width=85><br><sub>Kevin NADARAJAH</sub>](https://github.com/kvn703) |
-| :---: | :---: |

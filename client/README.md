@@ -123,8 +123,3 @@ The Game is composed of 3 views:
 
 <img src="assets/readme/game.png" width="400" height="250" />
 
-
-# Authors
-
-| [<img src="https://github.com/Tahalani.png?size=85" width=85><br><sub>Taha ALANI</sub>](https://github.com/Tahalani) | [<img src="https://github.com/kvn703.png?size=85" width=85><br><sub>Kevin NADARAJAH</sub>](https://github.com/kvn703) |
-| :---: | :---: |
