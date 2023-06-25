@@ -109,9 +109,11 @@ int main()
         communication->connect("localhost", 4242); // Connect to the server on localhost:4242 or throw an exception if it fails
     } catch (const zappy::sdk::CommunicationException &e) {
         std::cerr << e.what() << std::endl;
+        dlclose(handle); // Close the library
         return 84;
     }
     std::cout << "Connected to the server" << std::endl;
     dlclose(handle); // Close the library
+    return 0;
 }
 ```
