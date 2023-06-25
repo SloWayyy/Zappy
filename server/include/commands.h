@@ -34,7 +34,7 @@
     #define SERVER_KILL_FORMAT "Player %zu has been killed%s"
     #define SERVER_KILL_ENTITIES "Resources and eggs have been killed"
 
-    #define SERVER_LEVEL_USAGE "Usage: /give <src> [level]"
+    #define SERVER_LEVEL_USAGE "Usage: /level <src> [level]"
     #define SERVER_LEVEL_ERROR "Error: The max level is %zu%s"
     #define SERVER_LEVEL_INFO "Player %zu is at level %zu%s"
     #define SERVER_LEVEL_FORMAT "Player %zu is now at level %zu%s"

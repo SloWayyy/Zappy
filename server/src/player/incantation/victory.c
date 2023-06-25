@@ -20,6 +20,7 @@ static void select_winning_team(server_t *server, team_t **teams, size_t size)
     size_t num = rand() % size;
     team_t *winner = teams[num];
 
+    server->zappy->win = true;
     send_graphical_event(server, "%s %s%s", \
         GRAPHICAL_VICTORY, winner->name, LINE_BREAK);
     debug(server, "Team %s won the game", winner->name);
@@ -69,6 +70,8 @@ void check_victory(server_t *server, incantation_t *incantation)
     player_t *player = NULL;
     team_t **teams = NULL;
 
+    if (server->zappy->win)
+        return;
     SLIST_FOREACH(player, &incantation->players, next_incantation) {
         if (!add_team_to_check(player, &teams, &size)) {
             free(teams);

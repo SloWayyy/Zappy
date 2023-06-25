@@ -13,8 +13,8 @@ Usage: /give <src> <resource> [amount]
 Usage: /give <src> <resource> [amount]
 Error: Cannot find player 1
 Error: The max level is 10
-Usage: /give <src> [level]
-Usage: /give <src> [level]
+Usage: /level <src> [level]
+Usage: /level <src> [level]
 Player 0 is at level 1
 Player 0 is now at level 4
 Player 0 has been killed
