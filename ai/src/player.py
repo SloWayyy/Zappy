@@ -4,16 +4,21 @@ import hashlib
 import uuid
 
 from enum import Enum
-from ai.src.encryption import decrypt_message, encrypt_message
+from ai.src.encryption import Encryption, NonceException
 from ai.src.handle_packets import *
 from ai.src.order.dump_item import *
 from ai.src.order.join_boss import *
 from ai.src.order.square_collect import *
 from ai.src.order.take_around import *
 from ai.src.priority_order.ping import *
-from ai.src.order.handle_incantation import *
+from ai.src.order.manage_order import *
+from ai.src.priority_order.seppuku import *
 from ai.src.order.level_up import *
 from ai.src.order.go_front import *
+from ai.src.order.fork import *
+from ai.src.order.take_far import *
+from ai.src.order.farm import *
+from ai.src.order.take_food import *
 
 class ErrorConnection(Exception):
     pass
@@ -57,13 +62,17 @@ class EnumOrder(Enum):
     NOTHING = "0"
     DUMP_ITEM = "1"
     JOIN_BOSS = "2"
-    SQUARE_COLLECT = "3"
-    TAKE_AROUND = "4"
-    GO_FRONT = "5"
-    LEVEL_UP = "6"
+    TAKE_AROUND = "3"
+    GO_FRONT = "4"
+    LEVEL_UP = "5"
+    FORK = "6"
+    TAKE_FAR = "7"
+    TAKE_FOOD = "8"
 
 class EnumPriorityOrder(Enum):
     PING = "0"
+    SEPPUKU = "1"
+    FARM = "2"
 
 levelUpArray = [
                 [1, 0, 1, 0, 0, 0, 0, 0],
@@ -75,9 +84,9 @@ levelUpArray = [
                 [6, 0, 2, 2, 2, 2, 2, 1]
                ]
 
-ANSWER_FUNC = [ping_answer]
-PRIORITY_ORDER_FUNC = [ping]
-ORDER_FUNC = [None, dump_item, join_boss, square_collect, take_around, go_front, level_up]
+ANSWER_FUNC = [ping_answer, seppuku_answer, farm_answer]
+PRIORITY_ORDER_FUNC = [ping, seppuku, farm]
+ORDER_FUNC = [None, dump_item, join_boss, take_around, go_front, level_up, fork, take_far, take_food]
 
 class Player:
 
@@ -85,16 +94,27 @@ class Player:
         self.sock = sock
         self.boss = -1
         self.pos_boss = -1
+        self.level7 = False
+        self.lvl2 = 0
         self.level = 1
         self.slot = 0
+        self.reaper = 0
         self.uuid = str(uuid.uuid1())
         self.boss_uuid = None
         self.job = 0
+        self.order_food = 0
+        self.level6 = False
+        self.boss_food = 0
+        self.bigger_level = -1
+        self.player_food = 0
         self.array_uuid = []
+        self.farmer_uuid = None
+        self.ai_enought_food = [-1, 0]
         print("UUID: " + self.uuid)
         self.map_size = SizeMap(0, 0)
         self.args = args
         self.key = hashlib.sha256(self.args.name.encode()).digest()
+        self.encryption = Encryption()
         if (self.connection(args) == False):
             ErrorConnection("Error: connection failed")
 
@@ -107,15 +127,35 @@ class Player:
     def execute_order(self, x):
         order = re.findall("(\d+) (.*)", x[0][4])
         self.job = int(order[0][0])
+
+        self.take(EnumObject.FOOD.value)
+        self.take(EnumObject.FOOD.value)
+        self.take(EnumObject.FOOD.value)
+
         ORDER_FUNC[int(order[0][0])](self, order[0][1])
         self.job = 0
         ping(self)
 
     def boss_reaction(self, x):
+        from ai.src.game import msg_create
         if x[0][2] == EnumHeader.ASKBOSS.value:
             self.broadcast(self.uuid + " " + EnumHeader.IMBOSS.value + " " + ALL + " IMBOSS")
-            self.array_uuid.append(dict(uuid = x[0][1], level = 1, job = 0, pos = int(x[0][0])))
-            self.pos_boss = 0
+            if self.farmer_uuid == 0:
+                self.farmer_uuid = x[0][1]
+                self.broadcast(msg_create(self, self.farmer_uuid, EnumHeader.PRIORITY_ORDER.value, EnumPriorityOrder.FARM.value))
+            elif self.reaper > 0:
+                self.broadcast(msg_create(self, x[0][1], EnumHeader.PRIORITY_ORDER.value, EnumPriorityOrder.SEPPUKU.value))
+                self.reaper -= 1
+            else:
+                self.array_uuid.append(dict(uuid = x[0][1], level = 1, job = 0, pos = int(x[0][0])))
+                if self.bigger_level == 6:
+                    self.level6 = True
+                    self.lvl2 = 0
+                if self.level6 == False:
+                    self.array_uuid = self.array_uuid[:4]
+                else:
+                    self.array_uuid = self.array_uuid[:8]
+                self.pos_boss = 0
         if x[0][2] == EnumHeader.ANSWER.value:
             self.update_info(x)
 
@@ -126,7 +166,7 @@ class Player:
             self.pos_boss = int(x[0][0])
 
     def normal_reaction(self, x):
-        if x[0][2] == EnumHeader.IMBOSS.value:
+        if x[0][1] == self.boss_uuid:
             self.pos_boss = int(x[0][0])
         if x[0][2] == EnumHeader.ORDER.value and self.job == 0:
             self.execute_order(x)
@@ -158,21 +198,32 @@ class Player:
 
     def handle_broadcast(self, donnees: str):
         for i in donnees:
-            x = re.findall("^message ([0-8]), " + UUID_REGEX + " (\$[0-9]\$) " + UUID_REGEX + " (.*)$", i)
-            if len(x) and (x[0][3] == self.uuid or x[0][3] == ALL):
-                donnees = self.handle_header(x)
+            if i.find("Current level") != -1:
+                self.level = int(i.split(" ")[2])
+                self.job = 0
+                ping(self)
+            else:
+                x = re.findall("^message ([0-8]), " + UUID_REGEX + " (\$[0-9]\$) " + UUID_REGEX + " (.*)$", i)
+                if len(x) and (x[0][3] == self.uuid or x[0][3] == ALL):
+                    donnees = self.handle_header(x)
         return self.clear_data(donnees)
 
     def decrypt_donnees(self, donnees):
         array_decrypt = []
+        if (donnees == None):
+            return None
         for i in donnees:
             if i.find("message") != -1:
                 array = i.split(", ")
-                if (len(array[1]) % 16) != 0:
-                    return array_decrypt.append(array[0] + ", " + array[1])
-                msg_decode = decrypt_message(self.key, bytes.fromhex(array[1]))
-                msg_decode = msg_decode.replace("\n", "")
-                array_decrypt.append(array[0] + ", " + msg_decode)
+                if (len(array) == 2 and len(array[1]) % 16) == 0:
+                    try:
+                        msg_decode = self.encryption.decrypt_message(self.key, bytes.fromhex(array[1]))
+                        msg_decode = msg_decode.replace("\n", "")
+                        array_decrypt.append(array[0] + ", " + msg_decode)
+                    except NonceException:
+                        pass
+                    except:
+                        pass
             else:
                 array_decrypt.append(i)
         return array_decrypt
@@ -263,9 +314,9 @@ class Player:
             return False
         return [int(num) for num in number]
 
-    def broadcast(self, message: str, return_only: bool = False):
-        message_encrypt = encrypt_message(self.key, message)
-        self.sock.send(("Broadcast " + message_encrypt.hex() + "\n").encode())
+    def broadcast(self, message: str, return_only: bool = False, encrypt: bool = True):
+        message_encrypt = self.encryption.encrypt_message(self.key, message).hex() if encrypt else message
+        self.sock.send(("Broadcast " + message_encrypt + "\n").encode())
         if (return_only == True):
             if (self.wait_return()[0] == "ko"):
                 return False
@@ -285,6 +336,7 @@ class Player:
         return int(tmp)
 
     def fork(self, return_only: bool = False):
+        from ai.src.priority_order.ping import ping
         self.sock.send("Fork\n".encode())
         if (return_only == True):
             if (self.wait_return()[0] == "ko"):
@@ -292,6 +344,7 @@ class Player:
         else:
             if (self.wait_answer()[0] == "ko"):
                 return False
+        ping(self)
         return True
 
     def eject(self, return_only: bool = False):
@@ -325,6 +378,7 @@ class Player:
         return True
 
     def incantation(self, return_only: bool = False):
+        from ai.src.priority_order.ping import ping
         self.sock.send("Incantation\n".encode())
         if (return_only == True):
             if (self.wait_return()[0] == "ko"):
@@ -337,14 +391,10 @@ class Player:
             if (tmp == "ko"):
                 return False
             else:
-                array = tmp.split(": ")
-                self.level = array[1]
                 return tmp
         else:
             tmp = self.wait_answer()[0]
             if (tmp == "ko"):
                 return False
             else:
-                array = tmp.split(": ")
-                self.level = array[1]
                 return tmp

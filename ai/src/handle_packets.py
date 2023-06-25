@@ -1,6 +1,13 @@
 from typing import Final
 import socket
 import os
+import signal
+
+def signal_handler(signal, frame):
+    print("CTRL-C detected, exiting")
+    exit(0)
+
+signal.signal(signal.SIGINT, signal_handler)
 
 class BadConnectionException(Exception):
     pass
@@ -15,23 +22,18 @@ def get_socket(port: int, ip = "127.0.0.1"):
         raise BadConnectionException("Erreur lors de la création de la socket : " + str(e))
 
 def receive_packet(sock: socket.socket):
-    donnees = sock.recv(1024)
+    try:
+        donnees = sock.recv(8192)
+        pass
+    except KeyboardInterrupt:
+        exit(0)
     if not donnees:
-        return
+        from ai.src.player import ErrorConnection
+        raise ErrorConnection("Error: Server closed")
     donnees = donnees.split(b'\n')
     for i, x in enumerate(donnees):
         donnees[i] = x.decode()
     return donnees
-
-def receive_debug(sock: socket.socket):
-    donnees = sock.recv(1024)
-    if not donnees:
-        return
-    donnees = donnees.split(b'\n')
-    for i, x in enumerate(donnees):
-        donnees[i] = x.decode()
-    print("Debug :", donnees)
-    return
 
 def duplicate(args):
     pid = os.fork()
