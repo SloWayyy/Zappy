@@ -6,6 +6,7 @@
 */
 
 #include <string.h>
+#include <sys/queue.h>
 
 #include "buffer.h"
 #include "constants.h"
@@ -29,6 +30,18 @@ void sgt_handler(server_t *server, client_t *client)
     send_time(server, client);
 }
 
+static void send_time_update(server_t *server, client_t *client)
+{
+    client_t *node = NULL;
+
+    SLIST_FOREACH(node, server->clients, next) {
+        if (node->type == GRAPHIC && node != client) {
+            append_buffer(node->buffer_out, "%s% li%s", GRAPHICAL_FREQUENCY, \
+                server->zappy->tick->freq, LINE_BREAK);
+        }
+    }
+}
+
 void sst_handler(server_t *server, client_t *client)
 {
     int ticks = 0;
@@ -47,4 +60,5 @@ void sst_handler(server_t *server, client_t *client)
     init_tick(server, ticks);
     append_buffer(client->buffer_out, "%s %d%s", GRAPHICAL_CHANGE_FREQ, \
         ticks, LINE_BREAK);
+    send_time_update(server, client);
 }
