@@ -11,8 +11,8 @@
 #include <string.h>
 
 #include "args.h"
-#include "types.h"
 #include "constants.h"
+#include "types.h"
 
 static bool is_valid(const char **teams, int size, char const *name)
 {
@@ -32,6 +32,10 @@ static bool is_valid(const char **teams, int size, char const *name)
 static int fill_names(char const *argv[], int padding, int quantity, \
     const char **array)
 {
+    if (quantity > MAX_TEAMS) {
+        fprintf(stderr, "Error: Maximum number of teams is %d\n", MAX_TEAMS);
+        return -1;
+    }
     for (int i = 0; i < quantity; i++) {
         if (is_valid(array, i, argv[padding + i]) == 1) {
             return -1;
