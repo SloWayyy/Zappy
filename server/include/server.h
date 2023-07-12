@@ -21,6 +21,7 @@ int refresh_fdsets(server_t *server);
 
 bool handle_fdsets(server_t *server);
 bool handle_client(server_t *server, client_t *client);
+void handle_client_input(server_t *server, client_t *client, char *line);
 
 bool init_map(server_t *server);
 void free_map(server_t *server);

@@ -7,6 +7,7 @@
 
 #include <stdbool.h>
 #include <stdio.h>
+#include <string.h>
 #include <sys/select.h>
 #include <sys/socket.h>
 #include <sys/queue.h>
@@ -32,6 +33,7 @@ static bool handle_stdin(server_t *server)
     ssize_t ret = 0;
     char buffer[BUFFER_EXTRA + 1];
 
+    memset(buffer, 0, BUFFER_EXTRA + 1);
     ret = read(STDIN_FILENO, buffer, BUFFER_EXTRA);
     if (ret > 0) {
         buffer[ret] = '\0';

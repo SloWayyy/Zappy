@@ -27,6 +27,7 @@
     #define MAX_TEAM_SIZE 100
     #define BUFFER_SIZE 2048
     #define BUFFER_EXTRA 512
+    #define BUFFER_MAX 65536
 
     #define MICROS_PER_SEC 1000000
 
