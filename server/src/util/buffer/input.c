@@ -33,8 +33,8 @@ static char *copy_line(buffer_t *buffer, size_t size)
         perror("malloc failed");
         return NULL;
     }
+    memset(line, 0, size + 1);
     strncpy(line, buffer->buffer, size);
-    line[size] = '\0';
     return line;
 }
 

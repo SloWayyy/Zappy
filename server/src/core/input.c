@@ -8,74 +8,19 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/queue.h>
 #include <sys/select.h>
 #include <unistd.h>
 
 #include "buffer.h"
 #include "constants.h"
-#include "graphical.h"
-#include "player.h"
+#include "server.h"
 #include "types.h"
 
-static void handle_unknown(server_t *server, client_t *client, char *line)
-{
-    if (strcmp(line, GRAPHICAL_IDENTIFIER) == 0) {
-        client->type = GRAPHIC;
-        send_new_graphical(server, client);
-    } else if (try_join_team(server, client, line)) {
-        client->type = PLAYER;
-        append_buffer(client->buffer_out, "%d%s%d %d%s", \
-            client->player->team->slots, LINE_BREAK, \
-            server->options->width, server->options->height, LINE_BREAK);
-    } else {
-        append_buffer(client->buffer_out, "%s%s", PLAYER_UNKNOWN, \
-            LINE_BREAK);
-    }
-}
-
-static void handle_empty(server_t *server, client_t *client)
-{
-    team_t *team = NULL;
-
-    if (client->type != UNKNOWN) {
-        return;
-    }
-    SLIST_FOREACH(team, server->zappy->teams, next) {
-        if (strcmp(team->name, "") == 0) {
-            handle_unknown(server, client, "");
-            return;
-        }
-    }
-}
-
-static void handle_client_input(server_t *server, client_t *client, char *line)
-{
-    if (strlen(line) == 0) {
-        handle_empty(server, client);
-        return;
-    }
-    if (client->type == PLAYER) {
-        register_command(server, client, line);
-    } else if (client->type == GRAPHIC) {
-        handle_graphical_command(server, client, line);
-    } else {
-        handle_unknown(server, client, line);
-    }
-}
-
-static bool handle_input(server_t *server, client_t *client)
+static void handle_commands(server_t *server, client_t *client)
 {
     bool exit = false;
-    char buffer[BUFFER_EXTRA + 1];
     char *command = NULL;
-    int re = read(client->fd, buffer, BUFFER_EXTRA);
 
-    if (re <= 0) {
-        return false;
-    }
-    buffer[re] = '\0';
-    append_buffer(client->buffer_in, buffer);
     while (!exit) {
         command = extract_line(client->buffer_in);
         if (command != NULL) {
@@ -85,6 +30,21 @@ static bool handle_input(server_t *server, client_t *client)
             exit = true;
         }
     }
+}
+
+static bool handle_input(server_t *server, client_t *client)
+{
+    char buffer[BUFFER_EXTRA + 1];
+    ssize_t re = 0;
+
+    memset(buffer, 0, BUFFER_EXTRA + 1);
+    re = read(client->fd, buffer, BUFFER_EXTRA);
+    if (re <= 0) {
+        return false;
+    }
+    buffer[re] = '\0';
+    append_buffer(client->buffer_in, "%s", buffer);
+    handle_commands(server, client);
     return true;
 }
 
@@ -97,6 +57,7 @@ bool handle_client(server_t *server, client_t *client)
     if (read && FD_ISSET(client->fd, &server->data->reads)) {
         keep = handle_input(server, client);
     }
+    keep = keep && client->buffer_in->size < BUFFER_MAX;
     if (keep && FD_ISSET(client->fd, &server->data->writes)) {
         keep = dump_buffer(client->buffer_out, client->fd) && !dead;
     }
