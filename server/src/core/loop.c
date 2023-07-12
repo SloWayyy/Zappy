@@ -56,7 +56,7 @@ static bool server_loop(server_t *server)
             perror("select failed");
             return false;
         }
-        exit = res > 0 ? handle_fdsets(server) : tick(server);
+        exit = execute_loop_action(server, res);
     }
     return true;
 }

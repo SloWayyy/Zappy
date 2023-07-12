@@ -17,6 +17,7 @@
 int zappy_server(int argc, char const *argv[]);
 bool start_server(options_t *options);
 bool init_server(server_t *server);
+bool execute_loop_action(server_t *server, int res);
 int refresh_fdsets(server_t *server);
 
 bool handle_fdsets(server_t *server);
